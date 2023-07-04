@@ -19,7 +19,8 @@ namespace Voxell.Util
         public static readonly float2 down = new float2(0.0f, -1.0f);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float2 perpendicular(this float2 vector) => new float2(-vector.y, vector.x);
+        public static float2 perpendicular(this float2 vector)
+            => new float2(-vector.y, vector.x);
 
         ///<summary>Returns the angle in degrees between `from` and `to`.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

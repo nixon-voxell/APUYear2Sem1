@@ -37,15 +37,14 @@ namespace GameWorld.Util
         public static void GenerateRay2D(
             ref NativeArray<float3> na_rays,
             float minAngle = 0.0f,
-            float maxAngle = 2.0f * PI
+            float maxAngle = 2.0f * PI,
+            float angleOffset = 0.0f
         ) {
             int rayCount = na_rays.Length;
-            float delta = (maxAngle - minAngle) / (float)rayCount;
+            float delta = (maxAngle - minAngle) / (float)(rayCount - 1);
 
             // half of minAngle since we remain another half on the other side
-            float angleOffset = minAngle * 0.5f;
-            // start from middle
-            angleOffset += PI;
+            angleOffset += minAngle * 0.5f;
 
             for (int r = 0; r < rayCount; r++)
             {
