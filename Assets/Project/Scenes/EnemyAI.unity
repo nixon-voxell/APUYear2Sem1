@@ -875,9 +875,8 @@ MonoBehaviour:
   m_RayCount: 0
   m_ViewAnglePercentage: 0.8
   m_BoidPool:
-    Count: 0
-    Parent: {fileID: 0}
-    m_Prefab: {fileID: 0}
+    Count: 10
+    m_Prefab: {fileID: 1614621647}
 --- !u!1001 &1614621639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -954,7 +953,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1709994148266896, guid: 0b49b21974f2e634d8523f26d2e7516c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1614621642}
+      addedObject: {fileID: 1614621647}
   m_SourcePrefab: {fileID: 100100000, guid: 0b49b21974f2e634d8523f26d2e7516c, type: 3}
 --- !u!4 &1614621640 stripped
 Transform:
@@ -968,18 +967,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1614621639}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1614621642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614621641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce344b8a024c0d448bc3e8d08d64b10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1614621646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1007,6 +994,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1614621647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614621641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce344b8a024c0d448bc3e8d08d64b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1654906912
 PrefabInstance:
   m_ObjectHideFlags: 0

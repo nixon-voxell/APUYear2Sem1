@@ -4,7 +4,7 @@ namespace GameWorld.Util
 {
     [System.Serializable]
     public class Pool<T> : System.IDisposable
-    where T : Object
+    where T : MonoBehaviour
     {
         public int Count;
 
@@ -33,6 +33,7 @@ namespace GameWorld.Util
             for (int o = 0; o < this.Count; o++)
             {
                 this.m_Objects[o] = Object.Instantiate<T>(this.m_Prefab, this.m_Parent);
+                this.m_Objects[o].gameObject.SetActive(false);
             }
         }
 

@@ -1,7 +1,10 @@
 {
     "name": "GameWorld",
     "rootNamespace": "GameWorld",
-    "references": [],
+    "references": [
+        "GUID:3d8ec218fa715a741bbc21032e46c65a",
+        "GUID:b6ffdb0bb7f4e5a42a4e2c185735856a"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
