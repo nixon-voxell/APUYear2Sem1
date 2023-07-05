@@ -11,6 +11,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+
     [Header("Ground/Ceiling Check")]
     [SerializeField] private Transform m_HeadCheck; //Place headCheck on head
     [SerializeField] private Transform m_GroundCheck; //Place groundCheck on feet
@@ -21,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_GravityMaxSpeed;
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_MaxSpeed;
-    [SerializeField] private float m_MoveSmoothTime = 0.05f;
     [SerializeField] private float m_JumpForce;
 
 
@@ -33,12 +33,14 @@ public class PlayerMovement : MonoBehaviour
     const float HEAD_CHECK_RADIUS = .2f; // Circle size to check head overlap
 
     //Movement Var
-    private Rigidbody m_Rb;
-    private Vector3 m_RefVelo = Vector3.zero;
     private int m_JumpAmt; // current amount of jump left
     private bool m_IsCrouching;
     private bool m_IsJumping;
     private bool m_IsGrounded = false;
+    private CharacterController m_CharacController;
+    private float m_GravityForceMultiplier = 0.01f;
+    private float m_PlayerJumpVelocity;
+    private float m_PlayerMoveVelocity;
 
     //Inputs
     private Vector2 m_MovementInput;
@@ -50,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
         m_Player = GetComponent<Player>();
         m_Player.m_PlayerMovement = this;
 
-        m_Rb = GetComponent<Rigidbody>();
+
+        m_CharacController = GetComponent<CharacterController>();
 
         // Set initial parameters
         m_JumpAmt = m_Player.PlayerTotalJump;
@@ -60,11 +63,20 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGround();
         PlayerMove();
-        ApplyGravity();
-        SpeedBound();
+        //ApplyGravity();
+        //SpeedBound(); 
+    }
+     
+    private void OnGUI()
+    {
+        //GUI.Label(new Rect(0, 0, 400, 100), "Velocity: " + GetComponent<Rigidbody>().velocity.ToString());
+
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * 5);
+    }
 
     public void MovementInput(Vector2 movement, bool crouch, bool jump)
     {
@@ -72,19 +84,26 @@ public class PlayerMovement : MonoBehaviour
         m_Crouch = crouch;
         m_Jump = jump;
 
-        Debug.Log(crouch + " } " + jump);
     }
 
     private void PlayerMove()
     {
+        Vector3 moveDirection = Vector3.zero;
+
+        // JUMP
+
         //Jump is pressed/hold
         if (m_Jump)
         {
+            Debug.Log(m_JumpAmt + " | " + m_IsJumping);
             if (m_JumpAmt > 0 && !m_IsJumping)
             {
                 // Force jump
-                m_Rb.velocity = new Vector3(m_Rb.velocity.x, 0, m_Rb.velocity.z);
-                m_Rb.AddForce(new Vector3(0, m_JumpForce, 0), ForceMode.Impulse);
+                //m_PlayerJumpVelocity = 0;
+                //m_PlayerJumpVelocity += Mathf.Sqrt(m_JumpForce * -2f * (-m_GravityForce * m_GravityForceMultiplier));
+
+                m_PlayerJumpVelocity = m_JumpForce;
+
                 m_JumpAmt--;
                 m_IsJumping = true;
             }
@@ -94,18 +113,22 @@ public class PlayerMovement : MonoBehaviour
         {
             //Resets isJumping to allow player to jump again
             m_IsJumping = false;
-
         }
 
-        //Movement
-        float targetX = m_MovementInput.x * m_MoveSpeed;
-        float targetY = m_MovementInput.y * m_MoveSpeed;
 
-        Vector3 targetInput = transform.forward * targetY + transform.right * targetX;
-        Vector3 targetVelocity = new Vector3(targetInput.x, m_Rb.velocity.y, targetInput.z);
-        m_Rb.velocity = Vector3.SmoothDamp(m_Rb.velocity, targetVelocity, ref m_RefVelo, m_MoveSmoothTime);
+        // MOVEMENT
+        moveDirection += transform.forward * m_MovementInput.y + transform.right * m_MovementInput.x;
+        m_CharacController.Move(moveDirection * m_MoveSpeed);
+
+        // GRAVITY
+        if (m_CharacController.velocity.y <= 0)
+            m_PlayerJumpVelocity += (-m_GravityForce * m_GravityForceMultiplier);
+
+        m_CharacController.Move(new Vector3(0, m_PlayerJumpVelocity, 0));
+
 
     }
+
 
     /// <summary>
     /// Constraints the speed of gravity fall and movement speed
@@ -114,27 +137,27 @@ public class PlayerMovement : MonoBehaviour
     /// Variables Affected:
     /// - rb.velocity
     /// </summary>
-    private void SpeedBound()
-    {
-        // Constrain jump fall
-        if (m_GravityMaxSpeed != 0 && m_Rb.velocity.y < -m_GravityMaxSpeed)
-        {
-            m_Rb.velocity = new Vector3(m_Rb.velocity.x, -m_GravityMaxSpeed, m_Rb.velocity.z);
-        }
+    //private void SpeedBound()
+    //{
+    //    // Constrain jump fall
+    //    if (m_GravityMaxSpeed != 0 && m_Rb.velocity.y < -m_GravityMaxSpeed)
+    //    {
+    //        m_Rb.velocity = new Vector3(m_Rb.velocity.x, -m_GravityMaxSpeed, m_Rb.velocity.z);
+    //    }
 
-        // Constrain move speed X
-        if (m_MaxSpeed != 0 && Mathf.Abs(m_Rb.velocity.x) > m_MaxSpeed )
-        {
-            float setSpeed = m_Rb.velocity.x > 0 ? m_MaxSpeed : -m_MaxSpeed;
-            m_Rb.velocity = new Vector3(setSpeed, m_Rb.velocity.y, m_Rb.velocity.z);
-        }
-        // Constrain move speed Z
-        if (m_MaxSpeed != 0 && Mathf.Abs(m_Rb.velocity.z) > m_MaxSpeed)
-        {
-            float setSpeed = m_Rb.velocity.z > 0 ? m_MaxSpeed : -m_MaxSpeed;
-            m_Rb.velocity = new Vector3(m_Rb.velocity.x, m_Rb.velocity.y, setSpeed);
-        }
-    }
+    //    // Constrain move speed X
+    //    if (m_MaxSpeed != 0 && Mathf.Abs(m_Rb.velocity.x) > m_MaxSpeed )
+    //    {
+    //        float setSpeed = m_Rb.velocity.x > 0 ? m_MaxSpeed : -m_MaxSpeed;
+    //        m_Rb.velocity = new Vector3(setSpeed, m_Rb.velocity.y, m_Rb.velocity.z);
+    //    }
+    //    // Constrain move speed Z
+    //    if (m_MaxSpeed != 0 && Mathf.Abs(m_Rb.velocity.z) > m_MaxSpeed)
+    //    {
+    //        float setSpeed = m_Rb.velocity.z > 0 ? m_MaxSpeed : -m_MaxSpeed;
+    //        m_Rb.velocity = new Vector3(m_Rb.velocity.x, m_Rb.velocity.y, setSpeed);
+    //    }
+    //}
 
 
     /// <summary>
@@ -162,11 +185,9 @@ public class PlayerMovement : MonoBehaviour
                 continue;
 
             m_IsGrounded = true; //Sets grounded
+            m_PlayerJumpVelocity = 0;
 
-            if (!wasGrounded)
-            {
-                m_JumpAmt = m_Player.PlayerTotalJump; //Resets Jump amount
-            }
+            m_JumpAmt = m_Player.PlayerTotalJump; //Resets Jump amount
 
         }
     }
@@ -181,9 +202,9 @@ public class PlayerMovement : MonoBehaviour
     private void ApplyGravity()
     {
         //Apply gravity
-        if (m_Rb.velocity.y < 0 && !m_IsGrounded)
+        if (!m_IsGrounded)
         {
-            m_Rb.velocity += Vector3.up * Physics.gravity.y * m_GravityForce;
+            Debug.Log("----------");
         }
     }
 
