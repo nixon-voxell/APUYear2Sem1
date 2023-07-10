@@ -43,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetButtonUp("Crouch"))
             crouching = false;
 
-        m_Player.m_PlayerMovement.MovementInput(m_Movement.normalized, crouching, jumping);
+        m_Player.m_PlayerMovement.MovementInput(m_Movement, crouching, jumping);
     }
 
     float camRotateX;

@@ -63,19 +63,12 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGround();
         PlayerMove();
-        //ApplyGravity();
-        //SpeedBound(); 
     }
      
     private void OnGUI()
     {
-        //GUI.Label(new Rect(0, 0, 400, 100), "Velocity: " + GetComponent<Rigidbody>().velocity.ToString());
+        GUI.Label(new Rect(0, 0, 400, 100), "Velocity: " + m_CharacController.velocity.ToString());
 
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, transform.position + transform.right * 5);
     }
 
     public void MovementInput(Vector2 movement, bool crouch, bool jump)
@@ -88,14 +81,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        Vector3 moveDirection = Vector3.zero;
 
-        // JUMP
+        // ---- JUMP
 
         //Jump is pressed/hold
         if (m_Jump)
         {
-            Debug.Log(m_JumpAmt + " | " + m_IsJumping);
             if (m_JumpAmt > 0 && !m_IsJumping)
             {
                 // Force jump
@@ -114,17 +105,20 @@ public class PlayerMovement : MonoBehaviour
             //Resets isJumping to allow player to jump again
             m_IsJumping = false;
         }
+        Vector3 moveDirection = Vector3.zero;
 
 
-        // MOVEMENT
-        moveDirection += transform.forward * m_MovementInput.y + transform.right * m_MovementInput.x;
-        m_CharacController.Move(moveDirection * m_MoveSpeed);
+        // ----- MOVEMENT
 
-        // GRAVITY
-        if (m_CharacController.velocity.y <= 0)
+        moveDirection = (transform.forward * m_MovementInput.y + transform.right * m_MovementInput.x) * m_MoveSpeed;
+        Debug.Log(moveDirection);
+        //moveDirection = LimitSpeed(moveDirection);
+
+
+        if (!m_IsGrounded)
             m_PlayerJumpVelocity += (-m_GravityForce * m_GravityForceMultiplier);
 
-        m_CharacController.Move(new Vector3(0, m_PlayerJumpVelocity, 0));
+        m_CharacController.Move(new Vector3(moveDirection.x, m_PlayerJumpVelocity, moveDirection.z));
 
 
     }
@@ -137,27 +131,33 @@ public class PlayerMovement : MonoBehaviour
     /// Variables Affected:
     /// - rb.velocity
     /// </summary>
-    //private void SpeedBound()
-    //{
-    //    // Constrain jump fall
-    //    if (m_GravityMaxSpeed != 0 && m_Rb.velocity.y < -m_GravityMaxSpeed)
-    //    {
-    //        m_Rb.velocity = new Vector3(m_Rb.velocity.x, -m_GravityMaxSpeed, m_Rb.velocity.z);
-    //    }
+    private Vector3 LimitSpeed(Vector3 velocity)
+    {
+        // Constrain jump fall
+        //if (m_GravityMaxSpeed != 0 && velocity.y < -m_GravityMaxSpeed)
+        //{
+        //    velocity = new Vector3(velocity.x, -m_GravityMaxSpeed, velocity.z);
+        //}
 
-    //    // Constrain move speed X
-    //    if (m_MaxSpeed != 0 && Mathf.Abs(m_Rb.velocity.x) > m_MaxSpeed )
-    //    {
-    //        float setSpeed = m_Rb.velocity.x > 0 ? m_MaxSpeed : -m_MaxSpeed;
-    //        m_Rb.velocity = new Vector3(setSpeed, m_Rb.velocity.y, m_Rb.velocity.z);
-    //    }
-    //    // Constrain move speed Z
-    //    if (m_MaxSpeed != 0 && Mathf.Abs(m_Rb.velocity.z) > m_MaxSpeed)
-    //    {
-    //        float setSpeed = m_Rb.velocity.z > 0 ? m_MaxSpeed : -m_MaxSpeed;
-    //        m_Rb.velocity = new Vector3(m_Rb.velocity.x, m_Rb.velocity.y, setSpeed);
-    //    }
-    //}
+        //// Constrain move speed X
+        //if (m_MaxSpeed != 0 && Mathf.Abs(velocity.x) > m_MaxSpeed)
+        //{
+        //    Debug.Log("Entered X");
+        //    float setSpeed = velocity.x > 0 ? m_MaxSpeed : -m_MaxSpeed;
+        //    velocity.x = setSpeed;
+        //}
+        //// Constrain move speed Z
+        //if (m_MaxSpeed != 0 && Mathf.Abs(velocity.z) > m_MaxSpeed)
+        //{
+        //    Debug.Log("Entered Z");
+
+        //    float setSpeed = velocity.z > 0 ? m_MaxSpeed : -m_MaxSpeed;
+        //    velocity.z = setSpeed;
+
+        
+
+        return velocity;
+    }
 
 
     /// <summary>
@@ -189,22 +189,6 @@ public class PlayerMovement : MonoBehaviour
 
             m_JumpAmt = m_Player.PlayerTotalJump; //Resets Jump amount
 
-        }
-    }
-
-
-    /// <summary>
-    /// Apply gravity modifier when the player is in falling in the air
-    /// 
-    /// Variables Affected:
-    /// - rb.velocity
-    /// </summary>
-    private void ApplyGravity()
-    {
-        //Apply gravity
-        if (!m_IsGrounded)
-        {
-            Debug.Log("----------");
         }
     }
 
