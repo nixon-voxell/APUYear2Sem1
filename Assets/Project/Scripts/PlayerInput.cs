@@ -46,20 +46,18 @@ public class PlayerInput : MonoBehaviour
         m_Player.m_PlayerMovement.MovementInput(m_Movement, crouching, jumping);
     }
 
-    float camRotateY;
     float camRotateX;
     private void CameraLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * m_Sensitivity * m_SensitivityMultipler * Time.fixedDeltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_Sensitivity * m_SensitivityMultipler * Time.fixedDeltaTime;
-
-        Vector3 rot = Camera.transform.localRotation.eulerAngles;
-        camRotateY += mouseX;
+        //Vector3 rot = Camera.transform.localRotation.eulerAngles;
+        //camRotateY += mouseX;
         camRotateX -= mouseY;
         camRotateX = Mathf.Clamp(camRotateX, -90f, 90f);
 
-        Camera.transform.localRotation = Quaternion.Euler(camRotateX, 0, 0);
-        transform.localRotation = Quaternion.Euler(0, camRotateY, 0);
+        Camera.transform.localRotation = Quaternion.Euler(camRotateX, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
 
         Cursor.lockState = CursorLockMode.Locked;
     }

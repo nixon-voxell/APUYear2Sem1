@@ -12,6 +12,5 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        PlayerTotalJump = 1;
     }
 }
