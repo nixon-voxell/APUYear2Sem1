@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Jobs;
 using Unity.Mathematics;
 using Unity.Collections;
 
@@ -17,6 +18,7 @@ namespace GameWorld.AI
         [SerializeField] private Pool<Boid> m_BoidPool;
 
         private NativeArray<float3> m_na_Rays;
+        private TransformAccessArray m_TransformArray;
 
         private void Awake()
         {
