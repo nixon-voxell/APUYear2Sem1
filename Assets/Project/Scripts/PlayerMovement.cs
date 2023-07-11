@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_MaxSpeed;
     [SerializeField] private float m_JumpForce;
+    [SerializeField, Range(0.0f, 1.0f)] private float m_VelocityDamping = 0.9f;
 
 
     private Player m_Player;
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController m_CharacController;
     private float m_GravityForceMultiplier = 0.01f;
     private float m_PlayerJumpVelocity;
-    private float m_PlayerMoveVelocity;
+    private Vector3 m_PlayerMoveVelocity;
 
     //Inputs
     private Vector2 m_MovementInput;
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Set initial parameters
         m_JumpAmt = m_Player.PlayerTotalJump;
+        m_PlayerMoveVelocity = Vector2.zero;
     }
 
     private void FixedUpdate()
@@ -110,17 +112,24 @@ public class PlayerMovement : MonoBehaviour
 
         // ----- MOVEMENT
 
-        moveDirection = (transform.forward * m_MovementInput.y + transform.right * m_MovementInput.x) * m_MoveSpeed;
-        Debug.Log(moveDirection);
+        if (m_MovementInput.magnitude > 0.0f)
+        {
+            Vector2 normalizedMovement = m_MovementInput.normalized;
+            m_PlayerMoveVelocity = (transform.forward * normalizedMovement.y + transform.right * normalizedMovement.x) * m_MoveSpeed;
+        }
+
+        //moveDirection = m_PlayerMoveVelocity
+        Debug.Log(m_PlayerMoveVelocity);
         //moveDirection = LimitSpeed(moveDirection);
 
 
         if (!m_IsGrounded)
             m_PlayerJumpVelocity += (-m_GravityForce * m_GravityForceMultiplier);
 
-        m_CharacController.Move(new Vector3(moveDirection.x, m_PlayerJumpVelocity, moveDirection.z));
+        m_CharacController.Move(new Vector3(m_PlayerMoveVelocity.x, m_PlayerJumpVelocity, m_PlayerMoveVelocity.z));
 
-
+        // perform velocity damping
+        m_PlayerMoveVelocity *= m_VelocityDamping;
     }
 
 

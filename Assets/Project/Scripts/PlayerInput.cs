@@ -33,8 +33,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Movement()
     {
-        m_Movement.x = Input.GetAxis("Horizontal");
-        m_Movement.y = Input.GetAxis("Vertical");
+        m_Movement.x = Input.GetAxisRaw("Horizontal");
+        m_Movement.y = Input.GetAxisRaw("Vertical");
 
         jumping = Input.GetButton("Jump");
 
