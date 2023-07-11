@@ -7,21 +7,18 @@ using UnityEngine;
 /// <summary>
 /// TODO:
 /// 1. Implement OnLandEvent?
-/// 2. Crouch/Slide
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-
     [Header("Ground/Ceiling Check")]
-    [SerializeField] private Transform m_HeadCheck; //Place headCheck on head
+    [SerializeField] private Transform m_HeadCheck; //Not in use - Place headCheck on head
     [SerializeField] private Transform m_GroundCheck; //Place groundCheck on feet
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Header("Movement Parameters")]
     [SerializeField] private float m_GravityForce;
-    [SerializeField] private float m_GravityMaxSpeed;
     [SerializeField] private float m_MoveSpeed;
-    [SerializeField] private float m_MaxSpeed;
+    [SerializeField] private float m_RunSpeedMultiplier;
     [SerializeField] private float m_JumpForce;
     [SerializeField, Range(0.0f, 1.0f)] private float m_VelocityDamping = 0.9f;
 
@@ -31,11 +28,11 @@ public class PlayerMovement : MonoBehaviour
     //Constant information
 
     const float GROUND_CHECK_RADIUS = .2f; // Circle size to check ground overlap
-    const float HEAD_CHECK_RADIUS = .2f; // Circle size to check head overlap
+    const float HEAD_CHECK_RADIUS = .2f; // Not in use - Circle size to check head overlap
 
     //Movement Var
     private int m_JumpAmt; // current amount of jump left
-    private bool m_IsCrouching;
+    private bool m_IsRunning;
     private bool m_IsJumping;
     private bool m_IsGrounded = false;
     private CharacterController m_CharacController;
@@ -45,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Inputs
     private Vector2 m_MovementInput;
-    private bool m_Crouch;
     private bool m_Jump;
+    private bool m_Run; // Not in use
 
     private void Awake()
     {
@@ -73,10 +70,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void MovementInput(Vector2 movement, bool crouch, bool jump)
+    public void MovementInput(Vector2 movement, bool run, bool jump)
     {
         m_MovementInput = movement;
-        m_Crouch = crouch;
+        m_Run = run;
         m_Jump = jump;
 
     }
@@ -91,12 +88,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (m_JumpAmt > 0 && !m_IsJumping)
             {
-                // Force jump
-                //m_PlayerJumpVelocity = 0;
-                //m_PlayerJumpVelocity += Mathf.Sqrt(m_JumpForce * -2f * (-m_GravityForce * m_GravityForceMultiplier));
-
                 m_PlayerJumpVelocity = m_JumpForce;
-
                 m_JumpAmt--;
                 m_IsJumping = true;
             }
@@ -107,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
             //Resets isJumping to allow player to jump again
             m_IsJumping = false;
         }
-        Vector3 moveDirection = Vector3.zero;
 
 
         // ----- MOVEMENT
@@ -116,56 +107,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 normalizedMovement = m_MovementInput.normalized;
             m_PlayerMoveVelocity = (transform.forward * normalizedMovement.y + transform.right * normalizedMovement.x) * m_MoveSpeed;
+
+            if (m_Run)
+            {
+                m_PlayerMoveVelocity *= m_RunSpeedMultiplier;
+            }
+
         }
-
-        //moveDirection = m_PlayerMoveVelocity
-        Debug.Log(m_PlayerMoveVelocity);
-        //moveDirection = LimitSpeed(moveDirection);
-
 
         if (!m_IsGrounded)
             m_PlayerJumpVelocity += (-m_GravityForce * m_GravityForceMultiplier);
 
         m_CharacController.Move(new Vector3(m_PlayerMoveVelocity.x, m_PlayerJumpVelocity, m_PlayerMoveVelocity.z));
 
-        // perform velocity damping
+        // Velocity damping
         m_PlayerMoveVelocity *= m_VelocityDamping;
-    }
-
-
-    /// <summary>
-    /// Constraints the speed of gravity fall and movement speed
-    /// It manually sets to the max speed if the velocity is exceeded
-    /// 
-    /// Variables Affected:
-    /// - rb.velocity
-    /// </summary>
-    private Vector3 LimitSpeed(Vector3 velocity)
-    {
-        // Constrain jump fall
-        //if (m_GravityMaxSpeed != 0 && velocity.y < -m_GravityMaxSpeed)
-        //{
-        //    velocity = new Vector3(velocity.x, -m_GravityMaxSpeed, velocity.z);
-        //}
-
-        //// Constrain move speed X
-        //if (m_MaxSpeed != 0 && Mathf.Abs(velocity.x) > m_MaxSpeed)
-        //{
-        //    Debug.Log("Entered X");
-        //    float setSpeed = velocity.x > 0 ? m_MaxSpeed : -m_MaxSpeed;
-        //    velocity.x = setSpeed;
-        //}
-        //// Constrain move speed Z
-        //if (m_MaxSpeed != 0 && Mathf.Abs(velocity.z) > m_MaxSpeed)
-        //{
-        //    Debug.Log("Entered Z");
-
-        //    float setSpeed = velocity.z > 0 ? m_MaxSpeed : -m_MaxSpeed;
-        //    velocity.z = setSpeed;
-
-        
-
-        return velocity;
     }
 
 

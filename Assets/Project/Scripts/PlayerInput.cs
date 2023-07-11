@@ -12,8 +12,8 @@ public class PlayerInput : MonoBehaviour
     private Player m_Player;
 
     private Vector2 m_Movement;
-    private bool jumping;
-    private bool crouching;
+    private bool m_Jumping;
+    private bool m_Run;
 
     private void Awake()
     {
@@ -36,14 +36,14 @@ public class PlayerInput : MonoBehaviour
         m_Movement.x = Input.GetAxisRaw("Horizontal");
         m_Movement.y = Input.GetAxisRaw("Vertical");
 
-        jumping = Input.GetButton("Jump");
+        m_Jumping = Input.GetButton("Jump");
 
-        if (Input.GetButtonDown("Crouch"))
-            crouching = true;
-        else if (Input.GetButtonUp("Crouch"))
-            crouching = false;
+        if (Input.GetButtonDown("Run"))
+            m_Run = true;
+        else if (Input.GetButtonUp("Run"))
+            m_Run = false;
 
-        m_Player.m_PlayerMovement.MovementInput(m_Movement, crouching, jumping);
+        m_Player.m_PlayerMovement.MovementInput(m_Movement, m_Run, m_Jumping);
     }
 
     float camRotateX;
