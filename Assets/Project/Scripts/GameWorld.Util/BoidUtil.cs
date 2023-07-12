@@ -56,5 +56,16 @@ namespace GameWorld.Util
                 na_rays[r] = float3(x, 0.0f, z);
             }
         }
+
+        [BurstCompile]
+        public static void SteerTowards(in float3 vector, in float3 maxSpeed, in float3 velocity, float maxSteerForce, out float3 steer)
+        {
+            float3 v = math.normalize(vector) * maxSpeed - velocity;
+
+            float magnitude = math.length(v);
+            magnitude = math.min(magnitude, maxSteerForce);
+
+            steer = v * magnitude;
+        }
     }
 }

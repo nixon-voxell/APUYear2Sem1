@@ -17,6 +17,8 @@ namespace GameWorld.AI
         [SerializeField, Range(0.0f, 1.0f)] private float m_ViewAnglePercentage = 0.8f;
         [SerializeField] private Pool<Boid> m_BoidPool;
 
+        [SerializeField] private BoidConfig m_BoidConfig;
+
         private NativeArray<float3> m_na_Rays;
         private TransformAccessArray m_TransformArray;
 
