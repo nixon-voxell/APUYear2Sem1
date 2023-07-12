@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: flex-end;">
+        <ui:Label tabindex="-1" display-tooltip-when-elided="true" style="background-image: url(&apos;project://database/Assets/Project/Icon/bullet.png?fileID=2800000&amp;guid=43ab3843630889d49bad19e6d35d409b&amp;type=3#bullet&apos;); height: -124px; width: 40px; align-self: flex-end; flex-direction: column; align-items: stretch; justify-content: flex-start; -unity-text-align: lower-left;" />
+        <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: space-around; flex-basis: 20px; align-items: center; padding-left: 15px; padding-right: 15px; flex-direction: column; width: 804px; align-self: center;" />
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: none; width: 819px; height: -377px; align-items: auto; justify-content: flex-start;" />
+    <ui:ProgressBar value="100" title="Life" name="LifeBar" style="width: 195px; background-color: rgba(219, 0, 0, 0); -unity-background-image-tint-color: rgb(156, 14, 14);" />
+</ui:UXML>
