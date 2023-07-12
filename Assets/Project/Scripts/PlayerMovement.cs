@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         m_Player = GetComponent<Player>();
-        m_Player.m_PlayerMovement = this;
+        m_Player.PlayerMovement = this;
 
 
         m_CharacController = GetComponent<CharacterController>();

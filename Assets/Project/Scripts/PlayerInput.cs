@@ -26,9 +26,14 @@ public class PlayerInput : MonoBehaviour
         // Movement
         Movement();
         CameraLook();
+        ActionButton();
 
 
+    }
 
+    private void ActionButton()
+    {
+        if (Input.GetButtonDown("Slash")) m_Player.PlayerAttack.SwingSword();
     }
 
     private void Movement()
@@ -43,7 +48,8 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetButtonUp("Run"))
             m_Run = false;
 
-        m_Player.m_PlayerMovement.MovementInput(m_Movement, m_Run, m_Jumping);
+        m_Player.PlayerMovement.MovementInput(m_Movement, m_Run, m_Jumping);
+
     }
 
     float camRotateX;
