@@ -8,6 +8,7 @@ namespace GameWorld.AI
 
     public class Boid : MonoBehaviour
     {
+        private float2 m_Velocity;
         private void Start()
         {
             
@@ -15,11 +16,9 @@ namespace GameWorld.AI
 
         private void UpdateBoid(in BoidConfig boidConfig)
         {
-            Transform transform = this.transform;
+            float2 boidPosition = new float2(transform.position.x, transform.position.z);
 
-            float3 boidPosition = transform.position;
-
-            float3 acceleration = float3.zero;
+            float2 acceleration = 0.0f;
 
             Collider[] boidColliders = Physics.OverlapSphere(
                 transform.position,
@@ -27,21 +26,62 @@ namespace GameWorld.AI
                 boidConfig.BoidMask
             );
 
+            float2 flockHeading = 0.0f;
+            float2 flockCenter = 0.0f;
+            float2 avoidanceHeading = 0.0f;
+            int flockmateCount = 0;
+
             for (int b = 0; b < boidColliders.Length; b++)
             {
-                Transform trans = boidColliders[b].transform;
-                float3 colBoidPosition = trans.position;
+                Transform colBoidTrans = boidColliders[b].transform;
+                float2 colBoidPosition = new float2(colBoidTrans.position.x, colBoidTrans.position.z);
 
-                float3 direction = colBoidPosition - boidPosition;
-                float2 flat_dir = new float2(direction.x, direction.z);
-                flat_dir = math.normalize(flat_dir);
+                float2 direction = colBoidPosition - boidPosition;
+                direction = math.normalize(direction);
 
-                float forwardPercentage = math.dot(new float2(0.0f, 1.0f), flat_dir);
-                // if (forwardPercentage < boidConfig.)
+                float viewRange = math.dot(new float2(0.0f, 1.0f), direction);
+                if (viewRange < boidConfig.ViewRange) continue;
+
+                flockHeading += new float2(colBoidTrans.forward.x, colBoidTrans.forward.z);
+                flockCenter += colBoidPosition;
+
+                float sqrDst = math.dot(direction, direction);
+
+                // if boid is nearer than avoidance radius, avoid it
+                if (sqrDst < boidConfig.AvoidanceRadius * boidConfig.AvoidanceRadius)
                 {
-                    
+                    avoidanceHeading -= direction / sqrDst;
                 }
+
+                flockmateCount += 1;
             }
+
+            // calculate how far away is this boid from the perceived flock center
+            float2 flockCenterOffset = flockCenter - boidPosition;
+            // average the center vector based on number of flockmate it sees
+            flockCenter = flockCenter / (float)flockmateCount;
+            // shrink flock heading into a unit vector
+            flockHeading = math.normalize(flockHeading);
+
+            // 3 basic forces of boid simulation
+            float2 alignmentForce;
+            float2 cohesionForce;
+            float2 seperationForce;
+
+            BoidUtil.SteerTowards(in flockHeading, in boidConfig.MaxSpeed, in this.m_Velocity, boidConfig.MaxSteerForce, out alignmentForce);
+            alignmentForce *= boidConfig.AlignWeight;
+
+            BoidUtil.SteerTowards(in flockCenterOffset, in boidConfig.MaxSpeed, in this.m_Velocity, boidConfig.MaxSteerForce, out cohesionForce);
+            cohesionForce *= boidConfig.CohesionWeight;
+
+            BoidUtil.SteerTowards(in avoidanceHeading, in boidConfig.MaxSpeed, in this.m_Velocity, boidConfig.MaxSteerForce, out seperationForce);
+            seperationForce *= boidConfig.SeperateWeight;
+
+            acceleration += alignmentForce;
+            acceleration += cohesionForce;
+            acceleration += seperationForce;
+
+            // TODO: perform sphere cast to avoid obstacles
         }
     }
 }

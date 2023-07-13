@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cb25141152654438e271a1fb024da5, type: 3}
   m_Name: Boid Config
   m_EditorClassIdentifier: 
+  BoidMask:
+    serializedVersion: 2
+    m_Bits: 64
+  ViewRange: 0
   MinSpeed: 2
   MaxSpeed: 5
   PerceptionRadius: 2.5
