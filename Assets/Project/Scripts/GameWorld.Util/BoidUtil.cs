@@ -57,6 +57,7 @@ namespace GameWorld.Util
             }
         }
 
+        /// <summary>Steer boids towards a direction.</summary>
         [BurstCompile]
         public static void SteerTowards(in float3 vector, in float3 maxSpeed, in float3 velocity, float maxSteerForce, out float3 steer)
         {

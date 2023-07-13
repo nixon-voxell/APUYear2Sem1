@@ -11,8 +11,6 @@ namespace GameWorld.AI
 
     public class BoidManager : MonoBehaviour
     {
-        // public static BoidManager Instance;
-
         [SerializeField] private int m_RayCount;
         [SerializeField, Range(0.0f, 1.0f)] private float m_ViewAnglePercentage = 0.8f;
         [SerializeField] private Pool<Boid> m_BoidPool;
@@ -24,14 +22,6 @@ namespace GameWorld.AI
 
         private void Awake()
         {
-            // if (Instance != null)
-            // {
-            //     Instance = this;
-            // } else
-            // {
-            //     Debug.LogWarning("There is more than one BoidManager in the scene.");
-            // }
-
             this.m_na_Rays = new NativeArray<float3>(
                 this.m_RayCount, Allocator.Persistent,
                 NativeArrayOptions.UninitializedMemory

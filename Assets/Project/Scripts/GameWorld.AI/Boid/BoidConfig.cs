@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class BoidConfig : ScriptableObject
 {
+    [Header("Boid")]
+    public LayerMask BoidMask;
     public float MinSpeed = 2.0f;
     public float MaxSpeed = 5.0f;
     public float PerceptionRadius = 2.5f;
@@ -15,7 +17,7 @@ public class BoidConfig : ScriptableObject
 
     public float TargetWeight = 1.0f;
 
-    [Header ("Collisions")]
+    [Header ("Obstacle")]
     public LayerMask ObstacleMask;
     public float BoundsRadius = 0.27f;
     public float AvoidCollisionWeight = 10.0f;
