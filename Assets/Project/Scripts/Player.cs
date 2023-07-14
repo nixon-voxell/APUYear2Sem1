@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector] public PlayerMovement m_PlayerMovement;
+    [HideInInspector] public PlayerMovement PlayerMovement;
+    [HideInInspector] public PlayerAttack PlayerAttack;
 
     //public float PlayerSpeed;
     public int PlayerTotalJump;
