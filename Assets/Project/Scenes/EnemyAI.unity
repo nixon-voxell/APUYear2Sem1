@@ -804,7 +804,7 @@ MonoBehaviour:
   m_ViewAnglePercentage: 0.8
   m_BoidPool:
     Count: 10
-    m_Prefab: {fileID: 0}
+    m_Prefab: {fileID: 1614621643}
   m_BoidConfig: {fileID: 11400000, guid: 3fd6ba6702447d94e96b1736458e0f4c, type: 2}
 --- !u!1001 &1614621639
 PrefabInstance:

@@ -57,9 +57,5 @@ namespace GameWorld.Util
                 Object.Destroy(this.m_Objects[o]);
             }
         }
-
-        
-
-
     }
 }
