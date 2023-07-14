@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.Collections;
 using Unity.Mathematics;
 using Unity.Burst;
@@ -7,7 +6,7 @@ using static Unity.Mathematics.math;
 
 namespace GameWorld.Util
 {
-    using static mathx;
+    using static mathxx;
 
     [BurstCompile]
     public static class BoidUtil
