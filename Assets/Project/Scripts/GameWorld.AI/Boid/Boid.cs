@@ -11,16 +11,24 @@ namespace GameWorld.AI
     {
         private float2 m_Velocity;
 
-        private void Start()
-        {
-            this.m_Velocity = 0.0f;
-        }
+        // gizmos debug only
+        private BoidConfig m_BoidConfig;
+        private bool m_HasObstacle = false;
+        private float3 m_HitOrigin;
+        private float3 m_HitPoint;
+        private RaycastHit m_ObstacleHit;
+        private NativeArray<float3> m_na_Rays;
 
         public void UpdateBoid(in BoidConfig boidConfig, in NativeArray<float3> na_rays)
         {
+#if UNITY_EDITOR
+            this.m_BoidConfig = boidConfig;
+            this.m_na_Rays = na_rays;
+#endif
             // normalize incase orientation is off by a little bit
-            float2 boidPosition = math.normalize(flatten_3d(transform.position));
-            float2 boidForward = math.normalize(flatten_3d(transform.forward));
+            float height = this.transform.position.y;
+            float2 boidPosition = flatten_3d(this.transform.position);
+            float2 boidForward = math.normalize(flatten_3d(this.transform.forward));
             float3 boidPosition3D = unflatten_2d(boidPosition);
             float3 boidForward3D = unflatten_2d(boidForward);
 
@@ -32,8 +40,6 @@ namespace GameWorld.AI
                 boidConfig.BoidMask
             );
 
-            Debug.Log(boidColliders.Length);
-
             float2 flockHeading = 0.0f;
             float2 flockCenter = 0.0f;
             float2 avoidanceHeading = 0.0f;
@@ -42,7 +48,7 @@ namespace GameWorld.AI
             for (int b = 0; b < boidColliders.Length; b++)
             {
                 Transform colBoidTrans = boidColliders[b].transform;
-                float2 colBoidPosition = new float2(colBoidTrans.position.x, colBoidTrans.position.z);
+                float2 colBoidPosition = flatten_3d(colBoidTrans.position);
 
                 float2 direction = colBoidPosition - boidPosition;
                 direction = math.normalize(direction);
@@ -50,9 +56,7 @@ namespace GameWorld.AI
                 float viewRange = math.dot(new float2(0.0f, 1.0f), direction);
                 if (viewRange < boidConfig.ViewRange) continue;
 
-                Debug.Log(flockHeading);
                 flockHeading += flatten_3d(colBoidTrans.forward);
-                Debug.Log(flockHeading);
                 flockCenter += colBoidPosition;
 
                 float sqrDst = math.lengthsq(direction);
@@ -66,15 +70,12 @@ namespace GameWorld.AI
                 flockmateCount += 1;
             }
 
+            // average the center vector based on number of flockmate it sees
+            flockCenter /= (float)flockmateCount;
             // calculate how far away is this boid from the perceived flock center
             float2 flockCenterOffset = flockCenter - boidPosition;
-            if (flockmateCount > 0)
-            {
-                // average the center vector based on number of flockmate it sees
-                flockCenter = flockCenter / (float)flockmateCount;
-                // shrink flock heading into a unit vector
-                flockHeading = math.normalize(flockHeading);
-            }
+            // shrink flock heading into a unit vector
+            flockHeading = math.normalize(flockHeading);
 
             // 3 basic forces of boid simulation
             float2 alignmentForce;
@@ -89,8 +90,6 @@ namespace GameWorld.AI
                 out alignmentForce
             );
             alignmentForce *= boidConfig.AlignWeight;
-            Debug.Log(flockHeading);
-            Debug.Log(alignmentForce);
 
             SteerTowards(
                 in flockCenterOffset,
@@ -114,21 +113,28 @@ namespace GameWorld.AI
             acceleration += cohesionForce;
             acceleration += seperationForce;
 
-            Debug.Log(acceleration);
-            return;
-
             // perform sphere cast to avoid obstacles
-            RaycastHit obstacleHit;
             bool hasObstacle = Physics.SphereCast(
                 new Ray(boidPosition3D, boidForward3D),
                 boidConfig.SphereCastRadius,
-                out obstacleHit,
-                boidConfig.CollisionAvoidDst
+#if UNITY_EDITOR
+                out this.m_ObstacleHit,
+#endif
+                boidConfig.CollisionAvoidDst,
+                boidConfig.ObstacleMask
             );
+
+#if UNITY_EDITOR
+            this.m_HasObstacle = hasObstacle;
+#endif
 
             // if there is an obstacle in front, find an empty space and move towards it
             if (hasObstacle)
             {
+#if UNITY_EDITOR
+                this.m_HitOrigin = boidPosition3D;
+                this.m_HitPoint = this.m_ObstacleHit.point;
+#endif
                 // if there is not clear path, the only way is to continue moving forward
                 // (lame, I know)
                 float2 collisionAvoidDir = boidForward;
@@ -174,14 +180,43 @@ namespace GameWorld.AI
             {
                 float3 dir = this.transform.TransformDirection(na_rays[r]);
 
-                if (!Physics.SphereCast(
-                    new Ray(boidPosition3D, dir),
-                    boidConfig.SphereCastRadius,
-                    boidConfig.CollisionAvoidDst,
-                    boidConfig.ObstacleMask)
+                if (
+                    !Physics.SphereCast(
+                        new Ray(boidPosition3D, dir),
+                        boidConfig.SphereCastRadius,
+                        boidConfig.CollisionAvoidDst,
+                        boidConfig.ObstacleMask
+                    )
                 ) {
                     collisionAvoidDir = math.normalize(flatten_3d(dir));
+                    return;
                 }
+            }
+        }
+
+        private void Start()
+        {
+            this.m_Velocity = 0.0f;
+        }
+
+        private void OnDrawGizmos()
+        {
+            float3 position = this.transform.position;
+
+            Gizmos.DrawWireSphere(position, this.m_BoidConfig.PerceptionRadius);
+
+            if (this.m_HasObstacle)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(this.m_HitOrigin, this.m_HitPoint);
+                Gizmos.DrawWireSphere(this.m_HitPoint, this.m_BoidConfig.SphereCastRadius);
+            }
+
+            Gizmos.color = Color.cyan;
+            for (int r = 0; r < this.m_na_Rays.Length; r++)
+            {
+                float3 dir = this.transform.TransformDirection(m_na_Rays[r]);
+                Gizmos.DrawRay(position, dir * this.m_BoidConfig.CollisionAvoidDst);
             }
         }
     }

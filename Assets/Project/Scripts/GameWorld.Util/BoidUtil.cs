@@ -71,7 +71,7 @@ namespace GameWorld.Util
             float magnitude = math.length(v);
             magnitude = math.min(magnitude, maxSteerForce);
 
-            steer = math.normalize(v) * magnitude;
+            steer = math.normalizesafe(v) * magnitude;
             // Vector3 v = vector.normalized * settings.maxSpeed - velocity;
             // return Vector3.ClampMagnitude(v, settings.maxSteerForce);
         }

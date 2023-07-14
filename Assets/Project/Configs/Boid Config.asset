@@ -15,19 +15,19 @@ MonoBehaviour:
   BoidMask:
     serializedVersion: 2
     m_Bits: 64
-  ViewRange: 0
+  ViewRange: 0.35
   MinSpeed: 2
   MaxSpeed: 5
-  PerceptionRadius: 2.5
-  AvoidanceRadius: 1
+  PerceptionRadius: 10
+  AvoidanceRadius: 2
   MaxSteerForce: 3
-  AlignWeight: 1
+  AlignWeight: 0.1
   CohesionWeight: 1
-  SeperateWeight: 1
+  SeperateWeight: 2
   TargetWeight: 1
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 8
-  BoundsRadius: 0.27
+  SphereCastRadius: 1
   AvoidCollisionWeight: 10
   CollisionAvoidDst: 5
