@@ -4,7 +4,7 @@ namespace GameWorld.Util
 {
     [System.Serializable]
     public class Pool<T> : System.IDisposable
-    where T : MonoBehaviour
+    where T : Component
     {
         public int Count;
 
@@ -12,6 +12,8 @@ namespace GameWorld.Util
         [SerializeField] private bool m_DefaultActive;
         private Transform m_Parent;
         private T[] m_Objects;
+
+        private int m_CurrIdx;
 
         public T[] Objects => this.m_Objects;
 
@@ -46,6 +48,17 @@ namespace GameWorld.Util
             {
                 this.m_Objects[o].gameObject.SetActive(active);
             }
+        }
+
+        public T GetNextObject()
+        {
+            T nextObj = this.m_Objects[this.m_CurrIdx];
+            this.m_CurrIdx = this.GetNextIdx();
+            return nextObj;
+        }
+        private int GetNextIdx()
+        {
+            return (this.m_CurrIdx + 1) % this.Count;
         }
 
         public void Dispose()
