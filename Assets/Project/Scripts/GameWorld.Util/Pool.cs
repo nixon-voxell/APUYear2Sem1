@@ -9,8 +9,11 @@ namespace GameWorld.Util
         public int Count;
 
         [SerializeField] private T m_Prefab;
+        [SerializeField] private bool m_DefaultActive;
         private Transform m_Parent;
         private T[] m_Objects;
+
+        public T[] Objects => this.m_Objects;
 
         public void Initialize(Transform parent)
         {
@@ -33,12 +36,27 @@ namespace GameWorld.Util
             for (int o = 0; o < this.Count; o++)
             {
                 this.m_Objects[o] = Object.Instantiate<T>(this.m_Prefab, this.m_Parent);
-                this.m_Objects[o].gameObject.SetActive(false);
+                this.m_Objects[o].gameObject.SetActive(this.m_DefaultActive);
+            }
+        }
+
+        public void SetAllObjectActive(bool active)
+        {
+            for (int o = 0; o < this.Count; o++)
+            {
+                this.m_Objects[o].gameObject.SetActive(active);
             }
         }
 
         public void Dispose()
         {
+#if UNITY_EDITOR
+            if (this.m_Prefab == null)
+            {
+                Debug.LogWarning("Pool prefab not assigned, unable to dispose.", this.m_Parent);
+                return;
+            }
+#endif
             for (int o = 0; o < this.Count; o++)
             {
                 Object.Destroy(this.m_Objects[o]);

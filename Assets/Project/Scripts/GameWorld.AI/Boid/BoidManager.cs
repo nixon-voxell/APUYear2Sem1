@@ -38,6 +38,16 @@ namespace GameWorld.AI
             this.m_BoidPool.Initialize(this.transform);
         }
 
+        private void Update()
+        {
+            Boid[] boids = this.m_BoidPool.Objects;
+            for (int b = 0; b < boids.Length; b++)
+            {
+                Boid boid = boids[b];
+                boid.UpdateBoid(in this.m_BoidConfig, in this.m_na_Rays);
+            }
+        }
+
         private void OnDestroy()
         {
             this.m_na_Rays.Dispose();

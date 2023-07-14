@@ -61,17 +61,19 @@ namespace GameWorld.Util
         [BurstCompile]
         public static void SteerTowards(
             in float2 vector,
-            in float maxSpeed,
             in float2 velocity,
+            float maxSpeed,
             float maxSteerForce,
             out float2 steer
         ) {
-            float2 v = math.normalize(vector) * maxSpeed - velocity;
+            float2 v = math.normalizesafe(vector) * maxSpeed - velocity;
 
             float magnitude = math.length(v);
             magnitude = math.min(magnitude, maxSteerForce);
 
-            steer = v * magnitude;
+            steer = math.normalize(v) * magnitude;
+            // Vector3 v = vector.normalized * settings.maxSpeed - velocity;
+            // return Vector3.ClampMagnitude(v, settings.maxSteerForce);
         }
     }
 }

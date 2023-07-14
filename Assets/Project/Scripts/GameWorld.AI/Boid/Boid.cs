@@ -16,7 +16,7 @@ namespace GameWorld.AI
             this.m_Velocity = 0.0f;
         }
 
-        private void UpdateBoid(in BoidConfig boidConfig, in NativeArray<float3> na_rays)
+        public void UpdateBoid(in BoidConfig boidConfig, in NativeArray<float3> na_rays)
         {
             // normalize incase orientation is off by a little bit
             float2 boidPosition = math.normalize(flatten_3d(transform.position));
@@ -31,6 +31,8 @@ namespace GameWorld.AI
                 boidConfig.PerceptionRadius,
                 boidConfig.BoidMask
             );
+
+            Debug.Log(boidColliders.Length);
 
             float2 flockHeading = 0.0f;
             float2 flockCenter = 0.0f;
@@ -48,7 +50,9 @@ namespace GameWorld.AI
                 float viewRange = math.dot(new float2(0.0f, 1.0f), direction);
                 if (viewRange < boidConfig.ViewRange) continue;
 
+                Debug.Log(flockHeading);
                 flockHeading += flatten_3d(colBoidTrans.forward);
+                Debug.Log(flockHeading);
                 flockCenter += colBoidPosition;
 
                 float sqrDst = math.lengthsq(direction);
@@ -64,10 +68,13 @@ namespace GameWorld.AI
 
             // calculate how far away is this boid from the perceived flock center
             float2 flockCenterOffset = flockCenter - boidPosition;
-            // average the center vector based on number of flockmate it sees
-            flockCenter = flockCenter / (float)flockmateCount;
-            // shrink flock heading into a unit vector
-            flockHeading = math.normalize(flockHeading);
+            if (flockmateCount > 0)
+            {
+                // average the center vector based on number of flockmate it sees
+                flockCenter = flockCenter / (float)flockmateCount;
+                // shrink flock heading into a unit vector
+                flockHeading = math.normalize(flockHeading);
+            }
 
             // 3 basic forces of boid simulation
             float2 alignmentForce;
@@ -76,17 +83,19 @@ namespace GameWorld.AI
 
             SteerTowards(
                 in flockHeading,
-                in boidConfig.MaxSpeed,
                 in this.m_Velocity,
+                boidConfig.MaxSpeed,
                 boidConfig.MaxSteerForce,
                 out alignmentForce
             );
             alignmentForce *= boidConfig.AlignWeight;
+            Debug.Log(flockHeading);
+            Debug.Log(alignmentForce);
 
             SteerTowards(
                 in flockCenterOffset,
-                in boidConfig.MaxSpeed,
                 in this.m_Velocity,
+                boidConfig.MaxSpeed,
                 boidConfig.MaxSteerForce,
                 out cohesionForce
             );
@@ -94,8 +103,8 @@ namespace GameWorld.AI
 
             SteerTowards(
                 in avoidanceHeading,
-                in boidConfig.MaxSpeed,
                 in this.m_Velocity,
+                boidConfig.MaxSpeed,
                 boidConfig.MaxSteerForce,
                 out seperationForce
             );
@@ -104,6 +113,9 @@ namespace GameWorld.AI
             acceleration += alignmentForce;
             acceleration += cohesionForce;
             acceleration += seperationForce;
+
+            Debug.Log(acceleration);
+            return;
 
             // perform sphere cast to avoid obstacles
             RaycastHit obstacleHit;
@@ -131,8 +143,8 @@ namespace GameWorld.AI
 
                 SteerTowards(
                     in collisionAvoidDir,
-                    in boidConfig.MaxSpeed,
                     in this.m_Velocity,
+                    boidConfig.MaxSpeed,
                     boidConfig.MaxSteerForce,
                     out collisionAvoidForce
                 );
@@ -147,8 +159,8 @@ namespace GameWorld.AI
             speed = math.clamp(speed, boidConfig.MinSpeed, boidConfig.MaxSpeed);
             this.m_Velocity = dir * speed;
 
-            transform.position += (Vector3)unflatten_2d(this.m_Velocity) * Time.deltaTime;
-            transform.forward = unflatten_2d(dir);
+            this.transform.position += (Vector3)unflatten_2d(this.m_Velocity) * Time.deltaTime;
+            this.transform.forward = unflatten_2d(dir);
         }
 
         /// <summary>Find a clear path direction.</summary>
