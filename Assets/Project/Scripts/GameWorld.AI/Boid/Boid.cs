@@ -4,23 +4,25 @@ using Unity.Collections;
 
 namespace GameWorld.AI
 {
-    using Util;
+    using static Util.BoidUtil;
+    using static Util.mathxx;
 
     public class Boid : MonoBehaviour
     {
         private float2 m_Velocity;
+
         private void Start()
         {
-            
+            this.m_Velocity = 0.0f;
         }
 
         private void UpdateBoid(in BoidConfig boidConfig, in NativeArray<float3> na_rays)
         {
             // normalize incase orientation is off by a little bit
-            float2 boidPosition = math.normalize(new float2(transform.position.x, transform.position.z));
-            float2 boidForward = math.normalize(new float2(transform.forward.x, transform.forward.z));
-            float3 boidPosition3D = new float3(boidPosition.x, 0.0f, boidPosition.y);
-            float3 boidForward3D = new float3(boidForward.x, 0.0f, boidForward.y);
+            float2 boidPosition = math.normalize(flatten_3d(transform.position));
+            float2 boidForward = math.normalize(flatten_3d(transform.forward));
+            float3 boidPosition3D = unflatten_2d(boidPosition);
+            float3 boidForward3D = unflatten_2d(boidForward);
 
             float2 acceleration = 0.0f;
 
@@ -46,10 +48,10 @@ namespace GameWorld.AI
                 float viewRange = math.dot(new float2(0.0f, 1.0f), direction);
                 if (viewRange < boidConfig.ViewRange) continue;
 
-                flockHeading += new float2(colBoidTrans.forward.x, colBoidTrans.forward.z);
+                flockHeading += flatten_3d(colBoidTrans.forward);
                 flockCenter += colBoidPosition;
 
-                float sqrDst = math.dot(direction, direction);
+                float sqrDst = math.lengthsq(direction);
 
                 // if boid is nearer than avoidance radius, avoid it
                 if (sqrDst < boidConfig.AvoidanceRadius * boidConfig.AvoidanceRadius)
@@ -72,7 +74,7 @@ namespace GameWorld.AI
             float2 cohesionForce;
             float2 seperationForce;
 
-            BoidUtil.SteerTowards(
+            SteerTowards(
                 in flockHeading,
                 in boidConfig.MaxSpeed,
                 in this.m_Velocity,
@@ -81,7 +83,7 @@ namespace GameWorld.AI
             );
             alignmentForce *= boidConfig.AlignWeight;
 
-            BoidUtil.SteerTowards(
+            SteerTowards(
                 in flockCenterOffset,
                 in boidConfig.MaxSpeed,
                 in this.m_Velocity,
@@ -90,7 +92,7 @@ namespace GameWorld.AI
             );
             cohesionForce *= boidConfig.CohesionWeight;
 
-            BoidUtil.SteerTowards(
+            SteerTowards(
                 in avoidanceHeading,
                 in boidConfig.MaxSpeed,
                 in this.m_Velocity,
@@ -127,7 +129,7 @@ namespace GameWorld.AI
 
                 float2 collisionAvoidForce;
 
-                BoidUtil.SteerTowards(
+                SteerTowards(
                     in collisionAvoidDir,
                     in boidConfig.MaxSpeed,
                     in this.m_Velocity,
@@ -138,6 +140,15 @@ namespace GameWorld.AI
 
                 acceleration += collisionAvoidForce;
             }
+
+            this.m_Velocity += acceleration * Time.deltaTime;
+            float speed = math.length(this.m_Velocity);
+            float2 dir = this.m_Velocity / speed;
+            speed = math.clamp(speed, boidConfig.MinSpeed, boidConfig.MaxSpeed);
+            this.m_Velocity = dir * speed;
+
+            transform.position += (Vector3)unflatten_2d(this.m_Velocity) * Time.deltaTime;
+            transform.forward = unflatten_2d(dir);
         }
 
         /// <summary>Find a clear path direction.</summary>
@@ -157,7 +168,7 @@ namespace GameWorld.AI
                     boidConfig.CollisionAvoidDst,
                     boidConfig.ObstacleMask)
                 ) {
-                    collisionAvoidDir = math.normalize(new float2(dir.x, dir.z));
+                    collisionAvoidDir = math.normalize(flatten_3d(dir));
                 }
             }
         }
