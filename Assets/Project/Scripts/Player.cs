@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     //public float PlayerSpeed;
     public int PlayerTotalJump;
+    public float SwordCD;
 
 
     private void Awake()
