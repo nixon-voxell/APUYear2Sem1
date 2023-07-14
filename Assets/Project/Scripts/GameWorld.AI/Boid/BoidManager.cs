@@ -20,6 +20,8 @@ namespace GameWorld.AI
         private NativeArray<float3> m_na_Rays;
         private TransformAccessArray m_TransformArray;
 
+        public NativeArray<float3> na_Rays => this.m_na_Rays;
+
         private void Awake()
         {
             this.m_na_Rays = new NativeArray<float3>(

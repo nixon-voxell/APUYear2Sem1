@@ -800,12 +800,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fefd891bdce27e47a9cab258eefd4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RayCount: 0
+  m_RayCount: 10
   m_ViewAnglePercentage: 0.8
   m_BoidPool:
     Count: 10
     m_Prefab: {fileID: 0}
-  m_BoidConfig: {fileID: 0}
+  m_BoidConfig: {fileID: 11400000, guid: 3fd6ba6702447d94e96b1736458e0f4c, type: 2}
 --- !u!1001 &1614621639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -920,10 +920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce344b8a024c0d448bc3e8d08d64b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectionRadius: 0.42
-  BoidLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1001 &1654906912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,6 +1033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714dacf4079ba014aae7826cecb0c03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Direction:
+    x: 0
+    y: 0
 --- !u!1 &2072889573
 GameObject:
   m_ObjectHideFlags: 0

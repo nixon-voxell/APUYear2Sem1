@@ -1,3 +1,4 @@
+using UnityEngine;
 using Unity.Collections;
 using Unity.Mathematics;
 using Unity.Burst;
@@ -59,8 +60,13 @@ namespace GameWorld.Util
 
         /// <summary>Steer boids towards a direction.</summary>
         [BurstCompile]
-        public static void SteerTowards(in float2 vector, in float maxSpeed, in float2 velocity, float maxSteerForce, out float2 steer)
-        {
+        public static void SteerTowards(
+            in float2 vector,
+            in float maxSpeed,
+            in float2 velocity,
+            float maxSteerForce,
+            out float2 steer
+        ) {
             float2 v = math.normalize(vector) * maxSpeed - velocity;
 
             float magnitude = math.length(v);

@@ -14,9 +14,13 @@ namespace GameWorld.AI
             
         }
 
-        private void UpdateBoid(in BoidConfig boidConfig)
+        private void UpdateBoid(in BoidConfig boidConfig, in NativeArray<float3> na_rays)
         {
-            float2 boidPosition = new float2(transform.position.x, transform.position.z);
+            // normalize incase orientation is off by a little bit
+            float2 boidPosition = math.normalize(new float2(transform.position.x, transform.position.z));
+            float2 boidForward = math.normalize(new float2(transform.forward.x, transform.forward.z));
+            float3 boidPosition3D = new float3(boidPosition.x, 0.0f, boidPosition.y);
+            float3 boidForward3D = new float3(boidForward.x, 0.0f, boidForward.y);
 
             float2 acceleration = 0.0f;
 
@@ -68,20 +72,94 @@ namespace GameWorld.AI
             float2 cohesionForce;
             float2 seperationForce;
 
-            BoidUtil.SteerTowards(in flockHeading, in boidConfig.MaxSpeed, in this.m_Velocity, boidConfig.MaxSteerForce, out alignmentForce);
+            BoidUtil.SteerTowards(
+                in flockHeading,
+                in boidConfig.MaxSpeed,
+                in this.m_Velocity,
+                boidConfig.MaxSteerForce,
+                out alignmentForce
+            );
             alignmentForce *= boidConfig.AlignWeight;
 
-            BoidUtil.SteerTowards(in flockCenterOffset, in boidConfig.MaxSpeed, in this.m_Velocity, boidConfig.MaxSteerForce, out cohesionForce);
+            BoidUtil.SteerTowards(
+                in flockCenterOffset,
+                in boidConfig.MaxSpeed,
+                in this.m_Velocity,
+                boidConfig.MaxSteerForce,
+                out cohesionForce
+            );
             cohesionForce *= boidConfig.CohesionWeight;
 
-            BoidUtil.SteerTowards(in avoidanceHeading, in boidConfig.MaxSpeed, in this.m_Velocity, boidConfig.MaxSteerForce, out seperationForce);
+            BoidUtil.SteerTowards(
+                in avoidanceHeading,
+                in boidConfig.MaxSpeed,
+                in this.m_Velocity,
+                boidConfig.MaxSteerForce,
+                out seperationForce
+            );
             seperationForce *= boidConfig.SeperateWeight;
 
             acceleration += alignmentForce;
             acceleration += cohesionForce;
             acceleration += seperationForce;
 
-            // TODO: perform sphere cast to avoid obstacles
+            // perform sphere cast to avoid obstacles
+            RaycastHit obstacleHit;
+            bool hasObstacle = Physics.SphereCast(
+                new Ray(boidPosition3D, boidForward3D),
+                boidConfig.SphereCastRadius,
+                out obstacleHit,
+                boidConfig.CollisionAvoidDst
+            );
+
+            // if there is an obstacle in front, find an empty space and move towards it
+            if (hasObstacle)
+            {
+                // if there is not clear path, the only way is to continue moving forward
+                // (lame, I know)
+                float2 collisionAvoidDir = boidForward;
+
+                this.FindClearPath(
+                    ref collisionAvoidDir,
+                    in boidPosition3D,
+                    in boidConfig, in na_rays
+                );
+
+                float2 collisionAvoidForce;
+
+                BoidUtil.SteerTowards(
+                    in collisionAvoidDir,
+                    in boidConfig.MaxSpeed,
+                    in this.m_Velocity,
+                    boidConfig.MaxSteerForce,
+                    out collisionAvoidForce
+                );
+                collisionAvoidForce *= boidConfig.AvoidCollisionWeight;
+
+                acceleration += collisionAvoidForce;
+            }
+        }
+
+        /// <summary>Find a clear path direction.</summary>
+        public void FindClearPath(
+            ref float2 collisionAvoidDir,
+            in float3 boidPosition3D,
+            in BoidConfig boidConfig,
+            in NativeArray<float3> na_rays
+        ) {
+            for (int r = 0; r < na_rays.Length; r++)
+            {
+                float3 dir = this.transform.TransformDirection(na_rays[r]);
+
+                if (!Physics.SphereCast(
+                    new Ray(boidPosition3D, dir),
+                    boidConfig.SphereCastRadius,
+                    boidConfig.CollisionAvoidDst,
+                    boidConfig.ObstacleMask)
+                ) {
+                    collisionAvoidDir = math.normalize(new float2(dir.x, dir.z));
+                }
+            }
         }
     }
 }
