@@ -4,13 +4,15 @@ namespace GameWorld.Util
 {
     [System.Serializable]
     public class Pool<T> : System.IDisposable
-    where T : MonoBehaviour
+    where T : Component
     {
         public int Count;
 
         [SerializeField] private T m_Prefab;
         private Transform m_Parent;
         private T[] m_Objects;
+
+        private int m_CurrIdx;
 
         public void Initialize(Transform parent)
         {
@@ -37,6 +39,17 @@ namespace GameWorld.Util
             }
         }
 
+        public T GetNextObject()
+        {
+            T nextObj = this.m_Objects[this.m_CurrIdx];
+            this.m_CurrIdx = this.GetNextIdx();
+            return nextObj;
+        }
+        private int GetNextIdx()
+        {
+            return (this.m_CurrIdx + 1) % this.Count;
+        }
+
         public void Dispose()
         {
             for (int o = 0; o < this.Count; o++)
@@ -44,5 +57,9 @@ namespace GameWorld.Util
                 Object.Destroy(this.m_Objects[o]);
             }
         }
+
+        
+
+
     }
 }
