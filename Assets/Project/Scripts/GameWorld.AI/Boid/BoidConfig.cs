@@ -22,8 +22,7 @@ namespace GameWorld.AI
 
         [Header("Obstacle")]
         public LayerMask ObstacleMask;
-        public float SphereCastRadius = 0.27f;
-        public float AvoidCollisionWeight = 10.0f;
-        public float CollisionAvoidDst = 5.0f;
+        public float ObstacleWeight = 10.0f;
+        public float ObstacleRadius = 5.0f;
     }
 }
