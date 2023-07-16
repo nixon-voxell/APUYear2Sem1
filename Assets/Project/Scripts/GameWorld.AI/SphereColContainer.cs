@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.Mathematics;
 using Unity.Collections;
 
 namespace GameWorld.AI
@@ -8,8 +7,6 @@ namespace GameWorld.AI
     {
         public NativeArray<OverlapSphereCommand> na_Commands;
         public NativeArray<ColliderHit> na_ColliderHits;
-        // final float value determines if a collision actually happens or not
-        public NativeArray<float4> na_CollisionPoints;
 
         public SphereColContainer(int count, int overlapHitCount, Allocator allocator)
         {
@@ -21,17 +18,12 @@ namespace GameWorld.AI
                 count * overlapHitCount, allocator,
                 NativeArrayOptions.UninitializedMemory
             );
-            this.na_CollisionPoints = new NativeArray<float4>(
-                count * overlapHitCount, allocator,
-                NativeArrayOptions.UninitializedMemory
-            );
         }
 
         public void Dispose()
         {
             this.na_Commands.Dispose();
             this.na_ColliderHits.Dispose();
-            this.na_CollisionPoints.Dispose();
         }
     }
 }

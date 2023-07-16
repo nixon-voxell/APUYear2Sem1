@@ -26,5 +26,22 @@ namespace GameWorld.AI
 
             steer = math.normalizesafe(v) * magnitude;
         }
+
+        /// <summary>Steer boids towards a direction.</summary>
+        [BurstCompile]
+        public static void SteerTowards(
+            in float3 vector,
+            in float3 velocity,
+            float maxSpeed,
+            float maxSteerForce,
+            out float3 steer
+        ) {
+            float3 v = math.normalizesafe(vector) * maxSpeed - velocity;
+
+            float magnitude = math.length(v);
+            magnitude = math.min(magnitude, maxSteerForce);
+
+            steer = math.normalizesafe(v) * magnitude;
+        }
     }
 }

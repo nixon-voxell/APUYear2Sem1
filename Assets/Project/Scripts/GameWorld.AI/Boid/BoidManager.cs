@@ -58,6 +58,11 @@ namespace GameWorld.AI
             this.m_FreeBoidIndices.Enqueue(boidIndex);
         }
 
+        public void SetBoidState(int boidIndex, bool state)
+        {
+            this.m_BoidContainer.na_States[boidIndex] = state;
+        }
+
         private void Awake()
         {
             this.m_BoidPool.Initialize(this.transform);
@@ -134,6 +139,14 @@ namespace GameWorld.AI
 
             JobHandle.CompleteAll(ref job_boidCol, ref job_obstacleCol);
 
+            NativeArray<int> na_boidHitIndices = new NativeArray<int>(
+                boidColContainer.na_ColliderHits.Length, Allocator.TempJob
+            );
+            // final float value determines if a collision actually happens or not
+            NativeArray<float4> na_obstacleHitPoints = new NativeArray<float4>(
+                obstacleColContainer.na_ColliderHits.Length, Allocator.TempJob
+            );
+
             // transfer collision point because ColliderHit.Collider can only be accessed on the main thread...
             for (int b = 0; b < boidCount; b++)
             {
@@ -157,12 +170,11 @@ namespace GameWorld.AI
                     // if has collision and is not self
                     if (boidCol != null && boidId != boidColId)
                     {
-                        boidColContainer.na_CollisionPoints[colIdx]
-                        = new float4(boidCol.transform.position, 1.0f);
+                        na_boidHitIndices[colIdx] = boidCol.GetComponent<PoolIndex>().Index;
                     } else
                     {
-                        // zero on last element indicates no collision
-                        boidColContainer.na_CollisionPoints[colIdx] = 0.0f;
+                        // negative 1 indicates no collision
+                        na_boidHitIndices[colIdx] = -1;
                     }
 
                     // ===================================================================
@@ -172,7 +184,7 @@ namespace GameWorld.AI
 
                     if (obstacleCol != null)
                     {
-                        obstacleColContainer.na_CollisionPoints[colIdx]
+                        na_obstacleHitPoints[colIdx]
                         = new float4(
                             obstacleCol.ClosestPointOnBounds(boidPosition),
                             1.0f
@@ -180,10 +192,32 @@ namespace GameWorld.AI
                     } else
                     {
                         // zero on last element indicates no collision
-                        obstacleColContainer.na_CollisionPoints[colIdx] = 0.0f;
+                        na_obstacleHitPoints[colIdx] = 0.0f;
                     }
                 }
             }
+
+            BoidUpdateJob boidUpdateJob = new BoidUpdateJob
+            {
+                BoidConfig = boidConfig,
+                DeltaTime = Time.deltaTime,
+                Keep2D = true,
+
+                na_UsedBoidIndices = na_usedBoidIndices,
+                na_Positions = this.m_BoidContainer.na_Positions,
+                na_Velocities = this.m_BoidContainer.na_Velocities,
+                na_Directions = this.m_BoidContainer.na_Directions,
+                na_States = this.m_BoidContainer.na_States,
+
+                na_BoidHitIndices = na_boidHitIndices,
+                na_ObstacleHitPoints = na_obstacleHitPoints,
+            };
+
+            boidColContainer.Dispose();
+            obstacleColContainer.Dispose();
+
+            JobHandle job_boidUpdate = boidUpdateJob.ScheduleParallel(boidCount, 16, default);
+            // job_boidUpdate.Complete();
 
             // BoidMono[] boids = this.m_BoidPool.Objects;
             // for (int b = 0; b < boids.Length; b++)
