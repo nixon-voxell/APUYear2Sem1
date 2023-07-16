@@ -7,14 +7,14 @@ namespace GameWorld.Util
         public float MaxHealth { get; }
         public float Health { get; }
 
-        void SetHealth(float health);
+        public void SetHealth(float health);
 
-        void ReduceHealth(float reduction)
+        public void ReduceHealth(float reduction)
         {
             SetHealth(math.max(this.Health - reduction, 0.0f));
         }
 
-        void IncreaseHealth(float increment)
+        public void IncreaseHealth(float increment)
         {
             SetHealth(math.min(this.Health + increment, this.MaxHealth));
         }
