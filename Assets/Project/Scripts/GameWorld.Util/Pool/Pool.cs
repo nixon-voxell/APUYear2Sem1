@@ -37,8 +37,15 @@ namespace GameWorld.Util
 
             for (int o = 0; o < this.Count; o++)
             {
-                this.m_Objects[o] = Object.Instantiate<T>(this.m_Prefab, this.m_Parent);
-                this.m_Objects[o].gameObject.SetActive(this.m_DefaultActive);
+                T obj = Object.Instantiate<T>(this.m_Prefab, this.m_Parent);
+                obj.gameObject.SetActive(this.m_DefaultActive);
+
+                // assign a pool index
+                obj.gameObject.AddComponent<PoolIndex>();
+                PoolIndex poolIndex = obj.GetComponent<PoolIndex>();
+                poolIndex.Initialize(o);
+
+                this.m_Objects[o] = obj;
             }
         }
 
