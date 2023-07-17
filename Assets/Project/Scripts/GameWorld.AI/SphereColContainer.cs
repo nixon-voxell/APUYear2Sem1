@@ -11,12 +11,12 @@ namespace GameWorld.AI
         public SphereColContainer(int count, int overlapHitCount, Allocator allocator)
         {
             this.na_Commands = new NativeArray<OverlapSphereCommand>(
-                count, allocator, NativeArrayOptions.UninitializedMemory
+                count, allocator, NativeArrayOptions.ClearMemory
             );
 
             this.na_ColliderHits = new NativeArray<ColliderHit>(
                 count * overlapHitCount, allocator,
-                NativeArrayOptions.UninitializedMemory
+                NativeArrayOptions.ClearMemory
             );
         }
 

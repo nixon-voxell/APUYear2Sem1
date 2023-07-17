@@ -5,6 +5,8 @@ using Unity.Mathematics;
 using Unity.Collections;
 using Unity.Jobs;
 
+using Random = Unity.Mathematics.Random;
+
 namespace GameWorld.AI
 {
     using Util;
@@ -42,7 +44,9 @@ namespace GameWorld.AI
 
             this.m_BoidContainer.na_Positions[boidIndex] = position;
             this.m_BoidContainer.na_Directions[boidIndex] = direction;
+            // set boid to active
             this.m_BoidContainer.na_States[boidIndex] = true;
+            this.m_BoidTransPool.Objects[boidIndex].gameObject.SetActive(true);
 
             // add to "used" set
             this.m_UsedBoidIndices.Add(boidIndex);
@@ -52,6 +56,7 @@ namespace GameWorld.AI
         {
             // set boid to inactive
             this.m_BoidContainer.na_States[boidIndex] = false;
+            this.m_BoidTransPool.Objects[boidIndex].gameObject.SetActive(false);
             // remove from "used" set
             this.m_UsedBoidIndices.Remove(boidIndex);
             // since it is inactive, we add it to the "free" queue
@@ -65,22 +70,34 @@ namespace GameWorld.AI
 
         private void Awake()
         {
-            this.m_BoidPool.Initialize(this.transform);
+            // this.m_BoidPool.Initialize(this.transform);
+            this.m_BoidTransPool.Initialize(this.transform);
 
             int boidCount = this.m_BoidTransPool.Count;
 
             this.m_HighestFreeBoidIndex = 0;
+            this.m_UsedBoidIndices = new HashSet<int>(boidCount);
             this.m_FreeBoidIndices = new Queue<int>(boidCount / 2);
 
             // initialize containers
             this.m_BoidContainer = new BoidContainer(boidCount, Allocator.Persistent);
             this.m_BoidTransformArray = new TransformAccessArray(this.m_BoidTransPool.Objects);
 
+            Random rand = new Random();
+            rand.InitState();
             // set boid instance ids
             for (int b = 0; b < boidCount; b++)
             {
                 this.m_BoidContainer.na_InstanceID[b]
                 = this.m_BoidTransPool.Objects[b].GetInstanceID();
+
+                float3 dir = rand.NextFloat3Direction();
+                dir.y = 0.0f;
+                dir = math.normalize(dir);
+
+                float3 pos = rand.NextFloat3() * 10.0f;
+                pos.y = 0.0f;
+                this.SpawnBoid(pos, dir);
             }
         }
 
@@ -95,7 +112,7 @@ namespace GameWorld.AI
             NativeArray<int> na_usedBoidIndices = new NativeArray<int>(boidCount, Allocator.TempJob);
 
             int idx = 0;
-            foreach (int boidIdx in na_usedBoidIndices)
+            foreach (int boidIdx in this.m_UsedBoidIndices)
             {
                 na_usedBoidIndices[idx++] = boidIdx;
             }
@@ -114,16 +131,20 @@ namespace GameWorld.AI
 
                 float3 position = this.m_BoidContainer.na_Positions[boidIdx];
 
+                QueryParameters queryParameters = QueryParameters.Default;
+
+                queryParameters.layerMask = boidConfig.BoidMask;
                 boidColContainer.na_Commands[b] = new OverlapSphereCommand(
                     position,
                     boidConfig.PerceptionRadius,
-                    new QueryParameters(boidConfig.BoidMask)
+                    queryParameters
                 );
 
+                queryParameters.layerMask = boidConfig.ObstacleMask;
                 obstacleColContainer.na_Commands[b] = new OverlapSphereCommand(
                     position,
                     boidConfig.ObstacleRadius,
-                    new QueryParameters(boidConfig.ObstacleMask)
+                    queryParameters
                 );
             }
 
@@ -167,14 +188,18 @@ namespace GameWorld.AI
                     Collider boidCol = boidColHit.collider;
                     int boidColId = boidColHit.instanceID;
 
+                        // negative 1 indicates no collision
+                        na_boidHitIndices[colIdx] = -1;
+
                     // if has collision and is not self
                     if (boidCol != null && boidId != boidColId)
                     {
-                        na_boidHitIndices[colIdx] = boidCol.GetComponent<PoolIndex>().Index;
-                    } else
-                    {
-                        // negative 1 indicates no collision
-                        na_boidHitIndices[colIdx] = -1;
+                        PoolIndex poolIndex = boidCol.GetComponent<PoolIndex>();
+                        // Debug.Log(b.ToString() + ": " + boidCol.ToString() + poolIndex.Index, boidCol);
+                        if (poolIndex != null)
+                        {
+                            na_boidHitIndices[colIdx] = poolIndex.Index;
+                        }
                     }
 
                     // ===================================================================
@@ -184,6 +209,7 @@ namespace GameWorld.AI
 
                     if (obstacleCol != null)
                     {
+                        // Debug.Log(b.ToString() + ": " + obstacleCol.ToString(), obstacleCol);
                         na_obstacleHitPoints[colIdx]
                         = new float4(
                             obstacleCol.ClosestPointOnBounds(boidPosition),
@@ -217,7 +243,20 @@ namespace GameWorld.AI
             obstacleColContainer.Dispose();
 
             JobHandle job_boidUpdate = boidUpdateJob.ScheduleParallel(boidCount, 16, default);
-            // job_boidUpdate.Complete();
+
+            BoidTransformJob boidTransformJob = new BoidTransformJob
+            {
+                na_Positions = this.m_BoidContainer.na_Positions,
+                na_Directions = this.m_BoidContainer.na_Directions,
+                na_States = this.m_BoidContainer.na_States,
+            };
+
+            JobHandle job_boidTransform = boidTransformJob.Schedule(this.m_BoidTransformArray, job_boidUpdate);
+            job_boidTransform.Complete();
+
+            na_boidHitIndices.Dispose();
+            na_obstacleHitPoints.Dispose();
+            na_usedBoidIndices.Dispose();
 
             // BoidMono[] boids = this.m_BoidPool.Objects;
             // for (int b = 0; b < boids.Length; b++)
@@ -229,9 +268,14 @@ namespace GameWorld.AI
 
         private void OnDestroy()
         {
-            this.m_BoidPool.Dispose();
+            this.m_HighestFreeBoidIndex = 0;
+            this.m_FreeBoidIndices.Clear();
+            this.m_UsedBoidIndices.Clear();
 
+            // this.m_BoidPool.Dispose();
+            this.m_BoidTransPool.Dispose();
             this.m_BoidContainer.Dispose();
+            this.m_BoidTransformArray.Dispose();
         }
     }
 }
