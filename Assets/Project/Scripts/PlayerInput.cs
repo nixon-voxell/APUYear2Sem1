@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) m_Player.PlayerAttack.ChangeWeapon(PlayerAttack.Weapon.GUN);
         if (Input.GetKeyDown(KeyCode.Alpha2)) m_Player.PlayerAttack.ChangeWeapon(PlayerAttack.Weapon.SWORD);
-        if (Input.GetMouseButton(0)) m_Player.PlayerAttack.Attack();
+        if (Input.GetMouseButtonDown(0)) m_Player.PlayerAttack.Attack();
     }
 
     private void Movement()
