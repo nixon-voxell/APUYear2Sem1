@@ -33,7 +33,9 @@ public class PlayerInput : MonoBehaviour
 
     private void ActionButton()
     {
-        if (Input.GetButtonDown("Slash")) m_Player.PlayerAttack.SwingSword();
+        if (Input.GetKeyDown(KeyCode.Alpha1)) m_Player.PlayerAttack.ChangeWeapon(PlayerAttack.Weapon.GUN);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) m_Player.PlayerAttack.ChangeWeapon(PlayerAttack.Weapon.SWORD);
+        if (Input.GetMouseButton(0)) m_Player.PlayerAttack.Attack();
     }
 
     private void Movement()

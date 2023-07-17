@@ -11,11 +11,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject m_Sword;
     [SerializeField] private Transform m_FxParent;
     [SerializeField] private Pool<ParticleSystem> m_PfxPool;
-    private enum AttackState { IDLE, GUNSHOOT, SWORDATK }
+    public enum Weapon { GUN, SWORD, EMPTY }
+    private enum AttackState { IDLE, WEAPON_SWITCHING, GUNSHOOT, SWORDATK }
 
     private Player m_Player;
     private Animator m_PlayerAnimator;
     private AttackState m_CurrentAtkState;
+    private Weapon m_CurrentWeapon;
     private bool m_CanSword;
     private List<Transform> m_SwordAtkVictim;
 
@@ -27,43 +29,59 @@ public class PlayerAttack : MonoBehaviour
         m_PlayerAnimator = GetComponent<Animator>();
         m_Player.PlayerAttack = this;
         m_CurrentAtkState = AttackState.IDLE;
+        m_CurrentWeapon = Weapon.EMPTY;
         m_CanSword = true;
         m_SwordAtkVictim = new List<Transform>();
         m_PfxPool.Initialize(m_FxParent);
 
     }
-
-    //public void SetIdleState()
-    //{
-    //    m_Gun.SetActive(true);
-    //    m_Sword.SetActive(false);
-    //    m_CurrentAtkState = AttackState.IDLE;
-    //}
-
-    public void SwingSword()
+    private void Start()
     {
-        if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword)
+        ChangeWeapon(Weapon.GUN);
+    }
+
+    #region PUBLIC METHODS
+
+    public void Attack()
+    {
+        if (m_CurrentAtkState != AttackState.IDLE)
             return;
 
-        m_Sword.SetActive(true);
-        m_Gun.SetActive(false);
-        m_CurrentAtkState = AttackState.SWORDATK;
-        m_PlayerAnimator.Play("SwordSwing");
-        m_CanSword=false;
+        if (m_CurrentWeapon == Weapon.GUN)
+        {
+            ShootGun();
+        }
+        else if (m_CurrentWeapon == Weapon.SWORD)
+        {
+            SwingSword();
+        }
     }
 
-
-    public void ResetSword()
+    public void ChangeWeapon(Weapon switchTo)
     {
-        m_Sword.SetActive(false);
-        m_Gun.SetActive(true);
-        m_SwordAtkVictim.Clear();
-        m_CurrentAtkState = AttackState.IDLE;
-        m_PlayerAnimator.Play("PlayerIdle");
-        StartCoroutine(SwordAtkRefresh());
+        if (m_CurrentWeapon!= switchTo && switchTo == Weapon.GUN)
+        {
+            m_CurrentWeapon = Weapon.GUN;
+            m_CurrentAtkState = AttackState.WEAPON_SWITCHING;
+            m_Gun.SetActive(true);
+            m_Sword.SetActive(false);
+            m_PlayerAnimator.Play("GunEquip");
+        }
+        else if (m_CurrentWeapon != switchTo && switchTo == Weapon.SWORD)
+        {
+            m_CurrentWeapon = Weapon.SWORD;
+            m_CurrentAtkState = AttackState.WEAPON_SWITCHING;
+            m_Gun.SetActive(false);
+            m_Sword.SetActive(true);
+            m_PlayerAnimator.Play("SwordEquip");
 
+        }
     }
 
+    /// <summary>
+    /// To handle damaging enemies 
+    /// </summary>
+    /// <param name="collision"></param>
     public void HitEnemy(Collision collision)
     {
         if (m_CurrentAtkState == AttackState.SWORDATK)
@@ -80,6 +98,52 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Unity Animation Event
+
+    public void EndAnimation()
+    {
+        m_CurrentAtkState = AttackState.IDLE;
+        m_PlayerAnimator.Play("PlayerIdle");
+    }
+
+    /// <summary>
+    /// Resets sword atk after animation end
+    /// 
+    /// Called from the Unity Animation Timeline
+    /// </summary>
+    public void ResetSword()
+    {
+        m_SwordAtkVictim.Clear();
+        m_CurrentAtkState = AttackState.IDLE;
+        m_PlayerAnimator.Play("PlayerIdle");
+        StartCoroutine(SwordAtkRefresh());
+
+    }
+
+    #endregion
+
+    private void ShootGun()
+    {
+        Debug.Log("------------------- PEW");
+    }
+
+    private void SwingSword()
+    {
+        if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword)
+            return;
+
+        m_CurrentAtkState = AttackState.SWORDATK;
+        m_PlayerAnimator.Play("SwordSwing");
+        m_CanSword=false;
+    }
+
+
+    
+
+   
+
     private IEnumerator SwordAtkRefresh()
     {
         yield return new WaitForSeconds(m_Player.SwordCD);
@@ -88,7 +152,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 400, 100), "Sword Atk: " + m_CanSword);
+        GUI.Label(new Rect(0, 25, 400, 100), "Sword Atk: " + m_CanSword);
 
     }
 
