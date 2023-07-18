@@ -147,6 +147,7 @@ namespace GameWorld.AI
                 out obstacleForce
             );
             obstacleForce *= this.BoidConfig.ObstacleWeight;
+            UnityEngine.Debug.Log(obstacleForce);
 
             acceleration += obstacleForce;
 

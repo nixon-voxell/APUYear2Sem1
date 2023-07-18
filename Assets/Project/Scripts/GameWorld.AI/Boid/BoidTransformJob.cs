@@ -15,7 +15,7 @@ namespace GameWorld.AI
         {
             if (na_States[index] == false) return;
 
-            transform.SetPositionAndRotation(
+            transform.SetLocalPositionAndRotation(
                 this.na_Positions[index],
                 Quaternion.LookRotation(this.na_Directions[index], Vector3.up)
             );
