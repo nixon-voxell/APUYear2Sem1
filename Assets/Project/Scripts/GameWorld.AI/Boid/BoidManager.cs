@@ -5,8 +5,6 @@ using Unity.Mathematics;
 using Unity.Collections;
 using Unity.Jobs;
 
-using Random = Unity.Mathematics.Random;
-
 namespace GameWorld.AI
 {
     using Util;
@@ -99,28 +97,6 @@ namespace GameWorld.AI
                 this.m_BoidContainer.na_InstanceID[b]
                 = this.m_BoidTransPool.Objects[b].GetInstanceID();
             }
-
-            // TODO: REMOVE THIS
-            this.TestSpawn();
-            this.TestSpawn();
-        }
-
-        private Random rand = Random.CreateFromIndex(1);
-
-        // TODO: REMOVE THIS
-        [ContextMenu("TestSpawn")]
-        private void TestSpawn()
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                float3 dir = rand.NextFloat3Direction();
-                dir.y = 0.0f;
-                dir = math.normalize(dir);
-
-                float3 pos = rand.NextFloat3(0.0f, 10.0f);
-                pos.y = 0.0f;
-                this.SpawnBoid(pos, dir);
-            }
         }
 
         private void Update()
@@ -131,68 +107,12 @@ namespace GameWorld.AI
             BoidConfig boidConfig = this.m_so_BoidConfig.Config;
 
             // get used boid indices
-
             this.m_na_UsedBoidIndices.Clear();
 
             foreach (int boidIdx in this.m_UsedBoidIndices)
             {
                 this.m_na_UsedBoidIndices.Add(boidIdx);
             }
-
-            for (int b = 0; b < this.m_na_UsedBoidIndices.Length; b++)
-            {
-                int boidIndex = this.m_na_UsedBoidIndices[b];
-
-                Transform boidTrans = this.m_BoidTransPool.Objects[boidIndex];
-                // boidTrans.localPosition = Vector3.zero;
-                boidTrans.localPosition = this.m_BoidContainer.na_Positions[boidIndex];
-                boidTrans.forward = this.m_BoidContainer.na_Directions[boidIndex];
-            }
-
-            /*
-            SphereColContainer boidColContainer = new SphereColContainer(
-                boidCount, boidConfig.MaxCollision, Allocator.Persistent
-            );
-            SphereColContainer obstacleColContainer = new SphereColContainer(
-                boidCount, boidConfig.MaxCollision, Allocator.Persistent
-            );
-
-            // initialize command data
-            for (int b = 0; b < boidCount; b++)
-            {
-                int boidIdx = this.m_na_UsedBoidIndices[b];
-
-                float3 position = this.m_BoidContainer.na_Positions[boidIdx];
-
-                QueryParameters queryParameters = QueryParameters.Default;
-
-                queryParameters.layerMask = boidConfig.BoidMask;
-                boidColContainer.na_Commands[b] = new OverlapSphereCommand(
-                    position,
-                    boidConfig.PerceptionRadius,
-                    queryParameters
-                );
-
-                queryParameters.layerMask = boidConfig.ObstacleMask;
-                obstacleColContainer.na_Commands[b] = new OverlapSphereCommand(
-                    position,
-                    boidConfig.ObstacleRadius,
-                    queryParameters
-                );
-            }
-
-            // perform collision detection
-            JobHandle job_boidCol = OverlapSphereCommand.ScheduleBatch(
-                boidColContainer.na_Commands, boidColContainer.na_ColliderHits,
-                16, boidConfig.MaxCollision
-            );
-            JobHandle job_obstacleCol = OverlapSphereCommand.ScheduleBatch(
-                obstacleColContainer.na_Commands, obstacleColContainer.na_ColliderHits,
-                16, boidConfig.MaxCollision
-            );
-
-            JobHandle.CompleteAll(ref job_boidCol, ref job_obstacleCol);
-            */
 
             NativeArray<int> na_boidHitIndices = new NativeArray<int>(
                 boidCount * boidConfig.MaxCollision, Allocator.TempJob
@@ -299,27 +219,18 @@ namespace GameWorld.AI
             JobHandle job_boidUpdate = boidUpdateJob.ScheduleParallel(boidCount, 16, default);
             job_boidUpdate.Complete();
 
-            // BoidTransformJob boidTransformJob = new BoidTransformJob
-            // {
-            //     na_Positions = this.m_BoidContainer.na_Positions,
-            //     na_Directions = this.m_BoidContainer.na_Directions,
-            //     na_States = this.m_BoidContainer.na_States,
-            // };
+            for (int b = 0; b < this.m_na_UsedBoidIndices.Length; b++)
+            {
+                int boidIndex = this.m_na_UsedBoidIndices[b];
 
-            // JobHandle job_boidTransform = boidTransformJob.Schedule(this.m_BoidTransformArray, default);
-            // job_boidTransform.Complete();
+                Transform boidTrans = this.m_BoidTransPool.Objects[boidIndex];
+                boidTrans.localPosition = this.m_BoidContainer.na_Positions[boidIndex];
+                boidTrans.forward = this.m_BoidContainer.na_Directions[boidIndex];
+            }
 
 
             na_boidHitIndices.Dispose();
             na_obstacleHitPoints.Dispose();
-
-            // =====================================================
-            // BoidMono[] boids = this.m_BoidPool.Objects;
-            // for (int b = 0; b < boids.Length; b++)
-            // {
-            //     BoidMono boid = boids[b];
-            //     boid.UpdateBoid(in this.m_so_BoidConfig.Config);
-            // }
         }
 
         private void OnDestroy()
