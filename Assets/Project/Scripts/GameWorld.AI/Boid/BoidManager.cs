@@ -211,6 +211,13 @@ namespace GameWorld.AI
                 float3 boidPosition = this.m_BoidContainer.na_Positions[boidIdx];
                 int boidId = this.m_BoidContainer.na_InstanceID[boidIdx];
 
+                // clear the collider array
+                for (int c = 0; c < boidConfig.MaxCollision; c++)
+                {
+                    this.m_BoidColliders[c] = null;
+                    this.m_ObstacleColliders[c] = null;
+                }
+
                 Physics.OverlapSphereNonAlloc(
                     boidPosition,
                     boidConfig.PerceptionRadius,

@@ -1072,6 +1072,7 @@ MonoBehaviour:
     m_Prefab: {fileID: 5964941901333546173, guid: f736ec9b794447849b5870438ea98a01,
       type: 3}
     m_DefaultActive: 0
+  m_HighestFreeBoidIndex: 0
 --- !u!1 &1473786427
 GameObject:
   m_ObjectHideFlags: 0
