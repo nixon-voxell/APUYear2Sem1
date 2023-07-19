@@ -8,13 +8,15 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public PlayerMovement PlayerMovement;
     [HideInInspector] public PlayerAttack PlayerAttack;
+    [HideInInspector] public PlayerAttribute PlayerAttribute;
 
     //public float PlayerSpeed;
     public int PlayerTotalJump;
     public float SwordCD;
 
 
-    private void Awake()
+    public void PlayerDie()
     {
+        Debug.Log("Player dead");
     }
 }
