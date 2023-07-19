@@ -26,16 +26,17 @@ namespace GameWorld.AI
 
         public void Execute(int index)
         {
-            int boidIdx = na_UsedBoidIndices[index];
+            int boidIndex = na_UsedBoidIndices[index];
 
             // early return if state is false
-            if (this.na_States[boidIdx] == false) return;
+            if (this.na_States[boidIndex] == false) return;
 
-            float3 position = this.na_Positions[boidIdx];
-            float3 velocity = this.na_Velocities[boidIdx];
-            float3 direction = this.na_Directions[boidIdx];
+            float3 position = this.na_Positions[boidIndex];
+            float3 velocity = this.na_Velocities[boidIndex];
+            float3 direction = this.na_Directions[boidIndex];
             float3 acceleration = 0.0f;
 
+            // collision indices starts from 0
             int startIdx = index * this.BoidConfig.MaxCollision;
 
             float3 flockDirection = 0.0f;
@@ -90,8 +91,8 @@ namespace GameWorld.AI
             SteerTowards(
                 in flockDirection,
                 in velocity,
-                this.BoidConfig.MaxSpeed,
-                this.BoidConfig.MaxSteerForce,
+                in this.BoidConfig.MaxSpeed,
+                in this.BoidConfig.MaxSteerForce,
                 out alignmentForce
             );
             alignmentForce *= this.BoidConfig.AlignWeight;
@@ -99,8 +100,8 @@ namespace GameWorld.AI
             SteerTowards(
                 in flockCenterOffset,
                 in velocity,
-                this.BoidConfig.MaxSpeed,
-                this.BoidConfig.MaxSteerForce,
+                in this.BoidConfig.MaxSpeed,
+                in this.BoidConfig.MaxSteerForce,
                 out cohesionForce
             );
             cohesionForce *= this.BoidConfig.CohesionWeight;
@@ -108,8 +109,8 @@ namespace GameWorld.AI
             SteerTowards(
                 in avoidanceDirection,
                 in velocity,
-                this.BoidConfig.MaxSpeed,
-                this.BoidConfig.MaxSteerForce,
+                in this.BoidConfig.MaxSpeed,
+                in this.BoidConfig.MaxSteerForce,
                 out seperationForce
             );
             seperationForce *= this.BoidConfig.SeperateWeight;
@@ -124,7 +125,7 @@ namespace GameWorld.AI
             {
                 int colIdx = startIdx + c;
 
-                float4 colObstacleHitPoint = this.na_BoidHitIndices[colIdx];
+                float4 colObstacleHitPoint = this.na_ObstacleHitPoints[colIdx];
                 if (colObstacleHitPoint.w == 0.0f) continue;
 
                 float3 closestPoint = colObstacleHitPoint.xyz;
@@ -170,9 +171,9 @@ namespace GameWorld.AI
                 }
             }
 
-            this.na_Positions[boidIdx] = position;
-            this.na_Velocities[boidIdx] = velocity;
-            this.na_Directions[boidIdx] = direction;
+            this.na_Positions[boidIndex] = position;
+            this.na_Velocities[boidIndex] = velocity;
+            this.na_Directions[boidIndex] = direction;
         }
     }
 }

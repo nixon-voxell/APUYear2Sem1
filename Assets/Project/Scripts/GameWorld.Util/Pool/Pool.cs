@@ -10,9 +10,9 @@ namespace GameWorld.Util
 
         [SerializeField] private T m_Prefab;
         [SerializeField] private bool m_DefaultActive;
+
         private Transform m_Parent;
         private T[] m_Objects;
-
         private int m_CurrIdx;
 
         public T[] Objects => this.m_Objects;
@@ -34,6 +34,7 @@ namespace GameWorld.Util
 #endif
             this.m_Parent = parent;
             this.m_Objects = new T[this.Count];
+            this.m_CurrIdx = 0;
 
             for (int o = 0; o < this.Count; o++)
             {
@@ -63,6 +64,7 @@ namespace GameWorld.Util
             this.m_CurrIdx = this.GetNextIdx();
             return nextObj;
         }
+
         private int GetNextIdx()
         {
             return (this.m_CurrIdx + 1) % this.Count;
@@ -81,6 +83,8 @@ namespace GameWorld.Util
             {
                 Object.Destroy(this.m_Objects[o]);
             }
+
+            this.m_CurrIdx = 0;
         }
     }
 }

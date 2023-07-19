@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 21cb25141152654438e271a1fb024da5, type: 3}
   m_Name: SO_Boid Config
-  m_EditorClassIdentifier: GameWorld.AI:GameWorld.AI:SO_BoidConfig
+  m_EditorClassIdentifier: 
   Config:
     BoidMask:
       serializedVersion: 2
@@ -19,15 +19,16 @@ MonoBehaviour:
     ViewRange: 0
     MinSpeed: 2
     MaxSpeed: 5
-    PerceptionRadius: 2.5
-    AvoidanceRadius: 1
+    PerceptionRadius: 5
+    AvoidanceRadius: 2.5
     MaxSteerForce: 3
-    AlignWeight: 0.2
-    CohesionWeight: 1
+    AlignWeight: 0.5
+    CohesionWeight: 0.7
     SeperateWeight: 2
     TargetWeight: 1
+    MaxCollision: 10
     ObstacleMask:
       serializedVersion: 2
       m_Bits: 8
-    ObstacleWeight: 5
+    ObstacleWeight: 10
     ObstacleRadius: 5

@@ -35,8 +35,7 @@ namespace GameWorld.AI
             Collider[] boidColliders = Physics.OverlapSphere(
                 transform.position,
                 boidConfig.PerceptionRadius,
-                boidConfig.BoidMask,
-                QueryTriggerInteraction.Ignore
+                boidConfig.BoidMask
             );
 
             float2 flockHeading = 0.0f;

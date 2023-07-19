@@ -15,10 +15,8 @@ namespace GameWorld.AI
         [SerializeField, Tooltip("Max collisions per boid.")] private int m_MaxColPerBoid;
         [SerializeField] private Pool<Transform> m_BoidTransPool;
 
-        [SerializeField] private Pool<BoidMono> m_BoidPool;
-
         /// <summary>Highest index of boid index that is not in used.</summary>
-        private int m_HighestFreeBoidIndex;
+        [SerializeField] private int m_HighestFreeBoidIndex;
         /// <summary>Queue of unused (free) boid indices.</summary>
         private Queue<int> m_FreeBoidIndices;
         /// <summary>Set of used boid indices.</summary>
@@ -26,6 +24,10 @@ namespace GameWorld.AI
 
         private BoidContainer m_BoidContainer;
         private TransformAccessArray m_BoidTransformArray;
+        private NativeList<int> m_na_UsedBoidIndices;
+
+        private Collider[] m_BoidColliders;
+        private Collider[] m_ObstacleColliders;
 
         public void SpawnBoid(float3 position, float3 direction)
         {
@@ -36,13 +38,19 @@ namespace GameWorld.AI
                 boidIndex = this.m_FreeBoidIndices.Dequeue();
             } else // otherwise use a new one and increment the used count
             {
+                // prevent out of pool bounds
+                if (this.m_HighestFreeBoidIndex >= this.m_BoidTransPool.Count) return;
+
                 boidIndex = this.m_HighestFreeBoidIndex;
                 this.m_HighestFreeBoidIndex += 1;
             }
 
             this.m_BoidContainer.na_Positions[boidIndex] = position;
             this.m_BoidContainer.na_Directions[boidIndex] = direction;
+            this.m_BoidContainer.na_Velocities[boidIndex] = direction;
+            // set boid to active
             this.m_BoidContainer.na_States[boidIndex] = true;
+            this.m_BoidTransPool.Objects[boidIndex].gameObject.SetActive(true);
 
             // add to "used" set
             this.m_UsedBoidIndices.Add(boidIndex);
@@ -52,6 +60,7 @@ namespace GameWorld.AI
         {
             // set boid to inactive
             this.m_BoidContainer.na_States[boidIndex] = false;
+            this.m_BoidTransPool.Objects[boidIndex].gameObject.SetActive(false);
             // remove from "used" set
             this.m_UsedBoidIndices.Remove(boidIndex);
             // since it is inactive, we add it to the "free" queue
@@ -63,18 +72,24 @@ namespace GameWorld.AI
             this.m_BoidContainer.na_States[boidIndex] = state;
         }
 
-        private void Awake()
+        private void Start()
         {
-            this.m_BoidPool.Initialize(this.transform);
+            this.m_BoidTransPool.Initialize(this.transform);
 
             int boidCount = this.m_BoidTransPool.Count;
+            BoidConfig boidConfig = this.m_so_BoidConfig.Config;
 
             this.m_HighestFreeBoidIndex = 0;
+            this.m_UsedBoidIndices = new HashSet<int>(boidCount);
             this.m_FreeBoidIndices = new Queue<int>(boidCount / 2);
 
             // initialize containers
             this.m_BoidContainer = new BoidContainer(boidCount, Allocator.Persistent);
             this.m_BoidTransformArray = new TransformAccessArray(this.m_BoidTransPool.Objects);
+            this.m_na_UsedBoidIndices = new NativeList<int>(boidCount, Allocator.Persistent);
+
+            this.m_BoidColliders = new Collider[boidConfig.MaxCollision];
+            this.m_ObstacleColliders = new Collider[boidConfig.MaxCollision];
 
             // set boid instance ids
             for (int b = 0; b < boidCount; b++)
@@ -92,69 +107,50 @@ namespace GameWorld.AI
             BoidConfig boidConfig = this.m_so_BoidConfig.Config;
 
             // get used boid indices
-            NativeArray<int> na_usedBoidIndices = new NativeArray<int>(boidCount, Allocator.TempJob);
+            this.m_na_UsedBoidIndices.Clear();
 
-            int idx = 0;
-            foreach (int boidIdx in na_usedBoidIndices)
+            foreach (int boidIdx in this.m_UsedBoidIndices)
             {
-                na_usedBoidIndices[idx++] = boidIdx;
+                this.m_na_UsedBoidIndices.Add(boidIdx);
             }
-
-            SphereColContainer boidColContainer = new SphereColContainer(
-                boidCount, boidConfig.MaxCollision, Allocator.TempJob
-            );
-            SphereColContainer obstacleColContainer = new SphereColContainer(
-                boidCount, boidConfig.MaxCollision, Allocator.TempJob
-            );
-
-            // initialize command data
-            for (int b = 0; b < boidCount; b++)
-            {
-                int boidIdx = na_usedBoidIndices[b];
-
-                float3 position = this.m_BoidContainer.na_Positions[boidIdx];
-
-                boidColContainer.na_Commands[b] = new OverlapSphereCommand(
-                    position,
-                    boidConfig.PerceptionRadius,
-                    new QueryParameters(boidConfig.BoidMask)
-                );
-
-                obstacleColContainer.na_Commands[b] = new OverlapSphereCommand(
-                    position,
-                    boidConfig.ObstacleRadius,
-                    new QueryParameters(boidConfig.ObstacleMask)
-                );
-            }
-
-            // perform collision detection
-            JobHandle job_boidCol = OverlapSphereCommand.ScheduleBatch(
-                boidColContainer.na_Commands, boidColContainer.na_ColliderHits,
-                16, boidConfig.MaxCollision
-            );
-            JobHandle job_obstacleCol = OverlapSphereCommand.ScheduleBatch(
-                obstacleColContainer.na_Commands, obstacleColContainer.na_ColliderHits,
-                16, boidConfig.MaxCollision
-            );
-
-            JobHandle.CompleteAll(ref job_boidCol, ref job_obstacleCol);
 
             NativeArray<int> na_boidHitIndices = new NativeArray<int>(
-                boidColContainer.na_ColliderHits.Length, Allocator.TempJob
+                boidCount * boidConfig.MaxCollision, Allocator.TempJob
             );
             // final float value determines if a collision actually happens or not
             NativeArray<float4> na_obstacleHitPoints = new NativeArray<float4>(
-                obstacleColContainer.na_ColliderHits.Length, Allocator.TempJob
+                boidCount * boidConfig.MaxCollision, Allocator.TempJob
             );
 
             // transfer collision point because ColliderHit.Collider can only be accessed on the main thread...
             for (int b = 0; b < boidCount; b++)
             {
-                int boidIdx = na_usedBoidIndices[b];
+                int boidIdx = this.m_na_UsedBoidIndices[b];
                 int startIdx = b * boidConfig.MaxCollision;
 
                 float3 boidPosition = this.m_BoidContainer.na_Positions[boidIdx];
                 int boidId = this.m_BoidContainer.na_InstanceID[boidIdx];
+
+                // clear the collider array
+                for (int c = 0; c < boidConfig.MaxCollision; c++)
+                {
+                    this.m_BoidColliders[c] = null;
+                    this.m_ObstacleColliders[c] = null;
+                }
+
+                Physics.OverlapSphereNonAlloc(
+                    boidPosition,
+                    boidConfig.PerceptionRadius,
+                    this.m_BoidColliders,
+                    boidConfig.BoidMask
+                );
+
+                Physics.OverlapSphereNonAlloc(
+                    boidPosition,
+                    boidConfig.ObstacleRadius,
+                    this.m_ObstacleColliders,
+                    boidConfig.ObstacleMask
+                );
 
                 for (int c = 0; c < boidConfig.MaxCollision; c++)
                 {
@@ -163,29 +159,36 @@ namespace GameWorld.AI
                     // ===================================================================
                     // Boid collider hits
                     // ===================================================================
-                    ColliderHit boidColHit = boidColContainer.na_ColliderHits[colIdx];
-                    Collider boidCol = boidColHit.collider;
-                    int boidColId = boidColHit.instanceID;
+                    // ColliderHit boidColHit = boidColContainer.na_ColliderHits[colIdx];
+                    Collider boidCol = this.m_BoidColliders[c];
+
+                    // negative 1 indicates no collision
+                    na_boidHitIndices[colIdx] = -1;
 
                     // if has collision and is not self
-                    if (boidCol != null && boidId != boidColId)
+                    if (boidCol != null)
                     {
-                        na_boidHitIndices[colIdx] = boidCol.GetComponent<PoolIndex>().Index;
-                    } else
-                    {
-                        // negative 1 indicates no collision
-                        na_boidHitIndices[colIdx] = -1;
+                        int boidColId = boidCol.GetInstanceID();
+                        if (boidId != boidColId)
+                        {
+                            PoolIndex poolIndex = boidCol.GetComponent<PoolIndex>();
+                            // Debug.Log(b.ToString() + ": " + boidCol.ToString() + poolIndex.Index, boidCol);
+                            // if (poolIndex != null)
+                            // {
+                                na_boidHitIndices[colIdx] = poolIndex.Index;
+                            // }
+                        }
                     }
 
                     // ===================================================================
                     // Obstacle collider hits
                     // ===================================================================
-                    Collider obstacleCol = obstacleColContainer.na_ColliderHits[colIdx].collider;
+                    Collider obstacleCol = this.m_ObstacleColliders[c];
 
                     if (obstacleCol != null)
                     {
-                        na_obstacleHitPoints[colIdx]
-                        = new float4(
+                        // Debug.Log(b.ToString() + ": " + obstacleCol.ToString(), obstacleCol);
+                        na_obstacleHitPoints[colIdx] = new float4(
                             obstacleCol.ClosestPointOnBounds(boidPosition),
                             1.0f
                         );
@@ -203,7 +206,7 @@ namespace GameWorld.AI
                 DeltaTime = Time.deltaTime,
                 Keep2D = true,
 
-                na_UsedBoidIndices = na_usedBoidIndices,
+                na_UsedBoidIndices = this.m_na_UsedBoidIndices.AsArray(),
                 na_Positions = this.m_BoidContainer.na_Positions,
                 na_Velocities = this.m_BoidContainer.na_Velocities,
                 na_Directions = this.m_BoidContainer.na_Directions,
@@ -213,25 +216,34 @@ namespace GameWorld.AI
                 na_ObstacleHitPoints = na_obstacleHitPoints,
             };
 
-            boidColContainer.Dispose();
-            obstacleColContainer.Dispose();
-
             JobHandle job_boidUpdate = boidUpdateJob.ScheduleParallel(boidCount, 16, default);
-            // job_boidUpdate.Complete();
+            job_boidUpdate.Complete();
 
-            // BoidMono[] boids = this.m_BoidPool.Objects;
-            // for (int b = 0; b < boids.Length; b++)
-            // {
-            //     BoidMono boid = boids[b];
-            //     boid.UpdateBoid(in this.m_so_BoidConfig.Config);
-            // }
+            for (int b = 0; b < this.m_na_UsedBoidIndices.Length; b++)
+            {
+                int boidIndex = this.m_na_UsedBoidIndices[b];
+
+                Transform boidTrans = this.m_BoidTransPool.Objects[boidIndex];
+                boidTrans.localPosition = this.m_BoidContainer.na_Positions[boidIndex];
+                boidTrans.forward = this.m_BoidContainer.na_Directions[boidIndex];
+            }
+
+
+            na_boidHitIndices.Dispose();
+            na_obstacleHitPoints.Dispose();
         }
 
         private void OnDestroy()
         {
-            this.m_BoidPool.Dispose();
+            this.m_HighestFreeBoidIndex = 0;
+            this.m_FreeBoidIndices.Clear();
+            this.m_UsedBoidIndices.Clear();
 
+            // this.m_BoidPool.Dispose();
+            this.m_BoidTransPool.Dispose();
             this.m_BoidContainer.Dispose();
+            this.m_BoidTransformArray.Dispose();
+            this.m_na_UsedBoidIndices.Dispose();
         }
     }
 }
