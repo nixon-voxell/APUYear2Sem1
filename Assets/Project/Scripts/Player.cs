@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Transform Camera;
+
     [HideInInspector] public PlayerMovement PlayerMovement;
     [HideInInspector] public PlayerAttack PlayerAttack;
 
