@@ -7,25 +7,36 @@ namespace GameWorld.Animation
     public static class AnimDynamics
     {
         [BurstCompile]
-        public static void Update(
-            ref DynamicsState dynamicsState,
-            in float deltaTime,
-            in float3 position, in float3 velocity
+        public static void UpdateAnimation(
+            ref DynamicsState originState,
+            in DynamicsState targetState,
+            in DynamicsParam param,
+            in float deltaTime
         ) {
             float k2_stable = math.max(
-                dynamicsState.k2, math.max(
-                    deltaTime * deltaTime / 2.0f + deltaTime * dynamicsState.k1 / 2.0f,
-                    deltaTime * dynamicsState.k1
+                param.k2, math.max(
+                    deltaTime * deltaTime / 2.0f + deltaTime * param.k1 / 2.0f,
+                    deltaTime * param.k1
                 )
             );
 
-            dynamicsState.Position += deltaTime * dynamicsState.Velocity;
-            dynamicsState.Velocity += deltaTime * (
-                position +
-                dynamicsState.k3 * velocity -
-                dynamicsState.Position -
-                dynamicsState.k1 * dynamicsState.Velocity
+            originState.Position += deltaTime * originState.Velocity;
+            originState.Velocity += deltaTime * (
+                targetState.Position +
+                param.k3 * targetState.Velocity -
+                originState.Position -
+                param.k1 * originState.Velocity
             ) / k2_stable;
+        }
+
+        [BurstCompile]
+        public static void UpdateState(
+            ref DynamicsState state,
+            in float3 currPosition,
+            in float deltaTime
+        ) {
+            state.Velocity = (currPosition - state.Position) / deltaTime;
+            state.Position = currPosition;
         }
     }
 }
