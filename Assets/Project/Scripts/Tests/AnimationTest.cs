@@ -15,10 +15,12 @@ public class AnimationTest : MonoBehaviour
 
     public void Initialize(float f, float z, float r, float3 x0)
     {
+        float fPI = math.PI * f;
+        float fPI2 = 2.0f * fPI;
         // compute constants
-        this.k1 = z / (math.PI * f);
-        this.k2 = 1.0f / ((2.0f * math.PI * f) * (2.0f * math.PI * f));
-        this.k3 = r * z / (2.0f * math.PI * f);
+        this.k1 = z / fPI;
+        this.k2 = 1.0f / fPI2 * fPI2;
+        this.k3 = r * z / fPI2;
 
         // initialize variables
         xp = x0;
