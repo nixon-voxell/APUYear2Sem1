@@ -241,10 +241,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ef12e46980e4047bcac4ff003855e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f: 0
-  z: 0
+  f: 5
+  z: 1
   r: 0
   m_Target: {fileID: 1237998597}
+  m_Position:
+    x: 0
+    y: 0
+    z: 0
+  m_Velocity:
+    x: 0
+    y: 0
+    z: 0
+  m_DynamicsState:
+    Position:
+      x: 0
+      y: 0
+      z: 0
+    Velocity:
+      x: 0
+      y: 0
+      z: 0
+    k1: 0
+    k2: 0
+    k3: 0
 --- !u!1 &862243988
 GameObject:
   m_ObjectHideFlags: 0

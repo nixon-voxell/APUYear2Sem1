@@ -1,55 +1,43 @@
 using UnityEngine;
 using Unity.Mathematics;
 
+using GameWorld.Animation;
+
 public class AnimationTest : MonoBehaviour
 {
     [SerializeField] private float f, z, r;
     [SerializeField] private Transform m_Target;
 
-    // previous input
-    private float3 xp;
-    // state variables
-    private float3 y, yd;
-    // dynamics constants
-    private float k1, k2, k3;
+    [SerializeField] private float3 m_Position;
+    [SerializeField] private float3 m_Velocity;
 
-    public void Initialize(float f, float z, float r, float3 x0)
-    {
-        float fPI = math.PI * f;
-        float fPI2 = 2.0f * fPI;
-        // compute constants
-        this.k1 = z / fPI;
-        this.k2 = 1.0f / fPI2 * fPI2;
-        this.k3 = r * z / fPI2;
-
-        // initialize variables
-        xp = x0;
-        y = x0;
-        yd = 0.0f;
-    }
-
-    public float3 UpdateAnimation(float deltaTime, float3 x, float3 xd)
-    {
-        // clamp k2 to guarantee stability without jitter
-        float k2_stable = math.max(
-            this.k2, math.max(
-                deltaTime * deltaTime / 2.0f + deltaTime * this.k1 / 2.0f,
-                deltaTime * this.k1
-            )
-        );
-
-        this.y += deltaTime * this.yd;
-        this.yd += deltaTime * (x + this.k3 * xd - this.y - this.k1 * this.yd);
-        return y;
-    }
+    [SerializeField] private DynamicsState m_DynamicsState;
 
     private void Start()
     {
-        this.Initialize(this.f, this.z, this.r, this.transform.position);
+        this.m_Position = this.m_Target.position;
+        this.m_Velocity = 0.0f;
+
+        this.m_DynamicsState = new DynamicsState(
+            this.f, this.z, this.r,
+            this.m_Position
+        );
     }
 
     private void Update()
     {
-        // this.UpdateAnimation(Time.deltaTime, this.m_Target.position);
+        // update target state
+        float3 currPosition = this.m_Target.position;
+        this.m_Velocity = (currPosition - this.m_Position) / Time.deltaTime;
+        this.m_Position = currPosition;
+
+        AnimDynamics.Update(
+            ref this.m_DynamicsState,
+            Time.deltaTime,
+            in this.m_Position,
+            in this.m_Velocity
+        );
+
+        this.transform.position = this.m_DynamicsState.Position;
     }
 }
