@@ -143,9 +143,6 @@ namespace GameWorld
             this.m_Velocity.x -= this.m_Velocity.x * math.min(1.0f, this.m_XZDamping * deltaTime);
             this.m_Velocity.z -= this.m_Velocity.z * math.min(1.0f, this.m_XZDamping * deltaTime);
             this.m_Velocity.y -= this.m_Velocity.y * math.min(1.0f, this.m_YDamping * deltaTime);
-            // this.m_Velocity.x *= this.m_XZDamping;
-            // this.m_Velocity.z *= this.m_XZDamping;
-            // this.m_Velocity.y *= this.m_YDamping;
         }
     }
 }

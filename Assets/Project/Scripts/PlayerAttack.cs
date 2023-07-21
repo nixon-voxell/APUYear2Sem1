@@ -1,11 +1,11 @@
-using GameWorld.Util;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
 {
+    using Util;
+
     public class PlayerAttack : MonoBehaviour
     {
         [Header("Gun")]
@@ -36,7 +36,6 @@ namespace GameWorld
 
         private void Awake()
         {
-
             m_Player = GetComponent<Player>();
             m_PlayerAnimator = GetComponent<Animator>();
             m_Player.PlayerAttack = this;
@@ -170,11 +169,6 @@ namespace GameWorld
             m_PlayerAnimator.Play("SwordSwing");
             m_CanSword=false;
         }
-
-
-    
-
-   
 
         private IEnumerator SwordAtkRefresh()
         {

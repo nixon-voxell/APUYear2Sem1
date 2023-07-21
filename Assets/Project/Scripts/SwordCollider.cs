@@ -9,9 +9,6 @@ namespace GameWorld
         private void OnCollisionEnter(Collision collision)
         {
             m_PlayerAtk.HitEnemy(collision);
-        
         }
-
-    
     }
 }
