@@ -108,7 +108,7 @@ namespace GameWorld
             {
                 this.Jump();
                 this.m_JumpInput = false;
-            } else // only check if jumping button is not being pressed
+            } else if (this.m_Velocity.y <= 0.0f) // only check if jumping button is not being pressed & is falling down
             {
                 // any collider is considered as land
                 Physics.OverlapSphereNonAlloc(
