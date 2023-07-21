@@ -4,7 +4,7 @@ namespace GameWorld.UX
 {
     using Util;
 
-    public class UXManager : MonoBehaviour
+    public class UXManager : SingletonMono<UXManager>
     {
     }
 }

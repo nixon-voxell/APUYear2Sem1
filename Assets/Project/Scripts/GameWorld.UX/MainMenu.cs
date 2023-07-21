@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+namespace GameWorld.UX
 {
-    public class EntryPoint : MonoBehaviour
+    public class MainMenu : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
