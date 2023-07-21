@@ -1,18 +1,17 @@
-using GameWorld.Util;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SwordCollider : MonoBehaviour
+namespace GameWorld
 {
-    [SerializeField] private PlayerAttack m_PlayerAtk;
-
-    private void OnCollisionEnter(Collision collision)
+    public class SwordCollider : MonoBehaviour
     {
-        m_PlayerAtk.HitEnemy(collision);
+        [SerializeField] private PlayerAttack m_PlayerAtk;
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            m_PlayerAtk.HitEnemy(collision);
         
-    }
+        }
 
     
+    }
 }
