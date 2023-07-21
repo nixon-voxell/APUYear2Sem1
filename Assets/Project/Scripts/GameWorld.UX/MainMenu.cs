@@ -1,21 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace GameWorld.UX
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenu : UXBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        private Button m_PlayBtn;
+        private Button m_OptionBtn;
+        private Button m_QuitBtn;
 
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
-        
+            this.InitializeDoc();
+
+            this.m_PlayBtn = this.m_Root.Q<Button>("play-btn");
+            this.m_OptionBtn = this.m_Root.Q<Button>("option-btn");
+            this.m_QuitBtn = this.m_Root.Q<Button>("quit-btn");
+
+            this.m_PlayBtn.clicked += () =>
+            {
+                Debug.Log("Play");
+            };
+
+            this.m_OptionBtn.clicked += () =>
+            {
+                Debug.Log("Option");
+            };
+
+            this.m_QuitBtn.clicked += () =>
+            {
+                Debug.Log("Quit");
+                Application.Quit();
+            };
         }
     }
 }
