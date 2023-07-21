@@ -20,8 +20,8 @@ namespace GameWorld
         [SerializeField] private float m_RunSpeed;
         [SerializeField] private float m_JumpVelocity;
         [SerializeField] private int m_TotalJump;
-        [SerializeField, Range(0.0f, 1.0f)] private float m_XZDamping = 0.9f;
-        [SerializeField, Range(0.0f, 1.0f)] private float m_YDamping = 0.9f;
+        [SerializeField, Range(0.0f, 10.0f)] private float m_XZDamping = 10.0f;
+        [SerializeField, Range(0.0f, 10.0f)] private float m_YDamping = 10.0f;
 
         private Player m_Player;
         private CharacterController m_CharacterController;
@@ -47,6 +47,7 @@ namespace GameWorld
             this.m_Player.PlayerMovement = this;
 
             this.m_CharacterController = GetComponent<CharacterController>();
+            this.m_CharacterController.minMoveDistance = 0.0001f;
 
             // set initial parameters
             this.m_JumpCount = this.m_TotalJump;
@@ -68,7 +69,7 @@ namespace GameWorld
         {
             this.m_MovementInput = movementInput;
             this.m_RunInput = runInput;
-            this.m_JumpInput = jumpInput;
+            this.m_JumpInput |= jumpInput;
         }
 
         private void Jump()
@@ -106,6 +107,7 @@ namespace GameWorld
             if (this.m_JumpInput)
             {
                 this.Jump();
+                this.m_JumpInput = false;
             } else // only check if jumping button is not being pressed
             {
                 // any collider is considered as land
@@ -138,9 +140,12 @@ namespace GameWorld
             this.m_Position = currPosition;
 
             // velocity damping
-            this.m_Velocity.x *= this.m_XZDamping;
-            this.m_Velocity.z *= this.m_XZDamping;
-            this.m_Velocity.y *= this.m_YDamping;
+            this.m_Velocity.x -= this.m_Velocity.x * math.min(1.0f, this.m_XZDamping * deltaTime);
+            this.m_Velocity.z -= this.m_Velocity.z * math.min(1.0f, this.m_XZDamping * deltaTime);
+            this.m_Velocity.y -= this.m_Velocity.y * math.min(1.0f, this.m_YDamping * deltaTime);
+            // this.m_Velocity.x *= this.m_XZDamping;
+            // this.m_Velocity.z *= this.m_XZDamping;
+            // this.m_Velocity.y *= this.m_YDamping;
         }
     }
 }
