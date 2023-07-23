@@ -552,7 +552,8 @@ public class ScreenSpaceReflectionURP : ScriptableRendererFeature
         {
             cmd.ReleaseTemporaryRT(Shader.PropertyToID(gBuffer0.name));
             cmd.ReleaseTemporaryRT(Shader.PropertyToID(gBuffer1.name));
-            cmd.ReleaseTemporaryRT(Shader.PropertyToID(gBuffer2.name));
+            if (gBuffer2 != null)
+                cmd.ReleaseTemporaryRT(Shader.PropertyToID(gBuffer2.name));
             if (depthHandle != null)
                 cmd.ReleaseTemporaryRT(Shader.PropertyToID(depthHandle.name));
         }

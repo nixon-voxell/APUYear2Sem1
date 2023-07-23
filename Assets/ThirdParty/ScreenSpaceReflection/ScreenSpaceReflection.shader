@@ -207,7 +207,7 @@ Shader "Hidden/Lighting/ScreenSpaceReflection"
 				half oneMinusSmoothness4 = 1.0 - smoothness4;
 				half3 reflectColor = SAMPLE_TEXTURE2D_X_LOD(_BlitTexture, sampler_BlitTexture, UnityStereoTransformScreenSpaceTex(screenUV), oneMinusSmoothness4 * 5.0).rgb;
 			#else
-				half3 reflectColor = SAMPLE_TEXTURE2D_X_LOD(_BlitTexture, sampler_BlitTexture, UnityStereoTransformScreenSpaceTex(screenUV), 0.0).rgb;
+				half3 reflectColor = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_BlitTexture, UnityStereoTransformScreenSpaceTex(screenUV)).rgb;
 			#endif
 				return half4(reflectColor, smoothness4 * fadeSmoothness);
 			}

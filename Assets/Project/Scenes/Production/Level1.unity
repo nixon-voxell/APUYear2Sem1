@@ -1540,8 +1540,9 @@ MonoBehaviour:
   m_so_BoidConfig: {fileID: 11400000, guid: fb88dc1701bcea8419e8b19618617667, type: 2}
   m_MaxColPerBoid: 10
   m_BoidTransPool:
-    Count: 0
-    m_Prefab: {fileID: 0}
+    Count: 200
+    m_Prefab: {fileID: 5964941901333546173, guid: f736ec9b794447849b5870438ea98a01,
+      type: 3}
     m_DefaultActive: 0
   m_HighestFreeBoidIndex: 0
 --- !u!1001 &1019635094

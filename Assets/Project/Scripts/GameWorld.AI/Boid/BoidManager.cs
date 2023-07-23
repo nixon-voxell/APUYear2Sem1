@@ -16,7 +16,7 @@ namespace GameWorld.AI
         [SerializeField] private Pool<Transform> m_BoidTransPool;
 
         /// <summary>Highest index of boid index that is not in used.</summary>
-        [SerializeField] private int m_HighestFreeBoidIndex;
+        private int m_HighestFreeBoidIndex;
         /// <summary>Queue of unused (free) boid indices.</summary>
         private Queue<int> m_FreeBoidIndices;
         /// <summary>Set of used boid indices.</summary>
