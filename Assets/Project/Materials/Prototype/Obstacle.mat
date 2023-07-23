@@ -59,7 +59,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AnimPower: 1
-    - _AnimationSpeed: 2
+    - _AnimationSpeed: 1
     - _FalloffPower: 2
     - _Metallic: 0.2
     - _Metallic_1: 0
@@ -70,7 +70,7 @@ Material:
     - _Smoothness: 0.5
     - _Tile: 0.5
     m_Colors:
-    - _AnimMinMax: {r: 0.25, g: 1, b: 0, a: 0}
+    - _AnimMinMax: {r: 0.25, g: 10, b: 0, a: 0}
     - _BaseColor: {r: 0.41043687, g: 0.40682355, b: 0.52156866, a: 1}
     - _LineColor: {r: 0.19220999, g: 0.19220999, b: 0.29799998, a: 1}
   m_BuildTextureStacks: []

@@ -58,16 +58,34 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _AnimPower: 2
+    - _AnimationSpeed: 1
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _CastShadows: 1
+    - _Cull: 2
+    - _DstBlend: 0
     - _FalloffPower: 2
     - _Metallic: 0.2
     - _Metallic_1: 0
+    - _NoiseScale: 1
     - _NormalStrength: 0.002
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _Smoothness: 0.5
+    - _SrcBlend: 1
+    - _Surface: 0
     - _Tile: 0.1
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.05, g: 0.05, b: 0.05, a: 1}
+    - _AnimMinMax: {r: 0, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _LineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &9006450370300649538
