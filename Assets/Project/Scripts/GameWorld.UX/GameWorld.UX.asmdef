@@ -1,0 +1,16 @@
+{
+    "name": "GameWorld.UX",
+    "rootNamespace": "GameWorld.UX",
+    "references": [
+        "GUID:3d8ec218fa715a741bbc21032e46c65a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

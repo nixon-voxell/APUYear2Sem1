@@ -3,7 +3,9 @@
     "rootNamespace": "GameWorld",
     "references": [
         "GUID:3d8ec218fa715a741bbc21032e46c65a",
-        "GUID:b6ffdb0bb7f4e5a42a4e2c185735856a"
+        "GUID:b6ffdb0bb7f4e5a42a4e2c185735856a",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:5d380aad12070eb419c6e27b68ec6534"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
