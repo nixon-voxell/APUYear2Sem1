@@ -1,12 +1,9 @@
 {
-    "name": "GameWorld.AI",
-    "rootNamespace": "GameWorld.AI",
+    "name": "GameWorld.Storage",
+    "rootNamespace": "GameWorld.Storage",
     "references": [
-        "GUID:3d8ec218fa715a741bbc21032e46c65a",
-        "GUID:6d3051f9778673d47b21cb9fcd46602c",
         "GUID:d8b63aba1907145bea998dd612889d6b",
-        "GUID:e0cd26848372d4e5c891c569017e11f1",
-        "GUID:2665a8d13d1b3f18800f46e256720795"
+        "GUID:2e5572561bb4c734eb6db5867c5efbde"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -7,12 +7,10 @@ namespace GameWorld
 {
     using Util;
 
-    // [RequireComponent(typeof(BoidManager))]
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private float2 m_SpawnSize;
         private Random m_Random;
-        // private BoidManager m_BoidManager;
 
         public float3 GetRandomPosition()
         {
@@ -28,7 +26,6 @@ namespace GameWorld
         private void Start()
         {
             this.m_Random = Random.CreateFromIndex((uint)this.GetInstanceID());
-            // this.m_BoidManager = this.GetComponent<BoidManager>();
         }
 
 #if UNITY_EDITOR
