@@ -12,7 +12,7 @@ namespace GameWorld.AI
     public class BoidManager : MonoBehaviour
     {
         [SerializeField] private SO_BoidConfig m_so_BoidConfig;
-        [SerializeField, Tooltip("Max collisions per boid.")] private int m_MaxColPerBoid;
+        [SerializeField, Tooltip("Max collisions per boid.")] private int m_MaxColPerBoid = 10;
         [SerializeField] private Pool<Transform> m_BoidTransPool;
 
         /// <summary>Highest index of boid index that is not in used.</summary>
