@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 9c43e0b940d40094ab7a3a9993eef7f9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SSR_APPROX_COLOR_MIPMAPS
   m_InvalidKeywords:
   - _SSR_ACCUM
   m_LightmapFlags: 4
@@ -98,13 +99,13 @@ Material:
     - _DownSample: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EdgeFade: 0.3
+    - _EdgeFade: 0.4
     - _EnvironmentReflections: 1
     - _FadeSmoothness: 0.6
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxStep: 32
+    - _MaxStep: 128
     - _Metallic: 0
     - _MinSmoothness: 0.4
     - _OcclusionStrength: 1

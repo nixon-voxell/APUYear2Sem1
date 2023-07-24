@@ -10,8 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85c06db8506376343a616f843eb9d341, type: 3}
-  m_Name: SO_Wave Config
+  m_Name: SO_Wave Config - Level 1
   m_EditorClassIdentifier: 
   Config:
-    DamageIncreaseMultiplier: 0
-    DamageIncreasePower: 0
+    MinionDamagePlot:
+      BaseValue: 4
+      Multiplier: 1
+      Power: 0.5
+    MinionCountPlot:
+      BaseValue: 10
+      Multiplier: 0.01
+      Power: 2
+    BossDamagePlot:
+      BaseValue: 10
+      Multiplier: 0.05
+      Power: 1.5
+    BossCountPlot:
+      BaseValue: -4.35
+      Multiplier: 2
+      Power: 0.45

@@ -1,0 +1,14 @@
+.unity-slider__label {
+    width: 300px;
+}
+
+.slider {
+}
+
+.unity-base-slider__label {
+    color: rgb(255, 255, 255);
+}
+
+.unity-base-slider__label:active {
+    color: rgb(255, 255, 255);
+}
