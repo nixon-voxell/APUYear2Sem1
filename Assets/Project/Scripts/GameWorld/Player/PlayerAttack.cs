@@ -154,8 +154,7 @@ namespace GameWorld
 
             m_NextGunCooldown = Time.time + m_Player.PlayerAttribute.GunCooldown;
 
-
-            for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShotCount; i++)
+            for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShot; i++)
             {
                 RaycastHit hit;
                 BulletMovement bullet = m_BulletPool.GetNextObject();

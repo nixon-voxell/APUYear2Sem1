@@ -20,18 +20,32 @@ namespace GameWorld
 
         #endregion
 
+        #region Equipment Initial Stats
+        [SerializeField] private int m_InitialGunDamage = 1;
+        [SerializeField] private int m_InitialGunBulletPerShot = 1;
+        [SerializeField] private float m_InitialGunCooldown = 1;
+        [SerializeField] private int m_InitialGunMagazine = 5;
+        [SerializeField] private int m_InitialSwordDamage = 15;
+        [SerializeField] private float m_InitialSwordSwingSpeed = 1; 
+        [SerializeField] private int m_InitialArmorDefense = 0;
+        [SerializeField] private int m_InitialArmorHealthRegen = 0;
+        //private int m_InitialArmorDamageReflect = 0;
+        [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
+        [SerializeField] private int m_InitialShoeJump = 1; // Player specific
+        #endregion
+
         #region Equipment Stats Count
-        private int m_GunDamageCount = 1;
-        private int m_GunBulletPerShotCount = 1;
-        private int m_GunCooldownCount = 1;
-        private int m_GunMagazineCount = 1;
-        private int m_SwordDamageCount = 1;
-        private int m_SwordSwingSpeedCount = 1;
-        private int m_ArmorDefenseCount = 1;
-        private int m_ArmorHealthRegenCount = 1;
-        private int m_ArmorDamageReflectCount = 1;
-        private int m_ShoeSpeedCount = 1; // Player specific
-        private int m_ShoeJumpCount = 1; // Player specific
+        private int m_GunDamageCount;
+        private int m_GunBulletPerShotCount;
+        private int m_GunCooldownCount;
+        private int m_GunMagazineCount;
+        private int m_SwordDamageCount;
+        private int m_SwordSwingSpeedCount;
+        private int m_ArmorDefenseCount;
+        private int m_ArmorHealthRegenCount;
+        private int m_ArmorDamageReflectCount;
+        private int m_ShoeSpeedCount; // Player specific
+        private int m_ShoeJumpCount; // Player specific
 
         #endregion
 
@@ -44,11 +58,6 @@ namespace GameWorld
             m_PlayerCurrentHP = m_PlayerMaxHP;
         }
 
-        //TODO: Remove this test setting of variable
-        private void Start()
-        {
-            m_GunBulletPerShotCount = 8;
-        }
 
         public void DamagePlayer(int damage)
         {
@@ -82,17 +91,20 @@ namespace GameWorld
 
         #region Attribute Final Value Getter
 
-        public int GunDamage => GunDamageCount * UpgradesConfig.GunDamage;
-        public int GunBulletPerShot => GunBulletPerShotCount * UpgradesConfig.GunBulletPerShot;
-        public float GunCooldown => GunCooldownCount * UpgradesConfig.GunCooldown;
-        public int GunMagazine => GunMagazineCount * UpgradesConfig.GunMagazine;
-        public int SwordDamage => SwordDamageCount * UpgradesConfig.SwordDamage;
-        public int SwordSwingSpeed => SwordSwingSpeedCount * UpgradesConfig.SwordSwingSpeed;
-        public int ArmorDefense => ArmorDefenseCount * UpgradesConfig.ArmorDefense;
-        public int ArmorHealthRegen => ArmorHealthRegenCount * UpgradesConfig.ArmorHealthRegen;
+        public int GunDamage => m_InitialGunDamage + GunDamageCount * UpgradesConfig.GunDamage;
+        public int GunBulletPerShot => m_InitialGunBulletPerShot + GunBulletPerShotCount * UpgradesConfig.GunBulletPerShot;
+        public float GunCooldown => m_InitialGunCooldown - GunCooldownCount * UpgradesConfig.GunCooldown;
+        public int GunMagazine => m_InitialGunMagazine + GunMagazineCount * UpgradesConfig.GunMagazine;
+        public int SwordDamage => m_InitialSwordDamage + SwordDamageCount * UpgradesConfig.SwordDamage;
+        public float SwordSwingSpeed => m_InitialSwordSwingSpeed + SwordSwingSpeedCount * UpgradesConfig.SwordSwingSpeed;
+        public int ArmorDefense => m_InitialArmorDefense + ArmorDefenseCount * UpgradesConfig.ArmorDefense;
+        public int ArmorHealthRegen => m_InitialArmorHealthRegen + ArmorHealthRegenCount * UpgradesConfig.ArmorHealthRegen;
+        
+        // Starts with 0% reflect
         public int ArmorDamageReflect => ArmorDamageReflectCount * UpgradesConfig.ArmorDamageReflect;
-        public int ShoeSpeed => ShoeSpeedCount * UpgradesConfig.ShoeSpeed;
-        public int ShoeJump => ShoeJumpCount * UpgradesConfig.ShoeJump;
+        
+        public int ShoeSpeed => m_InitialShoeSpeed + ShoeSpeedCount * UpgradesConfig.ShoeSpeed;
+        public int ShoeJump => m_InitialShoeJump + ShoeJumpCount * UpgradesConfig.ShoeJump;
 
 
         #endregion

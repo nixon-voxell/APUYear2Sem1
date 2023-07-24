@@ -12,7 +12,7 @@ namespace GameWorld.Storage
         public float GunCooldown;
         public int GunMagazine;
         public int SwordDamage;
-        public int SwordSwingSpeed;
+        public float SwordSwingSpeed;
         public int ArmorDefense;
         public int ArmorHealthRegen;
         public int ArmorDamageReflect;
