@@ -9,7 +9,7 @@ namespace GameWorld.Storage
     {
         public int GunDamage;
         public int GunBulletPerShot;
-        public int GunFireRate;
+        public float GunCooldown;
         public int GunMagazine;
         public int SwordDamage;
         public int SwordSwingSpeed;

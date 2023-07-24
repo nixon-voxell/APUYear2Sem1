@@ -56,7 +56,6 @@ public class BulletMovement : MonoBehaviour
 
     private void ResetBullet()
     {
-        Debug.Log(m_Activated);
         if (m_Activated)
         {
             m_Activated = false;

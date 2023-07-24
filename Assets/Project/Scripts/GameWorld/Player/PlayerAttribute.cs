@@ -23,7 +23,7 @@ namespace GameWorld
         #region Equipment Stats Count
         private int m_GunDamageCount = 1;
         private int m_GunBulletPerShotCount = 1;
-        private int m_GunFireRateCount = 1;
+        private int m_GunCooldownCount = 1;
         private int m_GunMagazineCount = 1;
         private int m_SwordDamageCount = 1;
         private int m_SwordSwingSpeedCount = 1;
@@ -63,7 +63,7 @@ namespace GameWorld
         #region Attribute Count
         public int GunDamageCount { get => m_GunDamageCount; set => m_GunDamageCount = value; }
         public int GunBulletPerShotCount { get => m_GunBulletPerShotCount; set => m_GunBulletPerShotCount = value; }
-        public int GunFireRateCount { get => m_GunFireRateCount; set => m_GunFireRateCount = value; }
+        public int GunCooldownCount { get => m_GunCooldownCount; set => m_GunCooldownCount = value; }
         public int GunMagazineCount { get => m_GunMagazineCount; set => m_GunMagazineCount = value; }
         public int SwordDamageCount { get => m_SwordDamageCount; set => m_SwordDamageCount = value; }
         public int SwordSwingSpeedCount { get => m_SwordSwingSpeedCount; set => m_SwordSwingSpeedCount = value; }
@@ -79,7 +79,7 @@ namespace GameWorld
 
         public int GunDamage => GunDamageCount * UpgradesConfig.GunDamage;
         public int GunBulletPerShot => GunBulletPerShotCount * UpgradesConfig.GunBulletPerShot;
-        public int GunFireRate => GunFireRateCount * UpgradesConfig.GunFireRate;
+        public float GunCooldown => GunCooldownCount * UpgradesConfig.GunCooldown;
         public int GunMagazine => GunMagazineCount * UpgradesConfig.GunMagazine;
         public int SwordDamage => SwordDamageCount * UpgradesConfig.SwordDamage;
         public int SwordSwingSpeed => SwordSwingSpeedCount * UpgradesConfig.SwordSwingSpeed;

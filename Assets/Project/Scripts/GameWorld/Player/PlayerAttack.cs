@@ -33,6 +33,7 @@ namespace GameWorld
         private List<Transform> m_SwordAtkVictim;
         private LayerMask m_GunHitLayer;
 
+        private float m_NextGunCooldown = 0;
 
         private void Awake()
         {
@@ -145,6 +146,11 @@ namespace GameWorld
 
         private void ShootGun()
         {
+            if (!(Time.time >= m_NextGunCooldown))
+            {
+                return;
+            }
+
             RaycastHit hit;
             BulletMovement bullet = m_BulletPool.GetNextObject();
             bullet.transform.position = m_BulletSpawnPoint.position;
@@ -152,7 +158,7 @@ namespace GameWorld
             if (Physics.Raycast(m_Player.Camera.transform.position, m_Player.Camera.transform.forward, out hit, Mathf.Infinity, m_GunHitLayer))
             {
                 bullet.transform.LookAt(hit.point);
-        
+                
             }
             else
             {
@@ -161,6 +167,8 @@ namespace GameWorld
             }
 
             bullet.StartBullet(100f, m_Player.PlayerAttribute.GunDamage);
+            m_NextGunCooldown = Time.time + m_Player.PlayerAttribute.GunCooldown;
+
             m_GunFireFx.Play();
 
         }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunDamage: 10
   GunBulletPerShot: 1
-  GunFireRate: 1
+  GunCooldown: 1
   GunMagazine: 7
   SwordDamage: 20
   SwordSwingSpeed: 1
