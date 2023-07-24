@@ -21,17 +21,17 @@ namespace GameWorld
         #endregion
 
         #region Equipment Stats Count
-        private int m_GunDamageCount;
-        private int m_GunBulletPerShotCount;
-        private int m_GunFireRateCount;
-        private int m_GunMagazineCount;
-        private int m_SwordDamageCount;
-        private int m_SwordSwingSpeedCount;
-        private int m_ArmorDefenseCount;
-        private int m_ArmorHealthRegenCount;
-        private int m_ArmorDamageReflectCount;
-        private int m_ShoeSpeedCount; // Player specific
-        private int m_ShoeJumpCount; // Player specific
+        private int m_GunDamageCount = 1;
+        private int m_GunBulletPerShotCount = 1;
+        private int m_GunFireRateCount = 1;
+        private int m_GunMagazineCount = 1;
+        private int m_SwordDamageCount = 1;
+        private int m_SwordSwingSpeedCount = 1;
+        private int m_ArmorDefenseCount = 1;
+        private int m_ArmorHealthRegenCount = 1;
+        private int m_ArmorDamageReflectCount = 1;
+        private int m_ShoeSpeedCount = 1; // Player specific
+        private int m_ShoeJumpCount = 1; // Player specific
 
         #endregion
 

@@ -107,7 +107,7 @@ namespace GameWorld
                 IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
                 if (damageableComponent != null)
                 {
-                    damageableComponent.OnDamage(5);
+                    damageableComponent.OnDamage(m_Player.PlayerAttribute.SwordDamage);
                 }
 
                 ParticleSystem pfx = m_PfxPool.GetNextObject();
@@ -156,12 +156,11 @@ namespace GameWorld
             }
             else
             {
-                Debug.Log("No hit");
                 bullet.transform.rotation = m_Player.Camera.transform.rotation;
 
             }
 
-            bullet.StartBullet(100f);
+            bullet.StartBullet(100f, m_Player.PlayerAttribute.GunDamage);
             m_GunFireFx.Play();
 
         }

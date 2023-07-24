@@ -13,6 +13,7 @@ public class BulletMovement : MonoBehaviour
     private bool m_Activated = false;
     private float m_BulletLifetime = 3f;
     private float m_BulletSpeed;
+    private int m_BulletDamage;
 
     private Rigidbody m_Rigidbody;
     
@@ -24,7 +25,7 @@ public class BulletMovement : MonoBehaviour
     }
 
 
-    public void StartBullet(float speed)
+    public void StartBullet(float speed, int damage)
     {
         if (!gameObject.activeSelf)
         {
@@ -32,6 +33,7 @@ public class BulletMovement : MonoBehaviour
         }
 
         this.m_BulletSpeed = speed;
+        this.m_BulletDamage = damage;
         m_Activated = true;
         m_CapsuleCollider.enabled = true;
         m_MeshRenderer.enabled = true;
@@ -69,12 +71,11 @@ public class BulletMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.name); 
         ResetBullet();
         IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
         if (damageableComponent != null)
         {
-            damageableComponent.OnDamage(5);
+            damageableComponent.OnDamage(m_BulletDamage);
         }
 
         m_HitFx.Play();        
