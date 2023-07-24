@@ -38,3 +38,13 @@
     border-top-color: rgb(177, 255, 251);
     border-bottom-color: rgb(177, 255, 251);
 }
+
+.level-selection-btn {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 403px;
+    height: 347px;
+    -unity-font: url('project://database/Assets/Project/Fonts/AquireLight-YzE0o.otf?fileID=12800000&guid=8f23bc6f1097f264481d258d131bfc2e&type=3#AquireLight-YzE0o');
+    -unity-font-definition: url('project://database/Assets/Project/Fonts/AquireLight-YzE0o%20SDF.asset?fileID=11400000&guid=12dca6e5b54fa304caca6db2d0a9e4d4&type=2#AquireLight-YzE0o SDF');
+    -unity-font-style: bold;
+}
