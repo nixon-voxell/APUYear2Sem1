@@ -1,0 +1,3 @@
+.unity-slider__label {
+    width: 300px;
+}
