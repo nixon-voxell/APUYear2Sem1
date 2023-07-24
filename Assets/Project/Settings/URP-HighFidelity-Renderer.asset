@@ -16,7 +16,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 3023044652f9eb940b765b89a445c572, type: 2}
   renderingDebugger: 0
   resolution: 4
-  mipmapsMode: 0
+  mipmapsMode: 1
   sceneView: 0
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
