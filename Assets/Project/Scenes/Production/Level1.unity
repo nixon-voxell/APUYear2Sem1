@@ -716,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Cone_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1250922492522612, guid: 517a8607e4b54054b9216e69695d6e53, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4398300625856066, guid: 517a8607e4b54054b9216e69695d6e53, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -1018,6 +1022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Crate_04
       objectReference: {fileID: 0}
+    - target: {fileID: 1681651414697798, guid: e082979a473bb914ab8af10a5d754993, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4315301396323988, guid: e082979a473bb914ab8af10a5d754993, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -1257,7 +1265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 745633026}
   - component: {fileID: 745633025}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1374,6 +1382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PrototypeCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c414916f23c7a54da5c5a17c3014d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c414916f23c7a54da5c5a17c3014d41,
         type: 3}
@@ -1581,7 +1594,7 @@ GameObject:
   - component: {fileID: 935607467}
   - component: {fileID: 935607466}
   - component: {fileID: 935607465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1859,6 +1872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Tree_Square_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1756970795277310, guid: 0c19a7133235cfa469f2fcae1a85fabf, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4269263850034918, guid: 0c19a7133235cfa469f2fcae1a85fabf, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -2030,6 +2047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Crate_05
       objectReference: {fileID: 0}
+    - target: {fileID: 1681651414697798, guid: e082979a473bb914ab8af10a5d754993, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4315301396323988, guid: e082979a473bb914ab8af10a5d754993, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2166,7 +2187,7 @@ GameObject:
   - component: {fileID: 1216633796}
   - component: {fileID: 1216633795}
   - component: {fileID: 1216633794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2626,7 +2647,7 @@ GameObject:
   - component: {fileID: 1576281734}
   - component: {fileID: 1576281733}
   - component: {fileID: 1576281732}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7769,7 +7790,7 @@ GameObject:
   - component: {fileID: 1704033790}
   - component: {fileID: 1704033789}
   - component: {fileID: 1704033788}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7924,6 +7945,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Crate_03
       objectReference: {fileID: 0}
+    - target: {fileID: 1681651414697798, guid: e082979a473bb914ab8af10a5d754993, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4315301396323988, guid: e082979a473bb914ab8af10a5d754993, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -8077,11 +8102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6100bdc73e2a348b6c124d62389338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerPrefab: {fileID: 0}
   m_EnemySpawnerParent: {fileID: 1088571007}
   m_so_WaveConfig: {fileID: 11400000, guid: 68d0fccc0a26c26449c4dc24645e373a, type: 2}
   m_MinionBoidManager: {fileID: 232723597}
   m_BossBoidManager: {fileID: 1735801584}
+  m_SpawnInterval: 1
+  m_SpawnDuration: 0.5
+  m_WaveDuration: 30
 --- !u!4 &2002645028
 Transform:
   m_ObjectHideFlags: 0
@@ -8107,9 +8134,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1544747162388688, guid: 021f214ee24e4ab408fe5fa469da8624, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1802231900875454, guid: 021f214ee24e4ab408fe5fa469da8624, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Chest_Wood_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802231900875454, guid: 021f214ee24e4ab408fe5fa469da8624, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4445919366905310, guid: 021f214ee24e4ab408fe5fa469da8624, type: 3}
       propertyPath: m_LocalScale.x
@@ -8338,7 +8373,7 @@ GameObject:
   - component: {fileID: 2055898538}
   - component: {fileID: 2055898537}
   - component: {fileID: 2055898536}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
