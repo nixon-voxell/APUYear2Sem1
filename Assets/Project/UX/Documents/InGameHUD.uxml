@@ -1,11 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Project/UX/StyleSheets/InGameHUD.uss?fileID=7433441132597879392&amp;guid=4eb74b83468b24b47ab0aea8427c7c87&amp;type=3#InGameHUD" />
     <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 100%; height: 100%; align-items: center; align-self: center; justify-content: center;">
-        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 64px; height: 64px; align-self: center; align-items: center; justify-content: center; max-height: 64px; background-image: url(&apos;project://database/Assets/ThirdParty/TextMesh%20Pro/Sprites/crosshair-icon-1024x1024-p0ttc6ou.png?fileID=2800000&amp;guid=e64bbc4055cb5ae49b1aad1af4defd61&amp;type=3#crosshair-icon-1024x1024-p0ttc6ou&apos;);" />
+        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); width: 40px; height: 40px; align-self: center; align-items: center; justify-content: center; background-image: url(&apos;project://database/Assets/ThirdParty/TextMesh%20Pro/Sprites/crosshair-icon-1024x1024-p0ttc6ou.png?fileID=2800000&amp;guid=e64bbc4055cb5ae49b1aad1af4defd61&amp;type=3#crosshair-icon-1024x1024-p0ttc6ou&apos;);" />
     </ui:VisualElement>
-    <ui:VisualElement name="BorderOfHUD" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px;">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px;">
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 0; padding-right: 0;">
-            <ui:Label tabindex="-1" text="Wave 1" display-tooltip-when-elided="true" name="wave-lbl" style="font-size: 48px; -unity-font: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o.otf?fileID=12800000&amp;guid=8f23bc6f1097f264481d258d131bfc2e&amp;type=3#AquireLight-YzE0o&apos;); -unity-font-definition: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o%20SDF.asset?fileID=11400000&amp;guid=12dca6e5b54fa304caca6db2d0a9e4d4&amp;type=2#AquireLight-YzE0o SDF&apos;); -unity-font-style: bold;" />
+            <ui:Label text="Wave 1" name="wave-lbl" class="on-screen-lbl" />
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: stretch; align-self: stretch; flex-direction: row; margin-left: 11px; margin-right: 11px; margin-top: 11px; margin-bottom: 11px;">
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
@@ -16,8 +16,8 @@
                 <ui:ProgressBar value="50" title="50%" name="heath-bar" style="font-size: 36px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o.otf?fileID=12800000&amp;guid=8f23bc6f1097f264481d258d131bfc2e&amp;type=3#AquireLight-YzE0o&apos;); -unity-font-definition: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o%20SDF.asset?fileID=11400000&amp;guid=12dca6e5b54fa304caca6db2d0a9e4d4&amp;type=2#AquireLight-YzE0o SDF&apos;); -unity-font-style: bold;" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); min-width: auto; min-height: auto; padding-right: 273px;" />
-            <ui:VisualElement>
-                <ui:Label tabindex="-1" text="24/90" display-tooltip-when-elided="true" name="ammo-lbl" style="font-size: 52px; -unity-text-align: upper-right; color: rgb(128, 0, 17); -unity-font: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o.otf?fileID=12800000&amp;guid=8f23bc6f1097f264481d258d131bfc2e&amp;type=3#AquireLight-YzE0o&apos;); -unity-font-definition: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o%20SDF.asset?fileID=11400000&amp;guid=12dca6e5b54fa304caca6db2d0a9e4d4&amp;type=2#AquireLight-YzE0o SDF&apos;); -unity-font-style: bold;" />
+            <ui:VisualElement style="padding-right: 30px;">
+                <ui:Label tabindex="-1" text="24/90" display-tooltip-when-elided="true" name="ammo-lbl" class="on-screen-lbl" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

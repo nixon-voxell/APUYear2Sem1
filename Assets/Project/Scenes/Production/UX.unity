@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ae22fa12d03854b96770cbc411ea62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainMenu: {fileID: 0}
 --- !u!1 &551405467
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ GameObject:
   - component: {fileID: 551405469}
   - component: {fileID: 551405468}
   m_Layer: 0
-  m_Name: Option
+  m_Name: OptionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &897345988
 Transform:
   m_ObjectHideFlags: 0
@@ -289,12 +290,12 @@ GameObject:
   - component: {fileID: 1242518467}
   - component: {fileID: 1242518466}
   m_Layer: 0
-  m_Name: InGameUI
+  m_Name: InGameHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1242518466
 MonoBehaviour:
   m_ObjectHideFlags: 0
