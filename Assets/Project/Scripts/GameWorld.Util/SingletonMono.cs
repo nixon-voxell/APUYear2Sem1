@@ -16,4 +16,12 @@ where T : SingletonMono<T>
             Debug.LogWarning($"There might be more than 1 {this.ToString()} in the scene.", this);
         }
     }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
+    }
 }
