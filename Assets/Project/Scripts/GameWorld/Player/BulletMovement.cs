@@ -1,3 +1,4 @@
+using GameWorld;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,7 +69,13 @@ public class BulletMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.collider.name); 
         ResetBullet();
+        IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
+        if (damageableComponent != null)
+        {
+            damageableComponent.OnDamage(5);
+        }
 
         m_HitFx.Play();        
 

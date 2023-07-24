@@ -104,6 +104,12 @@ namespace GameWorld
                     return;
 
                 m_SwordAtkVictim.Add(collision.collider.transform);
+                IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
+                if (damageableComponent != null)
+                {
+                    damageableComponent.OnDamage(5);
+                }
+
                 ParticleSystem pfx = m_PfxPool.GetNextObject();
                 pfx.transform.position = collision.contacts[0].point;
                 pfx.Play();
