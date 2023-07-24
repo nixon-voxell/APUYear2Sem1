@@ -145,7 +145,7 @@ MonoBehaviour:
     m_Value: 0.6
   edgeFade:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.4
   thicknessMode:
     m_OverrideState: 1
     m_Value: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_Value: 3
   maxStep:
     m_OverrideState: 1
-    m_Value: 32
+    m_Value: 128
   accumFactor:
     m_OverrideState: 1
     m_Value: 0.9

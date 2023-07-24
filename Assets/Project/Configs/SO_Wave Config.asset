@@ -14,5 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Config:
     DamagePlot:
-      Multiplier: 0
-      Power: 0
+      BaseValue: 5
+      Multiplier: 6
+      Power: 0.6
+    MinionCountPlot:
+      BaseValue: 10
+      Multiplier: 5
+      Power: 0.56
+    BossCountPlot:
+      BaseValue: 1
+      Multiplier: 3
+      Power: 0.5
