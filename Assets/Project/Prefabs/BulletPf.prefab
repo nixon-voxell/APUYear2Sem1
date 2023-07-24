@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2894647993682500428}
   - component: {fileID: 5125216403887578095}
   - component: {fileID: -6549517588810006751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletPf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3078193662286009623}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.225, y: 0.718, z: -8.882}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
@@ -35,7 +36,6 @@ Transform:
   - {fileID: 1088526008467002390}
   - {fileID: 446398818129679842}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2894647993682500428
 CapsuleCollider:
@@ -95,7 +95,7 @@ Rigidbody:
     m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 6372562653178997774}
   - component: {fileID: 1888889418585714928}
   - component: {fileID: 4115411492846038019}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletPf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,13 +128,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431420567043456041}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4831470160518557367}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &1888889418585714928
 MeshFilter:
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2892326703841301113}
   - component: {fileID: 3257788970039437192}
   - component: {fileID: 687214182201421644}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,13 +211,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6839369749580296353}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1088526008467002390}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &3257788970039437192
 ParticleSystem:
@@ -5026,7 +5026,7 @@ GameObject:
   - component: {fileID: 4451723246170764839}
   - component: {fileID: 5065392311781520382}
   - component: {fileID: 8256490945776218735}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5040,13 +5040,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7446351059650478721}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1088526008467002390}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5065392311781520382
 ParticleSystem:
@@ -9852,7 +9852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1088526008467002390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9866,6 +9866,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7690510561211967445}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -9874,7 +9875,6 @@ Transform:
   - {fileID: 4451723246170764839}
   - {fileID: 2892326703841301113}
   m_Father: {fileID: 4831470160518557367}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1739749845234573619
 PrefabInstance:
@@ -9958,6 +9958,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyHitFx
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999366943894086620, guid: ff9ff9d8528f13448ae44e7db41ed86f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494629978656791431, guid: ff9ff9d8528f13448ae44e7db41ed86f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

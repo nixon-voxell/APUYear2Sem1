@@ -37,12 +37,17 @@ namespace GameWorld
 
 
 
-
         private void Awake()
         {
             m_Player = GetComponent<Player>();
             m_Player.PlayerAttribute = this;
             m_PlayerCurrentHP = m_PlayerMaxHP;
+        }
+
+        //TODO: Remove this test setting of variable
+        private void Start()
+        {
+            m_GunBulletPerShotCount = 8;
         }
 
         public void DamagePlayer(int damage)
