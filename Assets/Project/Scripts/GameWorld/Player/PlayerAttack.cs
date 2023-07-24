@@ -152,6 +152,9 @@ namespace GameWorld
                 yield break;
             }
 
+            m_NextGunCooldown = Time.time + m_Player.PlayerAttribute.GunCooldown;
+
+
             for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShotCount; i++)
             {
                 RaycastHit hit;
@@ -176,7 +179,6 @@ namespace GameWorld
                 yield return new WaitForSeconds(0.05f);
             }
 
-            m_NextGunCooldown = Time.time + m_Player.PlayerAttribute.GunCooldown;
 
 
         }
