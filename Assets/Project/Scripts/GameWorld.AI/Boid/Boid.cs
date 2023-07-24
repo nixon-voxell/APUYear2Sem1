@@ -2,10 +2,9 @@ using Unity.Collections;
 using Unity.Mathematics;
 using Unity.Burst;
 
-
 namespace GameWorld.AI
 {
-    using static Util.mathxx;
+    using Storage;
 
     [BurstCompile]
     public static class Boid

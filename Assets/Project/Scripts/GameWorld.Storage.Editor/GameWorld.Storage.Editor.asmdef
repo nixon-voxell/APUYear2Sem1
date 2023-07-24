@@ -1,0 +1,18 @@
+{
+    "name": "GameWorld.Storage.Editor",
+    "rootNamespace": "GameWorld.Storage.Editor",
+    "references": [
+        "GUID:6d3051f9778673d47b21cb9fcd46602c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
