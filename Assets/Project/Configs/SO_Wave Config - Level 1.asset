@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: SO_Wave Config - Level 1
   m_EditorClassIdentifier: 
   Config:
-    DamagePlot:
-      BaseValue: 5
-      Multiplier: 6
-      Power: 0.6
+    MinionDamagePlot:
+      BaseValue: 4
+      Multiplier: 1
+      Power: 0.5
     MinionCountPlot:
       BaseValue: 10
-      Multiplier: 5
-      Power: 0.56
+      Multiplier: 0.01
+      Power: 2
+    BossDamagePlot:
+      BaseValue: 10
+      Multiplier: 0.05
+      Power: 1.5
     BossCountPlot:
-      BaseValue: 1
-      Multiplier: 3
-      Power: 0.5
+      BaseValue: -4.35
+      Multiplier: 2
+      Power: 0.45

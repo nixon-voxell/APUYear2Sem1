@@ -558,6 +558,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &232723595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232723596}
+  - component: {fileID: 232723597}
+  m_Layer: 0
+  m_Name: MinionBoidManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232723596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232723595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2002645028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232723597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232723595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fefd891bdce27e47a9cab258eefd4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_so_BoidConfig: {fileID: 11400000, guid: fb88dc1701bcea8419e8b19618617667, type: 2}
+  m_BoidTransPool:
+    Count: 200
+    m_Prefab: {fileID: 5964941901333546173, guid: f736ec9b794447849b5870438ea98a01,
+      type: 3}
+    m_DefaultActive: 0
 --- !u!1 &239264728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,7 +1963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088571008}
   m_Layer: 0
-  m_Name: EnemySpawners
+  m_Name: EnemySpawnerParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7812,6 +7862,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704033786}
   m_Mesh: {fileID: 2893198932967393565, guid: 0c414916f23c7a54da5c5a17c3014d41, type: 3}
+--- !u!1 &1735801582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1735801583}
+  - component: {fileID: 1735801584}
+  m_Layer: 0
+  m_Name: BossBoidManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1735801583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735801582}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2002645028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1735801584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735801582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fefd891bdce27e47a9cab258eefd4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_so_BoidConfig: {fileID: 11400000, guid: fb88dc1701bcea8419e8b19618617667, type: 2}
+  m_BoidTransPool:
+    Count: 200
+    m_Prefab: {fileID: 5964941901333546173, guid: f736ec9b794447849b5870438ea98a01,
+      type: 3}
+    m_DefaultActive: 0
 --- !u!1001 &1831771041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7958,7 +8058,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2002645028}
   - component: {fileID: 2002645027}
-  - component: {fileID: 2002645026}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -7966,24 +8065,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2002645026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002645025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fefd891bdce27e47a9cab258eefd4f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_so_BoidConfig: {fileID: 11400000, guid: fb88dc1701bcea8419e8b19618617667, type: 2}
-  m_BoidTransPool:
-    Count: 200
-    m_Prefab: {fileID: 5964941901333546173, guid: f736ec9b794447849b5870438ea98a01,
-      type: 3}
-    m_DefaultActive: 0
 --- !u!114 &2002645027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7998,7 +8079,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerPrefab: {fileID: 0}
   m_EnemySpawnerParent: {fileID: 1088571007}
-  m_so_WaveConfig: {fileID: 0}
+  m_so_WaveConfig: {fileID: 11400000, guid: 68d0fccc0a26c26449c4dc24645e373a, type: 2}
+  m_MinionBoidManager: {fileID: 232723597}
+  m_BossBoidManager: {fileID: 1735801584}
 --- !u!4 &2002645028
 Transform:
   m_ObjectHideFlags: 0
@@ -8011,7 +8094,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 232723596}
+  - {fileID: 1735801583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2031848241

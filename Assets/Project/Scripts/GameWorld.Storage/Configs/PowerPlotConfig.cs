@@ -9,7 +9,12 @@ namespace GameWorld.Storage
     {
         public float BaseValue;
         public float Multiplier;
-        [Range(0.0f, 1.0f)] public float Power;
+        [Range(0.0f, 2.0f)] public float Power;
+
+        public static int EvaluateInt(in PowerPlotConfig powerPlotConfig, int x)
+        {
+            return (int)Evaluate(in powerPlotConfig, x);
+        }
 
         public static float Evaluate(in PowerPlotConfig powerPlotConfig, float x)
         {
