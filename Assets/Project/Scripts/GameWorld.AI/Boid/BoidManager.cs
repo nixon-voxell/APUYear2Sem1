@@ -50,6 +50,8 @@ namespace GameWorld.AI
             this.m_BoidContainer.na_Velocities[boidIndex] = direction;
             // set boid to active
             this.m_BoidContainer.na_States[boidIndex] = true;
+            this.m_BoidTransPool.Objects[boidIndex].transform.position = position;
+            this.m_BoidTransPool.Objects[boidIndex].transform.forward = direction;
             this.m_BoidTransPool.Objects[boidIndex].gameObject.SetActive(true);
 
             // add to "used" set

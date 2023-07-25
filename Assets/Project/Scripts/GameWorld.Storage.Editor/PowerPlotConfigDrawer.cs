@@ -84,7 +84,6 @@ namespace GameWorld.Storage.Editor
             painter.strokeColor = Color.white;
             painter.fillColor = Color.white;
 
-            painter.LineTo(new Vector2(0.0f, PLOT_HEIGHT));
             for (int p = 0; p < PLOT_RANGE; p++)
             {
                 painter.LineTo(new Vector2(p * PLOT_GAP, PLOT_HEIGHT - (plotHeights[p] - offset) * ratio));
