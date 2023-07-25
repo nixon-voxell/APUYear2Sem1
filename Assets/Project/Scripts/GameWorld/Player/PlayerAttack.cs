@@ -188,13 +188,15 @@ namespace GameWorld
                 return;
 
             m_CurrentAtkState = AttackState.SWORDATK;
+            m_PlayerAnimator.speed = m_Player.PlayerAttribute.SwordSwingSpeed;
             m_PlayerAnimator.Play("SwordSwing");
             m_CanSword=false;
         }
 
         private IEnumerator SwordAtkRefresh()
         {
-            yield return new WaitForSeconds(m_Player.SwordCD);
+            yield return new WaitForSeconds(m_Player.SwordCD / m_Player.PlayerAttribute.SwordSwingSpeed);
+            m_PlayerAnimator.speed = 1.0f;
             m_CanSword = true;
         }
 

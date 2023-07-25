@@ -15,7 +15,7 @@
             <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); -unity-text-align: upper-left;">
                 <ui:ProgressBar value="50" title="50%" name="heath-bar" style="font-size: 36px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o.otf?fileID=12800000&amp;guid=8f23bc6f1097f264481d258d131bfc2e&amp;type=3#AquireLight-YzE0o&apos;); -unity-font-definition: url(&apos;project://database/Assets/Project/Fonts/AquireLight-YzE0o%20SDF.asset?fileID=11400000&amp;guid=12dca6e5b54fa304caca6db2d0a9e4d4&amp;type=2#AquireLight-YzE0o SDF&apos;); -unity-font-style: bold;" />
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); min-width: auto; min-height: auto; padding-right: 273px;" />
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); min-width: auto; min-height: auto; padding-right: 273px; align-items: auto;" />
             <ui:VisualElement style="padding-right: 30px;">
                 <ui:Label tabindex="-1" text="24/90" display-tooltip-when-elided="true" name="ammo-lbl" class="on-screen-lbl" />
             </ui:VisualElement>
