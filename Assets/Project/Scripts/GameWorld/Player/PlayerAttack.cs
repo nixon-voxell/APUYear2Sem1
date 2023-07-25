@@ -34,7 +34,13 @@ namespace GameWorld
         private List<Transform> m_SwordAtkVictim;
         private LayerMask m_GunHitLayer;
 
+        #region Gun Variables
         private float m_NextGunCooldown = 0;
+        private int m_CurrentGunAmmo = 5;
+
+        public int CurrentGunAmmo => m_CurrentGunAmmo;
+        #endregion
+
 
         private void Awake()
         {

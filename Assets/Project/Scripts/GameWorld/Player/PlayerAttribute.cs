@@ -65,7 +65,7 @@ namespace GameWorld
             // TODO: Update Health Bar UI
 
 
-            if (m_PlayerCurrentHP < 0)
+            if (PlayerCurrentHP < 0)
             {
                 m_PlayerCurrentHP = 0;
                 m_Player.PlayerDie();
@@ -105,6 +105,9 @@ namespace GameWorld
         
         public int ShoeSpeed => m_InitialShoeSpeed + ShoeSpeedCount * UpgradesConfig.ShoeSpeed;
         public int ShoeJump => m_InitialShoeJump + ShoeJumpCount * UpgradesConfig.ShoeJump;
+
+        public int PlayerCurrentHP => m_PlayerCurrentHP;
+        public int PlayerMaxHP => m_PlayerMaxHP;
 
 
         #endregion

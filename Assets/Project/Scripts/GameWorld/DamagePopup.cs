@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using Cinemachine;
 
 namespace GameWorld
 {
@@ -21,9 +21,14 @@ namespace GameWorld
         {
             m_Text = GetComponent<TextMeshProUGUI>();
             m_Text.enabled = false;
-            m_CamTransform = Camera.main.transform;
             m_OriginalPos = transform.position;
         }
+        private void Start()
+        {
+            m_CamTransform = CinemachineCore.Instance.GetActiveBrain(0).transform;
+
+        }
+
         public void OnPopup(string text)
         {
             m_Text.text = text;

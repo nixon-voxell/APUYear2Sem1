@@ -12,7 +12,8 @@ namespace GameWorld.UX
         private void Start()
         {
             this.InitializeDoc();
-
+            UXManager.Instance.MainMenu = this;
+            
             this.m_PlayBtn = this.m_Root.Q<Button>("play-btn");
             this.m_OptionBtn = this.m_Root.Q<Button>("option-btn");
             this.m_QuitBtn = this.m_Root.Q<Button>("quit-btn");
