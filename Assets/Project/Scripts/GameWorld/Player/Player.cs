@@ -1,3 +1,4 @@
+using GameWorld.UX;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,19 @@ namespace GameWorld
         public int PlayerTotalJump;
         public float SwordCD;
 
+        private void Start()
+        {
+            Invoke("GameSetup", 1.0f);
+        }
+
+
+        // TODO: To be called by level manager
+
+        public void GameSetup()
+        {
+            UXManager.Instance.InGameHUD.InitialSetup(PlayerAttribute.GunMagazine, PlayerAttribute.PlayerMaxHP);
+
+        }
 
         public void PlayerDie()
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace GameWorld
 {
+    using GameWorld.UX;
     using Util;
 
     public class PlayerAttack : MonoBehaviour
@@ -23,7 +24,7 @@ namespace GameWorld
         [SerializeField] private Pool<ParticleSystem> m_PfxPool;
 
         public enum Weapon { GUN, SWORD, EMPTY }
-        private enum AttackState { IDLE, WEAPON_SWITCHING, GUNSHOOT, SWORDATK }
+        private enum AttackState { IDLE, WEAPON_SWITCHING, GUNSHOOT, SWORDATK, GUN_RELOADING }
 
 
         private Player m_Player;
@@ -36,7 +37,7 @@ namespace GameWorld
 
         #region Gun Variables
         private float m_NextGunCooldown = 0;
-        private int m_CurrentGunAmmo = 5;
+        private int m_CurrentGunAmmo = 1;
 
         public int CurrentGunAmmo => m_CurrentGunAmmo;
         #endregion
@@ -53,6 +54,7 @@ namespace GameWorld
             m_SwordAtkVictim = new List<Transform>();
             m_PfxPool.Initialize(m_FxParent);
             m_BulletPool.Initialize(m_FxParent);
+            m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
 
             m_GunHitLayer = ~gameObject.layer;
         }
@@ -77,9 +79,17 @@ namespace GameWorld
                 SwingSword();
             }
         }
+        public void StartReloadGun()
+        {
+            m_CurrentAtkState = AttackState.GUN_RELOADING;
+            m_PlayerAnimator.Play("GunReload");
+        }
 
         public void ChangeWeapon(Weapon switchTo)
         {
+            if (m_CurrentAtkState != AttackState.IDLE)
+                return;
+
             if (m_CurrentWeapon!= switchTo && switchTo == Weapon.GUN)
             {
                 m_CurrentWeapon = Weapon.GUN;
@@ -87,6 +97,8 @@ namespace GameWorld
                 m_Gun.SetActive(true);
                 m_Sword.SetActive(false);
                 m_PlayerAnimator.Play("GunEquip");
+                UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+
             }
             else if (m_CurrentWeapon != switchTo && switchTo == Weapon.SWORD)
             {
@@ -95,7 +107,7 @@ namespace GameWorld
                 m_Gun.SetActive(false);
                 m_Sword.SetActive(true);
                 m_PlayerAnimator.Play("SwordEquip");
-
+                UXManager.Instance.InGameHUD.UpdateGunAmmo(1, 1);
             }
         }
 
@@ -135,6 +147,15 @@ namespace GameWorld
             m_PlayerAnimator.Play("PlayerIdle");
         }
 
+        public void ReloadedGun()
+        {
+            m_CurrentAtkState = AttackState.IDLE;
+
+            m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
+            UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+            m_PlayerAnimator.Play("PlayerIdle");
+        }
+
         /// <summary>
         /// Resets sword atk after animation end
         /// 
@@ -148,6 +169,7 @@ namespace GameWorld
             StartCoroutine(SwordAtkRefresh());
 
         }
+
 
         #endregion
 
@@ -163,6 +185,9 @@ namespace GameWorld
             for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShot; i++)
             {
                 RaycastHit hit;
+
+                // HANDLE BULLET SHOOTING
+
                 BulletMovement bullet = m_BulletPool.GetNextObject();
                 bullet.transform.position = m_BulletSpawnPoint.position;
 
@@ -176,10 +201,24 @@ namespace GameWorld
                     bullet.transform.rotation = m_Player.Camera.transform.rotation;
 
                 }
-
+                
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);
 
+                // HANDLE GUN AMMO
+                m_CurrentGunAmmo--;
+                UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+
+                if (m_CurrentGunAmmo <= 0)
+                {
+                    StartReloadGun();
+
+                }
+
+
+
                 m_GunFireFx.Play();
+
+
 
                 yield return new WaitForSeconds(0.05f);
             }
@@ -187,6 +226,8 @@ namespace GameWorld
 
 
         }
+
+        
 
         private void SwingSword()
         {
