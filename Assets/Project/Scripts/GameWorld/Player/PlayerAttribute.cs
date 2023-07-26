@@ -29,7 +29,7 @@ namespace GameWorld
         [SerializeField] private float m_InitialSwordSwingSpeed = 1; 
         [SerializeField] private int m_InitialArmorDefense = 0;
         [SerializeField] private int m_InitialArmorHealthRegen = 0;
-        //private int m_InitialArmorDamageReflect = 0;
+        [SerializeField] private int m_InitialArmorDamageReflect = 0;
         [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
 
@@ -104,7 +104,7 @@ namespace GameWorld
         public int ArmorHealthRegen => m_InitialArmorHealthRegen + ArmorHealthRegenCount * UpgradesConfig.ArmorHealthRegen;
         
         // Starts with 0% reflect
-        public int ArmorDamageReflect => ArmorDamageReflectCount * UpgradesConfig.ArmorDamageReflect;
+        public int ArmorDamageReflect => m_InitialArmorDamageReflect + ArmorDamageReflectCount * UpgradesConfig.ArmorDamageReflect;
         
         public int ShoeSpeed => m_InitialShoeSpeed + ShoeSpeedCount * UpgradesConfig.ShoeSpeed;
         public int ShoeJump => m_InitialShoeJump + ShoeJumpCount * UpgradesConfig.ShoeJump;
