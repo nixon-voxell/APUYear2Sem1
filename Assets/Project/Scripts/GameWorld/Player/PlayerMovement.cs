@@ -16,10 +16,7 @@ namespace GameWorld
 
         [Header("Movement Parameters")]
         [SerializeField] private float3 m_Gravity;
-        [SerializeField] private float m_WalkSpeed;
-        [SerializeField] private float m_RunSpeed;
         [SerializeField] private float m_JumpVelocity;
-        [SerializeField] private int m_TotalJump;
         [SerializeField, Range(0.0f, 10.0f)] private float m_XZDamping = 10.0f;
         [SerializeField, Range(0.0f, 10.0f)] private float m_YDamping = 10.0f;
 
@@ -50,7 +47,7 @@ namespace GameWorld
             this.m_CharacterController.minMoveDistance = 0.0001f;
 
             // set initial parameters
-            this.m_JumpCount = this.m_TotalJump;
+            this.m_JumpCount = this.m_Player.PlayerAttribute.ShoeJump;
             this.m_Position = this.transform.position;
             this.m_Velocity = 0.0f;
 
@@ -83,7 +80,7 @@ namespace GameWorld
 
         private void Land()
         {
-            this.m_JumpCount = this.m_TotalJump;
+            this.m_JumpCount = this.m_Player.PlayerAttribute.ShoeJump;
         }
 
         private void Move(float3 direction, float speed)
@@ -100,7 +97,7 @@ namespace GameWorld
 
             if (math.lengthsq(this.m_MovementInput) > 0.0f)
             {
-                float speed = this.m_RunInput ? this.m_RunSpeed : this.m_WalkSpeed;
+                float speed = this.m_RunInput ? this.m_Player.PlayerAttribute.ShoeSpeed * 1.6f : this.m_Player.PlayerAttribute.ShoeSpeed;
                 this.Move(mathxx.unflatten_2d(this.m_MovementInput), speed);
             }
 

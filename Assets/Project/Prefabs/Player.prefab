@@ -4985,7 +4985,6 @@ MonoBehaviour:
   m_WalkSpeed: 8
   m_RunSpeed: 12
   m_JumpVelocity: 10
-  m_TotalJump: 3
   m_XZDamping: 10
   m_YDamping: 2
 --- !u!114 &2042235772643211542
@@ -5019,8 +5018,6 @@ MonoBehaviour:
   PlayerMovement: {fileID: 0}
   PlayerAttack: {fileID: 0}
   PlayerAttribute: {fileID: 0}
-  PlayerTotalJump: 4
-  SwordCD: 0.5
 --- !u!114 &7514564015292486338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5097,6 +5094,7 @@ MonoBehaviour:
   m_InitialArmorHealthRegen: 0
   m_InitialShoeSpeed: 1
   m_InitialShoeJump: 1
+  m_InitialSwordCooldown: 0.5
 --- !u!95 &2904890385300296963
 Animator:
   serializedVersion: 5

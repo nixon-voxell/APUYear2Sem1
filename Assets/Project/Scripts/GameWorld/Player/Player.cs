@@ -13,10 +13,6 @@ namespace GameWorld
         [HideInInspector] public PlayerAttack PlayerAttack;
         [HideInInspector] public PlayerAttribute PlayerAttribute;
 
-        //public float PlayerSpeed;
-        public int PlayerTotalJump;
-        public float SwordCD;
-
         private void Start()
         {
             Invoke("GameSetup", 1.0f);

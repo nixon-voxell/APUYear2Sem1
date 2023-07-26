@@ -32,6 +32,9 @@ namespace GameWorld
         //private int m_InitialArmorDamageReflect = 0;
         [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
+
+        [Header("Other Stats")]
+        [SerializeField] private float m_InitialSwordCooldown;
         #endregion
 
         #region Equipment Stats Count
@@ -108,6 +111,8 @@ namespace GameWorld
 
         public int PlayerCurrentHP => m_PlayerCurrentHP;
         public int PlayerMaxHP => m_PlayerMaxHP;
+
+        public float InitialSwordCooldown => m_InitialSwordCooldown;
 
 
         #endregion

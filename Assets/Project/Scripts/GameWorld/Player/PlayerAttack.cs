@@ -242,7 +242,7 @@ namespace GameWorld
 
         private IEnumerator SwordAtkRefresh()
         {
-            yield return new WaitForSeconds(m_Player.SwordCD / m_Player.PlayerAttribute.SwordSwingSpeed);
+            yield return new WaitForSeconds(m_Player.PlayerAttribute.InitialSwordCooldown / m_Player.PlayerAttribute.SwordSwingSpeed);
             m_PlayerAnimator.speed = 1.0f;
             m_CanSword = true;
         }
