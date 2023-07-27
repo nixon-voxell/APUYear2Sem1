@@ -19,10 +19,8 @@ namespace GameWorld.UX
 
 
             m_WaveLabel = m_Root.Q<Label>("wave-lbl");
-            m_AmmoLabel = m_Root.Q<Label>("ammo-lbl");
+            m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
             m_HPBar = m_Root.Q<ProgressBar>("health-bar");
-
-            m_Root.visible = false;
         }
 
         public void InitialSetup(int gunMagazineCapacity, int playerMaxHP)

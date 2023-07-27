@@ -12,6 +12,8 @@ namespace GameWorld
         public enum EnemyType { NORMAL, ELITE, BOSS }
 
         [SerializeField] private Transform m_PopupParent;
+        [SerializeField] private GameObject m_EliteOrb;
+        [SerializeField] private GameObject m_BossOrb;
 
         [Header("Stats")]
         [SerializeField] private int m_HealthMax;
@@ -19,14 +21,22 @@ namespace GameWorld
         [SerializeField] private int m_StartingDamage;
         [SerializeField] private int m_StartingAtkCooldown;
         [SerializeField] private float m_EliteMultiplier;
+
+        [Header("Debug")]
+        [SerializeField] private bool m_EnemyUnableToDie;
+
         [SerializeField] private float m_BossMultiplier;
 
         [SerializeField] private Pool<DamagePopup> m_DamagePopupPool;
+
+
+        // STATS
 
         private int m_CurrentHealth;
         private int m_CurrentSpeed;
         private int m_CurrentDamage;
         private int m_CurrentAtkCooldown;
+        private EnemyType m_EnemyType;
 
 
         /// <summary>
@@ -36,6 +46,8 @@ namespace GameWorld
         {
             InitializeEnemy(EnemyType.NORMAL, 1.0f);
             m_DamagePopupPool.Initialize(m_PopupParent);
+
+            m_EnemyType = EnemyType.ELITE;
         }
 
         public void OnDamage(int damage)
@@ -47,12 +59,14 @@ namespace GameWorld
             if (m_CurrentHealth <= 0)
             {
                 m_CurrentHealth = 0;
-                OnDie();
+                if (!m_EnemyUnableToDie) OnDie();
             }
         }
 
         private void OnDie()
         {
+
+
             Debug.Log(gameObject.name + " is dead");
         }
 

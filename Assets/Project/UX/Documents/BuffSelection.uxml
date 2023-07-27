@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Project/UX/StyleSheets/BuffButton.uss?fileID=7433441132597879392&amp;guid=6fce51e52068f044999fcbb68de17fcd&amp;type=3#BuffButton" />
-    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.72); flex-direction: row;">
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: stretch; align-items: stretch; justify-content: space-around;">
             <ui:Button text="Description" display-tooltip-when-elided="true" name="buff_button" class="BuffButton__btn" style="align-self: stretch; align-items: stretch; justify-content: space-around; margin-bottom: 2px; flex-direction: column; border-left-color: rgb(35, 161, 255); border-right-color: rgb(35, 161, 255); border-top-color: rgb(35, 161, 255); border-bottom-color: rgb(35, 161, 255);">
                 <ui:Label tabindex="-1" text="I Buff Name" display-tooltip-when-elided="true" name="buff_name" style="margin-bottom: 18px; opacity: 1; margin-left: 0; margin-right: 0; margin-top: 25px;" />

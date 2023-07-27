@@ -97,7 +97,7 @@ namespace GameWorld
                 m_Gun.SetActive(true);
                 m_Sword.SetActive(false);
                 m_PlayerAnimator.Play("GunEquip");
-                UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+                UXManager.Instance.InGameHUD?.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
 
             }
             else if (m_CurrentWeapon != switchTo && switchTo == Weapon.SWORD)
@@ -107,7 +107,7 @@ namespace GameWorld
                 m_Gun.SetActive(false);
                 m_Sword.SetActive(true);
                 m_PlayerAnimator.Play("SwordEquip");
-                UXManager.Instance.InGameHUD.UpdateGunAmmo(1, 1);
+                UXManager.Instance.InGameHUD?.UpdateGunAmmo(1, 1);
             }
         }
 

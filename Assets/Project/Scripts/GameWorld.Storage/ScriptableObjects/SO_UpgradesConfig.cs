@@ -19,7 +19,6 @@ namespace GameWorld.Storage
         public int ShoeSpeed; // Player specific
         public int ShoeJump; // Player specific
 
-
     }
 }
 
