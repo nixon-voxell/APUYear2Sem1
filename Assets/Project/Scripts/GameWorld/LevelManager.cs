@@ -46,8 +46,6 @@ namespace GameWorld
                     !this.m_SkipTimeBasedWave
                 ) {
                     StartWave();
-                    this.m_WaveCount += 1;
-                    this.m_WaveTimePassed = 0.0f;
                 } else if (this.m_SkipTimeBasedWave)
                 {
                     this.m_SkipTimeBasedWave = false;
@@ -60,6 +58,8 @@ namespace GameWorld
 
         private void StartWave()
         {
+            this.m_WaveCount += 1;
+            this.m_WaveTimePassed = 0.0f;
             WaveConfig config = this.m_so_WaveConfig.Config;
 
             // make sure previous coroutine stops before running a new one
