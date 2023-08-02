@@ -23,23 +23,34 @@ namespace GameWorld
         private EnemySpawner[] m_EnemySpawners;
 
         private Random m_Random;
+        private bool m_SkipTimeBasedWave;
         private int m_WaveCount;
         private float m_WaveTimePassed;
         private bool m_LevelActive;
+
+        // total number of enemy count in game
+        private int m_TotalEnemyCount;
 
         private Coroutine m_WaveCoroutine;
         private Coroutine m_MinionSpawnCoroutine;
         private Coroutine m_BossSpawnCoroutine;
 
-        private IEnumerator CR_Wave()
+        private IEnumerator CR_TimeBasedWave()
         {
             while (this.m_LevelActive)
             {
-                if (this.m_WaveTimePassed > this.m_WaveDuration)
-                {
+                // allow waves to be skipped in case it has already been activated
+                // due to all enemy died
+                if (
+                    this.m_WaveTimePassed > this.m_WaveDuration &&
+                    !this.m_SkipTimeBasedWave
+                ) {
                     StartWave();
                     this.m_WaveCount += 1;
                     this.m_WaveTimePassed = 0.0f;
+                } else if (this.m_SkipTimeBasedWave)
+                {
+                    this.m_SkipTimeBasedWave = false;
                 }
 
                 yield return new WaitForSeconds(0.1f);
@@ -82,6 +93,7 @@ namespace GameWorld
             for (int c = 0; c < count; c++)
             {
                 manager.SpawnBoid(this.GetRandomSpawnPosition(), this.m_Random.NextFloat3Direction());
+                this.m_TotalEnemyCount += 1;
                 yield return new WaitForSeconds(this.m_SpawnInterval);
             }
             yield break;
@@ -98,14 +110,26 @@ namespace GameWorld
             this.m_EnemySpawners = this.m_EnemySpawnerParent.GetComponentsInChildren<EnemySpawner>();
 
             this.m_Random = Random.CreateFromIndex((uint)this.m_EnemySpawners.Length);
+            this.m_SkipTimeBasedWave = false;
             this.m_WaveCount = 0;
             this.m_WaveTimePassed = this.m_WaveDuration;
             this.m_LevelActive = true;
+
+            this.m_TotalEnemyCount = 0;
         }
 
         private void Start()
         {
-            this.m_WaveCoroutine = this.StartCoroutine(this.CR_Wave());
+            this.m_WaveCoroutine = this.StartCoroutine(this.CR_TimeBasedWave());
+        }
+
+        private void Update()
+        {
+            if (this.m_TotalEnemyCount <= 0)
+            {
+                this.StartWave();
+                this.m_SkipTimeBasedWave = true;
+            }
         }
 
         private void OnDestroy()
