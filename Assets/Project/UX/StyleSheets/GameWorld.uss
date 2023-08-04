@@ -1,0 +1,10 @@
+VisualElement {
+
+}
+
+.text-truncate-overflow {
+	text-overflow: ellipsis;
+	-unity-text-overflow-position: end;
+	overflow: hidden;
+	white-space: normal;
+}

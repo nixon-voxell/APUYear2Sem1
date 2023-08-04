@@ -2,7 +2,8 @@
     "name": "GameWorld.UX",
     "rootNamespace": "GameWorld.UX",
     "references": [
-        "GUID:3d8ec218fa715a741bbc21032e46c65a"
+        "GUID:3d8ec218fa715a741bbc21032e46c65a",
+        "GUID:6d3051f9778673d47b21cb9fcd46602c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

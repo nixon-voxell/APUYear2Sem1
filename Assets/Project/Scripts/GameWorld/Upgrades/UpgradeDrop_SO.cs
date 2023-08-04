@@ -10,11 +10,16 @@ namespace GameWorld
         public Upgrade[] UpgradeList;
 
 
-        public Upgrade RollUpgrade()
+        public Upgrade[] RollUpgradeList(int upgradeAmt)
         {
-            Upgrade upgrade = UpgradeList[Random.Range(0, UpgradeList.Length-1)];
+            Upgrade[] upgradeArr = new Upgrade[upgradeAmt];
+            for (int i = 0; i < upgradeAmt; i++)
+            {
+                Upgrade upgrade = UpgradeList[Random.Range(0, UpgradeList.Length - 1)];
+                upgradeArr[i] = upgrade;
+            }
 
-            return upgrade;
+            return upgradeArr;
         }
     }
 }

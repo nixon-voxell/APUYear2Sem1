@@ -18,7 +18,9 @@ namespace GameWorld
         private void Awake()
         {
             m_Player = GetComponent<Player>();
+            m_Player.PlayerInput = this;
         }
+
 
         // Update is called once per frame
         void Update()
@@ -68,7 +70,6 @@ namespace GameWorld
             Camera.transform.localRotation = Quaternion.Euler(camRotateX, 0f, 0f);
             transform.Rotate(Vector3.up * mouseX);
 
-            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

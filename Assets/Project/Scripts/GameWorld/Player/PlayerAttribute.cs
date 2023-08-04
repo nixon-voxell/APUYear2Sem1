@@ -75,6 +75,24 @@ namespace GameWorld
             }
         }
 
+        public void AddAttribute(Upgrade upgrade)
+        {
+            switch(upgrade.UpgradeType) 
+            {
+                case UpgradeType.GUN_DAMAGE: m_GunDamageCount++; break;
+                case UpgradeType.GUN_BULLET_PER_SHOT: m_GunBulletPerShotCount++; break;
+                case UpgradeType.GUN_COOLDOWN: m_GunCooldownCount++; break;
+                case UpgradeType.GUN_MAGAZINE: m_GunMagazineCount++; break;
+                case UpgradeType.SWORD_DAMAGE: m_SwordDamageCount++; break;
+                case UpgradeType.SWORD_SWING_SPEED: m_SwordSwingSpeedCount++; break;
+                case UpgradeType.ARMOR_DEFENSE: m_ArmorDefenseCount++; break;
+                case UpgradeType.ARMOR_HEALTH_REGEN: m_ArmorHealthRegenCount++; break;
+                case UpgradeType.ARMOR_DAMAGE_REFLECT: m_ArmorDamageReflectCount++; break;
+                case UpgradeType.SHOE_SPEED: m_ShoeSpeedCount++; break;
+                case UpgradeType.SHOE_JUMP: m_ShoeJumpCount++; break;
+            }
+        }
+
 
 
         #region Attribute Count

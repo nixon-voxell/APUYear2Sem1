@@ -38,7 +38,7 @@ namespace GameWorld
             if (collision.collider.CompareTag("Player"))
             {
                 Destroy(this);
-                UXManager.Instance.BuffSelection.DisplayCard();
+                collision.collider.GetComponent<Player>().TakeUpgradeDrop();
             }
         }
 

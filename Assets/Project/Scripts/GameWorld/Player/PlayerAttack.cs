@@ -58,9 +58,11 @@ namespace GameWorld
 
             m_GunHitLayer = ~gameObject.layer;
         }
-        private void Start()
+
+        public void Initialize()
         {
             ChangeWeapon(Weapon.GUN);
+
         }
 
         #region PUBLIC METHODS

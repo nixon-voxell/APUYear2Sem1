@@ -12,7 +12,8 @@ namespace GameWorld
         public string UpgradeDescription;
         public UpgradeType UpgradeType;
         public EquipmentType EquipmentType;
-        public Texture UpgradeIcon;
+        public Sprite UpgradeIcon;
+        public Sprite UpgradeTypeIcon;
     }
 
     public enum UpgradeType

@@ -17269,6 +17269,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4193744560223138195, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_UpgradeDropSO
+      value: 
+      objectReference: {fileID: 11400000, guid: e4e895d285e27f444bee8f9d3e69393a,
+        type: 2}
     - target: {fileID: 7514564015292486338, guid: 0d496707909ef424b903f51045f6d299,
         type: 3}
       propertyPath: m_FxParent

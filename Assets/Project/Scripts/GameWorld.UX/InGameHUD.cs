@@ -9,15 +9,18 @@ namespace GameWorld.UX
         private Label m_AmmoLabel;
         private ProgressBar m_HPBar;
 
+        private void Awake()
+        {
+        }
 
+        private void OnEnable()
+        {
+            this.InitializeDoc();
+            UXManager.Instance.InGameHUD = this;
+        }
 
         private void Start()
         {
-            this.InitializeDoc(); 
-            UXManager.Instance.InGameHUD = this;
-
-
-
             m_WaveLabel = m_Root.Q<Label>("wave-lbl");
             m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
             m_HPBar = m_Root.Q<ProgressBar>("health-bar");
