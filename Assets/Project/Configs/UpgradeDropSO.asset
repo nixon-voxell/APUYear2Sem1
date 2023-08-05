@@ -23,69 +23,70 @@ MonoBehaviour:
     EquipmentIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
   UpgradeList:
   - UpgradeName: Gun Ray Equalizer
-    UpgradeDescription: + 0 + 5 gun damage
+    UpgradeDescription: gun damage
     UpgradeType: 0
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: 70c0f63fc055d9341884b6fbee7cd737, type: 3}
-    UpgradeValue: 0
+    UpgradeValue: 5
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
   - UpgradeName: Armor Shield
-    UpgradeDescription: + 0 + 5 armor defense
+    UpgradeDescription: armor defense
     UpgradeType: 6
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
-    UpgradeValue: 0
-    UpgradeRarity: 3
+    UpgradeValue: 2
+    UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
-    CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
+    CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
   - UpgradeName: Shoe Rocket
-    UpgradeDescription: + 0 + 0 + 5 movement speed
+    UpgradeDescription: movement speed
     UpgradeType: 9
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0
+    UpgradeValue: 3
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
   - UpgradeName: Banana Pocket
-    UpgradeDescription: + 5 health regen
+    UpgradeDescription: health regen
     UpgradeType: 7
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    UpgradeValue: 2
+    UpgradeRarity: 2
+    EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
+      type: 3}
+    CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
   - UpgradeName: Umbrella Cord
-    UpgradeDescription: + 0 + 0 + 5 umbrella speed
+    UpgradeDescription: umbrella speed
     UpgradeType: 1
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0
-    UpgradeRarity: 1
+    UpgradeValue: 4
+    UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
-    CardColorTheme: {r: 0, g: 0.5676286, b: 1, a: 1}
+    CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
   - UpgradeName: Dani's Stocking
-    UpgradeDescription: + 5 iQ
+    UpgradeDescription: iQ
     UpgradeType: 2
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0
+    UpgradeValue: 1
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
   - UpgradeName: Dani's Hand
-    UpgradeDescription: + 5 fingers
+    UpgradeDescription: fingers
     UpgradeType: 3
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0
+    UpgradeValue: 1
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}

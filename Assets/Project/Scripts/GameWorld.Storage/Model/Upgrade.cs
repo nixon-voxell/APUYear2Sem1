@@ -24,6 +24,22 @@ namespace GameWorld
         [HideInInspector] public Sprite EquipmentTypeIcon;
         [HideInInspector] public Color CardColorTheme;
 
+
+        public static Upgrade CloneUpgrade(Upgrade upgrade)
+        {
+            Upgrade cloneUpg = new Upgrade();
+            cloneUpg.UpgradeName = upgrade.UpgradeName;
+            cloneUpg.UpgradeDescription = upgrade.UpgradeDescription;
+            cloneUpg.UpgradeType = upgrade.UpgradeType;
+            cloneUpg.EquipmentType = upgrade.EquipmentType;
+            cloneUpg.UpgradeIcon = upgrade.UpgradeIcon;
+            cloneUpg.UpgradeValue = upgrade.UpgradeValue;
+            cloneUpg.UpgradeRarity = upgrade.UpgradeRarity;
+            cloneUpg.EquipmentTypeIcon = upgrade.EquipmentTypeIcon;
+            cloneUpg.CardColorTheme = upgrade.CardColorTheme;
+
+            return cloneUpg;
+        }
     }
 
     public enum UpgradeType

@@ -29,7 +29,8 @@ namespace GameWorld
             Upgrade[] upgradeArr = new Upgrade[upgradeAmt];
             for (int i = 0; i < upgradeAmt; i++)
             {
-                Upgrade upgrade = UpgradeList[Random.Range(0, UpgradeList.Length - 1)];
+                // Clone upgrade so that it doesn't overwrite SO's value
+                Upgrade upgrade = Upgrade.CloneUpgrade(UpgradeList[Random.Range(0, UpgradeList.Length - 1)]);
                 upgradeArr[i] = upgrade;
             }
 
