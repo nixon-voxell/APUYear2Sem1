@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Production/EntryPoint.unity
     guid: 97d3c6f18f367504194b549ccf7956b8
-  - enabled: 0
-    path: Assets/Project/Scenes/Production/Level1.unity
-    guid: 917dd5a163e6dad4ca0cd4e0c8ce9e06
-  - enabled: 0
+  - enabled: 1
     path: Assets/Project/Scenes/Production/UX.unity
     guid: f025782587b4e744eb8a55037124811d
+  - enabled: 1
+    path: Assets/Project/Scenes/Production/Level1.unity
+    guid: 4a13ed763eec1294688370f758fd1508
   m_configObjects: {}
