@@ -12,46 +12,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6799645aed0c424199f8d7dad1dc8c9, type: 3}
   m_Name: UpgradeDropSO
   m_EditorClassIdentifier: 
+  EquipmentTypeIconList:
+  - EquipmentType: 0
+    EquipmentIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3, type: 3}
+  - EquipmentType: 1
+    EquipmentIcon: {fileID: 21300000, guid: becfe03a7e464e84aade9737eeb3cf59, type: 3}
+  - EquipmentType: 2
+    EquipmentIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507, type: 3}
+  - EquipmentType: 3
+    EquipmentIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
   UpgradeList:
   - UpgradeName: Gun Ray Equalizer
-    UpgradeDescription: + 5 gun damage
+    UpgradeDescription: + 0 + 5 gun damage
     UpgradeType: 0
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: 70c0f63fc055d9341884b6fbee7cd737, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: 5da859cfc419b48458184139a1ee2461, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 3
+    EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
+      type: 3}
+    CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
   - UpgradeName: Armor Shield
-    UpgradeDescription: + 5 armor defense
+    UpgradeDescription: + 0 + 5 armor defense
     UpgradeType: 6
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: becfe03a7e464e84aade9737eeb3cf59, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 3
+    EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
+      type: 3}
+    CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
   - UpgradeName: Shoe Rocket
-    UpgradeDescription: + 5 movement speed
+    UpgradeDescription: + 0 + 0 + 5 movement speed
     UpgradeType: 9
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 3
+    EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
+      type: 3}
+    CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
   - UpgradeName: Banana Pocket
     UpgradeDescription: + 5 health regen
     UpgradeType: 7
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
   - UpgradeName: Umbrella Cord
-    UpgradeDescription: + 5 umbrella speed
+    UpgradeDescription: + 0 + 0 + 5 umbrella speed
     UpgradeType: 1
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 1
+    EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
+      type: 3}
+    CardColorTheme: {r: 0, g: 0.5676286, b: 1, a: 1}
   - UpgradeName: Dani's Stocking
     UpgradeDescription: + 5 iQ
     UpgradeType: 2
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
   - UpgradeName: Dani's Hand
     UpgradeDescription: + 5 fingers
     UpgradeType: 3
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeTypeIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
+    UpgradeValue: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+  NormalDrop:
+    UpgradeRarity: 1
+    NormalChance: 85
+    RareChance: 14
+    LegendaryChance: 1
+  EliteDrop:
+    UpgradeRarity: 2
+    NormalChance: 10
+    RareChance: 75
+    LegendaryChance: 15
+  BossDrop:
+    UpgradeRarity: 3
+    NormalChance: 5
+    RareChance: 45
+    LegendaryChance: 60
+  CardNormalColor: {r: 0, g: 0.5676286, b: 1, a: 1}
+  CardRareColor: {r: 1, g: 0.86571324, b: 0, a: 1}
+  CardLegendaryColor: {r: 0.44359112, g: 0, b: 1, a: 1}

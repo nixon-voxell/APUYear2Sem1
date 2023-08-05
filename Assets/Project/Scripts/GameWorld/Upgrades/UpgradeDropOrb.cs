@@ -38,7 +38,7 @@ namespace GameWorld
             if (collision.collider.CompareTag("Player"))
             {
                 Destroy(this);
-                collision.collider.GetComponent<Player>().TakeUpgradeDrop();
+                collision.collider.GetComponent<Player>().TakeUpgradeDrop(Enemy.EnemyType.ELITE);
             }
         }
 

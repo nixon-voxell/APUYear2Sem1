@@ -46,7 +46,7 @@ namespace GameWorld
         /// 
         /// 
         /// </summary>
-        public void TakeUpgradeDrop()
+        public void TakeUpgradeDrop(Enemy.EnemyType enemyType)
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -54,7 +54,10 @@ namespace GameWorld
 
             Time.timeScale = 0f;
 
-            UXManager.Instance.BuffSelection.DisplayCard(m_UpgradeDropSO.RollUpgradeList(3), SelectUpgradeDrop);
+            Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
+
+
+            UXManager.Instance.BuffSelection.DisplayCard(upgradeDrops, SelectUpgradeDrop);
         } 
         
         /// <summary>

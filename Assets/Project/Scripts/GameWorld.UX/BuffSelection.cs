@@ -90,7 +90,11 @@ namespace GameWorld.UX
                 this.m_CardHeaderList[i].text = upgrades[i].UpgradeName;
                 this.m_CardIconList[i].style.backgroundImage = new StyleBackground(upgrades[i].UpgradeIcon);
                 this.m_CardDescriptionList[i].text = upgrades[i].UpgradeDescription;
-                this.m_CardTypeList[i].style.backgroundImage = new StyleBackground(upgrades[i].UpgradeTypeIcon);
+                this.m_CardTypeList[i].style.backgroundImage = new StyleBackground(upgrades[i].EquipmentTypeIcon);
+                this.m_CardBtnList[i].style.borderBottomColor = new StyleColor(upgrades[i].CardColorTheme);
+                this.m_CardBtnList[i].style.borderRightColor = new StyleColor(upgrades[i].CardColorTheme);
+                this.m_CardBtnList[i].style.borderTopColor = new StyleColor(upgrades[i].CardColorTheme);
+                this.m_CardBtnList[i].style.borderLeftColor = new StyleColor(upgrades[i].CardColorTheme);
             }
 
             this.m_Root.visible = true;
