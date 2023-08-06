@@ -52,14 +52,26 @@ namespace GameWorld
             Cursor.visible = true;
             PlayerInput.enabled = false;
 
-            Time.timeScale = 0f;
-
+            StartCoroutine(AdjustTimeScale(0f));
             Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
 
-
             UXManager.Instance.BuffSelection.DisplayCard(upgradeDrops, SelectUpgradeDrop);
-        } 
-        
+        }
+
+        /// <summary>
+        /// Used to adjust time scale on the next frame
+        /// 
+        /// Due to visual issues when immediately setting timeframe to 0
+        /// and stuff are not updated
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        private IEnumerator AdjustTimeScale(float time)
+        {
+            yield return null;
+            Time.timeScale = time;
+        }
+
         /// <summary>
         /// Called by BuffSelection when a drop card is selected
         /// 

@@ -14,6 +14,7 @@ namespace GameWorld.UX
         private VisualElement[] m_CardIconList;
         private Label[] m_CardDescriptionList;
         private VisualElement[] m_CardTypeList;
+        private VisualElement[] m_CardGlowList;
 
         private Action<Upgrade> m_PlayerSelectAction;
         private Upgrade[] m_UpgradeList;
@@ -42,6 +43,7 @@ namespace GameWorld.UX
             this.m_CardIconList = new VisualElement[3];
             this.m_CardDescriptionList = new Label[3];
             this.m_CardTypeList = new VisualElement[3];
+            this.m_CardGlowList = new VisualElement[3];
 
             for (int i = 0; i < m_CardBtnList.Length; i++)
             {
@@ -66,6 +68,12 @@ namespace GameWorld.UX
             for (int m = 0;  m < m_CardTypeList.Length; m++)
             {
                 this.m_CardTypeList[m] = m_Root.Q<VisualElement>($"buff_type_{m + 1}");
+            }
+
+            for (int i = 0; i < m_CardGlowList.Length; i++)
+            {
+                this.m_CardGlowList[i] = m_Root.Q<VisualElement>($"buff_glow_{i + 1}");
+                this.m_CardGlowList[i].visible = false;
             }
 
             // Assign button click event
@@ -95,6 +103,10 @@ namespace GameWorld.UX
                 this.m_CardBtnList[i].style.borderRightColor = new StyleColor(upgrades[i].CardColorTheme);
                 this.m_CardBtnList[i].style.borderTopColor = new StyleColor(upgrades[i].CardColorTheme);
                 this.m_CardBtnList[i].style.borderLeftColor = new StyleColor(upgrades[i].CardColorTheme);
+                this.m_CardGlowList[i].style.width = Length.Percent(upgrades[i].CardGlowSize.x);
+                this.m_CardGlowList[i].style.height = Length.Percent(upgrades[i].CardGlowSize.y);
+                this.m_CardGlowList[i].style.unityBackgroundImageTintColor = new StyleColor(upgrades[i].CardColorTheme);
+                this.m_CardGlowList[i].visible = true;
             }
 
             this.m_Root.visible = true;

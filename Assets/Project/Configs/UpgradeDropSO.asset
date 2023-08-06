@@ -32,6 +32,7 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Armor Shield
     UpgradeDescription: armor defense
     UpgradeType: 6
@@ -42,6 +43,7 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Shoe Rocket
     UpgradeDescription: movement speed
     UpgradeType: 9
@@ -52,6 +54,7 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Banana Pocket
     UpgradeDescription: health regen
     UpgradeType: 7
@@ -62,6 +65,7 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Umbrella Cord
     UpgradeDescription: umbrella speed
     UpgradeType: 1
@@ -72,6 +76,7 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Dani's Stocking
     UpgradeDescription: iQ
     UpgradeType: 2
@@ -81,6 +86,7 @@ MonoBehaviour:
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Dani's Hand
     UpgradeDescription: fingers
     UpgradeType: 3
@@ -90,6 +96,7 @@ MonoBehaviour:
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
   NormalDrop:
     UpgradeRarity: 1
     NormalChance: 85
@@ -107,4 +114,6 @@ MonoBehaviour:
     LegendaryChance: 60
   CardNormalColor: {r: 0, g: 0.5676286, b: 1, a: 1}
   CardRareColor: {r: 1, g: 0.86571324, b: 0, a: 1}
+  CardRareGlowSize: {x: 100, y: 70}
   CardLegendaryColor: {r: 0.44359112, g: 0, b: 1, a: 1}
+  CardLegendaryGlowSize: {x: 115, y: 100}

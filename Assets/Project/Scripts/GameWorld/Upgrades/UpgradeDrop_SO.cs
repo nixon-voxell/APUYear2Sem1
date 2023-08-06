@@ -21,7 +21,9 @@ namespace GameWorld
         [Header("Card Variables")]
         public Color CardNormalColor;
         public Color CardRareColor;
+        public Vector2 CardRareGlowSize;
         public Color CardLegendaryColor;
+        public Vector2 CardLegendaryGlowSize;
 
         public Upgrade[] RollUpgradeList(int upgradeAmt, Enemy.EnemyType enemyType)
         {
@@ -66,12 +68,14 @@ namespace GameWorld
                 {
                     upgradeArr[i].UpgradeRarity = UpgradeRarity.NORMAL;
                     upgradeArr[i].CardColorTheme = CardNormalColor;
+                    upgradeArr[i].CardGlowSize = new Vector2(0, 0);
                 }
                 else if (roll < dropChance.RareChance)
                 {
                     upgradeArr[i].UpgradeRarity = UpgradeRarity.RARE;
                     upgradeArr[i].UpgradeValue *= 2;
                     upgradeArr[i].CardColorTheme = CardRareColor;
+                    upgradeArr[i].CardGlowSize = CardRareGlowSize;
 
                 }
                 else
@@ -79,6 +83,7 @@ namespace GameWorld
                     upgradeArr[i].UpgradeRarity = UpgradeRarity.LEGENDARY;
                     upgradeArr[i].UpgradeValue *= 3;
                     upgradeArr[i].CardColorTheme = CardLegendaryColor;
+                    upgradeArr[i].CardGlowSize = CardLegendaryGlowSize;
 
                 }
 

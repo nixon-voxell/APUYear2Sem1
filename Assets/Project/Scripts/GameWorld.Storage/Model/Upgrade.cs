@@ -23,6 +23,7 @@ namespace GameWorld
         [HideInInspector] public UpgradeRarity UpgradeRarity;
         [HideInInspector] public Sprite EquipmentTypeIcon;
         [HideInInspector] public Color CardColorTheme;
+        [HideInInspector] public Vector2 CardGlowSize;
 
 
         public static Upgrade CloneUpgrade(Upgrade upgrade)

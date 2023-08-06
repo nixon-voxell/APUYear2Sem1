@@ -33,12 +33,13 @@ namespace GameWorld
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.collider.CompareTag("Player"))
+            if (other.CompareTag("Player"))
             {
-                Destroy(this);
-                collision.collider.GetComponent<Player>().TakeUpgradeDrop(Enemy.EnemyType.ELITE);
+                Destroy(gameObject);
+                Player player = other.GetComponent<Player>();
+                player.TakeUpgradeDrop(Enemy.EnemyType.ELITE);
             }
         }
 
