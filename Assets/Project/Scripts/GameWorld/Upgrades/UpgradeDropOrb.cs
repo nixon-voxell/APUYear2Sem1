@@ -32,6 +32,9 @@ namespace GameWorld
                 Vector3 direction = (hitColliders[0].transform.position - transform.position).normalized;
                 m_Rigidbody.velocity = direction * m_ChaseForce;
             }
+            else
+                m_Rigidbody.velocity = Vector3.zero;
+
         }
 
         private void OnTriggerEnter(Collider other)
