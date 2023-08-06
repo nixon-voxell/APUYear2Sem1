@@ -12,20 +12,20 @@ namespace GameWorld
         public enum EnemyType { NORMAL, ELITE, BOSS }
 
         [SerializeField] private Transform m_PopupParent;
-        [SerializeField] private GameObject m_EliteOrb;
-        [SerializeField] private GameObject m_BossOrb;
+        [SerializeField] private EnemyType m_EnemyType;
+        [SerializeField] private GameObject m_UpgradeOrb;
 
         [Header("Stats")]
         [SerializeField] private int m_HealthMax;
         [SerializeField] private int m_StartingSpeed;
         [SerializeField] private int m_StartingDamage;
         [SerializeField] private int m_StartingAtkCooldown;
-        [SerializeField] private float m_EliteMultiplier;
+        [SerializeField] private float m_SpecialMultiplier; // Used for boss or elite
+
 
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
 
-        [SerializeField] private float m_BossMultiplier;
 
         [SerializeField] private Pool<DamagePopup> m_DamagePopupPool;
 
@@ -36,7 +36,6 @@ namespace GameWorld
         private int m_CurrentSpeed;
         private int m_CurrentDamage;
         private int m_CurrentAtkCooldown;
-        private EnemyType m_EnemyType;
 
 
         /// <summary>
@@ -44,10 +43,8 @@ namespace GameWorld
         /// </summary>
         private void Awake()
         {
-            InitializeEnemy(EnemyType.NORMAL, 1.0f);
+            InitializeEnemy(m_EnemyType, 1.0f);    
             m_DamagePopupPool.Initialize(m_PopupParent);
-
-            m_EnemyType = EnemyType.ELITE;
         }
 
         public void OnDamage(int damage)
@@ -65,9 +62,8 @@ namespace GameWorld
 
         private void OnDie()
         {
-
-
-            Debug.Log(gameObject.name + " is dead");
+            Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
+            Destroy(gameObject);    
         }
 
         private void InitializeEnemy(EnemyType enemyType , float statsMultiplier)
@@ -79,11 +75,8 @@ namespace GameWorld
                 case EnemyType.NORMAL:
                     totalMultiplier = statsMultiplier;
                     break;
-                case EnemyType.ELITE:
-                    totalMultiplier = statsMultiplier * m_EliteMultiplier;
-                    break;
-                case EnemyType.BOSS:
-                    totalMultiplier = statsMultiplier * m_BossMultiplier;
+                default:
+                    totalMultiplier = statsMultiplier * m_SpecialMultiplier;
                     break;
             }
 

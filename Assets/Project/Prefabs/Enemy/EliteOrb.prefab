@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 1580040537058148393}
   - component: {fileID: 4710131305263585134}
   m_Layer: 0
-  m_Name: BossOrb
+  m_Name: EliteOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4893,7 +4893,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 63c7b3a81e5006342a7b3b89f9937e33, type: 2}
+  - {fileID: 2100000, guid: 146bd3177299fa94ab0af6cfd0f2a9e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4927,7 +4927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841245e4f82d66b47a1aae3f3f5b3ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnemyTypeOrb: 2
+  m_EnemyTypeOrb: 1
   m_PlayerAttractRadius: 8
   m_ChaseForce: 4.5
   m_PlayerLayer:

@@ -115,6 +115,12 @@ namespace GameWorld.UX
         public void SelectCard(int selectedCard)
         {
             this.m_PlayerSelectAction.Invoke(this.m_UpgradeList[selectedCard]);
+
+            for (int i = 0; i < m_CardGlowList.Length; i++)
+            {
+                m_CardGlowList[i].visible = false;
+            }
+
             this.m_Root.visible = false;
         }
 

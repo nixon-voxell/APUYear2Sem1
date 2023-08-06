@@ -153,11 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PopupParent: {fileID: 1674332238641713303}
+  m_EliteOrb: {fileID: 0}
+  m_BossOrb: {fileID: 0}
   m_HealthMax: 100
   m_StartingSpeed: 1
   m_StartingDamage: 1
   m_StartingAtkCooldown: 1
   m_EliteMultiplier: 1
+  m_EnemyUnableToDie: 0
   m_BossMultiplier: 1
   m_DamagePopupPool:
     Count: 5
@@ -323,7 +326,7 @@ GameObject:
   - component: {fileID: 7219659970933304196}
   - component: {fileID: 8509130620257294233}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: DamageCounterPf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,6 +7,7 @@ namespace GameWorld
 {
     public class UpgradeDropOrb : MonoBehaviour
     {
+        [SerializeField] private Enemy.EnemyType m_EnemyTypeOrb;
         [SerializeField] private float m_PlayerAttractRadius;
         [SerializeField] private float m_ChaseForce;
         [SerializeField] private LayerMask m_PlayerLayer;
@@ -39,7 +40,7 @@ namespace GameWorld
             {
                 Destroy(gameObject);
                 Player player = other.GetComponent<Player>();
-                player.TakeUpgradeDrop(Enemy.EnemyType.ELITE);
+                player.TakeUpgradeDrop(m_EnemyTypeOrb);
             }
         }
 
