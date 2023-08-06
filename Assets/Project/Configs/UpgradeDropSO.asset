@@ -112,7 +112,7 @@ MonoBehaviour:
     NormalChance: 5
     RareChance: 45
     LegendaryChance: 60
-  CardNormalColor: {r: 0, g: 0.5676286, b: 1, a: 1}
+  CardNormalColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   CardRareColor: {r: 1, g: 0.86571324, b: 0, a: 1}
   CardRareGlowSize: {x: 100, y: 70}
   CardLegendaryColor: {r: 0.44359112, g: 0, b: 1, a: 1}
