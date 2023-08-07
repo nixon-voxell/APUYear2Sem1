@@ -32,7 +32,7 @@ namespace GameWorld
         private bool m_CanSword;
         private List<Transform> m_SwordAtkVictim;
         private LayerMask m_GunHitLayer;
-
+        public AudioSource m_gunSoundEffect;
 
         private void Awake()
         {
@@ -139,6 +139,7 @@ namespace GameWorld
 
         private void ShootGun()
         {
+            m_gunSoundEffect.Play();
             RaycastHit hit;
             BulletMovement bullet = m_BulletPool.GetNextObject();
             bullet.transform.position = m_BulletSpawnPoint.position;

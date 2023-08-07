@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 namespace GameWorld.UX
 {
@@ -24,7 +25,8 @@ namespace GameWorld.UX
             {
                 Debug.Log("Play");
                 m_MyAudioSource.Play();
-                
+                LoadB(4);
+
             };
 
             this.m_OptionBtn.clicked += () =>
@@ -39,6 +41,13 @@ namespace GameWorld.UX
                 m_MyAudioSource.Play();
                 Application.Quit();
             };
+
+        void LoadB(int sceneANumber)
+        {
+        Debug.Log("sceneBuildIndex to load: " + sceneANumber);
+        SceneManager.LoadScene(sceneANumber);
+        }
+
         }
     }
 }
