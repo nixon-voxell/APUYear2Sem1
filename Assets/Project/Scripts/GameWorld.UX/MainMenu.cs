@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Audio;
 
 namespace GameWorld.UX
 {
@@ -8,6 +9,7 @@ namespace GameWorld.UX
         private Button m_PlayBtn;
         private Button m_OptionBtn;
         private Button m_QuitBtn;
+        public AudioClip m_AudioClip;
 
         private void Start()
         {
@@ -20,6 +22,7 @@ namespace GameWorld.UX
             this.m_PlayBtn.clicked += () =>
             {
                 Debug.Log("Play");
+                
             };
 
             this.m_OptionBtn.clicked += () =>
