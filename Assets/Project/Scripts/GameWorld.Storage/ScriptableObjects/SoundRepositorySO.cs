@@ -8,7 +8,6 @@ namespace GameWorld.Storage
     public class SoundRepositorySO : ScriptableObject
     {
         public Sound[] SoundList;
-        public BackgroundMusic[] BGMList;
     }
 
 }
