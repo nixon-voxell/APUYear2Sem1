@@ -83,6 +83,9 @@ namespace GameWorld
         }
         public void StartReloadGun()
         {
+            if (m_CurrentAtkState != AttackState.IDLE || m_CurrentWeapon != Weapon.GUN)
+                return;
+
             m_CurrentAtkState = AttackState.GUN_RELOADING;
             m_PlayerAnimator.Play("GunReload");
         }
