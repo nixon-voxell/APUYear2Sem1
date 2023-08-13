@@ -3,6 +3,8 @@ using Unity.Mathematics;
 
 namespace GameWorld
 {
+    using Cinemachine;
+    using System;
     using Util;
 
     [RequireComponent(typeof(Player))]
@@ -19,6 +21,11 @@ namespace GameWorld
         [SerializeField] private float m_JumpVelocity;
         [SerializeField, Range(0.0f, 10.0f)] private float m_XZDamping = 10.0f;
         [SerializeField, Range(0.0f, 10.0f)] private float m_YDamping = 10.0f;
+
+        [Header("Camera Fx")]
+        [SerializeField] private float m_FOVChange;
+        [SerializeField] private float m_FOVChangeSpeed;
+
 
         private Player m_Player;
         private CharacterController m_CharacterController;
@@ -38,6 +45,10 @@ namespace GameWorld
         // collider
         private Collider[] m_GroundColliders;
 
+        // Camera 
+        private CinemachineVirtualCamera m_VCamera;
+        private float m_CamOriginalFOV;
+
         private void Awake()
         {
             this.m_Player = GetComponent<Player>();
@@ -55,10 +66,19 @@ namespace GameWorld
             this.m_GroundColliders = new Collider[1];
         }
 
+        private void Start()
+        {
+            this.m_VCamera = this.m_Player.Camera.GetComponent<CinemachineVirtualCamera>();
+            this.m_CamOriginalFOV = this.m_VCamera.m_Lens.FieldOfView;
+            this.m_TargetFOV = m_CamOriginalFOV + this.m_FOVChange;
+        }
+
 #if UNITY_EDITOR
         private void OnGUI()
         {
             GUI.Label(new Rect(0, 0, 400, 100), "Velocity: " + m_CharacterController.velocity.ToString());
+            GUI.Label(new Rect(0, 250, 1000, 400), "FOV T: " + m_CameraT);
+
         }
 #endif
 
@@ -93,6 +113,8 @@ namespace GameWorld
 
         private void Update()
         {
+            AddCameraRunFx();
+
             float deltaTime = Time.deltaTime;
 
             if (math.lengthsq(this.m_MovementInput) > 0.0f)
@@ -141,5 +163,28 @@ namespace GameWorld
             this.m_Velocity.z -= this.m_Velocity.z * math.min(1.0f, this.m_XZDamping * deltaTime);
             this.m_Velocity.y -= this.m_Velocity.y * math.min(1.0f, this.m_YDamping * deltaTime);
         }
+
+        private float m_CameraT;
+        private float m_TargetFOV;
+        private void AddCameraRunFx()
+        {
+            
+
+            if (this.m_RunInput) // If is running
+            {
+                m_CameraT += Time.deltaTime * m_FOVChangeSpeed;
+            }
+            else // Returning to original FOV when not in run
+            {
+                m_CameraT -= Time.deltaTime * m_FOVChangeSpeed;
+                if (m_CameraT < 0) m_CameraT = 0;
+            }
+
+            m_CameraT = Mathf.Clamp01(m_CameraT);
+            this.m_VCamera.m_Lens.FieldOfView = Mathf.SmoothStep(m_CamOriginalFOV, m_TargetFOV, m_CameraT);
+
+             
+        }
+
     }
 }
