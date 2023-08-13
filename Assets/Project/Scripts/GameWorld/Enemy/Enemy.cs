@@ -88,7 +88,22 @@ namespace GameWorld
             m_CurrentAtkCooldown = (int)Math.Round(m_StartingAtkCooldown * totalMultiplier);
         }
 
-       
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                GameManager.Instance.SoundManager.PlayOneShot("TestSfx", transform);
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                GameManager.Instance.SoundManager.PlayOneShot("TestSfx2", transform);
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                GameManager.Instance.SoundManager.PlayOneShot("TestSfx3", transform);
+            }
+        }
 
     }
 }

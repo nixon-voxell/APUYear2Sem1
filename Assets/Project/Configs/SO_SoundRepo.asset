@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b5ec0b0b5fd274fb170aa348a845fc, type: 3}
+  m_Name: SO_SoundRepo
+  m_EditorClassIdentifier: 
+  SoundList:
+  - SoundName: TestSfx
+    Clip: {fileID: 8300000, guid: de9a7655d1ad43a498d643371ef9031b, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0
+    Pitch: 1
+  - SoundName: TestSfx3
+    Clip: {fileID: 8300000, guid: 416c5f2f10fd5834f90952346a2ac2e8, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 0.35
+    SpatialBlend: 0
+    Pitch: 1
+  - SoundName: TestSfx2
+    Clip: {fileID: 8300000, guid: 8fec062430c267d4ca0bc2bf5efa0625, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 1
+    Pitch: 1
+  BGMList: []
