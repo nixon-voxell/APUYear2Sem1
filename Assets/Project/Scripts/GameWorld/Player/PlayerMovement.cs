@@ -14,7 +14,7 @@ namespace GameWorld
         [SerializeField] private Transform m_GroundCheck;
         [SerializeField] private LayerMask m_GroundMask;
         [SerializeField, Tooltip("Circle size to check ground overlap.")]
-        private float m_GroundCheckRadius = .2f;
+        private float m_GroundCheckRadius = 0.2f;
 
         [Header("Movement Parameters")]
         [SerializeField] private float3 m_Gravity;
@@ -45,9 +45,10 @@ namespace GameWorld
         // collider
         private Collider[] m_GroundColliders;
 
-        // Camera 
+        // Camera
         private CinemachineVirtualCamera m_VCamera;
-        private float m_CamOriginalFOV;
+        private float m_OriginFOV;
+        private float m_ZoomedFOV;
 
         private void Awake()
         {
@@ -64,23 +65,11 @@ namespace GameWorld
 
             // we only need to test if one collider exists
             this.m_GroundColliders = new Collider[1];
-        }
 
-        private void Start()
-        {
             this.m_VCamera = this.m_Player.Camera.GetComponent<CinemachineVirtualCamera>();
-            this.m_CamOriginalFOV = this.m_VCamera.m_Lens.FieldOfView;
-            this.m_TargetFOV = m_CamOriginalFOV + this.m_FOVChange;
+            this.m_OriginFOV = this.m_VCamera.m_Lens.FieldOfView;
+            this.m_ZoomedFOV = this.m_OriginFOV + this.m_FOVChange;
         }
-
-#if UNITY_EDITOR
-        private void OnGUI()
-        {
-            GUI.Label(new Rect(0, 0, 400, 100), "Velocity: " + m_CharacterController.velocity.ToString());
-            GUI.Label(new Rect(0, 250, 1000, 400), "FOV T: " + m_CameraT);
-
-        }
-#endif
 
         public void MovementInput(float2 movementInput, bool runInput, bool jumpInput)
         {
@@ -113,7 +102,7 @@ namespace GameWorld
 
         private void Update()
         {
-            AddCameraRunFx();
+            CameraFOVUpdate();
 
             float deltaTime = Time.deltaTime;
 
@@ -164,27 +153,15 @@ namespace GameWorld
             this.m_Velocity.y -= this.m_Velocity.y * math.min(1.0f, this.m_YDamping * deltaTime);
         }
 
-        private float m_CameraT;
-        private float m_TargetFOV;
-        private void AddCameraRunFx()
+        private void CameraFOVUpdate()
         {
-            
+            float targetFOV = this.m_RunInput ? this.m_ZoomedFOV : this.m_OriginFOV;
 
-            if (this.m_RunInput) // If is running
-            {
-                m_CameraT += Time.deltaTime * m_FOVChangeSpeed;
-            }
-            else // Returning to original FOV when not in run
-            {
-                m_CameraT -= Time.deltaTime * m_FOVChangeSpeed;
-                if (m_CameraT < 0) m_CameraT = 0;
-            }
-
-            m_CameraT = Mathf.Clamp01(m_CameraT);
-            this.m_VCamera.m_Lens.FieldOfView = Mathf.SmoothStep(m_CamOriginalFOV, m_TargetFOV, m_CameraT);
-
-             
+            this.m_VCamera.m_Lens.FieldOfView = math.lerp(
+                this.m_VCamera.m_Lens.FieldOfView,
+                targetFOV,
+                this.m_FOVChangeSpeed * Time.deltaTime
+            );
         }
-
     }
 }

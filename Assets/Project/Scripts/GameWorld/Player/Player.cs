@@ -1,11 +1,10 @@
-using GameWorld.UX;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
 {
+    using UX;
+
     public class Player : MonoBehaviour
     {
         public Transform Camera;
