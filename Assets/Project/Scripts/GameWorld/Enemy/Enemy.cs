@@ -1,12 +1,9 @@
 using GameWorld.Util;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
 {
-
     public class Enemy : MonoBehaviour, IDamageable
     {
         public enum EnemyType { NORMAL, ELITE, BOSS }
@@ -22,28 +19,23 @@ namespace GameWorld
         [SerializeField] private int m_StartingAtkCooldown;
         [SerializeField] private float m_SpecialMultiplier; // Used for boss or elite
 
-
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
 
-
         [SerializeField] private Pool<DamagePopup> m_DamagePopupPool;
 
-
         // STATS
-
         private int m_CurrentHealth;
         private int m_CurrentSpeed;
         private int m_CurrentDamage;
         private int m_CurrentAtkCooldown;
 
-
         /// <summary>
-        /// TO DO: SPAWN VIA SPAWNMANAGER
+        /// TODO: SPAWN VIA SPAWNMANAGER
         /// </summary>
         private void Awake()
         {
-            InitializeEnemy(m_EnemyType, 1.0f);    
+            InitializeEnemy(m_EnemyType, 1.0f);
             m_DamagePopupPool.Initialize(m_PopupParent);
         }
 
@@ -63,7 +55,7 @@ namespace GameWorld
         private void OnDie()
         {
             Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
 
         private void InitializeEnemy(EnemyType enemyType , float statsMultiplier)
@@ -80,13 +72,11 @@ namespace GameWorld
                     break;
             }
 
-
             // Set new stats based on time
             m_CurrentHealth = (int)Math.Round(m_HealthMax * totalMultiplier);
             m_CurrentSpeed = (int)Math.Round(m_StartingSpeed * totalMultiplier);
             m_CurrentDamage = (int)Math.Round(m_StartingDamage * totalMultiplier);
             m_CurrentAtkCooldown = (int)Math.Round(m_StartingAtkCooldown * totalMultiplier);
         }
-
     }
 }

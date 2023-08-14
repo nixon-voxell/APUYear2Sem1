@@ -13,7 +13,6 @@ namespace GameWorld
         [HideInInspector] public PlayerMovement PlayerMovement;
         [HideInInspector] public PlayerAttack PlayerAttack;
         [HideInInspector] public PlayerAttribute PlayerAttribute;
-        [HideInInspector] public PlayerInput PlayerInput;
 
         private IEnumerator Start()
         {
@@ -49,7 +48,7 @@ namespace GameWorld
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            PlayerInput.enabled = false;
+            // PlayerInput.enabled = false;
 
             StartCoroutine(AdjustTimeScale(0f));
             Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
@@ -84,7 +83,7 @@ namespace GameWorld
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            PlayerInput.enabled = true;
+            // PlayerInput.enabled = true;
             Time.timeScale = 1f;
         }
     } 

@@ -1,4 +1,3 @@
-using GameWorld;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +41,6 @@ namespace GameWorld
         public int CurrentGunAmmo => m_CurrentGunAmmo;
         #endregion
 
-
         private void Awake()
         {
             m_Player = GetComponent<Player>();
@@ -59,10 +57,19 @@ namespace GameWorld
             m_GunHitLayer = ~gameObject.layer;
         }
 
+        private void Update()
+        {
+            UserInput userInput = UserInput.Instance;
+
+            if (userInput.Alpha1) this.ChangeWeapon(PlayerAttack.Weapon.GUN);
+            if (userInput.Alpha2) this.ChangeWeapon(PlayerAttack.Weapon.SWORD);
+            if (userInput.MouseButton0) this.Attack();
+            if (userInput.Reload) this.StartReloadGun();
+        }
+
         public void Initialize()
         {
             ChangeWeapon(Weapon.GUN);
-
         }
 
         #region PUBLIC METHODS

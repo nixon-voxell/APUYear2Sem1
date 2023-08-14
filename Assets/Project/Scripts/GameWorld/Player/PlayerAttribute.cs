@@ -14,10 +14,9 @@ namespace GameWorld
         private Player m_Player;
 
 
-        #region Player Stats  
+        #region Player Stats
         private int m_PlayerCurrentHP;
         private int m_PlayerMaxHP = 100;
-
         #endregion
 
         #region Equipment Initial Stats
@@ -49,7 +48,6 @@ namespace GameWorld
         private int m_ArmorDamageReflectCount;
         private int m_ShoeSpeedCount; // Player specific
         private int m_ShoeJumpCount; // Player specific
-
         #endregion
 
 
@@ -77,7 +75,7 @@ namespace GameWorld
 
         public void AddAttribute(Upgrade upgrade)
         {
-            switch(upgrade.UpgradeType) 
+            switch (upgrade.UpgradeType)
             {
                 case UpgradeType.GUN_DAMAGE: m_GunDamageCount++; break;
                 case UpgradeType.GUN_BULLET_PER_SHOT: m_GunBulletPerShotCount++; break;
@@ -107,11 +105,9 @@ namespace GameWorld
         public int ArmorDamageReflectCount { get => m_ArmorDamageReflectCount; set => m_ArmorDamageReflectCount = value; }
         public int ShoeSpeedCount { get => m_ShoeSpeedCount; set => m_ShoeSpeedCount = value; }
         public int ShoeJumpCount { get => m_ShoeJumpCount; set => m_ShoeJumpCount = value; }
-
         #endregion
 
         #region Attribute Final Value Getter
-
         public int GunDamage => m_InitialGunDamage + GunDamageCount * UpgradesConfig.GunDamage;
         public int GunBulletPerShot => m_InitialGunBulletPerShot + GunBulletPerShotCount * UpgradesConfig.GunBulletPerShot;
         public float GunCooldown => m_InitialGunCooldown - GunCooldownCount * UpgradesConfig.GunCooldown;
@@ -131,12 +127,6 @@ namespace GameWorld
         public int PlayerMaxHP => m_PlayerMaxHP;
 
         public float InitialSwordCooldown => m_InitialSwordCooldown;
-
-
         #endregion
-
-
-
-
     }
 }

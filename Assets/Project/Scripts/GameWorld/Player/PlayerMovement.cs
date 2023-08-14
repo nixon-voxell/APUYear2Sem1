@@ -10,10 +10,10 @@ namespace GameWorld
     [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Ground/Ceiling Check")]
+        [Header("Ground Check")]
         [SerializeField] private Transform m_GroundCheck;
         [SerializeField] private LayerMask m_GroundMask;
-        [SerializeField, Tooltip("Circle size to check ground overlap.")]
+        [SerializeField, Tooltip("Sphere size to check ground overlap.")]
         private float m_GroundCheckRadius = 0.2f;
 
         [Header("Movement Parameters")]
@@ -22,7 +22,7 @@ namespace GameWorld
         [SerializeField, Range(0.0f, 10.0f)] private float m_XZDamping = 10.0f;
         [SerializeField, Range(0.0f, 10.0f)] private float m_YDamping = 10.0f;
 
-        [Header("Camera Fx")]
+        [Header("Camera FX")]
         [SerializeField] private float m_FOVChange;
         [SerializeField] private float m_FOVChangeSpeed;
 
@@ -49,27 +49,6 @@ namespace GameWorld
         private CinemachineVirtualCamera m_VCamera;
         private float m_OriginFOV;
         private float m_ZoomedFOV;
-
-        private void Awake()
-        {
-            this.m_Player = GetComponent<Player>();
-            this.m_Player.PlayerMovement = this;
-
-            this.m_CharacterController = GetComponent<CharacterController>();
-            this.m_CharacterController.minMoveDistance = 0.0001f;
-
-            // set initial parameters
-            this.m_JumpCount = this.m_Player.PlayerAttribute.ShoeJump;
-            this.m_Position = this.transform.position;
-            this.m_Velocity = 0.0f;
-
-            // we only need to test if one collider exists
-            this.m_GroundColliders = new Collider[1];
-
-            this.m_VCamera = this.m_Player.Camera.GetComponent<CinemachineVirtualCamera>();
-            this.m_OriginFOV = this.m_VCamera.m_Lens.FieldOfView;
-            this.m_ZoomedFOV = this.m_OriginFOV + this.m_FOVChange;
-        }
 
         public void MovementInput(float2 movementInput, bool runInput, bool jumpInput)
         {
@@ -100,9 +79,43 @@ namespace GameWorld
             this.m_Velocity.z = direction.z * speed;
         }
 
+        private void CameraFOVUpdate()
+        {
+            float targetFOV = this.m_RunInput ? this.m_ZoomedFOV : this.m_OriginFOV;
+
+            this.m_VCamera.m_Lens.FieldOfView = math.lerp(
+                this.m_VCamera.m_Lens.FieldOfView,
+                targetFOV,
+                this.m_FOVChangeSpeed * Time.deltaTime
+            );
+        }
+
+        private void Awake()
+        {
+            this.m_Player = GetComponent<Player>();
+            this.m_Player.PlayerMovement = this;
+
+            this.m_CharacterController = GetComponent<CharacterController>();
+            this.m_CharacterController.minMoveDistance = 0.0001f;
+
+            // set initial parameters
+            this.m_JumpCount = this.m_Player.PlayerAttribute.ShoeJump;
+            this.m_Position = this.transform.position;
+            this.m_Velocity = 0.0f;
+
+            // we only need to test if one collider exists
+            this.m_GroundColliders = new Collider[1];
+
+            this.m_VCamera = this.m_Player.Camera.GetComponent<CinemachineVirtualCamera>();
+            this.m_OriginFOV = this.m_VCamera.m_Lens.FieldOfView;
+            this.m_ZoomedFOV = this.m_OriginFOV + this.m_FOVChange;
+        }
+
         private void Update()
         {
-            CameraFOVUpdate();
+            UserInput userInput = UserInput.Instance;
+            this.MovementInput(userInput.Movement, userInput.Run, userInput.Jump);
+            this.CameraFOVUpdate();
 
             float deltaTime = Time.deltaTime;
 
@@ -151,17 +164,6 @@ namespace GameWorld
             this.m_Velocity.x -= this.m_Velocity.x * math.min(1.0f, this.m_XZDamping * deltaTime);
             this.m_Velocity.z -= this.m_Velocity.z * math.min(1.0f, this.m_XZDamping * deltaTime);
             this.m_Velocity.y -= this.m_Velocity.y * math.min(1.0f, this.m_YDamping * deltaTime);
-        }
-
-        private void CameraFOVUpdate()
-        {
-            float targetFOV = this.m_RunInput ? this.m_ZoomedFOV : this.m_OriginFOV;
-
-            this.m_VCamera.m_Lens.FieldOfView = math.lerp(
-                this.m_VCamera.m_Lens.FieldOfView,
-                targetFOV,
-                this.m_FOVChangeSpeed * Time.deltaTime
-            );
         }
     }
 }
