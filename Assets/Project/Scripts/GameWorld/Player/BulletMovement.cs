@@ -77,7 +77,6 @@ public class BulletMovement : MonoBehaviour
             damageableComponent.OnDamage(m_BulletDamage);
         }
 
-        m_HitFx.Play();        
-
+        m_HitFx.Play();
     }
 }

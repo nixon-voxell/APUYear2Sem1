@@ -71,13 +71,16 @@ namespace GameWorld
                 this.StopCoroutine(this.m_BossSpawnCoroutine);
             }
 
+            EnemyConfig minionConfig = config.MinionConfig;
+            EnemyConfig bossConfig = config.BossConfig;
+
             this.m_MinionSpawnCoroutine = this.StartCoroutine(this.CR_SpawnEnemies(
                 this.m_MinionBoidManager, this.m_WaveCount,
-                config.MinionCountPlot, config.MinionDamagePlot
+                minionConfig.CountPlot, minionConfig.DamagePlot
             ));
             this.m_BossSpawnCoroutine = this.StartCoroutine(this.CR_SpawnEnemies(
                 this.m_MinionBoidManager, this.m_WaveCount,
-                config.BossCountPlot, config.BossDamagePlot
+                bossConfig.CountPlot, bossConfig.DamagePlot
             ));
         }
 

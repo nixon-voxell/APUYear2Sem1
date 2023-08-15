@@ -5,19 +5,17 @@ namespace GameWorld.Storage
     [System.Serializable]
     public struct WaveConfig : IDefault<WaveConfig>
     {
-        public PowerPlotConfig MinionDamagePlot;
-        public PowerPlotConfig MinionCountPlot;
-        public PowerPlotConfig BossDamagePlot;
-        public PowerPlotConfig BossCountPlot;
+        public EnemyConfig MinionConfig;
+        public EnemyConfig EliteConfig;
+        public EnemyConfig BossConfig;
 
         public WaveConfig Default()
         {
             return new WaveConfig
             {
-                MinionDamagePlot = new PowerPlotConfig().Default(),
-                MinionCountPlot = new PowerPlotConfig().Default(),
-                BossDamagePlot = new PowerPlotConfig().Default(),
-                BossCountPlot = new PowerPlotConfig().Default(),
+                MinionConfig = new EnemyConfig().Default(),
+                EliteConfig = new EnemyConfig().Default(),
+                BossConfig = new EnemyConfig().Default(),
             };
         }
     }
