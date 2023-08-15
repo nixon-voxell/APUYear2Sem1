@@ -50,12 +50,22 @@ namespace GameWorld.AI
             this.m_BoidContainer.na_Velocities[boidIndex] = direction;
             // set boid to active
             this.m_BoidContainer.na_States[boidIndex] = true;
-            this.m_BoidTransPool.Objects[boidIndex].transform.position = position;
-            this.m_BoidTransPool.Objects[boidIndex].transform.forward = direction;
-            this.m_BoidTransPool.Objects[boidIndex].gameObject.SetActive(true);
+
+            Transform boidTrans = this.m_BoidTransPool.Objects[boidIndex];
+
+            boidTrans.transform.position = position;
+            boidTrans.transform.forward = direction;
+            boidTrans.gameObject.SetActive(true);
 
             // add to "used" set
             this.m_UsedBoidIndices.Add(boidIndex);
+
+            // set boid entity index
+            BoidEntity boidEntity = boidTrans.GetComponent<BoidEntity>();
+            if (boidEntity != null)
+            {
+                boidEntity.Index = boidIndex;
+            }
         }
 
         public void DespawnBoid(int boidIndex)

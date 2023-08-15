@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8914901735558194278}
   - component: {fileID: 4912069276797059223}
   - component: {fileID: 6035239548785240379}
+  - component: {fileID: 5941997892718986169}
   m_Layer: 6
   m_Name: Boid
   m_TagString: Untagged
@@ -106,6 +107,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5941997892718986169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941049307157454664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71582938edc0e714eb283181d4506fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Index: 0
 --- !u!1 &9192954128816479391
 GameObject:
   m_ObjectHideFlags: 0

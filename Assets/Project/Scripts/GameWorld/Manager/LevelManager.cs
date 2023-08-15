@@ -12,10 +12,9 @@ namespace GameWorld
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameObject m_EnemySpawnerParent;
-        [SerializeField] private SO_WaveConfig m_so_WaveConfig;
+        [SerializeField] private WaveConfig[] m_WaveConfigs;
 
-        [SerializeField] private BoidManager m_MinionBoidManager;
-        [SerializeField] private BoidManager m_BossBoidManager;
+        [Header("Spawn Config")]
         [SerializeField, Tooltip("Time taken between spawning sessions.")]
         private float m_SpawnInterval;
         [SerializeField, Tooltip("Time taken for spawn animation to take place.")]
@@ -33,10 +32,9 @@ namespace GameWorld
         private int m_TotalEnemyCount;
 
         private Coroutine m_WaveCoroutine;
-        private Coroutine m_MinionSpawnCoroutine;
-        private Coroutine m_BossSpawnCoroutine;
+        private Coroutine[] m_SpawnCoroutines;
 
-        private IEnumerator CR_TimeBasedWave()
+        private IEnumerator CR_WaveLoop()
         {
             while (this.m_LevelActive)
             {
@@ -59,29 +57,24 @@ namespace GameWorld
         {
             this.m_WaveCount += 1;
             this.m_WaveTimePassed = 0.0f;
-            WaveConfig config = this.m_so_WaveConfig.Config;
 
-            // make sure previous coroutine stops before running a new one
-            if (this.m_MinionSpawnCoroutine != null)
+            for (int w = 0; w < this.m_WaveConfigs.Length; w++)
             {
-                this.StopCoroutine(this.m_MinionSpawnCoroutine);
-            }
-            if (this.m_BossSpawnCoroutine != null)
-            {
-                this.StopCoroutine(this.m_BossSpawnCoroutine);
-            }
+                WaveConfig waveConfig = this.m_WaveConfigs[w];
 
-            EnemyConfig minionConfig = config.MinionConfig;
-            EnemyConfig bossConfig = config.BossConfig;
+                // make sure previous coroutine stops before running a new one
+                if (this.m_SpawnCoroutines[w] != null)
+                {
+                    this.StopCoroutine(this.m_SpawnCoroutines[w]);
+                }
 
-            this.m_MinionSpawnCoroutine = this.StartCoroutine(this.CR_SpawnEnemies(
-                this.m_MinionBoidManager, this.m_WaveCount,
-                minionConfig.CountPlot, minionConfig.DamagePlot
-            ));
-            this.m_BossSpawnCoroutine = this.StartCoroutine(this.CR_SpawnEnemies(
-                this.m_MinionBoidManager, this.m_WaveCount,
-                bossConfig.CountPlot, bossConfig.DamagePlot
-            ));
+                EnemyConfig enemyConfig = waveConfig.so_EnemyConfig.Config;
+
+                this.m_SpawnCoroutines[w] = this.StartCoroutine(this.CR_SpawnEnemies(
+                    waveConfig.BoidManager, this.m_WaveCount,
+                    enemyConfig.CountPlot, enemyConfig.DamagePlot
+                ));
+            }
         }
 
         private IEnumerator CR_SpawnEnemies(
@@ -94,11 +87,22 @@ namespace GameWorld
 
             for (int c = 0; c < count; c++)
             {
-                manager.SpawnBoid(this.GetRandomSpawnPosition(), this.m_Random.NextFloat3Direction());
-                this.m_TotalEnemyCount += 1;
+                this.SpawnEnemy(manager, this.GetRandomSpawnPosition(), this.m_Random.NextFloat3Direction());
                 yield return new WaitForSeconds(this.m_SpawnInterval);
             }
             yield break;
+        }
+
+        public void SpawnEnemy(BoidManager manager, float3 position, float3 direction)
+        {
+            manager.SpawnBoid(position, direction);
+            this.m_TotalEnemyCount += 1;
+        }
+
+        public void DespawnEnemy(BoidManager manager, BoidEntity boidEntity)
+        {
+            manager.DespawnBoid(boidEntity.Index);
+            this.m_TotalEnemyCount -= 1;
         }
 
         private float3 GetRandomSpawnPosition()
@@ -117,11 +121,12 @@ namespace GameWorld
             this.m_LevelActive = true;
 
             this.m_TotalEnemyCount = 0;
+            this.m_SpawnCoroutines = new Coroutine[this.m_WaveConfigs.Length];
         }
 
         private void Start()
         {
-            this.m_WaveCoroutine = this.StartCoroutine(this.CR_TimeBasedWave());
+            this.m_WaveCoroutine = this.StartCoroutine(this.CR_WaveLoop());
         }
 
         private void OnDestroy()
