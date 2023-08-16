@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameWorld.UX
 {
-    using GameWorld.Storage;
     public class BuffSelection : UXBehaviour
     {
+        public const int CARD_COUNT = 3;
+
         private Button[] m_CardBtnList;
         private Label[] m_CardHeaderList;
         private VisualElement[] m_CardIconList;
@@ -25,64 +23,32 @@ namespace GameWorld.UX
 
         }
 
-        private void OnEnable()
+        void Start()
         {
             this.InitializeDoc();
             UXManager.Instance.BuffSelection = this;
-        }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            
+            // get elements
+            this.m_CardBtnList = new Button[CARD_COUNT];
+            this.m_CardHeaderList = new Label[CARD_COUNT];
+            this.m_CardIconList = new VisualElement[CARD_COUNT];
+            this.m_CardDescriptionList = new Label[CARD_COUNT];
+            this.m_CardTypeList = new VisualElement[CARD_COUNT];
+            this.m_CardGlowList = new VisualElement[CARD_COUNT];
 
-            // Get elements
-
-            this.m_CardBtnList = new Button[3];
-            this.m_CardHeaderList = new Label[3];
-            this.m_CardIconList = new VisualElement[3];
-            this.m_CardDescriptionList = new Label[3];
-            this.m_CardTypeList = new VisualElement[3];
-            this.m_CardGlowList = new VisualElement[3];
-
-            for (int i = 0; i < m_CardBtnList.Length; i++)
+            for (int c = 0; c < CARD_COUNT; c++)
             {
-                this.m_CardBtnList[i] = m_Root.Q<Button>($"buff_button_{i + 1}");
-            }
+                this.m_CardBtnList[c] = m_Root.Q<Button>($"buff_button_{c + 1}");
 
-            for (int j = 0; j < m_CardHeaderList.Length; j++)
-            {
-                this.m_CardHeaderList[j] = m_Root.Q<Label>($"buff_name_{j + 1}");
-            }
+                // assign button click event
+                this.m_CardBtnList[c].clicked += () => SelectCard(c);
 
-            for (int k = 0; k < m_CardIconList.Length; k++)
-            {
-                this.m_CardIconList[k] = m_Root.Q<VisualElement>($"buff_icon_{k + 1}");
-            }
-
-            for (int l = 0;  l < m_CardDescriptionList.Length; l++)
-            {
-                this.m_CardDescriptionList[l] = m_Root.Q<Label>($"buff_description_{l + 1}"); ;
-            }
-
-            for (int m = 0;  m < m_CardTypeList.Length; m++)
-            {
-                this.m_CardTypeList[m] = m_Root.Q<VisualElement>($"buff_type_{m + 1}");
-            }
-
-            for (int i = 0; i < m_CardGlowList.Length; i++)
-            {
-                this.m_CardGlowList[i] = m_Root.Q<VisualElement>($"buff_glow_{i + 1}");
-                this.m_CardGlowList[i].visible = false;
-            }
-
-            // Assign button click event
-
-            for (int i = 0; i < m_CardBtnList.Length;i++)
-            {
-                int selectCard = i;
-                this.m_CardBtnList[i].clicked += () => SelectCard(selectCard);
-
+                this.m_CardHeaderList[c] = m_Root.Q<Label>($"buff_name_{c + 1}");
+                this.m_CardIconList[c] = m_Root.Q<VisualElement>($"buff_icon_{c + 1}");
+                this.m_CardDescriptionList[c] = m_Root.Q<Label>($"buff_description_{c + 1}"); ;
+                this.m_CardTypeList[c] = m_Root.Q<VisualElement>($"buff_type_{c + 1}");
+                this.m_CardGlowList[c] = m_Root.Q<VisualElement>($"buff_glow_{c + 1}");
+                this.m_CardGlowList[c].visible = false;
             }
 
             this.m_Root.visible = false;
@@ -93,20 +59,20 @@ namespace GameWorld.UX
             this.m_UpgradeList = upgrades;
             this.m_PlayerSelectAction = selectUpgAction;
 
-            for (int i = 0; i < m_CardBtnList.Length; i++)
+            for (int c = 0; c < CARD_COUNT; c++)
             {
-                this.m_CardHeaderList[i].text = upgrades[i].UpgradeName;
-                this.m_CardIconList[i].style.backgroundImage = new StyleBackground(upgrades[i].UpgradeIcon);
-                this.m_CardDescriptionList[i].text = upgrades[i].UpgradeDescription;
-                this.m_CardTypeList[i].style.backgroundImage = new StyleBackground(upgrades[i].EquipmentTypeIcon);
-                this.m_CardBtnList[i].style.borderBottomColor = new StyleColor(upgrades[i].CardColorTheme);
-                this.m_CardBtnList[i].style.borderRightColor = new StyleColor(upgrades[i].CardColorTheme);
-                this.m_CardBtnList[i].style.borderTopColor = new StyleColor(upgrades[i].CardColorTheme);
-                this.m_CardBtnList[i].style.borderLeftColor = new StyleColor(upgrades[i].CardColorTheme);
-                this.m_CardGlowList[i].style.width = Length.Percent(upgrades[i].CardGlowSize.x);
-                this.m_CardGlowList[i].style.height = Length.Percent(upgrades[i].CardGlowSize.y);
-                this.m_CardGlowList[i].style.unityBackgroundImageTintColor = new StyleColor(upgrades[i].CardColorTheme);
-                this.m_CardGlowList[i].visible = true;
+                this.m_CardHeaderList[c].text = upgrades[c].UpgradeName;
+                this.m_CardIconList[c].style.backgroundImage = new StyleBackground(upgrades[c].UpgradeIcon);
+                this.m_CardDescriptionList[c].text = upgrades[c].UpgradeDescription;
+                this.m_CardTypeList[c].style.backgroundImage = new StyleBackground(upgrades[c].EquipmentTypeIcon);
+                this.m_CardBtnList[c].style.borderBottomColor = new StyleColor(upgrades[c].CardColorTheme);
+                this.m_CardBtnList[c].style.borderRightColor = new StyleColor(upgrades[c].CardColorTheme);
+                this.m_CardBtnList[c].style.borderTopColor = new StyleColor(upgrades[c].CardColorTheme);
+                this.m_CardBtnList[c].style.borderLeftColor = new StyleColor(upgrades[c].CardColorTheme);
+                this.m_CardGlowList[c].style.width = Length.Percent(upgrades[c].CardGlowSize.x);
+                this.m_CardGlowList[c].style.height = Length.Percent(upgrades[c].CardGlowSize.y);
+                this.m_CardGlowList[c].style.unityBackgroundImageTintColor = new StyleColor(upgrades[c].CardColorTheme);
+                this.m_CardGlowList[c].visible = true;
             }
 
             this.m_Root.visible = true;
