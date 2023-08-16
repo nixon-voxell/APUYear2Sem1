@@ -14,6 +14,7 @@ namespace GameWorld.AI
     {
         [SerializeField] private SO_BoidConfig m_so_BoidConfig;
         [SerializeField] private Pool<Transform> m_BoidTransPool;
+        [SerializeField] private Transform m_TargetTrans;
 
         /// <summary>Highest index of boid index that is not in used.</summary>
         private int m_HighestFreeBoidIndex;
@@ -212,11 +213,21 @@ namespace GameWorld.AI
                 }
             }
 
+            bool hasTarget = this.m_TargetTrans != null;
+            float3 targetPosition = 0.0f;
+            if (hasTarget)
+            {
+                targetPosition = this.m_TargetTrans.position;
+            }
+
             BoidUpdateJob boidUpdateJob = new BoidUpdateJob
             {
                 BoidConfig = boidConfig,
                 DeltaTime = Time.deltaTime,
                 Keep2D = true,
+
+                HasTarget = hasTarget,
+                TargetPosition = targetPosition,
 
                 na_UsedBoidIndices = this.m_na_UsedBoidIndices.AsArray(),
                 na_Positions = this.m_BoidContainer.na_Positions,

@@ -15,6 +15,10 @@ namespace GameWorld.AI
         public float DeltaTime;
         public bool Keep2D;
 
+        // target
+        public bool HasTarget;
+        public float3 TargetPosition;
+
         [ReadOnly] public NativeArray<int> na_UsedBoidIndices;
         [NativeDisableParallelForRestriction] public NativeArray<float3> na_Positions;
         [NativeDisableParallelForRestriction] public NativeArray<float3> na_Velocities;
@@ -36,6 +40,20 @@ namespace GameWorld.AI
             float3 velocity = this.na_Velocities[boidIndex];
             float3 direction = this.na_Directions[boidIndex];
             float3 acceleration = 0.0f;
+
+            if (this.HasTarget)
+            {
+                float3 offsetToTarget = (this.TargetPosition - position);
+                float3 targetForce = 0.0f;
+                SteerTowards(
+                    in offsetToTarget,
+                    in velocity,
+                    in this.BoidConfig.MaxSpeed,
+                    in this.BoidConfig.MaxSteerForce,
+                    out targetForce
+                );
+                acceleration = targetForce * this.BoidConfig.TargetWeight;
+            }
 
             // collision indices starts from 0
             int startIdx = index * this.BoidConfig.MaxCollision;
