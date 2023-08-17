@@ -17,8 +17,6 @@ namespace GameWorld
 
         private void Awake()
         {
-            GameManager.Instance.SoundManager = this;
-
             this.m_OneShotAudioDict = new Dictionary<string, Sound>();
             for (int s = 0; s < this.SoundRepoSO.SoundList.Length; s++)
             {
@@ -29,6 +27,8 @@ namespace GameWorld
 
         private void Start()
         {
+            GameManager.Instance.SoundManager = this;
+
             m_SoundEmitterPool.Initialize(new GameObject("SoundEmitter Parent").transform);
         }
 

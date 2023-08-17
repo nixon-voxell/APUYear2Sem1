@@ -22,8 +22,6 @@ namespace GameWorld
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
 
-        [SerializeField] private Pool<TextPopup> m_DamagePopupPool;
-
         // STATS
         private int m_CurrentHealth;
         private int m_CurrentSpeed;
@@ -36,14 +34,13 @@ namespace GameWorld
         private void Awake()
         {
             InitializeEnemy(m_EnemyType, 1.0f);
-            m_DamagePopupPool.Initialize(m_PopupParent);
         }
 
         public void OnDamage(int damage)
         {
             m_CurrentHealth -= damage;
 
-            m_DamagePopupPool.GetNextObject().OnPopup(damage.ToString());
+            // m_DamagePopupPool.GetNextObject().OnPopup(damage.ToString());
 
             if (m_CurrentHealth <= 0)
             {

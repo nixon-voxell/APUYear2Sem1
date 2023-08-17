@@ -1,4 +1,4 @@
-namespace GameWorld
+namespace GameWorld.Util
 {
     public interface IDamageable
     {

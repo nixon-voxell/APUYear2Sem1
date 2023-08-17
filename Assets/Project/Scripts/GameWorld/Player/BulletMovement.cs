@@ -1,82 +1,81 @@
-using GameWorld;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMovement : MonoBehaviour
+namespace GameWorld
 {
-    [SerializeField] private ParticleSystem m_HitFx;
-    [SerializeField] private MeshRenderer m_MeshRenderer;
-    [SerializeField] private CapsuleCollider m_CapsuleCollider;
-    [SerializeField] private GameObject m_Pfx;
+    using Util;
 
-    private bool m_Activated = false;
-    private float m_BulletLifetime = 3f;
-    private float m_BulletSpeed;
-    private int m_BulletDamage;
-
-    private Rigidbody m_Rigidbody;
-    
-
-
-    private void Awake()
+    public class BulletMovement : MonoBehaviour
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private ParticleSystem m_HitFx;
+        [SerializeField] private MeshRenderer m_MeshRenderer;
+        [SerializeField] private CapsuleCollider m_CapsuleCollider;
+        [SerializeField] private GameObject m_Pfx;
 
+        private bool m_Activated = false;
+        private float m_BulletLifetime = 3f;
+        private float m_BulletSpeed;
+        private int m_BulletDamage;
 
-    public void StartBullet(float speed, int damage)
-    {
-        if (!gameObject.activeSelf)
+        private Rigidbody m_Rigidbody;
+
+        public void StartBullet(float speed, int damage)
         {
-            gameObject.SetActive(true);
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
+
+            this.m_BulletSpeed = speed;
+            this.m_BulletDamage = damage;
+            m_Activated = true;
+            m_CapsuleCollider.enabled = true;
+            m_MeshRenderer.enabled = true;
+            m_Pfx.SetActive(true);
+
+            Invoke("ResetBullet", m_BulletLifetime);
         }
 
-        this.m_BulletSpeed = speed;
-        this.m_BulletDamage = damage;
-        m_Activated = true;
-        m_CapsuleCollider.enabled = true;
-        m_MeshRenderer.enabled = true;
-        m_Pfx.SetActive(true);
-
-        Invoke("ResetBullet", m_BulletLifetime);
-    }
-
-    private void FixedUpdate()
-    {
-        if (m_Activated)
+        private void ResetBullet()
         {
-            m_Rigidbody.velocity = transform.forward * m_BulletSpeed;
-        }
-        else if (!m_Activated && m_Rigidbody.velocity != Vector3.zero)
-        {
-            m_Rigidbody.velocity = Vector3.zero;
-        }
-    }
+            if (m_Activated)
+            {
+                m_Activated = false;
+                m_BulletSpeed = 0f;
+                m_CapsuleCollider.enabled = false;
+                m_MeshRenderer.enabled = false;
+                m_Pfx.SetActive(false);
 
-    private void ResetBullet()
-    {
-        if (m_Activated)
-        {
-            m_Activated = false;
-            m_BulletSpeed = 0f;
-            m_CapsuleCollider.enabled = false;
-            m_MeshRenderer.enabled = false;
-            m_Pfx.SetActive(false);
+            }
 
         }
 
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        ResetBullet();
-        IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
-        if (damageableComponent != null)
+        private void OnCollisionEnter(Collision collision)
         {
-            damageableComponent.OnDamage(m_BulletDamage);
+            ResetBullet();
+            IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
+            if (damageableComponent != null)
+            {
+                damageableComponent.OnDamage(m_BulletDamage);
+            }
+
+            m_HitFx.Play();
         }
 
-        m_HitFx.Play();
+        private void Awake()
+        {
+            m_Rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
+        {
+            if (m_Activated)
+            {
+                m_Rigidbody.velocity = transform.forward * m_BulletSpeed;
+            }
+            else if (!m_Activated && m_Rigidbody.velocity != Vector3.zero)
+            {
+                m_Rigidbody.velocity = Vector3.zero;
+            }
+        }
     }
 }
