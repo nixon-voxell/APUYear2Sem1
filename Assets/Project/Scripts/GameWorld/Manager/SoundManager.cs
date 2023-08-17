@@ -1,24 +1,24 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace GameWorld
 {
-    using GameWorld.Storage;
-    using GameWorld.Util;
+    using Storage;
+    using Util;
 
     public class SoundManager : MonoBehaviour
     {
         [SerializeField] private SoundRepositorySO SoundRepoSO;
-        [SerializeField] public Pool<SoundEmitter> m_SoundEmitterPool;
+        [SerializeField] private Pool<SoundEmitter> m_SoundEmitterPool;
         [SerializeField] private AudioMixerGroup m_MixerGroup;
 
         private Dictionary<string, Sound> m_OneShotAudioDict;
 
         private void Awake()
         {
+            GameManager.Instance.SoundManager = this;
+
             this.m_OneShotAudioDict = new Dictionary<string, Sound>();
             for (int s = 0; s < this.SoundRepoSO.SoundList.Length; s++)
             {
@@ -29,7 +29,6 @@ namespace GameWorld
 
         private void Start()
         {
-            GameManager.Instance.SoundManager = this;
             m_SoundEmitterPool.Initialize(new GameObject("SoundEmitter Parent").transform);
         }
 
