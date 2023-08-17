@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace GameWorld
 {
+    using AI;
+
+    [RequireComponent(typeof(BoidEntity))]
     public class Enemy : MonoBehaviour, IDamageable
     {
         public enum EnemyType { NORMAL, ELITE, BOSS }
@@ -22,6 +25,8 @@ namespace GameWorld
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
 
+        private BoidEntity m_BoidEntity;
+
         // STATS
         private int m_CurrentHealth;
         private int m_CurrentSpeed;
@@ -34,6 +39,7 @@ namespace GameWorld
         private void Awake()
         {
             InitializeEnemy(m_EnemyType, 1.0f);
+            this.m_BoidEntity = this.GetComponent<BoidEntity>();
         }
 
         public void OnDamage(int damage)
@@ -52,7 +58,8 @@ namespace GameWorld
         private void OnDie()
         {
             Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+
+            // Destroy(gameObject);
         }
 
         private void InitializeEnemy(EnemyType enemyType , float statsMultiplier)

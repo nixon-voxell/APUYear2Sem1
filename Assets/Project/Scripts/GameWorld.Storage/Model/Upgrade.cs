@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
@@ -16,8 +14,6 @@ namespace GameWorld
         public Sprite UpgradeIcon;
         [Tooltip("Get the upgrade value from UpgradeSO")]
         public float UpgradeValue; 
-
-
 
         // Assigned at runtime
         [HideInInspector] public UpgradeRarity UpgradeRarity;

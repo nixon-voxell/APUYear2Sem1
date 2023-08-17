@@ -1,6 +1,3 @@
-using GameWorld.UX;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
@@ -22,8 +19,7 @@ namespace GameWorld
             m_Rigidbody = GetComponent<Rigidbody>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_PlayerAttractRadius, m_PlayerLayer);
 
@@ -33,8 +29,9 @@ namespace GameWorld
                 m_Rigidbody.velocity = direction * m_ChaseForce;
             }
             else
+            {
                 m_Rigidbody.velocity = Vector3.zero;
-
+            }
         }
 
         private void OnTriggerEnter(Collider other)
