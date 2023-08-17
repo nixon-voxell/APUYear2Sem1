@@ -22,7 +22,7 @@ namespace GameWorld
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
 
-        [SerializeField] private Pool<DamagePopup> m_DamagePopupPool;
+        [SerializeField] private Pool<TextPopup> m_DamagePopupPool;
 
         // STATS
         private int m_CurrentHealth;

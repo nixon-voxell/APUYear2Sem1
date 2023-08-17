@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using TMPro;
 using UnityEngine;
 using Cinemachine;
 
 namespace GameWorld
 {
-    public class DamagePopup : MonoBehaviour
+    public class TextPopup : MonoBehaviour
     {
         private float m_PopupDuration = 0.65f;
         private float m_PopupSpeed = 0.4f;
@@ -17,24 +14,29 @@ namespace GameWorld
         private Transform m_CamTransform;
         private Vector3 m_OriginalPos;
 
-        private void Awake()
-        {
-            m_Text = GetComponent<TextMeshProUGUI>();
-            m_Text.enabled = false;
-            m_OriginalPos = transform.position;
-        }
-        private void Start()
-        {
-            m_CamTransform = CinemachineCore.Instance.GetActiveBrain(0).transform;
-
-        }
-
         public void OnPopup(string text)
         {
             m_Text.text = text;
             transform.position = m_OriginalPos;
             m_Text.enabled = true;
             m_Timer = m_PopupDuration;
+        }
+
+        public void Initialize()
+        {
+            
+        }
+
+        private void Awake()
+        {
+            m_Text = GetComponent<TextMeshProUGUI>();
+            m_Text.enabled = false;
+            m_OriginalPos = transform.position;
+        }
+
+        private void Start()
+        {
+            m_CamTransform = CinemachineCore.Instance.GetActiveBrain(0).transform;
         }
 
         private void Update()
