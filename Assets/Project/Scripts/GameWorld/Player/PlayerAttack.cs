@@ -76,8 +76,7 @@ namespace GameWorld
 
         public void Attack()
         {
-            if (m_CurrentAtkState != AttackState.IDLE)
-                return;
+            if (m_CurrentAtkState != AttackState.IDLE) return;
 
             if (m_CurrentWeapon == Weapon.GUN)
             {
@@ -88,6 +87,7 @@ namespace GameWorld
                 SwingSword();
             }
         }
+
         public void StartReloadGun()
         {
             if (m_CurrentAtkState != AttackState.IDLE || m_CurrentWeapon != Weapon.GUN)
@@ -129,6 +129,8 @@ namespace GameWorld
         /// <param name="collision"></param>
         public void HitEnemy(Collision collision)
         {
+            PopupTextManager popupManager = GameManager.Instance.PopupTextManager;
+
             if (m_CurrentAtkState == AttackState.SWORDATK)
             {
                 // Check if already hit them
@@ -139,7 +141,14 @@ namespace GameWorld
                 IDamageable damageable = collision.collider.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.OnDamage(m_Player.PlayerAttribute.SwordDamage);
+                    int damage = this.m_Player.PlayerAttribute.SwordDamage;
+
+                    popupManager.Popup(
+                        damage.ToString(), Color.red,
+                        collision.contacts[0].point,
+                        0.4f, 1.0f
+                    );
+                    damageable.OnDamage(damage);
                 }
 
                 ParticleSystem pfx = m_PfxPool.GetNextObject();
@@ -211,9 +220,8 @@ namespace GameWorld
                 else
                 {
                     bullet.transform.rotation = m_Player.Camera.transform.rotation;
-
                 }
-                
+
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);
 
                 // HANDLE GUN AMMO
@@ -223,33 +231,21 @@ namespace GameWorld
                 if (m_CurrentGunAmmo <= 0)
                 {
                     StartReloadGun();
-
                 }
 
-
-
                 m_GunFireFx.Play();
-
-
-
                 yield return new WaitForSeconds(0.05f);
             }
-
-
-
         }
-
-        
 
         private void SwingSword()
         {
-            if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword)
-                return;
+            if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword) return;
 
             m_CurrentAtkState = AttackState.SWORDATK;
             m_PlayerAnimator.speed = m_Player.PlayerAttribute.SwordSwingSpeed;
             m_PlayerAnimator.Play("SwordSwing");
-            m_CanSword=false;
+            m_CanSword = false;
         }
 
         private IEnumerator SwordAtkRefresh()
@@ -262,9 +258,7 @@ namespace GameWorld
         private void OnGUI()
         {
             GUI.Label(new Rect(25, 25, 400, 100), "Sword Atk: " + m_CanSword);
-
         }
-
     }
 }
 

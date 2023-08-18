@@ -14,20 +14,23 @@ namespace GameWorld
 
         private Transform m_CamTransform;
 
-        public void Popup(float3 position, float duration, float elevation, Color color)
-        {
+        public void Popup(
+            string text, Color color,
+            float3 position, float duration, float elevation
+        ) {
             TextMeshPro tmpro = this.m_TMProGUIPool.GetNextObject();
 
             this.StartCoroutine(
                 this.CR_Popup(
-                    tmpro, position, duration, elevation, color
+                    tmpro, text, color,
+                    position, duration, elevation
                 )
             );
         }
 
         private IEnumerator CR_Popup(
-            TextMeshPro tmpro, float3 position,
-            float duration, float elevation, Color color
+            TextMeshPro tmpro, string text, Color color,
+            float3 position, float duration, float elevation
         ) {
             // duration must be larger than 0
             if (duration <= 0.0f) yield break;
@@ -39,6 +42,7 @@ namespace GameWorld
             // make sure game object is active
             tmpro.gameObject.SetActive(true);
             tmpro.color = color;
+            tmpro.text = text;
 
             Transform tmproTrans = tmpro.transform;
             tmproTrans.position = position;

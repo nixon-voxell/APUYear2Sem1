@@ -44,18 +44,17 @@ namespace GameWorld
                 m_CapsuleCollider.enabled = false;
                 m_MeshRenderer.enabled = false;
                 m_Pfx.SetActive(false);
-
             }
-
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             ResetBullet();
-            IDamageable damageableComponent = collision.collider.GetComponent<IDamageable>();
-            if (damageableComponent != null)
+            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+
+            if (damageable != null)
             {
-                damageableComponent.OnDamage(m_BulletDamage);
+                damageable.OnDamage(m_BulletDamage);
             }
 
             m_HitFx.Play();
