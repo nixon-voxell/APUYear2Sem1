@@ -49,11 +49,19 @@ namespace GameWorld
 
         private void OnCollisionEnter(Collision collision)
         {
+            PopupTextManager popupManager = GameManager.Instance.PopupTextManager;
+
             ResetBullet();
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
 
             if (damageable != null)
             {
+                popupManager.Popup(
+                    this.m_BulletDamage.ToString(), Color.red,
+                    collision.contacts[0].point,
+                    0.4f, 1.0f
+                );
+
                 damageable.OnDamage(m_BulletDamage);
             }
 

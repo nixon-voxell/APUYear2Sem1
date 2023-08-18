@@ -139,15 +139,17 @@ namespace GameWorld
 
                 m_SwordAtkVictim.Add(collision.collider.transform);
                 IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+
+                int damage = this.m_Player.PlayerAttribute.SwordDamage;
+
+                popupManager.Popup(
+                    damage.ToString(), Color.red,
+                    collision.contacts[0].point,
+                    0.4f, 1.0f
+                );
+
                 if (damageable != null)
                 {
-                    int damage = this.m_Player.PlayerAttribute.SwordDamage;
-
-                    popupManager.Popup(
-                        damage.ToString(), Color.red,
-                        collision.contacts[0].point,
-                        0.4f, 1.0f
-                    );
                     damageable.OnDamage(damage);
                 }
 
