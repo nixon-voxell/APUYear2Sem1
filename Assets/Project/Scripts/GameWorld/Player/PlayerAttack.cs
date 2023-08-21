@@ -90,9 +90,11 @@ namespace GameWorld
 
         public void StartReloadGun()
         {
+            Debug.Log("ReloadGun");
             if (m_CurrentAtkState != AttackState.IDLE || m_CurrentWeapon != Weapon.GUN)
                 return;
 
+            Debug.Log("Animation");
             m_CurrentAtkState = AttackState.GUN_RELOADING;
             m_PlayerAnimator.Play("GunReload");
         }

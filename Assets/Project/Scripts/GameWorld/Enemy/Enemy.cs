@@ -11,7 +11,6 @@ namespace GameWorld
     {
         public enum EnemyType { NORMAL, ELITE, BOSS }
 
-        [SerializeField] private Transform m_PopupParent;
         [SerializeField] private EnemyType m_EnemyType;
         [SerializeField] private GameObject m_UpgradeOrb;
 
@@ -57,9 +56,12 @@ namespace GameWorld
 
         private void OnDie()
         {
-            Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
+            if (this.m_UpgradeOrb != null)
+            {
+                Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
+            }
 
-            // Destroy(gameObject);
+            this.m_BoidEntity.Despawn();
         }
 
         private void InitializeEnemy(EnemyType enemyType , float statsMultiplier)

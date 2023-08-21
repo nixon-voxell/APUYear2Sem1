@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Mathematics;
+using Voxell.Util;
 
 using Random = Unity.Mathematics.Random;
 
@@ -9,7 +10,7 @@ namespace GameWorld
     using Storage;
     using AI;
 
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : SingletonMono<LevelManager>
     {
         [SerializeField] private GameObject m_EnemySpawnerParent;
         [SerializeField] private WaveConfig[] m_WaveConfigs;
@@ -33,6 +34,10 @@ namespace GameWorld
 
         private Coroutine m_WaveCoroutine;
         private Coroutine[] m_SpawnCoroutines;
+
+        [InspectOnly] public BulletManager BulletManager;
+
+        public int WaveCount => this.m_WaveCount;
 
         private IEnumerator CR_WaveLoop()
         {
@@ -111,8 +116,9 @@ namespace GameWorld
             return this.m_EnemySpawners[spawnerIndex].GetRandomPosition();
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             this.m_EnemySpawners = this.m_EnemySpawnerParent.GetComponentsInChildren<EnemySpawner>();
 
             this.m_Random = Random.CreateFromIndex((uint)this.m_EnemySpawners.Length);
@@ -129,8 +135,9 @@ namespace GameWorld
             this.m_WaveCoroutine = this.StartCoroutine(this.CR_WaveLoop());
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             this.StopAllCoroutines();
         }
     }

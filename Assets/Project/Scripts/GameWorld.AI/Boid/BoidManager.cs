@@ -65,7 +65,7 @@ namespace GameWorld.AI
             BoidEntity boidEntity = boidTrans.GetComponent<BoidEntity>();
             if (boidEntity != null)
             {
-                boidEntity.Index = boidIndex;
+                boidEntity.Initialize(this, boidIndex);
             }
         }
 
