@@ -9,6 +9,7 @@ namespace GameWorld
 {
     using Storage;
     using AI;
+    using UX;
 
     public class LevelManager : SingletonMono<LevelManager>
     {
@@ -62,6 +63,9 @@ namespace GameWorld
         {
             this.m_WaveCount += 1;
             this.m_WaveTimePassed = 0.0f;
+
+            InGameHUD hud = UXManager.Instance.InGameHUD;
+            hud.UpdateWave(this.m_WaveCount);
 
             for (int w = 0; w < this.m_WaveConfigs.Length; w++)
             {
