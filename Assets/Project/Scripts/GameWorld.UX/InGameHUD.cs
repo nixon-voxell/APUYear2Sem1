@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameWorld.UX
@@ -11,19 +10,15 @@ namespace GameWorld.UX
 
         private void Awake()
         {
+            this.InitializeDoc();
+            m_WaveLabel = m_Root.Q<Label>("wave-lbl");
+            m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
+            m_HPBar = m_Root.Q<ProgressBar>("health-bar");
         }
 
         private void OnEnable()
         {
-            this.InitializeDoc();
             UXManager.Instance.InGameHUD = this;
-        }
-
-        private void Start()
-        {
-            m_WaveLabel = m_Root.Q<Label>("wave-lbl");
-            m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
-            m_HPBar = m_Root.Q<ProgressBar>("health-bar");
         }
 
         public void InitialSetup(int gunMagazineCapacity, int playerMaxHP)
