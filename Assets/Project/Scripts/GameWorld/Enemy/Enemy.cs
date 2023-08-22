@@ -50,7 +50,10 @@ namespace GameWorld
             if (m_CurrentHealth <= 0)
             {
                 m_CurrentHealth = 0;
-                if (!m_EnemyUnableToDie) OnDie();
+                if (!m_EnemyUnableToDie)
+                {
+                    this.OnDie();
+                }
             }
         }
 
@@ -61,7 +64,7 @@ namespace GameWorld
                 Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
             }
 
-            this.m_BoidEntity.Despawn();
+            LevelManager.Instance.DespawnEnemy(this.m_BoidEntity);
         }
 
         private void InitializeEnemy(EnemyType enemyType , float statsMultiplier)

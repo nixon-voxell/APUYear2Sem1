@@ -11,9 +11,9 @@ namespace GameWorld.UX
         private void Awake()
         {
             this.InitializeDoc();
-            m_WaveLabel = m_Root.Q<Label>("wave-lbl");
-            m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
-            m_HPBar = m_Root.Q<ProgressBar>("health-bar");
+            this.m_WaveLabel = m_Root.Q<Label>("wave-lbl");
+            this.m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
+            this.m_HPBar = m_Root.Q<ProgressBar>("health-bar");
         }
 
         private void OnEnable()
@@ -23,7 +23,7 @@ namespace GameWorld.UX
 
         public void InitialSetup(int gunMagazineCapacity, int playerMaxHP)
         {
-            m_WaveLabel.text = "WAVE 0";
+            m_WaveLabel.text = "WAVE 1";
             m_AmmoLabel.text = $"{gunMagazineCapacity}/{gunMagazineCapacity}";
             m_HPBar.highValue = playerMaxHP;
             m_HPBar.lowValue = 0;
@@ -51,7 +51,7 @@ namespace GameWorld.UX
 
         public void UpdateWave(int waveRound)
         {
-           m_WaveLabel.text = "WAVE " + waveRound;
+            m_WaveLabel.text = "WAVE " + waveRound;
         }
     }
 

@@ -108,9 +108,9 @@ namespace GameWorld
             this.m_TotalEnemyCount += 1;
         }
 
-        public void DespawnEnemy(BoidManager manager, BoidEntity boidEntity)
+        public void DespawnEnemy(BoidEntity boidEntity)
         {
-            manager.DespawnBoid(boidEntity.Index);
+            boidEntity.Despawn();
             this.m_TotalEnemyCount -= 1;
         }
 

@@ -23,10 +23,10 @@ namespace GameWorld
 
 
         // TODO: To be called by level manager
-
         public void GameSetup()
         {
-            UXManager.Instance.InGameHUD.InitialSetup(PlayerAttribute.GunMagazine, PlayerAttribute.PlayerMaxHP);
+            InGameHUD inGameHUD = UXManager.Instance.InGameHUD;
+            inGameHUD.InitialSetup(PlayerAttribute.GunMagazine, PlayerAttribute.PlayerMaxHP);
 
             PlayerAttack.Initialize();
 
