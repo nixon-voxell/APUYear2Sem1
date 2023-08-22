@@ -1308,8 +1308,8 @@ GameObject:
   m_Component:
   - component: {fileID: 411899804}
   - component: {fileID: 411899803}
-  - component: {fileID: 411899805}
   - component: {fileID: 411899806}
+  - component: {fileID: 411899805}
   m_Layer: 0
   m_Name: LevelMusic
   m_TagString: Untagged
