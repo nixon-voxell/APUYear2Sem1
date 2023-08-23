@@ -32,7 +32,7 @@ namespace GameWorld
         private Weapon m_CurrentWeapon;
         private bool m_CanSword;
         private List<Transform> m_SwordAtkVictim;
-        private LayerMask m_GunHitLayer;
+        [SerializeField] private LayerMask m_GunHitLayer;
 
         #region Gun Variables
         private float m_NextGunCooldown = 0;
@@ -53,8 +53,6 @@ namespace GameWorld
             m_PfxPool.Initialize(m_FxParent);
             m_BulletPool.Initialize(m_FxParent);
             m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
-
-            m_GunHitLayer = ~gameObject.layer;
         }
 
         private void Update()

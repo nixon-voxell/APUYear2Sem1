@@ -584,6 +584,11 @@ PrefabInstance:
       propertyPath: m_FxParent
       value: 
       objectReference: {fileID: 520097935}
+    - target: {fileID: 7514564015292486338, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_GunHitLayer.m_Bits
+      value: 1279
+      objectReference: {fileID: 0}
     - target: {fileID: 8647155946604187041, guid: 0d496707909ef424b903f51045f6d299,
         type: 3}
       propertyPath: m_Name

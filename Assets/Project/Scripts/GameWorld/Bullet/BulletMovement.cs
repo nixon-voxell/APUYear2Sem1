@@ -12,13 +12,12 @@ namespace GameWorld
         [SerializeField] private GameObject m_Pfx;
 
         private bool m_Activated = false;
-        private float m_BulletLifetime = 3f;
         private float m_BulletSpeed;
         private int m_BulletDamage;
 
         private Rigidbody m_Rigidbody;
 
-        public void StartBullet(float speed, int damage)
+        public void StartBullet(float speed, int damage, float lifetime = 3.0f)
         {
             if (!gameObject.activeSelf)
             {
@@ -32,7 +31,7 @@ namespace GameWorld
             m_MeshRenderer.enabled = true;
             m_Pfx.SetActive(true);
 
-            Invoke("ResetBullet", m_BulletLifetime);
+            Invoke("ResetBullet", lifetime);
         }
 
         private void ResetBullet()
