@@ -48,6 +48,7 @@ namespace GameWorld
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            // TODO: remove mouse view movement
             // PlayerInput.enabled = false;
 
             StartCoroutine(AdjustTimeScale(0f));

@@ -41,7 +41,8 @@ namespace GameWorld.UX
                 this.m_CardBtnList[c] = m_Root.Q<Button>($"buff_button_{c + 1}");
 
                 // assign button click event
-                this.m_CardBtnList[c].clicked += () => SelectCard(c);
+                int index = c;
+                this.m_CardBtnList[c].clicked += () => SelectCard(index);
 
                 this.m_CardHeaderList[c] = m_Root.Q<Label>($"buff_name_{c + 1}");
                 this.m_CardIconList[c] = m_Root.Q<VisualElement>($"buff_icon_{c + 1}");
@@ -80,6 +81,7 @@ namespace GameWorld.UX
 
         public void SelectCard(int selectedCard)
         {
+            UnityEngine.Debug.Log(selectedCard);
             this.m_PlayerSelectAction.Invoke(this.m_UpgradeList[selectedCard]);
 
             for (int i = 0; i < m_CardGlowList.Length; i++)

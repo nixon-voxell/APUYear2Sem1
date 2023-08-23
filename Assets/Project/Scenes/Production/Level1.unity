@@ -1560,6 +1560,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1987798751}
+  - {fileID: 1517989010}
   m_Father: {fileID: 2002645028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1212793754
@@ -2130,6 +2131,57 @@ Transform:
   - {fileID: 470982879}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!1 &1517989009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517989010}
+  - component: {fileID: 1517989011}
+  m_Layer: 0
+  m_Name: Boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1517989010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517989009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1101026790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1517989011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517989009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fefd891bdce27e47a9cab258eefd4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_so_BoidConfig: {fileID: 11400000, guid: fb88dc1701bcea8419e8b19618617667, type: 2}
+  m_BoidTransPool:
+    Count: 200
+    m_Prefab: {fileID: 611477856318850310, guid: cbaee9a3e75b369459ea3f4d64243af4,
+      type: 3}
+    m_DefaultActive: 0
+  m_TargetTrans: {fileID: 189592120}
 --- !u!1 &1576281730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2677,8 @@ MonoBehaviour:
   m_WaveConfigs:
   - so_EnemyConfig: {fileID: 11400000, guid: d986e1dd26f434f45a89163263996ea0, type: 2}
     BoidManager: {fileID: 1987798752}
+  - so_EnemyConfig: {fileID: 11400000, guid: d986e1dd26f434f45a89163263996ea0, type: 2}
+    BoidManager: {fileID: 1517989011}
   m_SpawnInterval: 1
   m_SpawnDuration: 0.5
   m_WaveDuration: 30
