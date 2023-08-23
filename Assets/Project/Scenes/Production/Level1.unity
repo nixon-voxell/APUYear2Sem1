@@ -323,33 +323,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &189592112 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2460715289946189359, guid: 0d496707909ef424b903f51045f6d299,
-    type: 3}
-  m_PrefabInstance: {fileID: 265905922}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &189592120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1978192752975208244, guid: 0d496707909ef424b903f51045f6d299,
     type: 3}
   m_PrefabInstance: {fileID: 265905922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &189592121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189592112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fcd9e14386b974ea51bd40203e4a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CameraTrans: {fileID: 924035632}
-  m_PlayerTrans: {fileID: 189592120}
-  m_Sensitivity: 2
 --- !u!1 &199301246
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,24 +563,10 @@ PrefabInstance:
       propertyPath: m_FxParent
       value: 
       objectReference: {fileID: 520097935}
-    - target: {fileID: 7514564015292486338, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_GunHitLayer.m_Bits
-      value: 1279
-      objectReference: {fileID: 0}
-    - target: {fileID: 8647155946604187041, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_Name
-      value: Sword
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2460715289946189359, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 189592121}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d496707909ef424b903f51045f6d299, type: 3}
 --- !u!1 &283403482
 GameObject:
@@ -1308,12 +1273,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9999999, y: 0.99999994, z: 1}
   m_Center: {x: -0.000000059604645, y: 0.5000505, z: 0.00000017881393}
---- !u!4 &924035632 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5160333806696267058, guid: 0d496707909ef424b903f51045f6d299,
-    type: 3}
-  m_PrefabInstance: {fileID: 265905922}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &935607463
 GameObject:
   m_ObjectHideFlags: 0
