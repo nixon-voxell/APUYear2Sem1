@@ -77,8 +77,8 @@ MonoBehaviour:
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Dani's Stocking
-    UpgradeDescription: iQ
+  - UpgradeName: Big Wick Enengy
+    UpgradeDescription: Gun Firing Rate
     UpgradeType: 2
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
@@ -87,8 +87,8 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Dani's Hand
-    UpgradeDescription: fingers
+  - UpgradeName: Rampage Mode
+    UpgradeDescription: Gun Ammo
     UpgradeType: 3
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
@@ -99,19 +99,19 @@ MonoBehaviour:
     CardGlowSize: {x: 0, y: 0}
   NormalDrop:
     UpgradeRarity: 1
-    NormalChance: 85
-    RareChance: 14
-    LegendaryChance: 1
+    NormalChance: 80
+    RareChance: 15
+    LegendaryChance: 5
   EliteDrop:
     UpgradeRarity: 2
-    NormalChance: 10
+    NormalChance: 15
     RareChance: 75
-    LegendaryChance: 15
+    LegendaryChance: 10
   BossDrop:
     UpgradeRarity: 3
     NormalChance: 5
-    RareChance: 45
-    LegendaryChance: 60
+    RareChance: 15
+    LegendaryChance: 80
   CardNormalColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   CardRareColor: {r: 1, g: 0.86571324, b: 0, a: 1}
   CardRareGlowSize: {x: 100, y: 70}

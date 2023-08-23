@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3fd218b24d90641ba6a10a57618c05, type: 3}
   m_Name: UpgradesSO
   m_EditorClassIdentifier: 
-  GunDamage: 5
+  GunDamage: 3
   GunBulletPerShot: 1
   GunCooldown: 0.25
-  GunMagazine: 2
+  GunMagazine: 10
   SwordDamage: 10
   SwordSwingSpeed: 0.1
   ArmorDefense: 0
   ArmorHealthRegen: 0
   ArmorDamageReflect: 0
-  ShoeSpeed: 25
+  ShoeSpeed: 5
   ShoeJump: 1
