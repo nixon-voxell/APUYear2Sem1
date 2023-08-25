@@ -129,14 +129,16 @@ namespace GameWorld
         {
             PopupTextManager popupManager = GameManager.Instance.PopupTextManager;
 
-            if (m_CurrentAtkState == AttackState.SWORDATK)
+            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+
+
+            if (m_CurrentAtkState == AttackState.SWORDATK && damageable != null)
             {
                 // Check if already hit them
                 if (m_SwordAtkVictim.Contains(collision.collider.transform))
                     return;
 
                 m_SwordAtkVictim.Add(collision.collider.transform);
-                IDamageable damageable = collision.collider.GetComponent<IDamageable>();
 
                 int damage = this.m_Player.PlayerAttribute.SwordDamage;
 
