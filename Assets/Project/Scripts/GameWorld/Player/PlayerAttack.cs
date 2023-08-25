@@ -224,6 +224,8 @@ namespace GameWorld
 
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);
 
+                m_GunFireFx.Play();
+
                 // HANDLE GUN AMMO
                 m_CurrentGunAmmo--;
                 UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
@@ -231,10 +233,15 @@ namespace GameWorld
                 if (m_CurrentGunAmmo <= 0)
                 {
                     StartReloadGun();
+                    break;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(0.05f);
+                    continue;
                 }
 
-                m_GunFireFx.Play();
-                yield return new WaitForSeconds(0.05f);
+
             }
         }
 
