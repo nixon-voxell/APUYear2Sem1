@@ -79,8 +79,6 @@ namespace GameWorld
             m_CurrentSpeed = (int)Math.Round(m_StartingSpeed * statsMultiplier);
             m_CurrentDamage = (int)Math.Round(m_StartingDamage * statsMultiplier);
             m_CurrentAtkCooldown = (int)Math.Round(m_StartingAtkCooldown * statsMultiplier);
-
-            Debug.Log(m_CurrentHealth);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace GameWorld
     using GameWorld.UX;
     using Storage;
     using System;
+    using System.Collections;
 
     public class PlayerAttribute : MonoBehaviour
     {
@@ -15,6 +16,7 @@ namespace GameWorld
         private int m_PlayerCurrentHP;
 
         #region Equipment Initial Stats
+        [Header("Initial Stats")]
         [SerializeField] private int m_InitialGunDamage = 1;
         [SerializeField] private int m_InitialGunBulletPerShot = 1;
         [SerializeField] private float m_InitialGunCooldown = 1; // Fire rate
@@ -28,9 +30,10 @@ namespace GameWorld
         [SerializeField] private int m_InitialArmorDamageReflect = 0;
         [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
+        [SerializeField] private float m_InitialSwordCooldown;
 
         [Header("Other Stats")]
-        [SerializeField] private float m_InitialSwordCooldown;
+        [SerializeField] private float m_HealthRegenerationTick; // Time
         #endregion
 
         #region Equipment Stats Count
@@ -65,19 +68,7 @@ namespace GameWorld
             m_Player.PlayerAttribute = this;
 
             InitializeStartingAttribute();
-
-            
-        }
-
-        // Used to initialize certain stats that does not directly use the initial attribute variables
-        private void InitializeStartingAttribute()
-        {
-            m_PlayerCurrentHP = m_InitialArmorMaxHealth;
-            m_GunCooldown = m_InitialGunCooldown;
-            m_GunReloadTime = m_InitialGunReloadTime;
-            m_SwordSwingSpeed = m_InitialSwordSwingSpeed;
-            m_ArmorDefense = m_InitialArmorDefense;
-
+            StartCoroutine(CR_RegenerateHealth());
         }
 
         public void DamagePlayer(int damage)
@@ -129,7 +120,34 @@ namespace GameWorld
             }
 
         }
-    
+
+        // Used to initialize certain stats that does not directly use the initial attribute variables
+        private void InitializeStartingAttribute()
+        {
+            m_PlayerCurrentHP = m_InitialArmorMaxHealth;
+            m_GunCooldown = m_InitialGunCooldown;
+            m_GunReloadTime = m_InitialGunReloadTime;
+            m_SwordSwingSpeed = m_InitialSwordSwingSpeed;
+            m_ArmorDefense = m_InitialArmorDefense;
+        }
+
+        private IEnumerator CR_RegenerateHealth()
+        {
+            while (m_PlayerCurrentHP > 0)
+            {
+                yield return new WaitForSeconds(m_HealthRegenerationTick);
+
+                if (m_PlayerCurrentHP >= ArmorMaxHealth)
+                    continue;
+
+                m_PlayerCurrentHP += ArmorHealthRegen;
+
+                if (m_PlayerCurrentHP > ArmorMaxHealth)
+                    m_PlayerCurrentHP = ArmorMaxHealth;
+
+                UXManager.Instance.InGameHUD.UpdateCurrentHP(m_PlayerCurrentHP);
+            }
+        }
 
         // For potential use in end game screen or HUD to display upgrade counter
 
