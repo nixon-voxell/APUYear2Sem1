@@ -48,8 +48,7 @@ namespace GameWorld
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            // TODO: remove mouse view movement
-            // PlayerInput.enabled = false;
+            UserInput.Instance.Active = false;
 
             StartCoroutine(AdjustTimeScale(0f));
             Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
@@ -79,12 +78,11 @@ namespace GameWorld
         /// <param name="upgrade"></param>
         public void SelectUpgradeDrop(Upgrade upgrade)
         {
-            Debug.Log(upgrade.UpgradeName);
             PlayerAttribute.AddAttribute(upgrade);
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            // PlayerInput.enabled = true;
+            UserInput.Instance.Active = true;
             Time.timeScale = 1f;
         }
     } 

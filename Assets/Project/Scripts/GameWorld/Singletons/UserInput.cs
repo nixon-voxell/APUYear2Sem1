@@ -17,6 +17,8 @@ namespace GameWorld
         [SerializeField, InspectOnly] private bool m_MouseButton0;
         [SerializeField, InspectOnly] private bool m_Reload;
 
+        public bool Active = true;
+
         // movement
         public Vector2 Movement => this.m_Movement;
         public bool Jump => this.m_Jump;
@@ -31,6 +33,13 @@ namespace GameWorld
 
         private void Update()
         {
+            if (!this.Active)
+            {
+                // Fix for camera still rotating after disabling the user input update
+                this.m_MouseMovement = Vector2.zero;
+                return;
+            }
+
             // movement update
             this.m_Movement.x = Input.GetAxisRaw("Horizontal");
             this.m_Movement.y = Input.GetAxisRaw("Vertical");

@@ -81,7 +81,6 @@ namespace GameWorld.UX
 
         public void SelectCard(int selectedCard)
         {
-            UnityEngine.Debug.Log(selectedCard);
             this.m_PlayerSelectAction.Invoke(this.m_UpgradeList[selectedCard]);
 
             for (int i = 0; i < m_CardGlowList.Length; i++)
