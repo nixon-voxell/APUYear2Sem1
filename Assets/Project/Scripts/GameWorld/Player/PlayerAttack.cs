@@ -92,6 +92,7 @@ namespace GameWorld
                 return;
 
             m_CurrentAtkState = AttackState.GUN_RELOADING;
+            m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.GunReloadTime; // Ensure that reload animation is at 1.0f
             m_PlayerAnimator.Play("GunReload");
         }
 
@@ -167,15 +168,18 @@ namespace GameWorld
         public void EndAnimation()
         {
             m_CurrentAtkState = AttackState.IDLE;
+            m_PlayerAnimator.speed = 1.0f;
             m_PlayerAnimator.Play("PlayerIdle");
         }
 
         public void ReloadedGun()
         {
+            // Reload gun done
             m_CurrentAtkState = AttackState.IDLE;
 
             m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
             UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+            m_PlayerAnimator.speed = 1.0f;
             m_PlayerAnimator.Play("PlayerIdle");
         }
 
@@ -252,14 +256,14 @@ namespace GameWorld
             if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword) return;
 
             m_CurrentAtkState = AttackState.SWORDATK;
-            m_PlayerAnimator.speed = m_Player.PlayerAttribute.SwordSwingSpeed;
+            m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.SwordSwingSpeed; // Sword swing needs to be in 1s
             m_PlayerAnimator.Play("SwordSwing");
             m_CanSword = false;
         }
 
         private IEnumerator SwordAtkRefresh()
         {
-            yield return new WaitForSeconds(m_Player.PlayerAttribute.InitialSwordCooldown / m_Player.PlayerAttribute.SwordSwingSpeed);
+            yield return new WaitForSeconds(m_Player.PlayerAttribute.SwordSwingSpeed); // Sword fire cooldown = sword swing speed
             m_PlayerAnimator.speed = 1.0f;
             m_CanSword = true;
         }

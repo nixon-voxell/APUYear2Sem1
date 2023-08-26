@@ -22,77 +22,73 @@ MonoBehaviour:
   - EquipmentType: 3
     EquipmentIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
   UpgradeList:
-  - UpgradeName: Gun Ray Equalizer
-    UpgradeDescription: gun damage
-    UpgradeType: 0
+  - UpgradeName: Gun CD
+    UpgradeDescription: gun fire rate
+    UpgradeType: 2
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: 70c0f63fc055d9341884b6fbee7cd737, type: 3}
-    UpgradeValue: 5
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Armor Shield
-    UpgradeDescription: armor defense
-    UpgradeType: 6
+  - UpgradeName: Gun reload
+    UpgradeDescription: gun reload speed
+    UpgradeType: 3
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
-    UpgradeValue: 2
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Shoe Rocket
-    UpgradeDescription: movement speed
+  - UpgradeName: armor damage reflect
+    UpgradeDescription: dmg reflect
     UpgradeType: 9
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0.1
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Banana Pocket
-    UpgradeDescription: health regen
+  - UpgradeName: armor def
+    UpgradeDescription: armor def
     UpgradeType: 7
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 2
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Umbrella Cord
-    UpgradeDescription: umbrella speed
-    UpgradeType: 1
+  - UpgradeName: sword swing speed
+    UpgradeDescription: swing speed
+    UpgradeType: 6
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 4
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Dani's Stocking
-    UpgradeDescription: iQ
-    UpgradeType: 2
+  - UpgradeName: hp regen
+    UpgradeDescription: hp regen
+    UpgradeType: 8
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Dani's Hand
-    UpgradeDescription: fingers
-    UpgradeType: 3
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
+    UpgradeValueType: 1
+    UpgradeValue: 5
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}

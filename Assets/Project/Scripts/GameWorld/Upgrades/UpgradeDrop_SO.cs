@@ -85,7 +85,17 @@ namespace GameWorld
 
                 }
 
-                upgradeArr[i].UpgradeDescription = $"+ {upgradeArr[i].UpgradeValue} {upgradeArr[i].UpgradeDescription}";
+                // Get type of upgrade value type
+                
+
+                if (upgradeArr[i].UpgradeValueType == UpgradeValueType.PERCENTAGE)
+                {
+                    // Make the percentage (0.25f) into 25
+                    upgradeArr[i].UpgradeDescription = $"+ {upgradeArr[i].UpgradeValue * 100}% {upgradeArr[i].UpgradeDescription}";
+                }
+                else
+                    upgradeArr[i].UpgradeDescription = $"+ {upgradeArr[i].UpgradeValue} {upgradeArr[i].UpgradeDescription}";
+
 
             }
 

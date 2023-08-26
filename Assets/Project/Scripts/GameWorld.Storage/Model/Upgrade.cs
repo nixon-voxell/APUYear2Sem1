@@ -12,6 +12,7 @@ namespace GameWorld
         public UpgradeType UpgradeType;
         public EquipmentType EquipmentType;
         public Sprite UpgradeIcon;
+        public UpgradeValueType UpgradeValueType;
         [Tooltip("Get the upgrade value from UpgradeSO")]
         public float UpgradeValue; 
 
@@ -30,6 +31,7 @@ namespace GameWorld
             cloneUpg.UpgradeType = upgrade.UpgradeType;
             cloneUpg.EquipmentType = upgrade.EquipmentType;
             cloneUpg.UpgradeIcon = upgrade.UpgradeIcon;
+            cloneUpg.UpgradeValueType = upgrade.UpgradeValueType;
             cloneUpg.UpgradeValue = upgrade.UpgradeValue;
             cloneUpg.UpgradeRarity = upgrade.UpgradeRarity;
             cloneUpg.EquipmentTypeIcon = upgrade.EquipmentTypeIcon;
@@ -41,9 +43,14 @@ namespace GameWorld
 
     public enum UpgradeType
     {
-        GUN_DAMAGE, GUN_BULLET_PER_SHOT, GUN_COOLDOWN, GUN_MAGAZINE, SWORD_DAMAGE,
+        GUN_DAMAGE, GUN_BULLET_PER_SHOT, GUN_COOLDOWN, GUN_RELOAD_TIME, GUN_MAGAZINE, SWORD_DAMAGE,
         SWORD_SWING_SPEED, ARMOR_DEFENSE, ARMOR_HEALTH_REGEN, ARMOR_DAMAGE_REFLECT,
         SHOE_SPEED, SHOE_JUMP
+    }
+
+    public enum UpgradeValueType
+    {
+        PERCENTAGE, NORMAL
     }
 
     public enum UpgradeRarity
