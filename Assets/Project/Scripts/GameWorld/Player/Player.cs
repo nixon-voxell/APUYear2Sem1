@@ -22,16 +22,19 @@ namespace GameWorld
         }
 
 
-        // TODO: To be called by level manager
         public void GameSetup()
         {
+            // TODO: To be called by level manager
             InGameHUD inGameHUD = UXManager.Instance.InGameHUD;
-            inGameHUD.InitialSetup(PlayerAttribute.GunMagazine, PlayerAttribute.PlayerMaxHP);
-
-            PlayerAttack.Initialize();
-
+            inGameHUD.SetEnable(true);
+            UXManager.Instance.InGameHUD.UpdateCurrentHP(PlayerAttribute.PlayerCurrentHP);
+            UXManager.Instance.InGameHUD.UpdateGunAmmo(PlayerAttribute.GunMagazine, PlayerAttribute.GunMagazine);
+            UXManager.Instance.InGameHUD.UpdateMaxHP(PlayerAttribute.ArmorMaxHealth);
+            
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            PlayerAttack.Initialize();
         }
 
         public void PlayerDie()

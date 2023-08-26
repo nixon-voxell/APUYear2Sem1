@@ -21,6 +21,7 @@ MonoBehaviour:
   SwordSwingSpeed: 0.25
   ArmorDefense: 0.25
   ArmorHealthRegen: 10
+  ArmorMaxHealth: 10
   ArmorDamageReflect: 0.25
   ShoeSpeed: 25
   ShoeJump: 0

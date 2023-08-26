@@ -21,19 +21,6 @@ namespace GameWorld.UX
             UXManager.Instance.InGameHUD = this;
         }
 
-        public void InitialSetup(int gunMagazineCapacity, int playerMaxHP)
-        {
-            m_WaveLabel.text = "WAVE 1";
-            m_AmmoLabel.text = $"{gunMagazineCapacity}/{gunMagazineCapacity}";
-            m_HPBar.highValue = playerMaxHP;
-            m_HPBar.lowValue = 0;
-            m_HPBar.value = playerMaxHP;
-            m_HPBar.title = playerMaxHP.ToString();
-
-            m_Root.visible = true;
-
-        }
-
         public void UpdateGunAmmo(int currentGunAmmo,int gunMagazineCapacity)
         {
             m_AmmoLabel.text = $"{currentGunAmmo}/{gunMagazineCapacity}";
@@ -42,16 +29,23 @@ namespace GameWorld.UX
         public void UpdateCurrentHP(int currentHP)
         {
             m_HPBar.value = currentHP;
+            UpdateHPTitle();
         }
 
         public void UpdateMaxHP(int maxHP)
         {
             m_HPBar.highValue = maxHP;
+            UpdateHPTitle();
         }
 
         public void UpdateWave(int waveRound)
         {
             m_WaveLabel.text = "WAVE " + waveRound;
+        }
+
+        private void UpdateHPTitle()
+        {
+            m_HPBar.title = $"{m_HPBar.value} / {m_HPBar.highValue}";
         }
     }
 

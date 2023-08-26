@@ -14,5 +14,10 @@ namespace GameWorld.UX
             this.m_Document = this.GetComponent<UIDocument>();
             this.m_Root = this.m_Document.rootVisualElement;
         }
+
+        public void SetEnable(bool enable)
+        {
+            this.m_Root.visible = enable;
+        }
     }
 }

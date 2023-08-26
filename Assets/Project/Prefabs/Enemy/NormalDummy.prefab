@@ -119,11 +119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyType: 0
   m_UpgradeOrb: {fileID: 0}
-  m_HealthMax: 0
-  m_StartingSpeed: 0
-  m_StartingDamage: 0
-  m_StartingAtkCooldown: 0
-  m_SpecialMultiplier: 0
+  m_HealthMax: 2
+  m_StartingSpeed: 5
+  m_StartingDamage: 5
+  m_StartingAtkCooldown: 5
   m_EnemyUnableToDie: 0
 --- !u!65 &5524097130087665224
 BoxCollider:

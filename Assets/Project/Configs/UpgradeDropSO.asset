@@ -47,8 +47,8 @@ MonoBehaviour:
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
   - UpgradeName: armor damage reflect
-    UpgradeDescription: dmg reflect
-    UpgradeType: 9
+    UpgradeDescription: "dmg reflect \nhello "
+    UpgradeType: 10
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
     UpgradeValueType: 0
@@ -82,9 +82,31 @@ MonoBehaviour:
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: max hp
+    UpgradeDescription: max health
+    UpgradeType: 9
+    EquipmentType: 2
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 10
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: hp regen
     UpgradeDescription: hp regen
     UpgradeType: 8
+    EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 5
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: gun damage
+    UpgradeDescription: gun damage
+    UpgradeType: 0
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
     UpgradeValueType: 1

@@ -34,6 +34,9 @@ namespace GameWorld.Storage
         [Tooltip("Amount of health regenerated per second")]
         public int ArmorHealthRegen;
 
+        [Tooltip("Amount of maximum health added")]
+        public int ArmorMaxHealth;
+
         [Tooltip("Percentage of enemy damage reflected")]
         [Range(0, 1.0f)] public float ArmorDamageReflect ; // Inflicts percentage of damage after accounting for armor damage reduction calculation
 

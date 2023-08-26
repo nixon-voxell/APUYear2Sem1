@@ -5107,7 +5107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradesConfig: {fileID: 11400000, guid: af05aa900468fd4458d353b846668a81, type: 2}
-  m_InitialGunDamage: 1
+  m_InitialGunDamage: 3
   m_InitialGunBulletPerShot: 1
   m_InitialGunCooldown: 0.5
   m_InitialGunReloadTime: 2.5
@@ -5115,7 +5115,8 @@ MonoBehaviour:
   m_InitialSwordDamage: 1
   m_InitialSwordSwingSpeed: 0.75
   m_InitialArmorDefense: 0
-  m_InitialArmorHealthRegen: 0
+  m_InitialArmorHealthRegen: 1
+  m_InitialArmorMaxHealth: 100
   m_InitialArmorDamageReflect: 0
   m_InitialShoeSpeed: 5
   m_InitialShoeJump: 1
