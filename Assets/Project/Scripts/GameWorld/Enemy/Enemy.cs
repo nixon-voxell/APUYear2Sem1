@@ -61,6 +61,15 @@ namespace GameWorld
             }
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.CompareTag("Player"))
+            {
+                Debug.Log(collision.collider.name);
+                collision.collider.GetComponent<Player>().PlayerAttribute.DamagePlayer(m_CurrentDamage);
+            }
+        }
+
         private void OnDie()
         {
             if (this.m_UpgradeOrb != null)

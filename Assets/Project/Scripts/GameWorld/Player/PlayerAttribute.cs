@@ -74,7 +74,7 @@ namespace GameWorld
         public void DamagePlayer(int damage)
         {
             m_PlayerCurrentHP -= damage;
-
+            m_Player.PlayerEffectsControl.OnDamageEffect();
 
             if (PlayerCurrentHP < 0)
             {

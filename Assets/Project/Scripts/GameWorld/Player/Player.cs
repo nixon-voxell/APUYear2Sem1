@@ -13,6 +13,7 @@ namespace GameWorld
         [HideInInspector] public PlayerMovement PlayerMovement;
         [HideInInspector] public PlayerAttack PlayerAttack;
         [HideInInspector] public PlayerAttribute PlayerAttribute;
+        [HideInInspector] public PlayerEffectsControl PlayerEffectsControl;
 
         private IEnumerator Start()
         {
