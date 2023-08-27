@@ -106,7 +106,7 @@ namespace GameWorld
             // we only need to test if one collider exists
             this.m_GroundColliders = new Collider[1];
 
-            this.m_VCamera = this.m_Player.Camera.GetComponent<CinemachineVirtualCamera>();
+            this.m_VCamera = this.m_Player.CameraVCam;
             this.m_OriginFOV = this.m_VCamera.m_Lens.FieldOfView;
             this.m_ZoomedFOV = this.m_OriginFOV + this.m_FOVChange;
         }

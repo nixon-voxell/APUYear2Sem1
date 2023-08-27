@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &443038395863153104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2935320005352037463}
+  m_Layer: 8
+  m_Name: CamHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2935320005352037463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443038395863153104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5160333806696267058}
+  m_Father: {fileID: 1978192752975208244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1745949104648371244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4996,7 +5028,7 @@ Transform:
   - {fileID: 9014131478940838136}
   - {fileID: 6289946332799041747}
   - {fileID: 1648719486936963905}
-  - {fileID: 5160333806696267058}
+  - {fileID: 2935320005352037463}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5119581865077658457
@@ -5037,7 +5069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d124aa2529af054faa807272aa09378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 5160333806696267058}
+  CameraTransform: {fileID: 2935320005352037463}
+  CameraVCam: {fileID: 5267924241147371842}
   m_UpgradeDropSO: {fileID: 11400000, guid: e4e895d285e27f444bee8f9d3e69393a, type: 2}
   PlayerMovement: {fileID: 0}
   PlayerAttack: {fileID: 0}
@@ -5115,9 +5148,9 @@ MonoBehaviour:
   UpgradesConfig: {fileID: 11400000, guid: af05aa900468fd4458d353b846668a81, type: 2}
   m_InitialGunDamage: 3
   m_InitialGunBulletPerShot: 1
-  m_InitialGunCooldown: 0.1
+  m_InitialGunCooldown: 1
   m_InitialGunReloadTime: 2.5
-  m_InitialGunMagazine: 30
+  m_InitialGunMagazine: 5
   m_InitialSwordDamage: 1
   m_InitialSwordSwingSpeed: 0.75
   m_InitialArmorDefense: 0
@@ -5161,10 +5194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fcd9e14386b974ea51bd40203e4a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CameraTrans: {fileID: 5160333806696267058}
+  m_CameraTrans: {fileID: 2935320005352037463}
   m_PlayerTrans: {fileID: 1978192752975208244}
   m_Sensitivity: 2
-  m_RecoilX: -1.5
+  m_RecoilX: -2
   m_RecoilY: 1
   m_RecoilZ: 0.15
   m_Snappiness: 6
@@ -5262,13 +5295,13 @@ Transform:
   m_GameObject: {fileID: 3000272377933679838}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.533, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7069682378990222234}
   - {fileID: 2596674355239155982}
-  m_Father: {fileID: 1978192752975208244}
+  m_Father: {fileID: 2935320005352037463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5267924241147371842
 MonoBehaviour:

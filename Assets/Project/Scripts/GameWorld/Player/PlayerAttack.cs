@@ -227,14 +227,14 @@ namespace GameWorld
 
                 m_Player.FirstPersonCamera.OnRecoilFire();
 
-                if (Physics.Raycast(m_Player.Camera.transform.position, m_Player.Camera.transform.forward, out hit, Mathf.Infinity, m_GunHitLayer))
+                if (Physics.Raycast(m_Player.CameraTransform.transform.position, m_Player.CameraTransform.transform.forward, out hit, Mathf.Infinity, m_GunHitLayer))
                 {
                     bullet.transform.LookAt(hit.point);
 
                 }
                 else
                 {
-                    bullet.transform.rotation = m_Player.Camera.transform.rotation;
+                    bullet.transform.rotation = m_Player.CameraTransform.transform.rotation;
                 }
 
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);

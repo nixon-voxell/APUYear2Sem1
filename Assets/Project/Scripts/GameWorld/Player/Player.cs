@@ -3,11 +3,14 @@ using UnityEngine;
 
 namespace GameWorld
 {
+    using Cinemachine;
     using UX;
 
     public class Player : MonoBehaviour
     {
-        public Transform Camera;
+        public Transform CameraTransform;
+        public CinemachineVirtualCamera CameraVCam;
+
         [SerializeField] private UpgradeDrop_SO m_UpgradeDropSO;
 
         [HideInInspector] public PlayerMovement PlayerMovement;

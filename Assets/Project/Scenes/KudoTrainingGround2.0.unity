@@ -640,31 +640,6 @@ PrefabInstance:
       propertyPath: m_FxParent
       value: 
       objectReference: {fileID: 520097935}
-    - target: {fileID: 7595383517945192157, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_InitialGunCooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7595383517945192157, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_InitialGunMagazine
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7595383517945192157, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_InitialGunBulletPerShot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8501146340971663832, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_RecoilX
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8501146340971663832, guid: 0d496707909ef424b903f51045f6d299,
-        type: 3}
-      propertyPath: m_ReturnSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
