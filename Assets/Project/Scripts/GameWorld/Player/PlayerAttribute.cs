@@ -30,7 +30,7 @@ namespace GameWorld
         [SerializeField] private int m_InitialArmorDamageReflect = 0;
         [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
-        [SerializeField] private float m_InitialSwordCooldown;
+        //[SerializeField] private float m_InitialSwordCooldown;  // Currently sword cooldown follows sword speed
 
         [Header("Other Stats")]
         [SerializeField] private float m_HealthRegenerationTick; // Time
@@ -185,7 +185,7 @@ namespace GameWorld
 
         public int PlayerCurrentHP => m_PlayerCurrentHP;
 
-        public float InitialSwordCooldown => m_InitialSwordCooldown;
+        //public float InitialSwordCooldown => m_InitialSwordCooldown; // Currently sword cooldown follows sword speed
         #endregion
     }
 }
