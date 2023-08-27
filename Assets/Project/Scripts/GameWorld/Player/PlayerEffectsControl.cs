@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 namespace GameWorld
 {
+    using GameWorld.Util;
+
     public class PlayerEffectsControl : MonoBehaviour
     {
         [SerializeField] private Image m_DamageUI;
         [SerializeField] private float m_DamageFadeTime;
-
+        [SerializeField] private ShakePreset m_ShakePreset;
 
         private Player m_Player;
         private bool m_DamageFading;
@@ -26,6 +28,7 @@ namespace GameWorld
         {
             m_DamageFading = true;
             m_DamageFadeStartTime = Time.time;
+            Shaker.ShakeAll(m_ShakePreset);
         }
 
         private void Update()
@@ -33,6 +36,10 @@ namespace GameWorld
             if (m_DamageFading)
             {
                 DamageUIFadeTime();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Z))
+            {
             }
         }
 
@@ -48,5 +55,7 @@ namespace GameWorld
             if (elapsedTime > m_DamageFadeTime)
                 m_DamageFading = false;
         }
+
+
     }
 }
