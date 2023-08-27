@@ -10,18 +10,29 @@ namespace GameWorld
 
     public class PlayerEffectsControl : MonoBehaviour
     {
+        [Header("On Damage Effect")]
         [SerializeField] private Image m_DamageUI;
         [SerializeField] private float m_DamageFadeTime;
         [SerializeField] private ShakePreset m_DamageShakePreset;
 
         private Player m_Player;
+
+        // Damage
         private bool m_DamageFading;
         private float m_DamageFadeStartTime;
+
 
         private void Awake()
         {
             m_Player = GetComponent<Player>();
             m_Player.PlayerEffectsControl = this;
+        }
+        private void Update()
+        {
+            if (m_DamageFading)
+            {
+                DamageUIFadeTime();
+            }
         }
 
         public void OnDamageEffect()
@@ -29,15 +40,6 @@ namespace GameWorld
             m_DamageFading = true;
             m_DamageFadeStartTime = Time.time;
             Shaker.ShakeAll(m_DamageShakePreset);
-        }
-
-        private void Update()
-        {
-            if (m_DamageFading)
-            {
-                DamageUIFadeTime();
-            }
-
         }
 
         private void DamageUIFadeTime()

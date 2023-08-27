@@ -14,6 +14,7 @@ namespace GameWorld
         [HideInInspector] public PlayerAttack PlayerAttack;
         [HideInInspector] public PlayerAttribute PlayerAttribute;
         [HideInInspector] public PlayerEffectsControl PlayerEffectsControl;
+        [HideInInspector] public FirstPersonCamera FirstPersonCamera;
 
         private IEnumerator Start()
         {

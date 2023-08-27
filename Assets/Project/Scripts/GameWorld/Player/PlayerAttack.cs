@@ -202,21 +202,30 @@ namespace GameWorld
 
         private IEnumerator ShootGun()
         {
-            if (!(Time.time >= m_NextGunCooldown))
+            // Prevent starting another coroutine of shoot
+            if (Time.time < m_NextGunCooldown || m_CurrentAtkState == AttackState.GUNSHOOT)
             {
                 yield break;
             }
 
             m_NextGunCooldown = Time.time + m_Player.PlayerAttribute.GunCooldown;
+            m_CurrentAtkState = AttackState.GUNSHOOT; 
 
             for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShot; i++)
             {
                 RaycastHit hit;
 
                 // HANDLE BULLET SHOOTING
+                //if (m_CurrentGunAmmo <= 0)
+                //{
+                //    StartReloadGun();
+                //    break;
+                //}
 
                 BulletMovement bullet = m_BulletPool.GetNextObject();
                 bullet.transform.position = m_BulletSpawnPoint.position;
+
+                m_Player.FirstPersonCamera.OnRecoilFire();
 
                 if (Physics.Raycast(m_Player.Camera.transform.position, m_Player.Camera.transform.forward, out hit, Mathf.Infinity, m_GunHitLayer))
                 {
@@ -238,17 +247,21 @@ namespace GameWorld
 
                 if (m_CurrentGunAmmo <= 0)
                 {
+                    m_CurrentAtkState = AttackState.IDLE;
                     StartReloadGun();
-                    break;
+                    yield break;
                 }
-                else
-                {
-                    yield return new WaitForSeconds(0.05f);
-                    continue;
-                }
+
+
+
+
+                yield return new WaitForSeconds(0.05f);
 
 
             }
+
+            m_CurrentAtkState = AttackState.IDLE;
+
         }
 
         private void SwingSword()

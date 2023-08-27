@@ -5043,6 +5043,7 @@ MonoBehaviour:
   PlayerAttack: {fileID: 0}
   PlayerAttribute: {fileID: 0}
   PlayerEffectsControl: {fileID: 0}
+  FirstPersonCamera: {fileID: 0}
 --- !u!114 &7514564015292486338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5114,9 +5115,9 @@ MonoBehaviour:
   UpgradesConfig: {fileID: 11400000, guid: af05aa900468fd4458d353b846668a81, type: 2}
   m_InitialGunDamage: 3
   m_InitialGunBulletPerShot: 1
-  m_InitialGunCooldown: 0.5
+  m_InitialGunCooldown: 0.1
   m_InitialGunReloadTime: 2.5
-  m_InitialGunMagazine: 5
+  m_InitialGunMagazine: 30
   m_InitialSwordDamage: 1
   m_InitialSwordSwingSpeed: 0.75
   m_InitialArmorDefense: 0
@@ -5163,6 +5164,11 @@ MonoBehaviour:
   m_CameraTrans: {fileID: 5160333806696267058}
   m_PlayerTrans: {fileID: 1978192752975208244}
   m_Sensitivity: 2
+  m_RecoilX: -1.5
+  m_RecoilY: 1
+  m_RecoilZ: 0.15
+  m_Snappiness: 6
+  m_ReturnSpeed: 2.5
 --- !u!114 &2422133363801424626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5179,7 +5185,6 @@ MonoBehaviour:
   m_DamageFadeTime: 0.75
   m_DamageShakePreset: {fileID: 11400000, guid: c7939b7c55399e4499510e4d63617bbe,
     type: 2}
-  m_newPreset: {fileID: 11400000, guid: 4c044393c4079424cb02f8eef828b8c5, type: 2}
 --- !u!136 &5029269750923310125
 CapsuleCollider:
   m_ObjectHideFlags: 0
