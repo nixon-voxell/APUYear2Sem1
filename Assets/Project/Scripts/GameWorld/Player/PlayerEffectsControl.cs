@@ -12,7 +12,7 @@ namespace GameWorld
     {
         [SerializeField] private Image m_DamageUI;
         [SerializeField] private float m_DamageFadeTime;
-        [SerializeField] private ShakePreset m_ShakePreset;
+        [SerializeField] private ShakePreset m_DamageShakePreset;
 
         private Player m_Player;
         private bool m_DamageFading;
@@ -28,7 +28,7 @@ namespace GameWorld
         {
             m_DamageFading = true;
             m_DamageFadeStartTime = Time.time;
-            Shaker.ShakeAll(m_ShakePreset);
+            Shaker.ShakeAll(m_DamageShakePreset);
         }
 
         private void Update()
@@ -38,9 +38,6 @@ namespace GameWorld
                 DamageUIFadeTime();
             }
 
-            if (Input.GetKeyUp(KeyCode.Z))
-            {
-            }
         }
 
         private void DamageUIFadeTime()
