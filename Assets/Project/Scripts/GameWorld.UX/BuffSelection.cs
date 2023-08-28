@@ -20,12 +20,12 @@ namespace GameWorld.UX
         public class UpgradeCard
         {
             public Label BuffName;
-
         }
 
         void Start()
         {
             this.InitializeDoc();
+            this.SetEnable(false);
             UXManager.Instance.BuffSelection = this;
 
             // get elements

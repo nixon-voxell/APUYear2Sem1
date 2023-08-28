@@ -8,17 +8,15 @@ namespace GameWorld.UX
         private Label m_AmmoLabel;
         private ProgressBar m_HPBar;
 
-        private void Awake()
+        private void Start()
         {
             this.InitializeDoc();
+            this.SetEnable(false);
+            UXManager.Instance.InGameHUD = this;
+
             this.m_WaveLabel = m_Root.Q<Label>("wave-lbl");
             this.m_AmmoLabel = m_Root.Q<Label>("ammo-lbl"); 
             this.m_HPBar = m_Root.Q<ProgressBar>("health-bar");
-        }
-
-        private void OnEnable()
-        {
-            UXManager.Instance.InGameHUD = this;
         }
 
         public void UpdateGunAmmo(int currentGunAmmo,int gunMagazineCapacity)
