@@ -238,6 +238,8 @@ namespace GameWorld
                 }
 
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);
+                GameManager.Instance.SoundManager.PlayOneShot("GunFire", bullet.transform);
+                
 
                 m_GunFireFx.Play();
 
@@ -272,6 +274,7 @@ namespace GameWorld
             m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.SwordSwingSpeed; // Sword swing needs to be in 1s
             m_PlayerAnimator.Play("SwordSwing");
             m_CanSword = false;
+            GameManager.Instance.SoundManager.PlayOneShot("Katana", m_Sword.transform);
         }
 
         private IEnumerator SwordAtkRefresh()
