@@ -16,6 +16,10 @@ namespace GameWorld.AI
 
         public void Despawn()
         {
+            if (this.Index == -1 && this.Manager != null)
+            {
+                return;
+            }
             this.Manager.DespawnBoid(this.Index);
             this.Manager = null;
             this.Index = -1;
