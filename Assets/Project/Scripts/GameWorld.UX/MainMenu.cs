@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace GameWorld.UX
@@ -8,7 +9,9 @@ namespace GameWorld.UX
         private Button m_PlayBtn;
         private Button m_OptionBtn;
         private Button m_QuitBtn;
-
+        public AudioSource m_AudioSource;
+        public AudioSource m_btnpress;
+        public string selection = "level_select";
         private void Start()
         {
             this.InitializeDoc();
@@ -21,11 +24,14 @@ namespace GameWorld.UX
             this.m_PlayBtn.clicked += () =>
             {
                 Debug.Log("Play");
+                UXManager.Instance.GetComponentInParent<AudioSource>().Play();
+                SceneManager.LoadScene(selection);
             };
 
             this.m_OptionBtn.clicked += () =>
             {
                 Debug.Log("Option");
+
             };
 
             this.m_QuitBtn.clicked += () =>

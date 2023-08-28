@@ -16,14 +16,14 @@ MonoBehaviour:
   - EquipmentType: 0
     EquipmentIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3, type: 3}
   - EquipmentType: 1
-    EquipmentIcon: {fileID: 21300000, guid: becfe03a7e464e84aade9737eeb3cf59, type: 3}
+    EquipmentIcon: {fileID: 21300000, guid: e056a399d8703b24396970726bf4c727, type: 3}
   - EquipmentType: 2
     EquipmentIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507, type: 3}
   - EquipmentType: 3
     EquipmentIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
   UpgradeList:
-  - UpgradeName: Gun Ray Equalizer
-    UpgradeDescription: gun damage
+  - UpgradeName: Cybersycho
+    UpgradeDescription: Gun damage
     UpgradeType: 0
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: 70c0f63fc055d9341884b6fbee7cd737, type: 3}
@@ -33,8 +33,8 @@ MonoBehaviour:
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Armor Shield
-    UpgradeDescription: armor defense
+  - UpgradeName: Susanoo
+    UpgradeDescription: Armor defense
     UpgradeType: 6
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
@@ -44,10 +44,10 @@ MonoBehaviour:
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Shoe Rocket
-    UpgradeDescription: movement speed
+  - UpgradeName: The Flash
+    UpgradeDescription: Movement speed
     UpgradeType: 9
-    EquipmentType: 0
+    EquipmentType: 3
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
     UpgradeValue: 0.1
     UpgradeRarity: 3
@@ -55,8 +55,8 @@ MonoBehaviour:
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Banana Pocket
-    UpgradeDescription: health regen
+  - UpgradeName: Nanotech
+    UpgradeDescription: Health regen
     UpgradeType: 7
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
@@ -66,8 +66,8 @@ MonoBehaviour:
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Umbrella Cord
-    UpgradeDescription: umbrella speed
+  - UpgradeName: Gatling
+    UpgradeDescription: Buller per shot
     UpgradeType: 1
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
@@ -91,6 +91,46 @@ MonoBehaviour:
     UpgradeDescription: Gun Ammo
     UpgradeType: 3
     EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValue: 1
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Yeaaarrr
+    UpgradeDescription: Sword Swing Speed
+    UpgradeType: 5
+    EquipmentType: 1
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValue: 1
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Atomic Slice
+    UpgradeDescription: Sword Damage
+    UpgradeType: 4
+    EquipmentType: 1
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValue: 1
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Full Counter
+    UpgradeDescription: Reflect Damage
+    UpgradeType: 8
+    EquipmentType: 2
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValue: 1
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Bunny Jump
+    UpgradeDescription: per Jump
+    UpgradeType: 10
+    EquipmentType: 3
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
     UpgradeValue: 1
     UpgradeRarity: 0

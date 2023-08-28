@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: SO_SoundRepo
   m_EditorClassIdentifier: 
   SoundList:
-  - SoundName: TestSfx
+  - SoundName: GunFire
     Clip: {fileID: 8300000, guid: d13263589f96a284eb26c9292eef2bfc, type: 3}
     AttachedParent: {fileID: 0}
     Volume: 1
     SpatialBlend: 0.5
     Pitch: 1
-  - SoundName: TestSfx3
-    Clip: {fileID: 8300000, guid: 416c5f2f10fd5834f90952346a2ac2e8, type: 3}
+  - SoundName: Katana
+    Clip: {fileID: 8300000, guid: 70587c9cc4ea84042a7ea90ca83357b1, type: 3}
     AttachedParent: {fileID: 0}
     Volume: 0.35
-    SpatialBlend: 1
+    SpatialBlend: 0.5
     Pitch: 1
   - SoundName: TestSfx2
     Clip: {fileID: 8300000, guid: 8fec062430c267d4ca0bc2bf5efa0625, type: 3}

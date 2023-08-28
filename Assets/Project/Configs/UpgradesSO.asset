@@ -17,9 +17,9 @@ MonoBehaviour:
   GunCooldown: 0.25
   GunMagazine: 10
   SwordDamage: 10
-  SwordSwingSpeed: 0.1
-  ArmorDefense: 0
-  ArmorHealthRegen: 0
-  ArmorDamageReflect: 0
+  SwordSwingSpeed: 0.2
+  ArmorDefense: 5
+  ArmorHealthRegen: 3
+  ArmorDamageReflect: 3
   ShoeSpeed: 5
   ShoeJump: 1
