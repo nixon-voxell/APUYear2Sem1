@@ -5199,7 +5199,7 @@ MonoBehaviour:
   m_RecoilX: -2
   m_RecoilY: 1
   m_RecoilZ: 0.15
-  m_Snappiness: 6
+  m_Snappiness: 1
   m_ReturnSpeed: 2.5
 --- !u!114 &2422133363801424626
 MonoBehaviour:
