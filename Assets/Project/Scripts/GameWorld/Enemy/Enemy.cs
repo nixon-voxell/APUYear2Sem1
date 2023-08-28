@@ -65,8 +65,7 @@ namespace GameWorld
         {
             if (collision.collider.CompareTag("Player"))
             {
-                Debug.Log(collision.collider.name);
-                collision.collider.GetComponent<Player>().PlayerAttribute.DamagePlayer(m_CurrentDamage);
+                collision.collider.GetComponent<Player>().PlayerAttribute.DamagePlayer(m_CurrentDamage, transform);
             }
         }
 

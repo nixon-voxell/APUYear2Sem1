@@ -635,11 +635,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4008704592425191099, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029269750923310125, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029269750923310125, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7514564015292486338, guid: 0d496707909ef424b903f51045f6d299,
         type: 3}
       propertyPath: m_FxParent
       value: 
       objectReference: {fileID: 520097935}
+    - target: {fileID: 7595383517945192157, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_InitialArmorDefense
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595383517945192157, guid: 0d496707909ef424b903f51045f6d299,
+        type: 3}
+      propertyPath: m_InitialArmorDamageReflect
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

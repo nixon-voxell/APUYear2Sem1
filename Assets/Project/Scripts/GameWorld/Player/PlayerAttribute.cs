@@ -3,6 +3,7 @@ using UnityEngine;
 // TODO: Hookup to specific script whenever attribute is updated
 namespace GameWorld
 {
+    using GameWorld.Util;
     using GameWorld.UX;
     using Storage;
     using System;
@@ -24,10 +25,10 @@ namespace GameWorld
         [SerializeField] private int m_InitialGunMagazine = 5;
         [SerializeField] private int m_InitialSwordDamage = 15;
         [SerializeField] private float m_InitialSwordSwingSpeed = 1; 
-        [SerializeField] private int m_InitialArmorDefense = 0;
+        [SerializeField] [Range(0,1.0f)] private float m_InitialArmorDefense = 0;
         [SerializeField] private int m_InitialArmorHealthRegen = 0;
         [SerializeField] private int m_InitialArmorMaxHealth = 0;
-        [SerializeField] private int m_InitialArmorDamageReflect = 0;
+        [SerializeField] [Range(0, 1.0f)] private float m_InitialArmorDamageReflect = 0;
         [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
         //[SerializeField] private float m_InitialSwordCooldown;  // Currently sword cooldown follows sword speed
@@ -57,7 +58,7 @@ namespace GameWorld
         private float m_GunCooldown;
         private float m_GunReloadTime;
         private float m_SwordSwingSpeed;
-        private float m_ArmorDefense;
+        private float m_ArmorDefense; // Serve as DamageAmt - 1.0 being 100% dmg taken and 0.0 being 0% dmg taken | Goes from 1.0f to 0f
         #endregion
 
 
@@ -71,9 +72,32 @@ namespace GameWorld
             StartCoroutine(CR_RegenerateHealth());
         }
 
-        public void DamagePlayer(int damage)
+        public void DamagePlayer(int damage, Transform attacker)
         {
-            m_PlayerCurrentHP -= damage;
+            // Reflect Damage
+            IDamageable iDamageable = attacker.GetComponent<IDamageable>();
+
+            if (iDamageable != null && ArmorDamageReflect > 0)
+            {
+                int dmgReflect = Mathf.RoundToInt(damage * ArmorDamageReflect);
+
+                if (dmgReflect > 0)
+                {
+                    Vector3 popupOffset = attacker.transform.position + new Vector3(0, 1.5f, 0);
+                    GameManager.Instance.PopupTextManager.Popup(
+                       dmgReflect.ToString(), new Color(0.41f, 0.11f, 0.5f, 1.0f),
+                       popupOffset,
+                       0.4f, 1.0f
+                   ); ;
+                    iDamageable.OnDamage(dmgReflect);
+                }
+            }
+
+            // Armor damage reduction
+
+            int dmgReduced = Mathf.RoundToInt(damage * ArmorDefense); 
+
+            m_PlayerCurrentHP -= dmgReduced;
             m_Player.PlayerEffectsControl.OnDamageEffect();
 
             if (PlayerCurrentHP < 0)
@@ -107,13 +131,13 @@ namespace GameWorld
                     break;
                 case UpgradeType.ARMOR_DEFENSE: 
                     m_ArmorDefenseCount += upgrade.UpgradeCount;
-                    m_ArmorDefense -= (1.0f - m_ArmorDefense) * upgrade.UpgradeValue; 
+                    m_ArmorDefense -= m_ArmorDefense * upgrade.UpgradeValue; 
                     break;
                 case UpgradeType.ARMOR_HEALTH_REGEN: m_ArmorHealthRegenCount += upgrade.UpgradeCount; break;
                 case UpgradeType.ARMOR_MAX_HEALTH: 
                     m_ArmorMaxHealthCount += upgrade.UpgradeCount; 
                     UXManager.Instance.InGameHUD.UpdateMaxHP(ArmorMaxHealth); 
-                    break;
+                    break; 
                 case UpgradeType.ARMOR_DAMAGE_REFLECT: m_ArmorDamageReflectCount += upgrade.UpgradeCount; break;
                 case UpgradeType.SHOE_SPEED: m_ShoeSpeedCount += upgrade.UpgradeCount; break;
                 case UpgradeType.SHOE_JUMP: m_ShoeJumpCount += upgrade.UpgradeCount; break;
@@ -128,7 +152,7 @@ namespace GameWorld
             m_GunCooldown = m_InitialGunCooldown;
             m_GunReloadTime = m_InitialGunReloadTime;
             m_SwordSwingSpeed = m_InitialSwordSwingSpeed;
-            m_ArmorDefense = m_InitialArmorDefense;
+            m_ArmorDefense = 1.0f - m_InitialArmorDefense;
         }
 
         private IEnumerator CR_RegenerateHealth()

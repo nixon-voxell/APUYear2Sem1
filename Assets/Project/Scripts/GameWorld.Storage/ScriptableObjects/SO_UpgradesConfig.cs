@@ -38,7 +38,7 @@ namespace GameWorld.Storage
         public int ArmorMaxHealth;
 
         [Tooltip("Percentage of enemy damage reflected")]
-        [Range(0, 1.0f)] public float ArmorDamageReflect ; // Inflicts percentage of damage after accounting for armor damage reduction calculation
+        [Range(0, 1.0f)] public float ArmorDamageReflect; // Initial is 0%
 
         [Tooltip("Amount of movement speed increase")]
         public float ShoeSpeed; // Player specific
