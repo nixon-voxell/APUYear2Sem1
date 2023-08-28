@@ -30,7 +30,7 @@ namespace GameWorld
             for (int i = 0; i < upgradeAmt; i++)
             {
                 // Clone upgrade so that it doesn't overwrite SO's value
-                Upgrade upgrade = Upgrade.CloneUpgrade(UpgradeList[Random.Range(0, UpgradeList.Length - 1)]);
+                Upgrade upgrade = Upgrade.CloneUpgrade(UpgradeList[Random.Range(0, UpgradeList.Length)]);
                 upgradeArr[i] = upgrade;
             }
 
@@ -65,6 +65,7 @@ namespace GameWorld
                 if (roll < dropChance.NormalChance)
                 {
                     upgradeArr[i].UpgradeRarity = UpgradeRarity.NORMAL;
+                    upgradeArr[i].UpgradeCount = 1;
                     upgradeArr[i].CardColorTheme = CardNormalColor;
                     upgradeArr[i].CardGlowSize = new Vector2(0, 0);
                 }
@@ -72,6 +73,7 @@ namespace GameWorld
                 {
                     upgradeArr[i].UpgradeRarity = UpgradeRarity.RARE;
                     upgradeArr[i].UpgradeValue *= 2;
+                    upgradeArr[i].UpgradeCount = 2;
                     upgradeArr[i].CardColorTheme = CardRareColor;
                     upgradeArr[i].CardGlowSize = CardRareGlowSize;
 
@@ -80,12 +82,23 @@ namespace GameWorld
                 {
                     upgradeArr[i].UpgradeRarity = UpgradeRarity.LEGENDARY;
                     upgradeArr[i].UpgradeValue *= 3;
+                    upgradeArr[i].UpgradeCount = 3;
                     upgradeArr[i].CardColorTheme = CardLegendaryColor;
                     upgradeArr[i].CardGlowSize = CardLegendaryGlowSize;
 
                 }
 
-                upgradeArr[i].UpgradeDescription = $"+ {upgradeArr[i].UpgradeValue} {upgradeArr[i].UpgradeDescription}";
+                // Get type of upgrade value type
+                
+
+                if (upgradeArr[i].UpgradeValueType == UpgradeValueType.PERCENTAGE)
+                {
+                    // Make the percentage (0.25f) into 25
+                    upgradeArr[i].UpgradeDescription = $"+ {upgradeArr[i].UpgradeValue * 100}% {upgradeArr[i].UpgradeDescription}";
+                }
+                else
+                    upgradeArr[i].UpgradeDescription = $"+ {upgradeArr[i].UpgradeValue} {upgradeArr[i].UpgradeDescription}";
+
 
             }
 

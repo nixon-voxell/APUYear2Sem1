@@ -92,6 +92,7 @@ namespace GameWorld
                 return;
 
             m_CurrentAtkState = AttackState.GUN_RELOADING;
+            m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.GunReloadTime; // Ensure that reload animation is at 1.0f
             m_PlayerAnimator.Play("GunReload");
         }
 
@@ -129,14 +130,16 @@ namespace GameWorld
         {
             PopupTextManager popupManager = GameManager.Instance.PopupTextManager;
 
-            if (m_CurrentAtkState == AttackState.SWORDATK)
+            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+
+
+            if (m_CurrentAtkState == AttackState.SWORDATK && damageable != null)
             {
                 // Check if already hit them
                 if (m_SwordAtkVictim.Contains(collision.collider.transform))
                     return;
 
                 m_SwordAtkVictim.Add(collision.collider.transform);
-                IDamageable damageable = collision.collider.GetComponent<IDamageable>();
 
                 int damage = this.m_Player.PlayerAttribute.SwordDamage;
 
@@ -165,15 +168,18 @@ namespace GameWorld
         public void EndAnimation()
         {
             m_CurrentAtkState = AttackState.IDLE;
+            m_PlayerAnimator.speed = 1.0f;
             m_PlayerAnimator.Play("PlayerIdle");
         }
 
         public void ReloadedGun()
         {
+            // Reload gun done
             m_CurrentAtkState = AttackState.IDLE;
 
             m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
             UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+            m_PlayerAnimator.speed = 1.0f;
             m_PlayerAnimator.Play("PlayerIdle");
         }
 
@@ -196,35 +202,46 @@ namespace GameWorld
 
         private IEnumerator ShootGun()
         {
-            if (!(Time.time >= m_NextGunCooldown))
+            // Prevent starting another coroutine of shoot
+            if (Time.time < m_NextGunCooldown || m_CurrentAtkState == AttackState.GUNSHOOT)
             {
                 yield break;
             }
 
             m_NextGunCooldown = Time.time + m_Player.PlayerAttribute.GunCooldown;
+            m_CurrentAtkState = AttackState.GUNSHOOT; 
 
             for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShot; i++)
             {
                 RaycastHit hit;
 
                 // HANDLE BULLET SHOOTING
+                //if (m_CurrentGunAmmo <= 0)
+                //{
+                //    StartReloadGun();
+                //    break;
+                //}
 
                 BulletMovement bullet = m_BulletPool.GetNextObject();
                 bullet.transform.position = m_BulletSpawnPoint.position;
 
-                if (Physics.Raycast(m_Player.Camera.transform.position, m_Player.Camera.transform.forward, out hit, Mathf.Infinity, m_GunHitLayer))
+                m_Player.FirstPersonCamera.OnRecoilFire();
+
+                if (Physics.Raycast(m_Player.CameraTransform.transform.position, m_Player.CameraTransform.transform.forward, out hit, Mathf.Infinity, m_GunHitLayer))
                 {
                     bullet.transform.LookAt(hit.point);
 
                 }
                 else
                 {
-                    bullet.transform.rotation = m_Player.Camera.transform.rotation;
+                    bullet.transform.rotation = m_Player.CameraTransform.transform.rotation;
                 }
 
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);
                 GameManager.Instance.SoundManager.PlayOneShot("GunFire", bullet.transform);
                 
+
+                m_GunFireFx.Play();
 
                 // HANDLE GUN AMMO
                 m_CurrentGunAmmo--;
@@ -232,12 +249,21 @@ namespace GameWorld
 
                 if (m_CurrentGunAmmo <= 0)
                 {
+                    m_CurrentAtkState = AttackState.IDLE;
                     StartReloadGun();
+                    yield break;
                 }
 
-                m_GunFireFx.Play();
+
+
+
                 yield return new WaitForSeconds(0.05f);
+
+
             }
+
+            m_CurrentAtkState = AttackState.IDLE;
+
         }
 
         private void SwingSword()
@@ -245,7 +271,7 @@ namespace GameWorld
             if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword) return;
 
             m_CurrentAtkState = AttackState.SWORDATK;
-            m_PlayerAnimator.speed = m_Player.PlayerAttribute.SwordSwingSpeed;
+            m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.SwordSwingSpeed; // Sword swing needs to be in 1s
             m_PlayerAnimator.Play("SwordSwing");
             m_CanSword = false;
             GameManager.Instance.SoundManager.PlayOneShot("Katana", m_Sword.transform);
@@ -253,7 +279,7 @@ namespace GameWorld
 
         private IEnumerator SwordAtkRefresh()
         {
-            yield return new WaitForSeconds(m_Player.PlayerAttribute.InitialSwordCooldown / m_Player.PlayerAttribute.SwordSwingSpeed);
+            yield return new WaitForSeconds(m_Player.PlayerAttribute.SwordSwingSpeed); // Sword fire cooldown = sword swing speed
             m_PlayerAnimator.speed = 1.0f;
             m_CanSword = true;
         }

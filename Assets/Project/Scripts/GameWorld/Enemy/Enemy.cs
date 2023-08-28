@@ -19,7 +19,6 @@ namespace GameWorld
         [SerializeField] private int m_StartingSpeed;
         [SerializeField] private int m_StartingDamage;
         [SerializeField] private int m_StartingAtkCooldown;
-        [SerializeField] private float m_SpecialMultiplier; // Used for boss or elite
 
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
@@ -37,8 +36,13 @@ namespace GameWorld
         /// </summary>
         private void Awake()
         {
-            InitializeEnemy(m_EnemyType, 1.0f);
             this.m_BoidEntity = this.GetComponent<BoidEntity>();
+        }
+
+        private void OnEnable()
+        {
+            // Set on enable for now. To allow enemy reset their current health due to boidmanager reusing killed enemies object
+            InitializeEnemy(1.0f);
         }
 
         public void OnDamage(int damage)
@@ -57,6 +61,14 @@ namespace GameWorld
             }
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.CompareTag("Player"))
+            {
+                collision.collider.GetComponent<Player>().PlayerAttribute.DamagePlayer(m_CurrentDamage, transform);
+            }
+        }
+
         private void OnDie()
         {
             if (this.m_UpgradeOrb != null)
@@ -67,25 +79,14 @@ namespace GameWorld
             LevelManager.Instance.DespawnEnemy(this.m_BoidEntity);
         }
 
-        private void InitializeEnemy(EnemyType enemyType , float statsMultiplier)
+        private void InitializeEnemy(float statsMultiplier)
         {
-            float totalMultiplier = 1.0f;
-
-            switch (enemyType)
-            {
-                case EnemyType.NORMAL:
-                    totalMultiplier = statsMultiplier;
-                    break;
-                default:
-                    totalMultiplier = statsMultiplier * m_SpecialMultiplier;
-                    break;
-            }
 
             // Set new stats based on time
-            m_CurrentHealth = (int)Math.Round(m_HealthMax * totalMultiplier);
-            m_CurrentSpeed = (int)Math.Round(m_StartingSpeed * totalMultiplier);
-            m_CurrentDamage = (int)Math.Round(m_StartingDamage * totalMultiplier);
-            m_CurrentAtkCooldown = (int)Math.Round(m_StartingAtkCooldown * totalMultiplier);
+            m_CurrentHealth = (int)Math.Round(m_HealthMax * statsMultiplier);
+            m_CurrentSpeed = (int)Math.Round(m_StartingSpeed * statsMultiplier);
+            m_CurrentDamage = (int)Math.Round(m_StartingDamage * statsMultiplier);
+            m_CurrentAtkCooldown = (int)Math.Round(m_StartingAtkCooldown * statsMultiplier);
         }
     }
 }

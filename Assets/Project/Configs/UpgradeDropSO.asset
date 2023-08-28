@@ -16,142 +16,120 @@ MonoBehaviour:
   - EquipmentType: 0
     EquipmentIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3, type: 3}
   - EquipmentType: 1
-    EquipmentIcon: {fileID: 21300000, guid: e056a399d8703b24396970726bf4c727, type: 3}
+    EquipmentIcon: {fileID: 21300000, guid: becfe03a7e464e84aade9737eeb3cf59, type: 3}
   - EquipmentType: 2
     EquipmentIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507, type: 3}
   - EquipmentType: 3
     EquipmentIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
   UpgradeList:
-  - UpgradeName: Cybersycho
-    UpgradeDescription: Gun damage
-    UpgradeType: 0
+  - UpgradeName: Gun CD
+    UpgradeDescription: gun fire rate
+    UpgradeType: 2
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: 70c0f63fc055d9341884b6fbee7cd737, type: 3}
-    UpgradeValue: 5
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Susanoo
-    UpgradeDescription: Armor defense
-    UpgradeType: 6
+  - UpgradeName: Gun reload
+    UpgradeDescription: gun reload speed
+    UpgradeType: 3
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
-    UpgradeValue: 2
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: The Flash
-    UpgradeDescription: Movement speed
-    UpgradeType: 9
-    EquipmentType: 3
+  - UpgradeName: armor damage reflect
+    UpgradeDescription: "dmg reflect \nhello "
+    UpgradeType: 10
+    EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 0.1
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Nanotech
-    UpgradeDescription: Health regen
+  - UpgradeName: armor def
+    UpgradeDescription: armor def
     UpgradeType: 7
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 2
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Gatling
-    UpgradeDescription: Buller per shot
-    UpgradeType: 1
+  - UpgradeName: sword swing speed
+    UpgradeDescription: swing speed
+    UpgradeType: 6
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 4
+    UpgradeValueType: 0
+    UpgradeValue: 0.25
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Big Wick Enengy
-    UpgradeDescription: Gun Firing Rate
-    UpgradeType: 2
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Rampage Mode
-    UpgradeDescription: Gun Ammo
-    UpgradeType: 3
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Yeaaarrr
-    UpgradeDescription: Sword Swing Speed
-    UpgradeType: 5
-    EquipmentType: 1
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Atomic Slice
-    UpgradeDescription: Sword Damage
-    UpgradeType: 4
-    EquipmentType: 1
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Full Counter
-    UpgradeDescription: Reflect Damage
-    UpgradeType: 8
+  - UpgradeName: max hp
+    UpgradeDescription: max health
+    UpgradeType: 9
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
+    UpgradeValueType: 1
+    UpgradeValue: 10
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Bunny Jump
-    UpgradeDescription: per Jump
-    UpgradeType: 10
-    EquipmentType: 3
+  - UpgradeName: hp regen
+    UpgradeDescription: hp regen
+    UpgradeType: 8
+    EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValue: 1
+    UpgradeValueType: 1
+    UpgradeValue: 5
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: gun damage
+    UpgradeDescription: gun damage
+    UpgradeType: 0
+    EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 5
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
     CardGlowSize: {x: 0, y: 0}
   NormalDrop:
     UpgradeRarity: 1
-    NormalChance: 80
-    RareChance: 15
-    LegendaryChance: 5
+    NormalChance: 85
+    RareChance: 14
+    LegendaryChance: 1
   EliteDrop:
     UpgradeRarity: 2
-    NormalChance: 15
+    NormalChance: 10
     RareChance: 75
-    LegendaryChance: 10
+    LegendaryChance: 15
   BossDrop:
     UpgradeRarity: 3
     NormalChance: 5
-    RareChance: 15
-    LegendaryChance: 80
+    RareChance: 45
+    LegendaryChance: 60
   CardNormalColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   CardRareColor: {r: 1, g: 0.86571324, b: 0, a: 1}
   CardRareGlowSize: {x: 100, y: 70}

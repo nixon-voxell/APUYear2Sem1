@@ -3,16 +3,21 @@ using UnityEngine;
 
 namespace GameWorld
 {
+    using Cinemachine;
     using UX;
 
     public class Player : MonoBehaviour
     {
-        public Transform Camera;
+        public Transform CameraTransform;
+        public CinemachineVirtualCamera CameraVCam;
+
         [SerializeField] private UpgradeDrop_SO m_UpgradeDropSO;
 
         [HideInInspector] public PlayerMovement PlayerMovement;
         [HideInInspector] public PlayerAttack PlayerAttack;
         [HideInInspector] public PlayerAttribute PlayerAttribute;
+        [HideInInspector] public PlayerEffectsControl PlayerEffectsControl;
+        [HideInInspector] public FirstPersonCamera FirstPersonCamera;
 
         private IEnumerator Start()
         {
@@ -22,16 +27,19 @@ namespace GameWorld
         }
 
 
-        // TODO: To be called by level manager
         public void GameSetup()
         {
+            // TODO: To be called by level manager
             InGameHUD inGameHUD = UXManager.Instance.InGameHUD;
-            inGameHUD.InitialSetup(PlayerAttribute.GunMagazine, PlayerAttribute.PlayerMaxHP);
-
-            PlayerAttack.Initialize();
-
+            inGameHUD.SetEnable(true);
+            UXManager.Instance.InGameHUD.UpdateCurrentHP(PlayerAttribute.PlayerCurrentHP);
+            UXManager.Instance.InGameHUD.UpdateGunAmmo(PlayerAttribute.GunMagazine, PlayerAttribute.GunMagazine);
+            UXManager.Instance.InGameHUD.UpdateMaxHP(PlayerAttribute.ArmorMaxHealth);
+            
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            PlayerAttack.Initialize();
         }
 
         public void PlayerDie()
@@ -48,8 +56,7 @@ namespace GameWorld
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            // TODO: remove mouse view movement
-            // PlayerInput.enabled = false;
+            UserInput.Instance.Active = false;
 
             StartCoroutine(AdjustTimeScale(0f));
             Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
@@ -79,12 +86,11 @@ namespace GameWorld
         /// <param name="upgrade"></param>
         public void SelectUpgradeDrop(Upgrade upgrade)
         {
-            Debug.Log(upgrade.UpgradeName);
             PlayerAttribute.AddAttribute(upgrade);
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            // PlayerInput.enabled = true;
+            UserInput.Instance.Active = true;
             Time.timeScale = 1f;
         }
     } 

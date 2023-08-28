@@ -10,6 +10,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8500af3d60397954590c88f6dab246ba,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8500af3d60397954590c88f6dab246ba,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8500af3d60397954590c88f6dab246ba,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8500af3d60397954590c88f6dab246ba,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -119,11 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyType: 0
   m_UpgradeOrb: {fileID: 0}
-  m_HealthMax: 0
-  m_StartingSpeed: 0
-  m_StartingDamage: 0
-  m_StartingAtkCooldown: 0
-  m_SpecialMultiplier: 0
+  m_HealthMax: 2
+  m_StartingSpeed: 5
+  m_StartingDamage: 5
+  m_StartingAtkCooldown: 5
   m_EnemyUnableToDie: 0
 --- !u!65 &5524097130087665224
 BoxCollider:
