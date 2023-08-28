@@ -71,9 +71,9 @@ MonoBehaviour:
   m_EnemyType: 1
   m_UpgradeOrb: {fileID: 4449843144163290345, guid: c78c25b00325b6246a8932c0560876dc,
     type: 3}
-  m_HealthMax: 2
-  m_StartingSpeed: 1
-  m_StartingDamage: 1
+  m_HealthMax: 15
+  m_StartingSpeed: 4
+  m_StartingDamage: 15
   m_StartingAtkCooldown: 1
   m_EnemyUnableToDie: 0
 --- !u!114 &2015285364327009791

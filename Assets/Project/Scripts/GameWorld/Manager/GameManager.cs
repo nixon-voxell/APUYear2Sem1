@@ -6,5 +6,6 @@ namespace GameWorld
     {
         [HideInInspector] public SoundManager SoundManager;
         [HideInInspector] public PopupTextManager PopupTextManager;
+        [HideInInspector] public EffectsManager EffectsManager;
     }
 }

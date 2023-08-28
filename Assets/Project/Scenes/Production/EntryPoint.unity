@@ -173,6 +173,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &262795821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262795822}
+  - component: {fileID: 262795823}
+  m_Layer: 0
+  m_Name: EffectsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262795822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262795821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1656371341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262795823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262795821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c7512210427d04180edca1d5a5ef37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnemyExplodeEffectsPool:
+    Count: 10
+    m_Prefab: {fileID: 2739050211760108992, guid: 6c504308232698e4cb2eeb07e990d4c5,
+      type: 3}
+    m_DefaultActive: 0
 --- !u!1 &847394710
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +504,7 @@ Transform:
   m_GameObject: {fileID: 1464476446}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.783, z: -10}
+  m_LocalPosition: {x: 0, y: 2.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -591,6 +640,7 @@ MonoBehaviour:
   m_Alpha2: 0
   m_MouseButton0: 0
   m_Reload: 0
+  Active: 1
 --- !u!1 &1656371340
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +673,7 @@ Transform:
   m_Children:
   - {fileID: 847394711}
   - {fileID: 1882104930}
+  - {fileID: 262795822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1656371342
@@ -639,6 +690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundManager: {fileID: 0}
   PopupTextManager: {fileID: 0}
+  EffectsManager: {fileID: 0}
 --- !u!1 &1855921202
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,9 +868,6 @@ MonoBehaviour:
     m_Prefab: {fileID: 8335151128076768244, guid: fca816ff4514e614c8a712dd81e36eaa,
       type: 3}
     m_DefaultActive: 0
-  Duration: 1
-  Elevation: 0.3
-  Color: {r: 16, g: 0, b: 0, a: 1}
 --- !u!1 &1948820769
 GameObject:
   m_ObjectHideFlags: 0

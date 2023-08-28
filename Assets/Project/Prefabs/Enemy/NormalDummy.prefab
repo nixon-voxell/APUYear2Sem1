@@ -134,8 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyType: 0
   m_UpgradeOrb: {fileID: 0}
-  m_HealthMax: 2
-  m_StartingSpeed: 5
+  m_HealthMax: 10
+  m_StartingSpeed: 3
   m_StartingDamage: 5
   m_StartingAtkCooldown: 5
   m_EnemyUnableToDie: 0

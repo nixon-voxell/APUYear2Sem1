@@ -18,7 +18,6 @@ namespace GameWorld
         [SerializeField] private int m_HealthMax;
         [SerializeField] private int m_StartingSpeed;
         [SerializeField] private int m_StartingDamage;
-        [SerializeField] private int m_StartingAtkCooldown;
 
         [Header("Debug")]
         [SerializeField] private bool m_EnemyUnableToDie;
@@ -29,7 +28,6 @@ namespace GameWorld
         private int m_CurrentHealth;
         private int m_CurrentSpeed;
         private int m_CurrentDamage;
-        private int m_CurrentAtkCooldown;
 
         /// <summary>
         /// TODO: SPAWN VIA SPAWNMANAGER
@@ -75,7 +73,7 @@ namespace GameWorld
             {
                 Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
             }
-
+            GameManager.Instance.EffectsManager.TriggerEnemyExplodeEffect(transform.position, new Vector3(0,1,0));
             LevelManager.Instance.DespawnEnemy(this.m_BoidEntity);
         }
 
@@ -86,7 +84,6 @@ namespace GameWorld
             m_CurrentHealth = (int)Math.Round(m_HealthMax * statsMultiplier);
             m_CurrentSpeed = (int)Math.Round(m_StartingSpeed * statsMultiplier);
             m_CurrentDamage = (int)Math.Round(m_StartingDamage * statsMultiplier);
-            m_CurrentAtkCooldown = (int)Math.Round(m_StartingAtkCooldown * statsMultiplier);
         }
     }
 }

@@ -55,9 +55,11 @@ namespace GameWorld
 
             if (damageable != null)
             {
+                Vector3 fxPos = collision.contacts[0].point + new Vector3(0, 1f, 0.5f);
+
                 popupManager.Popup(
                     this.m_BulletDamage.ToString(), Color.red,
-                    collision.contacts[0].point,
+                    fxPos,
                     0.4f, 1.0f
                 );
 
