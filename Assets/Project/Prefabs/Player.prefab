@@ -5159,7 +5159,6 @@ MonoBehaviour:
   m_InitialArmorDamageReflect: 0
   m_InitialShoeSpeed: 5
   m_InitialShoeJump: 1
-  m_InitialSwordCooldown: 0.5
   m_HealthRegenerationTick: 1
 --- !u!95 &2904890385300296963
 Animator:
