@@ -8,5 +8,6 @@ namespace GameWorld.UX
         // [HideInInspector] public OptionMenu OptionMenu;
         [HideInInspector] public InGameHUD InGameHUD;
         [HideInInspector] public BuffSelection BuffSelection;
+        [HideInInspector] public LevelSelect LevelSelect;
     }
 }

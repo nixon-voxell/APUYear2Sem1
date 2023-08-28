@@ -22,95 +22,151 @@ MonoBehaviour:
   - EquipmentType: 3
     EquipmentIcon: {fileID: 21300000, guid: 365538b4e778e7b489c2984bd741bf32, type: 3}
   UpgradeList:
-  - UpgradeName: Gun CD
-    UpgradeDescription: gun fire rate
-    UpgradeType: 2
+  - UpgradeName: Cybersycho
+    UpgradeDescription: Gun damage
+    UpgradeType: 0
     EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: 70c0f63fc055d9341884b6fbee7cd737, type: 3}
-    UpgradeValueType: 0
-    UpgradeValue: 0.25
+    UpgradeIcon: {fileID: 21300000, guid: 1f5a33770f18ae442a8ebdab28aa3720, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 2
+    UpgradeCount: 0
     UpgradeRarity: 3
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Gun reload
-    UpgradeDescription: gun reload speed
-    UpgradeType: 3
-    EquipmentType: 2
-    UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
-    UpgradeValueType: 0
-    UpgradeValue: 0.25
-    UpgradeRarity: 2
-    EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
-      type: 3}
-    CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: armor damage reflect
-    UpgradeDescription: "dmg reflect \nhello "
-    UpgradeType: 10
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValueType: 0
-    UpgradeValue: 0.25
-    UpgradeRarity: 3
-    EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
-      type: 3}
-    CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: armor def
-    UpgradeDescription: armor def
+  - UpgradeName: Susanoo
+    UpgradeDescription: Armor defense
     UpgradeType: 7
     EquipmentType: 2
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
+    UpgradeIcon: {fileID: 21300000, guid: b6bcf3267aef2a84fabda601cfca0367, type: 3}
     UpgradeValueType: 0
-    UpgradeValue: 0.25
+    UpgradeValue: 0.03
+    UpgradeCount: 0
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: sword swing speed
-    UpgradeDescription: swing speed
-    UpgradeType: 6
-    EquipmentType: 0
+  - UpgradeName: The Flash
+    UpgradeDescription: Movement speed
+    UpgradeType: 11
+    EquipmentType: 3
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValueType: 0
-    UpgradeValue: 0.25
+    UpgradeValueType: 1
+    UpgradeValue: 1
+    UpgradeCount: 0
+    UpgradeRarity: 3
+    EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
+      type: 3}
+    CardColorTheme: {r: 0.44359112, g: 0, b: 1, a: 1}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Nanotech
+    UpgradeDescription: Health regen
+    UpgradeType: 8
+    EquipmentType: 2
+    UpgradeIcon: {fileID: 21300000, guid: e81666d3e913e714caa6737b99789628, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 2
+    UpgradeCount: 0
+    UpgradeRarity: 2
+    EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
+      type: 3}
+    CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Gatling
+    UpgradeDescription: Buller per shot
+    UpgradeType: 1
+    EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: 0b49be4515e56e6488af65dff722e7cb, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 1
+    UpgradeCount: 0
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: 8a1a0fa7df7c93441a604148bdd4a4e3,
       type: 3}
     CardColorTheme: {r: 1, g: 0.86571324, b: 0, a: 1}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: max hp
-    UpgradeDescription: max health
+  - UpgradeName: Big Wick Enengy
+    UpgradeDescription: Gun Cooldown
+    UpgradeType: 2
+    EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: b9b443aa25bdd754d9e1d99d8a242259, type: 3}
+    UpgradeValueType: 0
+    UpgradeValue: 0.01
+    UpgradeCount: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Rampage Mode
+    UpgradeDescription: Gun Ammo
+    UpgradeType: 4
+    EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: 063f6764a7009884e94c2ef6693ce151, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 5
+    UpgradeCount: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Yeaaarrr
+    UpgradeDescription: Sword Swing Speed
+    UpgradeType: 6
+    EquipmentType: 1
+    UpgradeIcon: {fileID: 21300000, guid: cb3da85837e104e4c9206474612d7849, type: 3}
+    UpgradeValueType: 0
+    UpgradeValue: 0.02
+    UpgradeCount: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Atomic Slice
+    UpgradeDescription: Sword Damage
+    UpgradeType: 5
+    EquipmentType: 1
+    UpgradeIcon: {fileID: 21300000, guid: e81666d3e913e714caa6737b99789628, type: 3}
+    UpgradeValueType: 1
+    UpgradeValue: 3
+    UpgradeCount: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Full Counter
+    UpgradeDescription: Reflect Damage
+    UpgradeType: 10
+    EquipmentType: 2
+    UpgradeIcon: {fileID: 21300000, guid: 63a8949ffc3cf9c4ca734cf191d59fe3, type: 3}
+    UpgradeValueType: 0
+    UpgradeValue: 0.005
+    UpgradeCount: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Fast Charge
+    UpgradeDescription: Reload time
+    UpgradeType: 3
+    EquipmentType: 0
+    UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
+    UpgradeValueType: 0
+    UpgradeValue: 0.005
+    UpgradeCount: 0
+    UpgradeRarity: 0
+    EquipmentTypeIcon: {fileID: 0}
+    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
+    CardGlowSize: {x: 0, y: 0}
+  - UpgradeName: Big Mac
+    UpgradeDescription: Armor Health
     UpgradeType: 9
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
     UpgradeValueType: 1
-    UpgradeValue: 10
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: hp regen
-    UpgradeDescription: hp regen
-    UpgradeType: 8
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValueType: 1
-    UpgradeValue: 5
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: gun damage
-    UpgradeDescription: gun damage
-    UpgradeType: 0
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
-    UpgradeValueType: 1
-    UpgradeValue: 5
+    UpgradeValue: 2
+    UpgradeCount: 0
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}

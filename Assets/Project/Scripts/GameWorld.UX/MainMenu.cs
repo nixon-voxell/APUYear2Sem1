@@ -1,3 +1,5 @@
+using Codice.Client.Common.GameUI;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -16,29 +18,38 @@ namespace GameWorld.UX
         {
             this.InitializeDoc();
             UXManager.Instance.MainMenu = this;
-            
+
             this.m_PlayBtn = this.m_Root.Q<Button>("play-btn");
             this.m_OptionBtn = this.m_Root.Q<Button>("option-btn");
             this.m_QuitBtn = this.m_Root.Q<Button>("quit-btn");
 
-            this.m_PlayBtn.clicked += () =>
-            {
-                Debug.Log("Play");
-                UXManager.Instance.GetComponentInParent<AudioSource>().Play();
-                SceneManager.LoadScene(selection);
-            };
+            m_PlayBtn.clicked += () => StartPlay();
+            m_OptionBtn.clicked += () => StartOption();
+            m_QuitBtn.clicked += () => Quit();
+            
+            
+        }
+        public void StartPlay()
+        {
+            Debug.Log("Play");
+            m_btnpress.Play();
+            UXManager.Instance.LevelSelect.SetEnable(true);
+            this.SetEnable(false);
+        }
 
-            this.m_OptionBtn.clicked += () =>
-            {
-                Debug.Log("Option");
+        public void StartOption()
+        {
+            Debug.Log("Option");
+            m_btnpress.Play();
+        }
 
-            };
+        public void Quit()
+        {
+            Debug.Log("Quit");
+            m_btnpress.Play();
+            Application.Quit();
 
-            this.m_QuitBtn.clicked += () =>
-            {
-                Debug.Log("Quit");
-                Application.Quit();
-            };
+
         }
     }
 }
