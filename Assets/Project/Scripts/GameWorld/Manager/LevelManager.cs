@@ -10,6 +10,7 @@ namespace GameWorld
     using Storage;
     using AI;
     using UX;
+    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     public class LevelManager : SingletonMono<LevelManager>
     {
@@ -22,6 +23,7 @@ namespace GameWorld
         [SerializeField, Tooltip("Time taken for spawn animation to take place.")]
         private float m_SpawnDuration;
         [SerializeField] private float m_WaveDuration;
+        [SerializeField] private int m_StageLevel;
 
         private EnemySpawner[] m_EnemySpawners;
 
@@ -64,6 +66,11 @@ namespace GameWorld
             this.m_WaveCount += 1;
             this.m_WaveTimePassed = 0.0f;
 
+            if (this.m_WaveCount == 4)
+            {
+                UnlockNextLevel();
+            }
+
             InGameHUD hud = UXManager.Instance.InGameHUD;
             hud.UpdateWave(this.m_WaveCount);
 
@@ -83,6 +90,20 @@ namespace GameWorld
                     waveConfig.BoidManager, this.m_WaveCount,
                     enemyConfig.CountPlot, enemyConfig.DamagePlot
                 ));
+            }
+        }
+
+        /// <summary>
+        /// Unlock next stage level for menu selection
+        /// </summary>
+        private void UnlockNextLevel()
+        {
+            int nextLevel = m_StageLevel + 1;
+            string key = $"LevelUnlockLv{nextLevel}";
+            if (!PlayerPrefs.HasKey(key))
+            {
+                Debug.Log("Unlock Level");
+                PlayerPrefs.SetString(key, "True");
             }
         }
 
@@ -143,6 +164,28 @@ namespace GameWorld
         {
             base.OnDestroy();
             this.StopAllCoroutines();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Z))
+            {
+                Debug.Log(PlayerPrefs.GetString("LevelUnlockLv2", "null"));
+            }
+            if (Input.GetKeyUp(KeyCode.X))
+            {
+                int nextLevel = m_StageLevel + 1;
+                string key = $"LevelUnlockLv{nextLevel}";
+                Debug.Log($"{PlayerPrefs.HasKey(key)} | {key} | {m_StageLevel}");
+
+            }
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                int nextLevel = m_StageLevel + 1;
+                string key = $"LevelUnlockLv{nextLevel}";
+                PlayerPrefs.DeleteKey(key);
+            }
+
         }
     }
 }
