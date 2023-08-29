@@ -19,6 +19,7 @@ public class LevelSelect : UXBehaviour
     private Button level_4;
     private Button go_back;
     public AudioSource m_btnpress;
+    public AudioSource m_Bpmusic;
     public string go_1 = "Level1";
     public string go_main = "MainMenu";
 
@@ -40,6 +41,7 @@ public class LevelSelect : UXBehaviour
         level_3.clicked += () => Select3();
         level_4.clicked += () => Select4();
 
+        m_Bpmusic.Play();
     }
 
     public void backMain()
@@ -48,6 +50,7 @@ public class LevelSelect : UXBehaviour
         m_btnpress.Play();
         UXManager.Instance.MainMenu.SetEnable(true);
         this.SetEnable(false);
+        m_Bpmusic.Pause();
     }
     public void Select1()
     {
@@ -55,6 +58,8 @@ public class LevelSelect : UXBehaviour
         m_btnpress.Play();
         SceneManager.LoadSceneAsync(Level1Scene, LoadSceneMode.Additive);
         this.SetEnable(false);
+
+        m_Bpmusic.Pause();
     }
 
     public void Select2()
@@ -63,6 +68,8 @@ public class LevelSelect : UXBehaviour
         m_btnpress.Play();
         SceneManager.LoadSceneAsync(Level2Scene, LoadSceneMode.Additive);
         this.SetEnable(false);
+
+        m_Bpmusic.Pause();
     }
     public void Select3()
     {
@@ -70,6 +77,8 @@ public class LevelSelect : UXBehaviour
         m_btnpress.Play();
 
         this.SetEnable(false);
+
+        m_Bpmusic.Pause();
     }
     public void Select4()
     {
@@ -77,5 +86,7 @@ public class LevelSelect : UXBehaviour
         m_btnpress.Play();
 
         this.SetEnable(false);
+
+        m_Bpmusic.Pause();
     }
 }

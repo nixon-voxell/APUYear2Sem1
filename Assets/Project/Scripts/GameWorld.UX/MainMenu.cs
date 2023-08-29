@@ -26,13 +26,14 @@ namespace GameWorld.UX
             m_PlayBtn.clicked += () => StartPlay();
             m_OptionBtn.clicked += () => StartOption();
             m_QuitBtn.clicked += () => Quit();
-            
+            m_AudioSource.Play();
             
         }
         public void StartPlay()
         {
             Debug.Log("Play");
             m_btnpress.Play();
+            m_AudioSource.Pause();
             UXManager.Instance.LevelSelect.SetEnable(true);
             this.SetEnable(false);
         }
