@@ -10,7 +10,6 @@ namespace GameWorld
     using Storage;
     using AI;
     using UX;
-    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     public class LevelManager : SingletonMono<LevelManager>
     {
@@ -87,8 +86,7 @@ namespace GameWorld
                 EnemyConfig enemyConfig = waveConfig.so_EnemyConfig.Config;
 
                 this.m_SpawnCoroutines[w] = this.StartCoroutine(this.CR_SpawnEnemies(
-                    waveConfig.BoidManager, this.m_WaveCount,
-                    enemyConfig.CountPlot, enemyConfig.DamagePlot
+                    waveConfig.BoidManager, this.m_WaveCount, enemyConfig
                 ));
             }
         }
@@ -109,23 +107,31 @@ namespace GameWorld
 
         private IEnumerator CR_SpawnEnemies(
             BoidManager manager, int waveCount,
-            PowerPlotConfig countConfig,
-            PowerPlotConfig damagePlot
+            EnemyConfig enemyConfig
         ) {
-            int count = PowerPlotConfig.EvaluateInt(countConfig, this.m_WaveCount);
-            int damage = PowerPlotConfig.EvaluateInt(damagePlot, this.m_WaveCount);
+            int count = PowerPlotConfig.EvaluateInt(enemyConfig.CountPlot, this.m_WaveCount);
+            int damage = PowerPlotConfig.EvaluateInt(enemyConfig.DamagePlot, this.m_WaveCount);
+            int speed = PowerPlotConfig.EvaluateInt(enemyConfig.SpeedPlot, this.m_WaveCount);
 
             for (int c = 0; c < count; c++)
             {
-                this.SpawnEnemy(manager, this.GetRandomSpawnPosition(), this.m_Random.NextFloat3Direction());
+                this.SpawnEnemy(
+                    manager,
+                    this.GetRandomSpawnPosition(),
+                    this.m_Random.NextFloat3Direction(),
+                    speed
+                );
                 yield return new WaitForSeconds(this.m_SpawnInterval);
             }
             yield break;
         }
 
-        public void SpawnEnemy(BoidManager manager, float3 position, float3 direction)
-        {
-            manager.SpawnBoid(position, direction);
+        public void SpawnEnemy(
+            BoidManager manager,
+            float3 position, float3 direction, float maxSpeed
+        ) {
+            Debug.Log(maxSpeed);
+            manager.SpawnBoid(position, direction, maxSpeed);
             this.m_TotalEnemyCount += 1;
         }
 

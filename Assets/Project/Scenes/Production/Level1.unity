@@ -2636,11 +2636,12 @@ MonoBehaviour:
   m_WaveConfigs:
   - so_EnemyConfig: {fileID: 11400000, guid: d986e1dd26f434f45a89163263996ea0, type: 2}
     BoidManager: {fileID: 1987798752}
-  - so_EnemyConfig: {fileID: 11400000, guid: d986e1dd26f434f45a89163263996ea0, type: 2}
+  - so_EnemyConfig: {fileID: 11400000, guid: 6194ad2a92aa11e4a9b35e7245794d69, type: 2}
     BoidManager: {fileID: 1517989011}
   m_SpawnInterval: 1
   m_SpawnDuration: 0.5
   m_WaveDuration: 30
+  m_StageLevel: 0
   BulletManager: {fileID: 0}
 --- !u!1001 &2031848241
 PrefabInstance:

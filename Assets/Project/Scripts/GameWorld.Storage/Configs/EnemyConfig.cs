@@ -7,6 +7,7 @@ namespace GameWorld.Storage
     {
         public PowerPlotConfig DamagePlot;
         public PowerPlotConfig CountPlot;
+        public PowerPlotConfig SpeedPlot;
 
         public EnemyConfig Default()
         {
@@ -14,6 +15,7 @@ namespace GameWorld.Storage
             {
                 DamagePlot = new PowerPlotConfig().Default(),
                 CountPlot = new PowerPlotConfig().Default(),
+                SpeedPlot = new PowerPlotConfig().Default(),
             };
         }
     }

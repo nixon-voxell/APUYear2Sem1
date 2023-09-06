@@ -23,6 +23,7 @@ namespace GameWorld.AI
         [NativeDisableParallelForRestriction] public NativeArray<float3> na_Positions;
         [NativeDisableParallelForRestriction] public NativeArray<float3> na_Velocities;
         [NativeDisableParallelForRestriction] public NativeArray<float3> na_Directions;
+        [NativeDisableParallelForRestriction] public NativeArray<float> na_MaxSpeeds;
         // status of the boid (active or inactive)
         [NativeDisableParallelForRestriction, ReadOnly] public NativeArray<bool> na_States;
 
@@ -39,6 +40,7 @@ namespace GameWorld.AI
             float3 position = this.na_Positions[boidIndex];
             float3 velocity = this.na_Velocities[boidIndex];
             float3 direction = this.na_Directions[boidIndex];
+            float maxSpeed = this.na_MaxSpeeds[boidIndex];
             float3 acceleration = 0.0f;
 
             if (this.HasTarget)
@@ -52,7 +54,7 @@ namespace GameWorld.AI
                     in this.BoidConfig.MaxSteerForce,
                     out targetForce
                 );
-                acceleration = targetForce * this.BoidConfig.TargetWeight;
+                acceleration = targetForce * maxSpeed;
             }
 
             // collision indices starts from 0
@@ -175,7 +177,7 @@ namespace GameWorld.AI
             if (speed > 0.0f)
             {
                 float3 dir = velocity / speed;
-                speed = math.clamp(speed, this.BoidConfig.MinSpeed, this.BoidConfig.MaxSpeed);
+                speed = math.clamp(speed, this.BoidConfig.MinSpeed, maxSpeed);
 
                 velocity = dir * speed;
                 position += velocity * DeltaTime;

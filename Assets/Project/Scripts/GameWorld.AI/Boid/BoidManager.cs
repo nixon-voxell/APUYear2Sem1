@@ -30,7 +30,7 @@ namespace GameWorld.AI
         private Collider[] m_BoidColliders;
         private Collider[] m_ObstacleColliders;
 
-        public void SpawnBoid(float3 position, float3 direction)
+        public void SpawnBoid(float3 position, float3 direction, float maxSpeed)
         {
             int boidIndex;
             // if there are existing free unused boid, use it
@@ -49,6 +49,7 @@ namespace GameWorld.AI
             this.m_BoidContainer.na_Positions[boidIndex] = position;
             this.m_BoidContainer.na_Directions[boidIndex] = direction;
             this.m_BoidContainer.na_Velocities[boidIndex] = direction;
+            this.m_BoidContainer.na_MaxSpeeds[boidIndex] = maxSpeed;
             // set boid to active
             this.m_BoidContainer.na_States[boidIndex] = true;
 
@@ -233,6 +234,7 @@ namespace GameWorld.AI
                 na_Positions = this.m_BoidContainer.na_Positions,
                 na_Velocities = this.m_BoidContainer.na_Velocities,
                 na_Directions = this.m_BoidContainer.na_Directions,
+                na_MaxSpeeds = this.m_BoidContainer.na_MaxSpeeds,
                 na_States = this.m_BoidContainer.na_States,
 
                 na_BoidHitIndices = na_boidHitIndices,

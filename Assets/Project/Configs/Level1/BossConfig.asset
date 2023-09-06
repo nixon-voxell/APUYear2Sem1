@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9902d9801c6c2ab479b92fc8e7423820, type: 3}
-  m_Name: MinionConfig
+  m_Name: BossConfig
   m_EditorClassIdentifier: 
   Config:
     DamagePlot:
-      BaseValue: 2
+      BaseValue: 10
       Multiplier: 1
-      Power: 0.8
+      Power: 1.04
     CountPlot:
-      BaseValue: 1
+      BaseValue: -5
       Multiplier: 1
       Power: 0.88
     SpeedPlot:
-      BaseValue: 2
+      BaseValue: 1
       Multiplier: 1
-      Power: 1.1
+      Power: 1

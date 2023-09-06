@@ -9,6 +9,7 @@ namespace GameWorld.AI
         public NativeArray<float3> na_Positions;
         public NativeArray<float3> na_Velocities;
         public NativeArray<float3> na_Directions;
+        public NativeArray<float> na_MaxSpeeds;
         // status of the boid (active or inactive)
         public NativeArray<bool> na_States;
 
@@ -27,6 +28,9 @@ namespace GameWorld.AI
             this.na_Directions = new NativeArray<float3>(
                 count, allocator, NativeArrayOptions.UninitializedMemory
             );
+            this.na_MaxSpeeds = new NativeArray<float>(
+                count, allocator, NativeArrayOptions.UninitializedMemory
+            );
             // default to false
             this.na_States = new NativeArray<bool>(
                 count, allocator, NativeArrayOptions.ClearMemory
@@ -39,6 +43,7 @@ namespace GameWorld.AI
             this.na_Positions.Dispose();
             this.na_Velocities.Dispose();
             this.na_Directions.Dispose();
+            this.na_MaxSpeeds.Dispose();
             this.na_States.Dispose();
         }
     }
