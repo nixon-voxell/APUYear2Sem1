@@ -1,7 +1,4 @@
-using Codice.Client.Common.GameUI;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace GameWorld.UX
@@ -14,6 +11,7 @@ namespace GameWorld.UX
         public AudioSource m_AudioSource;
         public AudioSource m_btnpress;
         public string selection = "level_select";
+
         private void Start()
         {
             this.InitializeDoc();
@@ -27,8 +25,8 @@ namespace GameWorld.UX
             m_OptionBtn.clicked += () => StartOption();
             m_QuitBtn.clicked += () => Quit();
             m_AudioSource.Play();
-            
         }
+
         public void StartPlay()
         {
             Debug.Log("Play");
@@ -49,8 +47,6 @@ namespace GameWorld.UX
             Debug.Log("Quit");
             m_btnpress.Play();
             Application.Quit();
-
-
         }
     }
 }

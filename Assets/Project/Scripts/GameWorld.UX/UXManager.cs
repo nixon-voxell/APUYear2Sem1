@@ -9,5 +9,7 @@ namespace GameWorld.UX
         [HideInInspector] public InGameHUD InGameHUD;
         [HideInInspector] public BuffSelection BuffSelection;
         [HideInInspector] public LevelSelect LevelSelect;
+
+        public AudioSource AudioSource;
     }
 }
