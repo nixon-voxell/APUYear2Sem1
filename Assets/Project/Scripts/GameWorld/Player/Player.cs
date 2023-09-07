@@ -23,9 +23,7 @@ namespace GameWorld
         {
             yield return null;
             GameSetup();
-            
         }
-
 
         public void GameSetup()
         {
