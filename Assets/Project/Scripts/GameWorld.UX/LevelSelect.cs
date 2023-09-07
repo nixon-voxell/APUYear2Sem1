@@ -49,7 +49,7 @@ public class LevelSelect : UXBehaviour
             UXManager.Instance.PlayBtnPressClip();
 
             UXManager.Instance.InGameHUD.SetEnable(true);
-            SceneManager.LoadSceneAsync(Level1Scene, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
             this.SetEnable(false);
         };
     }

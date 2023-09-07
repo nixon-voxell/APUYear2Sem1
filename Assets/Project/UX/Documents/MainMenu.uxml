@@ -7,7 +7,7 @@
         <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
         <ui:VisualElement picking-mode="Ignore" style="background-color: rgba(0, 0, 0, 0); align-self: center;">
             <ui:Button text="PLAY" display-tooltip-when-elided="true" name="play-btn" class="menu-btn" />
-            <ui:Button text="OPTION" name="option-btn" class="menu-btn" />
+            <ui:Button text="OPTION" name="option-btn" class="menu-btn" style="display: none;" />
             <ui:Button text="QUIT" name="quit-btn" class="menu-btn" />
         </ui:VisualElement>
     </ui:VisualElement>

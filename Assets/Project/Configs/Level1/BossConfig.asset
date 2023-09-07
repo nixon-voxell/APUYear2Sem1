@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BossConfig
   m_EditorClassIdentifier: 
   Config:
-    DamagePlot:
-      BaseValue: 10
+    StatPlot:
+      BaseValue: 1
       Multiplier: 1
-      Power: 1.04
+      Power: 0.488
     CountPlot:
       BaseValue: -5
       Multiplier: 1
