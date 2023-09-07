@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MinionConfig
   m_EditorClassIdentifier: 
   Config:
-    DamagePlot:
-      BaseValue: 2
+    StatPlot:
+      BaseValue: 1
       Multiplier: 1
-      Power: 0.8
+      Power: 0.412
     CountPlot:
       BaseValue: 1
       Multiplier: 1

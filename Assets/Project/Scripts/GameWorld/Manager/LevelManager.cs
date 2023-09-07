@@ -110,7 +110,7 @@ namespace GameWorld
             EnemyConfig enemyConfig
         ) {
             int count = PowerPlotConfig.EvaluateInt(enemyConfig.CountPlot, this.m_WaveCount);
-            int damage = PowerPlotConfig.EvaluateInt(enemyConfig.DamagePlot, this.m_WaveCount);
+            float stat = PowerPlotConfig.Evaluate(enemyConfig.StatPlot, this.m_WaveCount);
             int speed = PowerPlotConfig.EvaluateInt(enemyConfig.SpeedPlot, this.m_WaveCount);
 
             for (int c = 0; c < count; c++)
@@ -119,7 +119,7 @@ namespace GameWorld
                     manager,
                     this.GetRandomSpawnPosition(),
                     this.m_Random.NextFloat3Direction(),
-                    speed
+                    speed, stat
                 );
                 yield return new WaitForSeconds(this.m_SpawnInterval);
             }
@@ -128,10 +128,14 @@ namespace GameWorld
 
         public void SpawnEnemy(
             BoidManager manager,
-            float3 position, float3 direction, float maxSpeed
+            float3 position, float3 direction,
+            float maxSpeed, float stat
         ) {
-            Debug.Log(maxSpeed);
-            manager.SpawnBoid(position, direction, maxSpeed);
+            Transform boidTrans = manager.SpawnBoid(position, direction, maxSpeed);
+
+            Enemy enemy = boidTrans.GetComponent<Enemy>();
+            enemy.InitializeEnemy(stat);
+
             this.m_TotalEnemyCount += 1;
         }
 

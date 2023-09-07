@@ -15,15 +15,9 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Production/Level1.unity
     guid: 4a13ed763eec1294688370f758fd1508
   - enabled: 1
-    path: Assets/Project/Scenes/Production/MainMenu.unity
-    guid: 3c46c493fc99b194a820292095bb30ce
-  - enabled: 1
-    path: Assets/Project/Scenes/Production/level_select.unity
-    guid: 3bf95786f0726b14a8cb191d21eebe7a
-  - enabled: 1
-    path: Assets/Project/Scenes/Fabian.unity
+    path: Assets/Project/Scenes/Production/Level2.unity
     guid: 8d5b923ad306d7f4e8c6548ac694c375
   - enabled: 1
-    path: Assets/Project/Scenes/Level4.unity
+    path: Assets/Project/Scenes/Production/Level4.unity
     guid: 6cd39bc5bb4b97943b5130b65f75b188
   m_configObjects: {}

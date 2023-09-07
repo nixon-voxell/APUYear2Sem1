@@ -32,9 +32,9 @@ namespace GameWorld
             // TODO: To be called by level manager
             InGameHUD inGameHUD = UXManager.Instance.InGameHUD;
             inGameHUD.SetEnable(true);
-            UXManager.Instance.InGameHUD.UpdateCurrentHP(PlayerAttribute.PlayerCurrentHP);
-            UXManager.Instance.InGameHUD.UpdateGunAmmo(PlayerAttribute.GunMagazine, PlayerAttribute.GunMagazine);
-            UXManager.Instance.InGameHUD.UpdateMaxHP(PlayerAttribute.ArmorMaxHealth);
+            inGameHUD.UpdateCurrentHP(PlayerAttribute.PlayerCurrentHP);
+            inGameHUD.UpdateGunAmmo(PlayerAttribute.GunMagazine, PlayerAttribute.GunMagazine);
+            inGameHUD.UpdateMaxHP(PlayerAttribute.ArmorMaxHealth);
             
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

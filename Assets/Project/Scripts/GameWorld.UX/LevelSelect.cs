@@ -1,6 +1,4 @@
 using GameWorld.UX;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -12,16 +10,11 @@ public class LevelSelect : UXBehaviour
     [SerializeField, Voxell.Util.Scene] private string Level3Scene;
     [SerializeField, Voxell.Util.Scene] private string Level4Scene;
 
-
-    private Button level_1;
-    private Button level_2;
-    private Button level_3;
-    private Button level_4;
-    private Button go_back;
-    public AudioSource m_btnpress;
-    public AudioSource m_Bpmusic;
-    public string go_1 = "Level1";
-    public string go_main = "MainMenu";
+    private Button m_BackBtn;
+    private Button m_Level1Btn;
+    private Button m_Level2Btn;
+    private Button m_Level3Btn;
+    private Button m_Level4Btn;
 
     private void Start()
     {
@@ -29,64 +22,35 @@ public class LevelSelect : UXBehaviour
         this.SetEnable(false);
         UXManager.Instance.LevelSelect = this;
 
-        this.level_1 = this.m_Root.Q<Button>("level1-btn");
-        this.level_2 = this.m_Root.Q<Button>("level2-btn");
-        this.level_3 = this.m_Root.Q<Button>("level3-btn");
-        this.level_4 = this.m_Root.Q<Button>("level4-btn");
-        this.go_back = this.m_Root.Q<Button>("back-btn");
+        this.m_BackBtn = this.m_Root.Q<Button>("back-btn");
+        this.m_Level1Btn = this.m_Root.Q<Button>("level1-btn");
+        this.m_Level2Btn = this.m_Root.Q<Button>("level2-btn");
+        this.m_Level3Btn = this.m_Root.Q<Button>("level3-btn");
+        this.m_Level4Btn = this.m_Root.Q<Button>("level4-btn");
 
-        go_back.clicked += () => backMain();
-        level_1.clicked += () => Select1();
-        level_2.clicked += () => Select2();
-        level_3.clicked += () => Select3();
-        level_4.clicked += () => Select4();
-
-        m_Bpmusic.Play();
+        m_BackBtn.clicked += this.BackBtn_clicked;
+        m_Level1Btn.clicked += this.CreateLevelSelectionAction(this.Level1Scene);
+        m_Level2Btn.clicked += this.CreateLevelSelectionAction(this.Level2Scene);
+        m_Level3Btn.clicked += this.CreateLevelSelectionAction(this.Level3Scene);
+        m_Level4Btn.clicked += this.CreateLevelSelectionAction(this.Level4Scene);
     }
 
-    public void backMain()
+    private void BackBtn_clicked()
     {
-        Debug.Log("Go back Main");
-        m_btnpress.Play();
+        UXManager.Instance.PlayBtnPressClip();
         UXManager.Instance.MainMenu.SetEnable(true);
         this.SetEnable(false);
-        m_Bpmusic.Pause();
-    }
-    public void Select1()
-    {
-        Debug.Log("Go level 1");
-        m_btnpress.Play();
-        SceneManager.LoadSceneAsync(Level1Scene, LoadSceneMode.Additive);
-        this.SetEnable(false);
-
-        m_Bpmusic.Pause();
     }
 
-    public void Select2()
+    private System.Action CreateLevelSelectionAction(string level)
     {
-        Debug.Log("Go level 2");
-        m_btnpress.Play();
-        SceneManager.LoadSceneAsync(Level2Scene, LoadSceneMode.Additive);
-        this.SetEnable(false);
+        return () =>
+        {
+            UXManager.Instance.PlayBtnPressClip();
 
-        m_Bpmusic.Pause();
-    }
-    public void Select3()
-    {
-        Debug.Log("Go level 3");
-        m_btnpress.Play();
-
-        this.SetEnable(false);
-
-        m_Bpmusic.Pause();
-    }
-    public void Select4()
-    {
-        Debug.Log("Go level 4");
-        m_btnpress.Play();
-
-        this.SetEnable(false);
-
-        m_Bpmusic.Pause();
+            UXManager.Instance.InGameHUD.SetEnable(true);
+            SceneManager.LoadSceneAsync(Level1Scene, LoadSceneMode.Additive);
+            this.SetEnable(false);
+        };
     }
 }

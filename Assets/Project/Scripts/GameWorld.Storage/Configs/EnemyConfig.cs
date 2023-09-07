@@ -5,7 +5,7 @@ namespace GameWorld.Storage
     [System.Serializable]
     public struct EnemyConfig : IDefault<EnemyConfig>
     {
-        public PowerPlotConfig DamagePlot;
+        public PowerPlotConfig StatPlot;
         public PowerPlotConfig CountPlot;
         public PowerPlotConfig SpeedPlot;
 
@@ -13,7 +13,7 @@ namespace GameWorld.Storage
         {
             return new EnemyConfig
             {
-                DamagePlot = new PowerPlotConfig().Default(),
+                StatPlot = new PowerPlotConfig().Default(),
                 CountPlot = new PowerPlotConfig().Default(),
                 SpeedPlot = new PowerPlotConfig().Default(),
             };

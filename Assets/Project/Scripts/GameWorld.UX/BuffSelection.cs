@@ -25,8 +25,8 @@ namespace GameWorld.UX
         void Start()
         {
             this.InitializeDoc();
-            this.SetEnable(false);
             UXManager.Instance.BuffSelection = this;
+            this.SetEnable(false);
 
             // get elements
             this.m_CardBtnList = new Button[CARD_COUNT];
@@ -38,21 +38,20 @@ namespace GameWorld.UX
 
             for (int c = 0; c < CARD_COUNT; c++)
             {
-                this.m_CardBtnList[c] = m_Root.Q<Button>($"buff_button_{c + 1}");
+                int queryIndex = c + 1;
+                this.m_CardBtnList[c] = m_Root.Q<Button>($"buff_button_{queryIndex}");
 
                 // assign button click event
                 int index = c;
                 this.m_CardBtnList[c].clicked += () => SelectCard(index);
 
-                this.m_CardHeaderList[c] = m_Root.Q<Label>($"buff_name_{c + 1}");
-                this.m_CardIconList[c] = m_Root.Q<VisualElement>($"buff_icon_{c + 1}");
-                this.m_CardDescriptionList[c] = m_Root.Q<Label>($"buff_description_{c + 1}"); ;
-                this.m_CardTypeList[c] = m_Root.Q<VisualElement>($"buff_type_{c + 1}");
-                this.m_CardGlowList[c] = m_Root.Q<VisualElement>($"buff_glow_{c + 1}");
+                this.m_CardHeaderList[c] = m_Root.Q<Label>($"buff_name_{queryIndex}");
+                this.m_CardIconList[c] = m_Root.Q<VisualElement>($"buff_icon_{queryIndex}");
+                this.m_CardDescriptionList[c] = m_Root.Q<Label>($"buff_description_{queryIndex}"); ;
+                this.m_CardTypeList[c] = m_Root.Q<VisualElement>($"buff_type_{queryIndex}");
+                this.m_CardGlowList[c] = m_Root.Q<VisualElement>($"buff_glow_{queryIndex}");
                 this.m_CardGlowList[c].visible = false;
             }
-
-            this.m_Root.visible = false;
         }
 
         public void DisplayCard(Upgrade[] upgrades, Action<Upgrade> selectUpgAction)
@@ -76,7 +75,7 @@ namespace GameWorld.UX
                 this.m_CardGlowList[c].visible = true;
             }
 
-            this.m_Root.visible = true;
+            this.SetEnable(true);
         }
 
         public void SelectCard(int selectedCard)
@@ -88,10 +87,8 @@ namespace GameWorld.UX
                 m_CardGlowList[i].visible = false;
             }
 
-            this.m_Root.visible = false;
+            this.SetEnable(false);
         }
-
-
     }
 }
 

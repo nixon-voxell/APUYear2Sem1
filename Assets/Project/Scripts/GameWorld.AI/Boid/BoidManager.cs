@@ -30,7 +30,7 @@ namespace GameWorld.AI
         private Collider[] m_BoidColliders;
         private Collider[] m_ObstacleColliders;
 
-        public void SpawnBoid(float3 position, float3 direction, float maxSpeed)
+        public Transform SpawnBoid(float3 position, float3 direction, float maxSpeed)
         {
             int boidIndex;
             // if there are existing free unused boid, use it
@@ -40,7 +40,7 @@ namespace GameWorld.AI
             } else // otherwise use a new one and increment the used count
             {
                 // prevent out of pool bounds
-                if (this.m_HighestFreeBoidIndex >= this.m_BoidTransPool.Count) return;
+                if (this.m_HighestFreeBoidIndex >= this.m_BoidTransPool.Count) return null;
 
                 boidIndex = this.m_HighestFreeBoidIndex;
                 this.m_HighestFreeBoidIndex += 1;
@@ -68,6 +68,8 @@ namespace GameWorld.AI
             {
                 boidEntity.Initialize(this, boidIndex);
             }
+
+            return boidTrans;
         }
 
         public void DespawnBoid(int boidIndex)

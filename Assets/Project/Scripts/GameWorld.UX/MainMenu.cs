@@ -8,9 +8,8 @@ namespace GameWorld.UX
         private Button m_PlayBtn;
         private Button m_OptionBtn;
         private Button m_QuitBtn;
-        public AudioSource m_AudioSource;
-        public AudioSource m_btnpress;
-        public string selection = "level_select";
+
+        [SerializeField] private AudioClip m_MainMenuClip;
 
         private void Start()
         {
@@ -21,31 +20,30 @@ namespace GameWorld.UX
             this.m_OptionBtn = this.m_Root.Q<Button>("option-btn");
             this.m_QuitBtn = this.m_Root.Q<Button>("quit-btn");
 
-            m_PlayBtn.clicked += () => StartPlay();
-            m_OptionBtn.clicked += () => StartOption();
-            m_QuitBtn.clicked += () => Quit();
-            m_AudioSource.Play();
+            m_PlayBtn.clicked += this.PlayBtn_clicked;
+            m_OptionBtn.clicked += this.OptionBtn_clicked;
+            m_QuitBtn.clicked += this.QuitBtn_clicked;
+
+            // Play main menu background music
+            UXManager.Instance.PlayClip(this.m_MainMenuClip);
         }
 
-        public void StartPlay()
+        private void PlayBtn_clicked()
         {
-            Debug.Log("Play");
-            m_btnpress.Play();
-            m_AudioSource.Pause();
+            UXManager.Instance.PlayBtnPressClip();
             UXManager.Instance.LevelSelect.SetEnable(true);
             this.SetEnable(false);
         }
 
-        public void StartOption()
+        private void OptionBtn_clicked()
         {
-            Debug.Log("Option");
-            m_btnpress.Play();
+            UXManager.Instance.PlayBtnPressClip();
         }
 
-        public void Quit()
+        private void QuitBtn_clicked()
         {
-            Debug.Log("Quit");
-            m_btnpress.Play();
+            Debug.Log("Quit Game");
+            UXManager.Instance.PlayBtnPressClip();
             Application.Quit();
         }
     }

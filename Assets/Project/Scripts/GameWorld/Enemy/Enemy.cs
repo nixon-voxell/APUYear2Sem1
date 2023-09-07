@@ -77,9 +77,8 @@ namespace GameWorld
             LevelManager.Instance.DespawnEnemy(this.m_BoidEntity);
         }
 
-        private void InitializeEnemy(float statsMultiplier)
+        public void InitializeEnemy(float statsMultiplier)
         {
-
             // Set new stats based on time
             m_CurrentHealth = (int)Math.Round(m_HealthMax * statsMultiplier);
             m_CurrentSpeed = (int)Math.Round(m_StartingSpeed * statsMultiplier);
