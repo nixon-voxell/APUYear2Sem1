@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Voxell.Util;
 
 namespace GameWorld
@@ -16,6 +17,9 @@ namespace GameWorld
         [SerializeField, InspectOnly] private bool m_Alpha2;
         [SerializeField, InspectOnly] private bool m_MouseButton0;
         [SerializeField, InspectOnly] private bool m_Reload;
+
+        [SerializeField] private InputActionProperty m_JumpInputAction;
+
 
         public bool Active = true;
 
@@ -40,10 +44,12 @@ namespace GameWorld
                 return;
             }
 
+
+
             // movement update
             this.m_Movement.x = Input.GetAxisRaw("Horizontal");
             this.m_Movement.y = Input.GetAxisRaw("Vertical");
-            this.m_Jump = Input.GetButtonDown("Jump");
+            this.m_Jump = this.m_JumpInputAction.action.ReadValue<float>() == 1f ? true : false;
             this.m_Run = Input.GetButton("Run");
 
             // mouse movement update

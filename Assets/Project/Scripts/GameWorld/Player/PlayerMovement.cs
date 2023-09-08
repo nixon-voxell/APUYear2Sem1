@@ -6,10 +6,16 @@ namespace GameWorld
     using Cinemachine;
     using System;
     using Util;
+    using UnityEngine.InputSystem;
+
 
     [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField]
+        InputActionProperty m_JumpAction = new InputActionProperty(new InputAction("Jump", expectedControlType: "Boolean"));
+
+
         [Header("Ground Check")]
         [SerializeField] private Transform m_GroundCheck;
         [SerializeField] private LayerMask m_GroundMask;
