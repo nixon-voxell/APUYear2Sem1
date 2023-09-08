@@ -42,7 +42,20 @@ namespace GameWorld
 
         public void PlayerDie()
         {
-            Debug.Log("Player dead");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            UserInput.Instance.Active = false;
+
+            this.StartCoroutine(this.AdjustTimeScale(0.0f));
+
+            GameOver gameOver = UXManager.Instance.GameOver;
+            InGameHUD inGameHUD = UXManager.Instance.InGameHUD;
+
+            inGameHUD.SetEnable(false);
+            gameOver.SetEnable(true);
+
+            gameOver.SetWaveCount(LevelManager.Instance.WaveCount);
+            gameOver.SetContinueAction(() => { Time.timeScale = 1.0f; });
         }
         
         /// <summary>
@@ -52,7 +65,7 @@ namespace GameWorld
         /// </summary>
         public void TakeUpgradeDrop(Enemy.EnemyType enemyType)
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             UserInput.Instance.Active = false;
 
@@ -89,7 +102,7 @@ namespace GameWorld
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             UserInput.Instance.Active = true;
-            Time.timeScale = 1f;
+            Time.timeScale = 1.0f;
         }
     } 
 }

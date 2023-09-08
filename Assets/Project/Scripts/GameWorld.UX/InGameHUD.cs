@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 
 namespace GameWorld.UX
 {
-    public class InGameHUD : UXBehaviour 
+    public class InGameHUD : UXBehaviour
     {
         private Label m_WaveLabel;
         private Label m_AmmoLabel;

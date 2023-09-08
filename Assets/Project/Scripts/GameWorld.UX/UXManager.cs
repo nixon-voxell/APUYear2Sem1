@@ -6,9 +6,10 @@ namespace GameWorld.UX
     {
         [HideInInspector] public MainMenu MainMenu;
         // [HideInInspector] public OptionMenu OptionMenu;
+        [HideInInspector] public LevelSelect LevelSelect;
         [HideInInspector] public InGameHUD InGameHUD;
         [HideInInspector] public BuffSelection BuffSelection;
-        [HideInInspector] public LevelSelect LevelSelect;
+        [HideInInspector] public GameOver GameOver;
 
         public AudioSource AudioSource;
         [SerializeField] private AudioClip m_BtnPressClip;

@@ -22,7 +22,7 @@ namespace GameWorld.UX
             public Label BuffName;
         }
 
-        void Start()
+        private void Start()
         {
             this.InitializeDoc();
             UXManager.Instance.BuffSelection = this;
