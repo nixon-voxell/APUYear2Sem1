@@ -2977,6 +2977,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55f1692e1f104148ac0e05a14bc3b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_JumpAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Jump
+      m_Type: 0
+      m_ExpectedControlType: Boolean
+      m_Id: 911421d7-5c52-4204-82d7-ff1a8bb59f3b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7263209887934443674, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  m_VRCam: {fileID: 2090074956}
   m_GroundCheck: {fileID: 4042760405035677262}
   m_GroundMask:
     serializedVersion: 2

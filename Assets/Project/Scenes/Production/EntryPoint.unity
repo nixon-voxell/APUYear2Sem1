@@ -640,6 +640,19 @@ MonoBehaviour:
   m_Alpha2: 0
   m_MouseButton0: 0
   m_Reload: 0
+  m_JumpInputAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Jump Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: dd1ab127-7bb9-47b3-937b-f2ab7618fc6c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7263209887934443674, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
   Active: 1
 --- !u!1 &1656371340
 GameObject:
