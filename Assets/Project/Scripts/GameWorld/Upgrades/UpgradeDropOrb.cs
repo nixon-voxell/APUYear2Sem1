@@ -4,6 +4,8 @@ namespace GameWorld
 {
     public class UpgradeDropOrb : MonoBehaviour
     {
+        public const float DURATION = 5.0f;
+
         [SerializeField] private Enemy.EnemyType m_EnemyTypeOrb;
         [SerializeField] private float m_PlayerAttractRadius;
         [SerializeField] private float m_ChaseForce;
@@ -17,6 +19,7 @@ namespace GameWorld
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
+            Destroy(this.gameObject, DURATION);
         }
 
         private void Update()

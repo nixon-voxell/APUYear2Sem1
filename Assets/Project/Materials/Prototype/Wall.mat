@@ -85,7 +85,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _AnimMinMax: {r: 0, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
+    - _BaseColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _LineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &9006450370300649538

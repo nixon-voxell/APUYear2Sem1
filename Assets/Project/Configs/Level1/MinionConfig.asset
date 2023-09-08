@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Config:
     StatPlot:
-      BaseValue: 1
+      BaseValue: 0
       Multiplier: 1
       Power: 0.412
     CountPlot:
-      BaseValue: 1
+      BaseValue: 0
       Multiplier: 1
       Power: 0.88
     SpeedPlot:
-      BaseValue: 2
+      BaseValue: 0
       Multiplier: 1
       Power: 1.1
