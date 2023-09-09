@@ -6,10 +6,16 @@ namespace GameWorld
     using Cinemachine;
     using System;
     using Util;
+    using UnityEngine.InputSystem;
+
 
     [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private InputActionProperty m_JumpAction = new InputActionProperty(new InputAction("Jump", expectedControlType: "Boolean"));
+        [SerializeField] private Transform m_VRCam;
+
+
         [Header("Ground Check")]
         [SerializeField] private Transform m_GroundCheck;
         [SerializeField] private LayerMask m_GroundMask;
@@ -71,12 +77,23 @@ namespace GameWorld
             this.m_JumpCount = this.m_Player.PlayerAttribute.ShoeJump;
         }
 
-        private void Move(float3 direction, float speed)
+        private void Move(float2 movement)
         {
-            direction = math.normalize(direction);
-            direction = transform.TransformDirection(direction);
-            this.m_Velocity.x = direction.x * speed;
-            this.m_Velocity.z = direction.z * speed;
+            Vector3 cameraForward = m_VRCam.forward;
+            Vector3 cameraRight = m_VRCam.right;
+
+            cameraForward.y = 0f;
+            cameraRight.y = 0f;
+
+            cameraForward.Normalize();
+            cameraRight.Normalize();
+
+            Vector3 moveDirection = (cameraForward * movement.y + cameraRight * movement.x).normalized;
+
+            float speed = this.m_RunInput ? this.m_Player.PlayerAttribute.ShoeSpeed * 1.6f : this.m_Player.PlayerAttribute.ShoeSpeed;
+
+            this.m_Velocity.x = moveDirection.x * speed;
+            this.m_Velocity.z = moveDirection.z * speed;
         }
 
         private void CameraFOVUpdate()
@@ -121,8 +138,7 @@ namespace GameWorld
 
             if (math.lengthsq(this.m_MovementInput) > 0.0f)
             {
-                float speed = this.m_RunInput ? this.m_Player.PlayerAttribute.ShoeSpeed * 1.6f : this.m_Player.PlayerAttribute.ShoeSpeed;
-                this.Move(mathxx.unflatten_2d(this.m_MovementInput), speed);
+                this.Move(this.m_MovementInput);
             }
 
             if (this.m_JumpInput)
