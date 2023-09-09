@@ -77,7 +77,7 @@ namespace GameWorld
             GameManager.Instance.PopupTextManager = this;
 
             this.m_TMProGUIPool.Initialize(this.transform);
-            this.m_CamTransform = CinemachineCore.Instance.GetActiveBrain(0).transform;
+            this.m_CamTransform = Camera.main.transform;
         }
     }
 }
