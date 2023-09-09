@@ -36,8 +36,6 @@ namespace GameWorld
             
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
-            PlayerAttack.Initialize();
         }
 
         public void PlayerDie()

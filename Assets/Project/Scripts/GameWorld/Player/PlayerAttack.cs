@@ -59,67 +59,17 @@ namespace GameWorld
         {
             UserInput userInput = UserInput.Instance;
 
-            if (userInput.Alpha1) this.ChangeWeapon(PlayerAttack.Weapon.GUN);
-            if (userInput.Alpha2) this.ChangeWeapon(PlayerAttack.Weapon.SWORD);
-            if (userInput.MouseButton0) this.Attack();
             if (userInput.Reload) this.StartReloadGun();
         }
 
-        public void Initialize()
-        {
-            //ChangeWeapon(Weapon.GUN);
-        }
 
         #region PUBLIC METHODS
 
-        public void Attack()
-        {
-            if (m_CurrentAtkState != AttackState.IDLE) return;
-
-            if (m_CurrentWeapon == Weapon.GUN)
-            {
-                StartCoroutine(ShootGun());
-            }
-            else if (m_CurrentWeapon == Weapon.SWORD)
-            {
-                SwingSword();
-            }
-        }
-
         public void StartReloadGun()
         {
-            if (m_CurrentAtkState != AttackState.IDLE || m_CurrentWeapon != Weapon.GUN)
-                return;
-
             m_CurrentAtkState = AttackState.GUN_RELOADING;
             m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.GunReloadTime; // Ensure that reload animation is at 1.0f
             m_PlayerAnimator.Play("GunReload");
-        }
-
-        public void ChangeWeapon(Weapon switchTo)
-        {
-            if (m_CurrentAtkState != AttackState.IDLE)
-                return;
-
-            if (m_CurrentWeapon!= switchTo && switchTo == Weapon.GUN)
-            {
-                m_CurrentWeapon = Weapon.GUN;
-                m_CurrentAtkState = AttackState.WEAPON_SWITCHING;
-                m_Gun.SetActive(true);
-                m_Sword.SetActive(false);
-                m_PlayerAnimator.Play("GunEquip");
-                UXManager.Instance.InGameHUD?.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
-
-            }
-            else if (m_CurrentWeapon != switchTo && switchTo == Weapon.SWORD)
-            {
-                m_CurrentWeapon = Weapon.SWORD;
-                m_CurrentAtkState = AttackState.WEAPON_SWITCHING;
-                m_Gun.SetActive(false);
-                m_Sword.SetActive(true);
-                m_PlayerAnimator.Play("SwordEquip");
-                UXManager.Instance.InGameHUD?.UpdateGunAmmo(1, 1);
-            }
         }
 
         /// <summary>
@@ -132,33 +82,25 @@ namespace GameWorld
 
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
 
+            // TODO: Add sword atk cooldown for enemy that has been hit
 
-            if (m_CurrentAtkState == AttackState.SWORDATK && damageable != null)
+            int damage = this.m_Player.PlayerAttribute.SwordDamage;
+            Vector3 fxPos = collision.contacts[0].point + new Vector3(0, 1f, 0.5f);
+            popupManager.Popup(
+                damage.ToString(), Color.red,
+                fxPos,
+                0.4f, 1.0f
+            );
+
+            if (damageable != null)
             {
-                // Check if already hit them
-                if (m_SwordAtkVictim.Contains(collision.collider.transform))
-                    return;
-
-                m_SwordAtkVictim.Add(collision.collider.transform);
-
-                int damage = this.m_Player.PlayerAttribute.SwordDamage;
-                Vector3 fxPos = collision.contacts[0].point + new Vector3(0, 1f, 0.5f);
-                popupManager.Popup(
-                    damage.ToString(), Color.red,
-                    fxPos,
-                    0.4f, 1.0f
-                );
-
-                if (damageable != null)
-                {
-                    damageable.OnDamage(damage);
-                }
-
-                ParticleSystem pfx = m_PfxPool.GetNextObject();
-                pfx.transform.position = collision.contacts[0].point;
-                pfx.Play();
-
+                damageable.OnDamage(damage);
             }
+
+            ParticleSystem pfx = m_PfxPool.GetNextObject();
+            pfx.transform.position = collision.contacts[0].point;
+            pfx.Play();
+
         }
 
         #endregion
@@ -182,21 +124,6 @@ namespace GameWorld
             m_PlayerAnimator.speed = 1.0f;
             m_PlayerAnimator.Play("PlayerIdle");
         }
-
-        /// <summary>
-        /// Resets sword atk after animation end
-        /// 
-        /// Called from the Unity Animation Timeline
-        /// </summary>
-        public void ResetSword()
-        {
-            m_SwordAtkVictim.Clear();
-            m_CurrentAtkState = AttackState.IDLE;
-            m_PlayerAnimator.Play("PlayerIdle");
-            StartCoroutine(SwordAtkRefresh());
-
-        }
-
 
         #endregion
 
@@ -264,24 +191,6 @@ namespace GameWorld
 
             m_CurrentAtkState = AttackState.IDLE;
 
-        }
-
-        private void SwingSword()
-        {
-            if (m_CurrentAtkState == AttackState.SWORDATK || !m_CanSword) return;
-
-            m_CurrentAtkState = AttackState.SWORDATK;
-            m_PlayerAnimator.speed = 1f / m_Player.PlayerAttribute.SwordSwingSpeed; // Sword swing needs to be in 1s
-            m_PlayerAnimator.Play("SwordSwing");
-            m_CanSword = false;
-            GameManager.Instance.SoundManager.PlayOneShot("Katana", m_Sword.transform);
-        }
-
-        private IEnumerator SwordAtkRefresh()
-        {
-            yield return new WaitForSeconds(m_Player.PlayerAttribute.SwordSwingSpeed); // Sword fire cooldown = sword swing speed
-            m_PlayerAnimator.speed = 1.0f;
-            m_CanSword = true;
         }
 
         private void OnGUI()
