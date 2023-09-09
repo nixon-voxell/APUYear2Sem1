@@ -10,6 +10,9 @@ namespace GameWorld
         [SerializeField] Player m_Player;
         [SerializeField] GameObject m_UpgradeCanvas;
 
+        private Transform m_CamOffsetRotation;
+        private Transform m_CamOffsetPosition;
+
         private void Awake()
         {
             m_Player.VRCardParent = this;
