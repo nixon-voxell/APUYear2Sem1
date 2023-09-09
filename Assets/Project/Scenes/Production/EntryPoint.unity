@@ -428,7 +428,6 @@ GameObject:
   - component: {fileID: 1464476448}
   - component: {fileID: 1464476447}
   - component: {fileID: 1464476450}
-  - component: {fileID: 1464476451}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -554,40 +553,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &1464476451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464476446}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1482513581
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +616,20 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 7263209887934443674, guid: c348712bda248c246b8c49b3db54643f,
+    m_Reference: {fileID: -9157211944686445978, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  m_RunInputAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Run Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 465b905d-6ac8-4e24-87ca-f767416c31be
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -9186449435673619653, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   Active: 1
 --- !u!1 &1656371340
