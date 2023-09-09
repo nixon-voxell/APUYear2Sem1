@@ -18,6 +18,7 @@ namespace GameWorld
         [HideInInspector] public PlayerAttribute PlayerAttribute;
         [HideInInspector] public PlayerEffectsControl PlayerEffectsControl;
         [HideInInspector] public FirstPersonCamera FirstPersonCamera;
+        [HideInInspector] public VRCardParent VRCardParent;
 
         private IEnumerator Start()
         {
@@ -67,9 +68,11 @@ namespace GameWorld
             Cursor.visible = true;
             UserInput.Instance.Active = false;
 
-            StartCoroutine(AdjustTimeScale(0f));
+            StartCoroutine(AdjustTimeScale(0.01f));
             Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
 
+            // Display the card and UI
+            VRCardParent.ShowCards(upgradeDrops);
             UXManager.Instance.BuffSelection.DisplayCard(upgradeDrops, SelectUpgradeDrop);
         }
 

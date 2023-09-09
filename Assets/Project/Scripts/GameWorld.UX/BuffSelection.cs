@@ -43,7 +43,7 @@ namespace GameWorld.UX
 
                 // assign button click event
                 int index = c;
-                this.m_CardBtnList[c].clicked += () => SelectCard(index);
+                //this.m_CardBtnList[c].clicked += () => SelectCard(index);
 
                 this.m_CardHeaderList[c] = m_Root.Q<Label>($"buff_name_{queryIndex}");
                 this.m_CardIconList[c] = m_Root.Q<VisualElement>($"buff_icon_{queryIndex}");
