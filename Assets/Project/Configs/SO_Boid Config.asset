@@ -31,4 +31,4 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 8
     ObstacleWeight: 10
-    ObstacleRadius: 5
+    ObstacleRadius: 3
