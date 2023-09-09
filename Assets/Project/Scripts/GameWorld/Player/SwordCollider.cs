@@ -8,6 +8,7 @@ namespace GameWorld
 
         private void OnCollisionEnter(Collision collision)
         {
+            print(collision.collider.name);
             m_PlayerAtk.HitEnemy(collision);
         }
     }
