@@ -67,7 +67,7 @@ namespace GameWorld
 
         public void Initialize()
         {
-            ChangeWeapon(Weapon.GUN);
+            //ChangeWeapon(Weapon.GUN);
         }
 
         #region PUBLIC METHODS
