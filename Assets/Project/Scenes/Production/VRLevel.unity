@@ -2982,17 +2982,17 @@ PrefabInstance:
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.818
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.988
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -48.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
@@ -3002,17 +3002,17 @@ PrefabInstance:
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
@@ -3880,8 +3880,13 @@ PrefabInstance:
       objectReference: {fileID: 1290697254}
     - target: {fileID: 7277056861320082830, guid: e66eb6cca7473e6409befca2c9a17f16,
         type: 3}
-      propertyPath: m_MovementType
-      value: 2
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUnequip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277056861320082830, guid: e66eb6cca7473e6409befca2c9a17f16,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEquip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4710,11 +4715,6 @@ PrefabInstance:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 1290697255}
-    - target: {fileID: 6939228301037314795, guid: 5ad2d3a1e14eba54e8904aabd4942abd,
-        type: 3}
-      propertyPath: m_MovementType
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7386965162991143582, guid: 5ad2d3a1e14eba54e8904aabd4942abd,
         type: 3}
       propertyPath: m_Name
