@@ -147,9 +147,9 @@ MonoBehaviour:
     LegendaryChance: 15
   BossDrop:
     UpgradeRarity: 3
-    NormalChance: 25
-    RareChance: 45
-    LegendaryChance: 30
+    NormalChance: 85
+    RareChance: 10
+    LegendaryChance: 5
   CardNormalColor: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   CardRareColor: {r: 0, g: 0.5588355, b: 1, a: 1}
   CardRareGlowSize: {x: 100, y: 70}
