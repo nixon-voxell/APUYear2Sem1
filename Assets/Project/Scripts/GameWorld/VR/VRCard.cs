@@ -38,6 +38,7 @@ namespace GameWorld
         {
             Debug.Log("CARD CHOSEN: " + m_CardIndex);
             UXManager.Instance.BuffSelection.SelectCard(m_CardIndex);
+            GameManager.Instance.SoundManager.PlayOneShot("CardGrab", transform);
             m_VRCardParent.UnshowCards();
         }
 

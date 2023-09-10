@@ -25,9 +25,21 @@ MonoBehaviour:
     Volume: 0.35
     SpatialBlend: 0.5
     Pitch: 1
-  - SoundName: TestSfx2
-    Clip: {fileID: 8300000, guid: 8fec062430c267d4ca0bc2bf5efa0625, type: 3}
+  - SoundName: CardGrab
+    Clip: {fileID: 8300000, guid: d17ed6463249d534fa86858e078c0d61, type: 3}
     AttachedParent: {fileID: 0}
     Volume: 1
-    SpatialBlend: 1
+    SpatialBlend: 0.8
+    Pitch: 1
+  - SoundName: RobotHit
+    Clip: {fileID: 8300000, guid: a6d9c2959dc4896468fed685bf9add8f, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.8
+    Pitch: 1
+  - SoundName: PlayerHit
+    Clip: {fileID: 8300000, guid: 9a94f631a0a0320489e2a671fd993fba, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 0.5
+    SpatialBlend: 0
     Pitch: 1

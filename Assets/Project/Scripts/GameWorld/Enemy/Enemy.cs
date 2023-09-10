@@ -48,6 +48,8 @@ namespace GameWorld
             m_CurrentHealth -= damage;
 
             // m_DamagePopupPool.GetNextObject().OnPopup(damage.ToString());
+            GameManager.Instance.SoundManager.PlayOneShot("RobotHit", transform);
+
 
             if (m_CurrentHealth <= 0)
             {

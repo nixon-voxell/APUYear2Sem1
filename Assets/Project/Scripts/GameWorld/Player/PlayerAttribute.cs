@@ -99,6 +99,7 @@ namespace GameWorld
 
             m_PlayerCurrentHP -= dmgReduced;
             m_Player.PlayerEffectsControl.OnDamageEffect();
+            GameManager.Instance.SoundManager.PlayOneShot("PlayerHit", transform);
 
             if (PlayerCurrentHP < 0)
             {
