@@ -178,21 +178,10 @@ namespace GameWorld
                     yield break;
                 }
 
-
-
-
                 yield return new WaitForSeconds(0.05f);
-
-
             }
 
             m_CurrentAtkState = AttackState.IDLE;
-
-        }
-
-        private void OnGUI()
-        {
-            GUI.Label(new Rect(25, 25, 400, 100), "Sword Atk: " + m_CanSword);
         }
     }
 }
