@@ -8,6 +8,7 @@ namespace GameWorld
     using Storage;
     using System;
     using System.Collections;
+    using UnityEngine.XR.Interaction.Toolkit;
 
     public class PlayerAttribute : MonoBehaviour
     {
@@ -32,6 +33,9 @@ namespace GameWorld
         [SerializeField] private int m_InitialShoeSpeed = 25; // Player specific
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
         //[SerializeField] private float m_InitialSwordCooldown;  // Currently sword cooldown follows sword speed
+        [SerializeField] private Haptic m_DamagedHaptic;
+        [SerializeField] private ControllerEquipment m_Equipment;
+
 
         [Header("Other Stats")]
         [SerializeField] private float m_HealthRegenerationTick; // Time
@@ -99,6 +103,11 @@ namespace GameWorld
 
             m_PlayerCurrentHP -= dmgReduced;
             m_Player.PlayerEffectsControl.OnDamageEffect();
+            XRBaseControllerInteractor controller = this.m_Equipment.Controller;
+            if (controller != null)
+            {
+                m_DamagedHaptic.TriggerHaptic(controller.xrController);
+            }
             GameManager.Instance.SoundManager.PlayOneShot("PlayerHit", transform);
 
             if (PlayerCurrentHP < 0)
