@@ -293,6 +293,7 @@ MonoBehaviour:
   - {fileID: 6853906947039375026}
   m_Player: {fileID: 8125739865970668651}
   m_UpgradeCanvas: {fileID: 3359419269266315173}
+  m_RotateOnce: {fileID: 60080560511893724}
 --- !u!1 &1467940250392912326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8136696569006029118}
-  - component: {fileID: 5725062331340223167}
+  - component: {fileID: 60080560511893724}
   m_Layer: 8
   m_Name: UI_Root_BuffSelection
   m_TagString: Untagged
@@ -1035,7 +1036,7 @@ Transform:
   - {fileID: 300114795145779617}
   m_Father: {fileID: 903643385184768535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5725062331340223167
+--- !u!114 &60080560511893724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1044,7 +1045,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2692137796983196519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017cd95426469414186a349b9408ac19, type: 3}
+  m_Script: {fileID: 11500000, guid: 85533bb409623fd49b5b690c89ee63af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 3788693902065318742}

@@ -1,8 +1,5 @@
 using GameWorld.UX;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 namespace GameWorld
 {
