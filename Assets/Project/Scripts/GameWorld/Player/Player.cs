@@ -19,11 +19,15 @@ namespace GameWorld
         [HideInInspector] public PlayerEffectsControl PlayerEffectsControl;
         [HideInInspector] public FirstPersonCamera FirstPersonCamera;
         [HideInInspector] public VRCardParent VRCardParent;
+        [HideInInspector] public VRFrontUI VRFrontUI;
 
         private IEnumerator Start()
         {
             yield return null;
             GameSetup();
+
+            PopupTextManager textManager = GameManager.Instance.PopupTextManager;
+            textManager.SetCameraTransform(Camera.main.transform);
         }
 
         public void GameSetup()
@@ -45,7 +49,7 @@ namespace GameWorld
             Cursor.visible = true;
             UserInput.Instance.Active = false;
 
-            this.StartCoroutine(this.AdjustTimeScale(0.0f));
+            this.StartCoroutine(this.AdjustTimeScale(0.01f));
 
             GameOver gameOver = UXManager.Instance.GameOver;
             InGameHUD inGameHUD = UXManager.Instance.InGameHUD;
@@ -55,6 +59,8 @@ namespace GameWorld
 
             gameOver.SetWaveCount(LevelManager.Instance.WaveCount);
             gameOver.SetContinueAction(() => { Time.timeScale = 1.0f; });
+
+            this.VRFrontUI.Show();
         }
         
         /// <summary>

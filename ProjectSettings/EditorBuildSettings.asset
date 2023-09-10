@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Production/Level4.unity
     guid: 6cd39bc5bb4b97943b5130b65f75b188
+  - enabled: 1
+    path: Assets/Project/Scenes/Production/VRLevel.unity
+    guid: e0597a1d53ea25a4284561c74dc5f3d9
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e1686c1db322f6d4da244ab90f88fb71,
       type: 2}

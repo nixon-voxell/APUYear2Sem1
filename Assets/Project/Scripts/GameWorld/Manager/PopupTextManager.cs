@@ -14,6 +14,11 @@ namespace GameWorld
 
         private Transform m_CamTransform;
 
+        public void SetCameraTransform(Transform cameraTrans)
+        {
+            this.m_CamTransform = cameraTrans;
+        }
+
         public void Popup(
             string text, Color color,
             float3 position, float duration, float elevation
@@ -77,7 +82,6 @@ namespace GameWorld
             GameManager.Instance.PopupTextManager = this;
 
             this.m_TMProGUIPool.Initialize(this.transform);
-            this.m_CamTransform = Camera.main.transform;
         }
     }
 }

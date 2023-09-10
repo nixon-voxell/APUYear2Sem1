@@ -3029,6 +3029,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 396847085}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1302456528}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameWorld.VRGameOverButton, GameWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 492408370771085264, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0149999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142018510003465355, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2624865458971062981, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
       propertyPath: m_InteractionManager
@@ -3039,26 +3114,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4654762067321519505, guid: dbcecf8650c94424eba82b259727d918,
+    - target: {fileID: 3416631667633998062, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
-      propertyPath: m_HapticSelectEnterDuration
-      value: 0.2
+      propertyPath: m_Name
+      value: GameOver_Continue
       objectReference: {fileID: 0}
-    - target: {fileID: 4654762067321519505, guid: dbcecf8650c94424eba82b259727d918,
+    - target: {fileID: 5554955964492424131, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
-      propertyPath: m_PlayHapticsOnHoverEntered
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 396847085}
+    - target: {fileID: 7083563698881557079, guid: dbcecf8650c94424eba82b259727d918,
         type: 3}
-      propertyPath: m_InitialArmorMaxHealth
-      value: 9022
-      objectReference: {fileID: 0}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 396847085}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbcecf8650c94424eba82b259727d918, type: 3}
+--- !u!4 &1302456527 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 432583709663658458, guid: dbcecf8650c94424eba82b259727d918,
+    type: 3}
+  m_PrefabInstance: {fileID: 1302456526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1302456528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6322049883903737469, guid: dbcecf8650c94424eba82b259727d918,
+    type: 3}
+  m_PrefabInstance: {fileID: 1302456526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78734520542df446a6333844301c762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1326797724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3562,7 +3655,7 @@ MonoBehaviour:
     m_Prefab: {fileID: 611477856318850310, guid: cbaee9a3e75b369459ea3f4d64243af4,
       type: 3}
     m_DefaultActive: 0
-  m_TargetTrans: {fileID: 0}
+  m_TargetTrans: {fileID: 1302456527}
 --- !u!1001 &1525888285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4594,7 +4687,7 @@ MonoBehaviour:
     m_Prefab: {fileID: 4476325980482399295, guid: 073294c8832efae4e9c0a2a49d9b6599,
       type: 3}
     m_DefaultActive: 0
-  m_TargetTrans: {fileID: 0}
+  m_TargetTrans: {fileID: 1302456527}
 --- !u!1 &2002645025
 GameObject:
   m_ObjectHideFlags: 0
