@@ -22,6 +22,8 @@ public class LevelSelect : UXBehaviour
     public AudioSource m_Bpmusic;
     public string go_1 = "Level1";
     public string go_main = "MainMenu";
+    public string go_2 = "Fabian";
+    public string go_4 = "Level4";
 
     private void Start()
     {
@@ -84,7 +86,7 @@ public class LevelSelect : UXBehaviour
     {
         Debug.Log("Go level 4");
         m_btnpress.Play();
-
+        SceneManager.LoadSceneAsync(Level4Scene, LoadSceneMode.Additive);
         this.SetEnable(false);
 
         m_Bpmusic.Pause();

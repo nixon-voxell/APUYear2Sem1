@@ -550,6 +550,8 @@ MonoBehaviour:
   m_Bpmusic: {fileID: 443240454}
   go_1: Level1
   go_main: MainMenu
+  go_2: Fabian
+  go_4: Level4
 --- !u!82 &443240454
 AudioSource:
   m_ObjectHideFlags: 0

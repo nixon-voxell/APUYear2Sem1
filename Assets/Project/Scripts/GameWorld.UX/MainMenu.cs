@@ -14,6 +14,7 @@ namespace GameWorld.UX
         public AudioSource m_AudioSource;
         public AudioSource m_btnpress;
         public string selection = "level_select";
+        public string option = "option";
         private void Start()
         {
             this.InitializeDoc();
@@ -42,6 +43,7 @@ namespace GameWorld.UX
         {
             Debug.Log("Option");
             m_btnpress.Play();
+            UXManager.Instance.Option.SetEnable(true);
         }
 
         public void Quit()
