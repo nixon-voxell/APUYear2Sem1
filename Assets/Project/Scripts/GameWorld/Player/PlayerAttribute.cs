@@ -1,14 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 // TODO: Hookup to specific script whenever attribute is updated
 namespace GameWorld
 {
-    using GameWorld.Util;
-    using GameWorld.UX;
+    using Util;
+    using UX;
     using Storage;
     using System;
-    using System.Collections;
-    using UnityEngine.XR.Interaction.Toolkit;
 
     public class PlayerAttribute : MonoBehaviour
     {
@@ -34,7 +34,7 @@ namespace GameWorld
         [SerializeField] private int m_InitialShoeJump = 1; // Player specific
         //[SerializeField] private float m_InitialSwordCooldown;  // Currently sword cooldown follows sword speed
         [SerializeField] private Haptic m_DamagedHaptic;
-        [SerializeField] private ControllerEquipment m_Equipment;
+        [SerializeField] private XRBaseControllerInteractor[] m_Controllers;
 
 
         [Header("Other Stats")]
@@ -103,11 +103,13 @@ namespace GameWorld
 
             m_PlayerCurrentHP -= dmgReduced;
             m_Player.PlayerEffectsControl.OnDamageEffect();
-            XRBaseControllerInteractor controller = this.m_Equipment.Controller;
-            if (controller != null)
+
+            for (int c = 0; c < this.m_Controllers.Length; c++)
             {
+                XRBaseControllerInteractor controller = this.m_Controllers[c];
                 m_DamagedHaptic.TriggerHaptic(controller.xrController);
             }
+
             GameManager.Instance.SoundManager.PlayOneShot("PlayerHit", transform);
 
             if (PlayerCurrentHP < 0)

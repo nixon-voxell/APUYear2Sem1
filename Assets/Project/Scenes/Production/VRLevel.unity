@@ -3129,6 +3129,36 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 396847085}
+    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_Equipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_Controllers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_DamagedHaptic.duration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_DamagedHaptic.intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_Controllers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1302456532}
+    - target: {fileID: 7418817384308043834, guid: dbcecf8650c94424eba82b259727d918,
+        type: 3}
+      propertyPath: m_Controllers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1302456531}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3150,6 +3180,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a78734520542df446a6333844301c762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1302456531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4654762067321519505, guid: dbcecf8650c94424eba82b259727d918,
+    type: 3}
+  m_PrefabInstance: {fileID: 1302456526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1302456532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 178017024600251927, guid: dbcecf8650c94424eba82b259727d918,
+    type: 3}
+  m_PrefabInstance: {fileID: 1302456526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1326797724
