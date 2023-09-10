@@ -75,6 +75,7 @@ namespace GameWorld
             {
                 Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
             }
+            GameManager.Instance.SoundManager.PlayOneShot("RobotExplode", transform);
             GameManager.Instance.EffectsManager.TriggerEnemyExplodeEffect(transform.position, new Vector3(0,1,0));
             LevelManager.Instance.DespawnEnemy(this.m_BoidEntity);
         }

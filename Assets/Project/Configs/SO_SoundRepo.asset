@@ -35,11 +35,23 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: a6d9c2959dc4896468fed685bf9add8f, type: 3}
     AttachedParent: {fileID: 0}
     Volume: 1
-    SpatialBlend: 0.8
+    SpatialBlend: 0.6
     Pitch: 1
   - SoundName: PlayerHit
     Clip: {fileID: 8300000, guid: 9a94f631a0a0320489e2a671fd993fba, type: 3}
     AttachedParent: {fileID: 0}
     Volume: 0.5
     SpatialBlend: 0
+    Pitch: 1
+  - SoundName: RobotExplode
+    Clip: {fileID: 8300000, guid: b67f63c9a49155842a0d86b4d6b62bc8, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.55
+    Pitch: 1
+  - SoundName: CardAppear
+    Clip: {fileID: 8300000, guid: 2b174d9a2d06dc8429737ef49b9b3f9d, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.85
     Pitch: 1
