@@ -8,21 +8,24 @@ namespace GameWorld
         [SerializeField] private PlayerAttack m_PlayerAtk;
         [SerializeField] private Haptic m_SwordHitHaptic;
 
-        private XRBaseController m_Controller;
+        private XRBaseControllerInteractor m_Controller;
 
         public void OnEquipSword(SelectEnterEventArgs arg)
         {
-            if (arg.interactorObject is XRBaseController controller)
+            Debug.Log(arg.interactorObject);
+
+            if (arg.interactorObject is XRBaseControllerInteractor controller)
             {
-                m_Controller = controller;
+                this.m_Controller = controller;
+                Debug.Log(this.m_Controller);
             }
         }
 
         public void OnUnequipSword(SelectExitEventArgs arg)
         {
-            if (arg.interactorObject is XRBaseController controller)
+            if (arg.interactorObject is XRBaseControllerInteractor controller)
             {
-                m_Controller = null;
+                this.m_Controller = null;
             }
         }
 
@@ -31,7 +34,7 @@ namespace GameWorld
             if (m_Controller != null)
             {
                 m_PlayerAtk.HitEnemy(collision);
-                m_SwordHitHaptic.TriggerHaptic(m_Controller);
+                m_SwordHitHaptic.TriggerHaptic(m_Controller.xrController);
             }
         }
     }
