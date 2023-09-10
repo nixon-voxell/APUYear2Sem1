@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
@@ -8,13 +6,11 @@ namespace GameWorld
     {
         [SerializeField] private Transform m_Target;
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             Vector3 targetEuler = this.m_Target.localEulerAngles;
 
-            this.transform.localEulerAngles = new Vector3(0, targetEuler.y, 0);
+            this.transform.localEulerAngles = new Vector3(0.0f, targetEuler.y, 0.0f);
         }
-
     }
 }
