@@ -33,6 +33,7 @@ namespace GameWorld.UX
             UXManager.Instance.PlayBtnPressClip();
             UXManager.Instance.LevelSelect.SetEnable(true);
             this.SetEnable(false);
+            
         }
 
         private void OptionBtn_clicked()

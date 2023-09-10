@@ -10,7 +10,7 @@
                 <ui:Button text="Level 3" display-tooltip-when-elided="true" name="level3-btn" class="level-selection-btn menu-btn" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center; font-size: 50px; align-items: center;">
-                <ui:Button text="Level 2" display-tooltip-when-elided="true" name="level2-btn" class="level-selection-btn menu-btn" style="background-image: none;" />
+                <ui:Button text="Level 2" display-tooltip-when-elided="true" name="level2-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/Level2.png?fileID=2800000&amp;guid=d9fc7deb0b670b94a94c208b04129b0f&amp;type=3#Level2&apos;);" />
                 <ui:Button text="Level 4" display-tooltip-when-elided="true" name="level4-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/level4.2.png?fileID=2800000&amp;guid=2f1bc6b3bd4589240a032cf993300c9d&amp;type=3#level4.2&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
