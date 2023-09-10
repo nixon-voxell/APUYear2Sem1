@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace GameWorld
 {
-    public class VRFollowYRotation : MonoBehaviour
+    public class VRRotateOnce : MonoBehaviour
     {
         [SerializeField] private Transform m_Target;
 
-        private void Update()
+        [ContextMenu("SetPosition")]
+        public void SetRotation()
         {
             Vector3 targetEuler = this.m_Target.localEulerAngles;
 

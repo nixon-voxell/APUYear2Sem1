@@ -1,7 +1,7 @@
 using GameWorld.Util;
 using GameWorld.UX;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine;
 
 namespace GameWorld
@@ -12,6 +12,8 @@ namespace GameWorld
         [SerializeField] private Pool<BulletMovement> m_BulletPool;
         [SerializeField] private Transform m_BulletSpawnPoint;
         [SerializeField] private ParticleSystem m_GunFireFx;
+        [SerializeField] private ControllerEquipment m_Equipment;
+        [SerializeField] private Haptic m_HitHaptic;
 
         private enum GunState { SHOOTING, IDLE, RELOADING }
 
@@ -23,6 +25,7 @@ namespace GameWorld
         private bool m_GunTrigger;
 
         public int CurrentGunAmmo => m_CurrentGunAmmo;
+
         private void Awake()
         {
             m_BulletPool.Initialize(new GameObject("Bullet Pool").transform);
@@ -65,8 +68,6 @@ namespace GameWorld
 
             for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShot; i++)
             {
-                RaycastHit hit;
-
                 // HANDLE BULLET SHOOTING
                 //if (m_CurrentGunAmmo <= 0)
                 //{
@@ -74,19 +75,25 @@ namespace GameWorld
                 //    break;
                 //}
 
+                
+
                 BulletMovement bullet = m_BulletPool.GetNextObject();
                 bullet.transform.position = m_BulletSpawnPoint.position;
 
                 m_Player.FirstPersonCamera.OnRecoilFire();
 
                 bullet.transform.rotation = m_BulletSpawnPoint.transform.rotation;
-                
 
                 bullet.StartBullet(50f, m_Player.PlayerAttribute.GunDamage);
                 GameManager.Instance.SoundManager.PlayOneShot("GunFire", bullet.transform);
 
-
                 m_GunFireFx.Play();
+
+                XRBaseControllerInteractor controller = this.m_Equipment.Controller;
+                if (controller != null)
+                {
+                    m_HitHaptic.TriggerHaptic(controller.xrController);
+                }
 
                 // HANDLE GUN AMMO
                 m_CurrentGunAmmo--;
@@ -99,12 +106,7 @@ namespace GameWorld
                 //    yield break;
                 //}
 
-
-
-
                 yield return new WaitForSeconds(0.05f);
-
-
             }
 
             m_GunState = GunState.IDLE;

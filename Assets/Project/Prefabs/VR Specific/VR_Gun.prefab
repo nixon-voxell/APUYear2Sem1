@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 1266311982112278228}
   - component: {fileID: 6939228301037314795}
   - component: {fileID: 6197995762561376642}
+  - component: {fileID: 125211374247791957}
   m_Layer: 8
   m_Name: VR_Gun
   m_TagString: Untagged
@@ -562,7 +563,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 125211374247791957}
+        m_TargetAssemblyTypeName: GameWorld.ControllerEquipment, GameWorld
+        m_MethodName: OnEquip
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
@@ -570,6 +583,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameWorld.VRGun, GameWorld
         m_MethodName: DisableShootGun
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 125211374247791957}
+        m_TargetAssemblyTypeName: GameWorld.ControllerEquipment, GameWorld
+        m_MethodName: OnUnequip
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -658,7 +683,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 0
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -716,6 +741,22 @@ MonoBehaviour:
     m_DefaultActive: 0
   m_BulletSpawnPoint: {fileID: 8432821146488384267}
   m_GunFireFx: {fileID: 1137036510711105460}
+  m_Equipment: {fileID: 125211374247791957}
+  m_HitHaptic:
+    intensity: 0.25
+    duration: 0.1
+--- !u!114 &125211374247791957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386965162991143582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea494e86cec19d438ed7a6cda83f399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7736328959625823702
 GameObject:
   m_ObjectHideFlags: 0

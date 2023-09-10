@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWorld
@@ -17,7 +15,7 @@ namespace GameWorld
 
         private void Update()
         {
-            this.transform.localPosition = this.m_Target.localPosition - this.m_Offset;   
+            this.transform.localPosition = this.m_Target.localPosition - this.m_Offset;
         }
     }
 }

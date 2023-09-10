@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -9,7 +7,7 @@ namespace GameWorld
     [System.Serializable]
     public class Haptic
     {
-        [Range(0f, 1f)]
+        [Range(0.0f, 1.0f)]
         public float intensity;
         public float duration;
 
@@ -48,6 +46,4 @@ namespace GameWorld
             interactable.selectExited.AddListener(hapticSelectExited.TriggerHaptic);
         }
     }
-
-    
 }

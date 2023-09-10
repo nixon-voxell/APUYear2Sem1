@@ -139,6 +139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerAtk: {fileID: 8601531945690281365}
+  m_SwordHitHaptic:
+    intensity: 0
+    duration: 0
 --- !u!54 &7941335546532442256
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -293,6 +296,7 @@ MonoBehaviour:
   - {fileID: 6853906947039375026}
   m_Player: {fileID: 8125739865970668651}
   m_UpgradeCanvas: {fileID: 3359419269266315173}
+  m_RotateOnce: {fileID: 60080560511893724}
 --- !u!1 &1467940250392912326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8136696569006029118}
-  - component: {fileID: 5725062331340223167}
+  - component: {fileID: 60080560511893724}
   m_Layer: 8
   m_Name: UI_Root_BuffSelection
   m_TagString: Untagged
@@ -1035,7 +1039,7 @@ Transform:
   - {fileID: 300114795145779617}
   m_Father: {fileID: 903643385184768535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5725062331340223167
+--- !u!114 &60080560511893724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1044,7 +1048,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2692137796983196519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017cd95426469414186a349b9408ac19, type: 3}
+  m_Script: {fileID: 11500000, guid: 85533bb409623fd49b5b690c89ee63af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 3788693902065318742}
@@ -2263,6 +2267,7 @@ GameObject:
   - component: {fileID: 4618458875614308337}
   - component: {fileID: 7118293559858019894}
   - component: {fileID: 1509687405136109504}
+  - component: {fileID: 5761151520117105621}
   m_Layer: 8
   m_Name: UI_Root
   m_TagString: Untagged
@@ -2300,6 +2305,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 3788693902065318742}
 --- !u!114 &1509687405136109504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6766231534990454500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66261fdb7f8ef42823a88b73e68bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 3788693902065318742}
+--- !u!114 &5761151520117105621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2683,12 +2701,12 @@ MonoBehaviour:
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
   m_AllowHoverAudioWhileSelecting: 1
-  m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
-  m_PlayHapticsOnSelectExited: 0
-  m_HapticSelectExitIntensity: 0
-  m_HapticSelectExitDuration: 0
+  m_PlayHapticsOnSelectEntered: 1
+  m_HapticSelectEnterIntensity: 0.3
+  m_HapticSelectEnterDuration: 0.2
+  m_PlayHapticsOnSelectExited: 1
+  m_HapticSelectExitIntensity: 0.1
+  m_HapticSelectExitDuration: 0.1
   m_PlayHapticsOnSelectCanceled: 0
   m_HapticSelectCancelIntensity: 0
   m_HapticSelectCancelDuration: 0
