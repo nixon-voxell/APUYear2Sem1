@@ -139,6 +139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerAtk: {fileID: 8601531945690281365}
+  m_SwordHitHaptic:
+    intensity: 0
+    duration: 0
 --- !u!54 &7941335546532442256
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2264,6 +2267,7 @@ GameObject:
   - component: {fileID: 4618458875614308337}
   - component: {fileID: 7118293559858019894}
   - component: {fileID: 1509687405136109504}
+  - component: {fileID: 5761151520117105621}
   m_Layer: 8
   m_Name: UI_Root
   m_TagString: Untagged
@@ -2301,6 +2305,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 3788693902065318742}
 --- !u!114 &1509687405136109504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6766231534990454500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66261fdb7f8ef42823a88b73e68bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 3788693902065318742}
+--- !u!114 &5761151520117105621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -225,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4609527195002684491}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5393414, y: 0.5579878, z: -0.21968141, w: -0.5911857}
+  m_LocalRotation: {x: 0.53933996, y: -0.5579912, z: 0.21967974, w: 0.5911845}
   m_LocalPosition: {x: 1.869, y: 0.842, z: 0.329}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
@@ -253,7 +253,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -311,10 +311,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4623819835453076405}
+        m_TargetAssemblyTypeName: GameWorld.SwordCollider, GameWorld
+        m_MethodName: OnEquipSword
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4623819835453076405}
+        m_TargetAssemblyTypeName: GameWorld.SwordCollider, GameWorld
+        m_MethodName: OnUnequipSword
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -443,6 +467,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerAtk: {fileID: 0}
+  m_SwordHitHaptic:
+    intensity: 0.25
+    duration: 0.1
 --- !u!1 &7012209002637321213
 GameObject:
   m_ObjectHideFlags: 0
