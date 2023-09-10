@@ -99,30 +99,6 @@ MonoBehaviour:
     EquipmentTypeIcon: {fileID: 0}
     CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
     CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Rampage Mode
-    UpgradeDescription: Gun Ammo
-    UpgradeType: 4
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: 063f6764a7009884e94c2ef6693ce151, type: 3}
-    UpgradeValueType: 1
-    UpgradeValue: 5
-    UpgradeCount: 0
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Yeaaarrr
-    UpgradeDescription: Sword Swing Speed
-    UpgradeType: 6
-    EquipmentType: 1
-    UpgradeIcon: {fileID: 21300000, guid: cb3da85837e104e4c9206474612d7849, type: 3}
-    UpgradeValueType: 0
-    UpgradeValue: 0.02
-    UpgradeCount: 0
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
   - UpgradeName: Atomic Slice
     UpgradeDescription: Sword Damage
     UpgradeType: 5
@@ -140,18 +116,6 @@ MonoBehaviour:
     UpgradeType: 10
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 63a8949ffc3cf9c4ca734cf191d59fe3, type: 3}
-    UpgradeValueType: 0
-    UpgradeValue: 0.005
-    UpgradeCount: 0
-    UpgradeRarity: 0
-    EquipmentTypeIcon: {fileID: 0}
-    CardColorTheme: {r: 0, g: 0, b: 0, a: 0}
-    CardGlowSize: {x: 0, y: 0}
-  - UpgradeName: Fast Charge
-    UpgradeDescription: Reload time
-    UpgradeType: 3
-    EquipmentType: 0
-    UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
     UpgradeValueType: 0
     UpgradeValue: 0.005
     UpgradeCount: 0

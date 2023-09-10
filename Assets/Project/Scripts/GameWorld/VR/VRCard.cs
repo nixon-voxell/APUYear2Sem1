@@ -29,11 +29,12 @@ namespace GameWorld
             {
                 m_PointLights[i].color = upgradeDrop.CardColorTheme;
             }
+
+            GameManager.Instance.SoundManager.PlayOneShot("CardAppear", transform);
         }
 
         public void ChooseCard()
         {
-            Debug.Log("CARD CHOSEN: " + m_CardIndex);
             UXManager.Instance.BuffSelection.SelectCard(m_CardIndex);
             m_VRCardParent.UnshowCards();
         }

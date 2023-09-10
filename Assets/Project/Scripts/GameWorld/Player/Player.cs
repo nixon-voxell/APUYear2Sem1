@@ -105,6 +105,8 @@ namespace GameWorld
         public void SelectUpgradeDrop(Upgrade upgrade)
         {
             PlayerAttribute.AddAttribute(upgrade);
+            GameManager.Instance.SoundManager.PlayOneShot("CardGrab", transform);
+
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
