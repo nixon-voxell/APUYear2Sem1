@@ -5,7 +5,6 @@ namespace GameWorld.UX
     public class InGameHUD : UXBehaviour
     {
         private Label m_WaveLabel;
-        private Label m_AmmoLabel;
         private ProgressBar m_HPBar;
 
         private void OnEnable()
@@ -15,14 +14,12 @@ namespace GameWorld.UX
             this.SetEnable(false);
 
             this.m_WaveLabel = m_Root.Q<Label>("wave-lbl");
-            this.m_AmmoLabel = m_Root.Q<Label>("ammo-lbl");
             this.m_HPBar = m_Root.Q<ProgressBar>("health-bar");
         }
 
 
         public void UpdateGunAmmo(int currentGunAmmo,int gunMagazineCapacity)
         {
-            m_AmmoLabel.text = $"{currentGunAmmo}/{gunMagazineCapacity}";
         }
 
         public void UpdateCurrentHP(int currentHP)

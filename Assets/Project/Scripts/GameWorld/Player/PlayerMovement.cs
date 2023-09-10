@@ -12,7 +12,6 @@ namespace GameWorld
     [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private InputActionProperty m_JumpAction = new InputActionProperty(new InputAction("Jump", expectedControlType: "Boolean"));
         [SerializeField] private Transform m_VRCam;
 
 

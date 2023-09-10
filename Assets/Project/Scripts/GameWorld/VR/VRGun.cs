@@ -55,7 +55,6 @@ namespace GameWorld
 
         private IEnumerator StartShootGun()
         {
-            Debug.Log("Shgooooooto");
             // Prevent starting another coroutine of shoot
             if (Time.time < m_NextGunCooldown || m_GunState != GunState.IDLE)
             {

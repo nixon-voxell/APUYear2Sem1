@@ -9,6 +9,7 @@ namespace GameWorld.AI
 {
     using Util;
     using Storage;
+    using Codice.CM.Common;
 
     public class BoidManager : MonoBehaviour
     {
@@ -29,7 +30,9 @@ namespace GameWorld.AI
 
         private Collider[] m_BoidColliders;
         private Collider[] m_ObstacleColliders;
-
+        
+        
+        
         public Transform SpawnBoid(float3 position, float3 direction, float maxSpeed)
         {
             int boidIndex;
@@ -113,6 +116,9 @@ namespace GameWorld.AI
                 this.m_BoidContainer.na_InstanceID[b]
                 = this.m_BoidTransPool.Objects[b].GetInstanceID();
             }
+
+            // TODO: Dont forget to delete this line of testing
+            SpawnBoid(new float3(0, 0, 6), new float3(0, 0, 0), 1f);
         }
 
         private void Update()

@@ -82,7 +82,7 @@ namespace GameWorld
 
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
 
-            // TODO: Add sword atk cooldown for enemy that has been hit
+            if (damageable == null) return;
 
             int damage = this.m_Player.PlayerAttribute.SwordDamage;
             Vector3 fxPos = collision.contacts[0].point + new Vector3(0, 1f, 0.5f);
@@ -92,10 +92,7 @@ namespace GameWorld
                 0.4f, 1.0f
             );
 
-            if (damageable != null)
-            {
-                damageable.OnDamage(damage);
-            }
+            damageable.OnDamage(damage);
 
             ParticleSystem pfx = m_PfxPool.GetNextObject();
             pfx.transform.position = collision.contacts[0].point;

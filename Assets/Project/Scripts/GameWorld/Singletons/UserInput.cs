@@ -19,6 +19,7 @@ namespace GameWorld
         [SerializeField, InspectOnly] private bool m_Reload;
 
         [SerializeField] private InputActionProperty m_JumpInputAction;
+        [SerializeField] private InputActionProperty m_RunInputAction;
 
 
         public bool Active = true;
@@ -50,7 +51,7 @@ namespace GameWorld
             this.m_Movement.x = Input.GetAxisRaw("Horizontal");
             this.m_Movement.y = Input.GetAxisRaw("Vertical");
             this.m_Jump = this.m_JumpInputAction.action.ReadValue<float>() == 1f ? true : false;
-            this.m_Run = Input.GetButton("Run");
+            this.m_Run = this.m_RunInputAction.action.ReadValue<float>() == 1f ? true : false;
 
             // mouse movement update
             this.m_MouseMovement.x = Input.GetAxis("Mouse X");

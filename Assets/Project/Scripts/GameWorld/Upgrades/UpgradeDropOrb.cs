@@ -15,6 +15,7 @@ namespace GameWorld
         [SerializeField] private bool m_DebugAttractRadius;
 
         private Rigidbody m_Rigidbody;
+        private Transform m_PlayerTransform;
 
         private void Awake()
         {
@@ -24,11 +25,21 @@ namespace GameWorld
 
         private void Update()
         {
+            Player player = null;
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_PlayerAttractRadius, m_PlayerLayer);
 
-            if (hitColliders.Length > 0 )
+            foreach(Collider collider in hitColliders)
             {
-                Vector3 direction = (hitColliders[0].transform.position - transform.position).normalized;
+                player = collider.GetComponent<Player>();
+                if (player != null)
+                {
+                    break;
+                }
+            }
+
+            if (player != null)
+            {
+                Vector3 direction = (player.transform.position - transform.position).normalized;
                 m_Rigidbody.velocity = direction * m_ChaseForce;
             }
             else
