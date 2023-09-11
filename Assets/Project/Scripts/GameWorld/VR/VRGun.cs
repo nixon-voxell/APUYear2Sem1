@@ -68,14 +68,7 @@ namespace GameWorld
 
             for (int i = 0; i < m_Player.PlayerAttribute.GunBulletPerShot; i++)
             {
-                // HANDLE BULLET SHOOTING
-                //if (m_CurrentGunAmmo <= 0)
-                //{
-                //    StartReloadGun();
-                //    break;
-                //}
-
-                
+             
 
                 BulletMovement bullet = m_BulletPool.GetNextObject();
                 bullet.transform.position = m_BulletSpawnPoint.position;
@@ -96,15 +89,9 @@ namespace GameWorld
                 }
 
                 // HANDLE GUN AMMO
-                m_CurrentGunAmmo--;
-                UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+                //m_CurrentGunAmmo--;
+                //UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
 
-                //if (m_CurrentGunAmmo <= 0)
-                //{
-                //    m_GunState = GunState.RELOADING;
-                //    StartReloadGun();
-                //    yield break;
-                //}
 
                 yield return new WaitForSeconds(0.05f);
             }
@@ -112,21 +99,21 @@ namespace GameWorld
             m_GunState = GunState.IDLE;
         }
 
-        public void StartReloadGun()
-        {
-            if (m_GunState != GunState.IDLE)
-                return;
+        //public void StartReloadGun()
+        //{
+        //    if (m_GunState != GunState.IDLE)
+        //        return;
 
-            m_GunState = GunState.RELOADING;
-            m_GunAnimator.speed = 1f / m_Player.PlayerAttribute.GunReloadTime; // Ensure that reload animation is at 1.0f
-            m_GunAnimator.Play("GunReload");
-        }
+        //    m_GunState = GunState.RELOADING;
+        //    m_GunAnimator.speed = 1f / m_Player.PlayerAttribute.GunReloadTime; // Ensure that reload animation is at 1.0f
+        //    m_GunAnimator.Play("GunReload");
+        //}
 
-        public void FinishReloadingGun()
-        {
-            m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
-            UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
-        }
+        //public void FinishReloadingGun()
+        //{
+        //    m_CurrentGunAmmo = m_Player.PlayerAttribute.GunMagazine;
+        //    UXManager.Instance.InGameHUD.UpdateGunAmmo(m_CurrentGunAmmo, m_Player.PlayerAttribute.GunMagazine);
+        //}
     }
 
     
