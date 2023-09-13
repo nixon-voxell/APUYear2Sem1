@@ -19,7 +19,7 @@ MonoBehaviour:
       Power: 0.488
     CountPlot:
       BaseValue: -3.65
-      Multiplier: 0.5
+      Multiplier: 1
       Power: 0.88
     SpeedPlot:
       BaseValue: 1

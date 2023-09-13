@@ -15,7 +15,7 @@ MonoBehaviour:
   Config:
     StatPlot:
       BaseValue: 0
-      Multiplier: 1
+      Multiplier: 1.25
       Power: 0.412
     CountPlot:
       BaseValue: 0
@@ -23,5 +23,5 @@ MonoBehaviour:
       Power: 0.88
     SpeedPlot:
       BaseValue: 0
-      Multiplier: 1
+      Multiplier: 1.25
       Power: 1.1
