@@ -5148,11 +5148,11 @@ MonoBehaviour:
   UpgradesConfig: {fileID: 11400000, guid: af05aa900468fd4458d353b846668a81, type: 2}
   m_InitialGunDamage: 3
   m_InitialGunBulletPerShot: 1
-  m_InitialGunCooldown: 1
-  m_InitialGunReloadTime: 2.5
+  m_InitialGunCooldown: 0.5
+  m_InitialGunReloadTime: 3
   m_InitialGunMagazine: 5
-  m_InitialSwordDamage: 1
-  m_InitialSwordSwingSpeed: 0.75
+  m_InitialSwordDamage: 7
+  m_InitialSwordSwingSpeed: 0.5
   m_InitialArmorDefense: 0
   m_InitialArmorHealthRegen: 1
   m_InitialArmorMaxHealth: 100

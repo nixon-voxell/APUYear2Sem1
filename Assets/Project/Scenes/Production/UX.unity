@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level1Scene: Level1
   Level2Scene: Level2
-  Level3Scene: 
+  Level3Scene: Level3
   Level4Scene: Level4
   m_btnpress: {fileID: 443240455}
   m_Bpmusic: {fileID: 443240454}
