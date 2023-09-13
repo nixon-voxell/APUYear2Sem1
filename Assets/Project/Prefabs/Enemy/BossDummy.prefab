@@ -127,7 +127,7 @@ MonoBehaviour:
     type: 3}
   m_HealthMax: 25
   m_StartingSpeed: 5
-  m_StartingDamage: 25
+  m_StartingDamage: 15
   m_EnemyUnableToDie: 0
 --- !u!65 &7362978788915265678
 BoxCollider:
