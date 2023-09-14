@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunDamage: 2
   GunBulletPerShot: 1
-  GunCooldown: 0.01
-  GunReloadTime: 0.01
+  GunCooldown: 0.02
+  GunReloadTime: 0.02
   GunMagazine: 5
   SwordDamage: 3
   SwordSwingSpeed: 0.03
-  ArmorDefense: 0.05
+  ArmorDefense: 0.06
   ArmorHealthRegen: 2
-  ArmorMaxHealth: 10
-  ArmorDamageReflect: 0.01
+  ArmorMaxHealth: 20
+  ArmorDamageReflect: 0.03
   ShoeSpeed: 1
   ShoeJump: 0

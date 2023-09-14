@@ -41,7 +41,7 @@ MonoBehaviour:
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: b6bcf3267aef2a84fabda601cfca0367, type: 3}
     UpgradeValueType: 0
-    UpgradeValue: 0.03
+    UpgradeValue: 0.06
     UpgradeCount: 0
     UpgradeRarity: 2
     EquipmentTypeIcon: {fileID: 21300000, guid: e5f569f73e14dab4d88a7d160a9c7507,
@@ -93,7 +93,7 @@ MonoBehaviour:
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: b9b443aa25bdd754d9e1d99d8a242259, type: 3}
     UpgradeValueType: 0
-    UpgradeValue: 0.01
+    UpgradeValue: 0.02
     UpgradeCount: 0
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
     EquipmentType: 1
     UpgradeIcon: {fileID: 21300000, guid: cb3da85837e104e4c9206474612d7849, type: 3}
     UpgradeValueType: 0
-    UpgradeValue: 0.02
+    UpgradeValue: 0.03
     UpgradeCount: 0
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: 63a8949ffc3cf9c4ca734cf191d59fe3, type: 3}
     UpgradeValueType: 0
-    UpgradeValue: 0.005
+    UpgradeValue: 0.03
     UpgradeCount: 0
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
@@ -153,7 +153,7 @@ MonoBehaviour:
     EquipmentType: 0
     UpgradeIcon: {fileID: 21300000, guid: 674259d9522475a4fb8a5e235154ba4b, type: 3}
     UpgradeValueType: 0
-    UpgradeValue: 0.005
+    UpgradeValue: 0.02
     UpgradeCount: 0
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
     EquipmentType: 2
     UpgradeIcon: {fileID: 21300000, guid: a7e4313bc15a68e4d92502f186c9e801, type: 3}
     UpgradeValueType: 1
-    UpgradeValue: 2
+    UpgradeValue: 20
     UpgradeCount: 0
     UpgradeRarity: 0
     EquipmentTypeIcon: {fileID: 0}
