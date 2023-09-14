@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground
+  m_Name: Ground_1
   m_Shader: {fileID: -6465566751694194690, guid: 8ccf0b29282616841ada4581680e9da6,
     type: 3}
   m_Parent: {fileID: 0}
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: c7c5239ae4b2ace4d8774918a50a940a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8634f8cf5ba74134c972fb2d36355077, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
@@ -68,14 +68,14 @@ Material:
     - _Cull: 2
     - _DstBlend: 0
     - _FalloffPower: 2
-    - _Metallic: 1
+    - _Metallic: 0
     - _Metallic_1: 0
     - _NoiseScale: 0.025
     - _NormalStrength: 0.002
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.8
+    - _Smoothness: 0.1
     - _SrcBlend: 1
     - _Surface: 0
     - _Tile: 0.5
@@ -85,8 +85,8 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _AnimMinMax: {r: 0, g: 1.5, b: 0, a: 0}
-    - _BaseColor: {r: 0.3592737, g: 0.8207547, b: 0.8207547, a: 0}
-    - _LineColor: {r: 7.195067, g: 33.896755, b: 28.783663, a: 0}
+    - _BaseColor: {r: 0.36737704, g: 0.83, b: 0.83, a: 0}
+    - _LineColor: {r: 0, g: 8.47419, b: 6.89234, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &9006450370300649538
 MonoBehaviour:
