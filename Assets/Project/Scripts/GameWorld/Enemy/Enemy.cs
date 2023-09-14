@@ -48,6 +48,8 @@ namespace GameWorld
             m_CurrentHealth -= damage;
 
             // m_DamagePopupPool.GetNextObject().OnPopup(damage.ToString());
+            GameManager.Instance.SoundManager.PlayOneShot("sfx_hit_robot", transform);
+
 
             if (m_CurrentHealth <= 0)
             {
@@ -73,6 +75,7 @@ namespace GameWorld
             {
                 Instantiate(m_UpgradeOrb, transform.position, Quaternion.identity);
             }
+            GameManager.Instance.SoundManager.PlayOneShot("sfx_robot_explode", transform);
             GameManager.Instance.EffectsManager.TriggerEnemyExplodeEffect(transform.position, new Vector3(0,1,0));
             LevelManager.Instance.DespawnEnemy(this.m_BoidEntity);
         }

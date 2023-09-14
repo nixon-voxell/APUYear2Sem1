@@ -68,6 +68,7 @@ namespace GameWorld
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             UserInput.Instance.Active = false;
+            GameManager.Instance.SoundManager.PlayOneShot("sfx_card_appear", transform);
 
             StartCoroutine(AdjustTimeScale(0f));
             Upgrade[] upgradeDrops = m_UpgradeDropSO.RollUpgradeList(3, enemyType);
@@ -98,6 +99,7 @@ namespace GameWorld
         public void SelectUpgradeDrop(Upgrade upgrade)
         {
             PlayerAttribute.AddAttribute(upgrade);
+            GameManager.Instance.SoundManager.PlayOneShot("sfx_card_grab", transform);
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

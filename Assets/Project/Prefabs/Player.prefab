@@ -5155,7 +5155,7 @@ MonoBehaviour:
   m_InitialSwordSwingSpeed: 0.5
   m_InitialArmorDefense: 0
   m_InitialArmorHealthRegen: 1
-  m_InitialArmorMaxHealth: 100
+  m_InitialArmorMaxHealth: 150
   m_InitialArmorDamageReflect: 0
   m_InitialShoeSpeed: 5
   m_InitialShoeJump: 1
