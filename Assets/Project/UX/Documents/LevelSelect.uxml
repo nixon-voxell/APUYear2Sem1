@@ -7,11 +7,11 @@
         <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-around; align-items: stretch; flex-wrap: nowrap; align-self: flex-start; -unity-text-align: upper-center; padding-left: 200px; padding-right: 200px;">
             <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center; justify-content: space-between; align-items: center; flex-direction: column; font-size: 50px;">
                 <ui:Button text="Level 1" display-tooltip-when-elided="true" name="level1-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/Level1.png?fileID=2800000&amp;guid=66422ab5d69db47409d91c7a85108af4&amp;type=3#Level1&apos;);" />
-                <ui:Button text="Level 3" display-tooltip-when-elided="true" name="level3-btn" class="level-selection-btn menu-btn" />
+                <ui:Button text="Level 3" display-tooltip-when-elided="true" name="level3-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/lvl3.png?fileID=2800000&amp;guid=8cf0199331540db4b8033b6e179d8a22&amp;type=3#lvl3&apos;);" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center; font-size: 50px; align-items: center;">
-                <ui:Button text="Level 2" display-tooltip-when-elided="true" name="level2-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/Level2.png?fileID=2800000&amp;guid=d9fc7deb0b670b94a94c208b04129b0f&amp;type=3#Level2&apos;);" />
-                <ui:Button text="Level 4" display-tooltip-when-elided="true" name="level4-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/level4.2.png?fileID=2800000&amp;guid=2f1bc6b3bd4589240a032cf993300c9d&amp;type=3#level4.2&apos;);" />
+                <ui:Button text="Level 2" display-tooltip-when-elided="true" name="level2-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/lvl2.png?fileID=2800000&amp;guid=048c945002aaf654ea3172f6d37a2066&amp;type=3#lvl2&apos;);" />
+                <ui:Button text="Level 4" display-tooltip-when-elided="true" name="level4-btn" class="level-selection-btn menu-btn" style="background-image: url(&apos;project://database/Assets/Project/Textures/UI/BtnBackground/lvl4.png?fileID=2800000&amp;guid=ff935590cb11fcc4e809408fc3be2c8a&amp;type=3#lvl4&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
