@@ -3,7 +3,32 @@ guid: 34a54e4044c8b9d4295362dca3647205
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Psyco frame
+    second: {fileID: 2100000, guid: 54c2f97866b1798479c5b6026e76cd8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dark red
+    second: {fileID: 2100000, guid: 54c2f97866b1798479c5b6026e76cd8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gold.001
+    second: {fileID: 2100000, guid: 10be4408238cdc643aaab52868932221, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gold.002
+    second: {fileID: 2100000, guid: 458c32a703e82234a85abcd8c83d0f73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white
+    second: {fileID: 2100000, guid: 515e5156564b474489fa49c5555959b8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

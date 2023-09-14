@@ -165,8 +165,9 @@ namespace GameWorld
             this.m_SpawnCoroutines = new Coroutine[this.m_WaveConfigs.Length];
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return null;
             this.m_WaveCoroutine = this.StartCoroutine(this.CR_WaveLoop());
         }
 
