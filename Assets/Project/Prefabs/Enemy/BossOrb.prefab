@@ -4928,8 +4928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyTypeOrb: 2
-  m_PlayerAttractRadius: 8
-  m_ChaseForce: 4.5
+  m_PlayerAttractRadius: 10
+  m_ChaseForce: 5
   m_PlayerLayer:
     serializedVersion: 2
     m_Bits: 256

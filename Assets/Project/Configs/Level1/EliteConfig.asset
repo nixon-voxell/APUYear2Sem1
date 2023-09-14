@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9902d9801c6c2ab479b92fc8e7423820, type: 3}
-  m_Name: BossConfig
+  m_Name: EliteConfig
   m_EditorClassIdentifier: 
   Config:
     StatPlot:
-      BaseValue: 1
-      Multiplier: 0.5
-      Power: 0.488
+      BaseValue: 0
+      Multiplier: 1.35
+      Power: 0.412
     CountPlot:
-      BaseValue: -3.65
-      Multiplier: 1
+      BaseValue: 0
+      Multiplier: 0.85
       Power: 0.88
     SpeedPlot:
-      BaseValue: 1
-      Multiplier: 1.5
-      Power: 1
+      BaseValue: 0
+      Multiplier: 1.25
+      Power: 1.1

@@ -16,7 +16,7 @@ MonoBehaviour:
   - SoundName: GunFire
     Clip: {fileID: 8300000, guid: d13263589f96a284eb26c9292eef2bfc, type: 3}
     AttachedParent: {fileID: 0}
-    Volume: 1
+    Volume: 0.9
     SpatialBlend: 0.5
     Pitch: 1
   - SoundName: Katana
@@ -24,10 +24,46 @@ MonoBehaviour:
     AttachedParent: {fileID: 0}
     Volume: 0.35
     SpatialBlend: 0.5
-    Pitch: 1
+    Pitch: 1.15
   - SoundName: TestSfx2
     Clip: {fileID: 8300000, guid: 8fec062430c267d4ca0bc2bf5efa0625, type: 3}
     AttachedParent: {fileID: 0}
     Volume: 1
     SpatialBlend: 1
+    Pitch: 1
+  - SoundName: sfx_hit_robot
+    Clip: {fileID: 8300000, guid: a78a79b32ea42074fa4fca8c996f0abe, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 0.85
+    SpatialBlend: 0.85
+    Pitch: 1
+  - SoundName: sfx_card_grab
+    Clip: {fileID: 8300000, guid: fa247e6a09bc32040be34fce59007a4a, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 0.9
+    SpatialBlend: 0
+    Pitch: 1
+  - SoundName: sfx_robot_explode
+    Clip: {fileID: 8300000, guid: 945c5c9773368064c9182eb684fb9a65, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.9
+    Pitch: 1
+  - SoundName: sfx_player_hit
+    Clip: {fileID: 8300000, guid: 5cafc51b647404a478b10243aff55e3d, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.9
+    Pitch: 1
+  - SoundName: sfx_card_appear
+    Clip: {fileID: 8300000, guid: 4dc8a1466fb697f4581b01a9c879b529, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.95
+    Pitch: 1
+  - SoundName: sfx_spawn
+    Clip: {fileID: 8300000, guid: 3e217af60c557d842b8f8db9cb7f7e5a, type: 3}
+    AttachedParent: {fileID: 0}
+    Volume: 1
+    SpatialBlend: 0.85
     Pitch: 1

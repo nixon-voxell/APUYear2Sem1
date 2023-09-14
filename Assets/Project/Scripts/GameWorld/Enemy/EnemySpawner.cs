@@ -20,6 +20,8 @@ namespace GameWorld
             float2 spawnerPos = mathxx.flatten_3d(this.transform.position);
             randPos += spawnerPos;
 
+            GameManager.Instance.SoundManager.PlayOneShot("sfx_spawn", transform);
+
             return mathxx.unflatten_2d(randPos);
         }
 

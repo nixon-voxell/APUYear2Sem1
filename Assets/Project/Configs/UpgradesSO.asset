@@ -15,13 +15,13 @@ MonoBehaviour:
   GunDamage: 2
   GunBulletPerShot: 1
   GunCooldown: 0.01
-  GunReloadTime: 0.005
+  GunReloadTime: 0.01
   GunMagazine: 5
   SwordDamage: 3
-  SwordSwingSpeed: 0.02
-  ArmorDefense: 0.03
+  SwordSwingSpeed: 0.03
+  ArmorDefense: 0.05
   ArmorHealthRegen: 2
-  ArmorMaxHealth: 2
-  ArmorDamageReflect: 0.005
+  ArmorMaxHealth: 10
+  ArmorDamageReflect: 0.01
   ShoeSpeed: 1
   ShoeJump: 0

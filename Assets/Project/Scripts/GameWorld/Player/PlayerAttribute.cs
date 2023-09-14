@@ -98,6 +98,7 @@ namespace GameWorld
             int dmgReduced = Mathf.RoundToInt(damage * ArmorDefense); 
 
             m_PlayerCurrentHP -= dmgReduced;
+            GameManager.Instance.SoundManager.PlayOneShot("sfx_player_hit", transform);
             m_Player.PlayerEffectsControl.OnDamageEffect();
 
             if (PlayerCurrentHP < 0)
